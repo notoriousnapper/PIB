@@ -1,0 +1,104 @@
+/* Contact.js */
+
+
+
+var React = require('react');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
+
+
+
+var ImageComponent = React.createClass({
+        render: function(){
+                        var logoStyle = {
+                                width:"90px"
+                              };
+                        return (
+                                <img src={this.props.url} style={logoStyle}/>
+                               )
+                }
+});
+
+var LogoComponent = React.createClass({
+        render: function(){
+                        var logoStyle = {
+                                width:"90px"
+                              };
+                        var containerStyle_logo = { 
+                                marginLeft:"100px",
+                                paddingLeft:"160px",
+                                height:"50px",
+                                width: "410px",
+                                borderColor: "#E6E6E6",
+                                borderStyle: "solid",
+                                borderWidth: "0px 1px 0px 0px",
+                                minWidth:"60px"
+            };
+            var url = "../public/img/logo3.png";
+            return (
+                    <div style={containerStyle_logo}>
+                                <img src={this.props.url} style={logoStyle}/>
+                    </div>
+            )
+        }
+});
+
+var GlobalNav = React.createClass({
+        render: function(){
+          var containerStyle = {
+            marginLeft: "100px",
+            paddingLeft:"100px",
+            width:"60%",
+            height:"50px",
+            display: "flex"};
+
+          var wrapperStyle = {
+                  borderColor: "#E6E6E6",
+                    borderStyle: "solid",
+                      borderWidth: "0px 1px 0px 1px",
+                        textAlign:"center",
+                          fontFamily: "'Ubuntu', sans-serif",
+                            padding: "0px 6px 0px 6px",
+                                       width:"30%"};
+
+          var topStyle= { height: '60%' };
+          var bottomStyle= {
+                  height:'30%',
+                  color: '#242323',
+                  fontSize: '13px',
+                  textDecoration:"none", 
+          };
+
+          var listItems = this.props.items.map(function(item){
+          		  var url = "/"+item.toLowerCase();
+                  return (
+                  <Link to={url} style={wrapperStyle}>
+                    <div style={topStyle}></div>
+                        <div style={bottomStyle} >{item}</div>
+                  </Link>)
+        });
+          return (
+                  <div style={containerStyle}>
+                  <LogoComponent url="../public/img/logo3.png" />
+                  {listItems}
+                  </div>
+                )
+        }
+});
+
+
+var Main = React.createClass({
+        render: function(){
+        var imgs = [{"logo":"../public/img/logo3.png"}, "../public/img/logo3.png"]
+        var menu =['PROJECTS', 'HOME', 'ABOUT', 'CONTACT']
+        return(
+        		<div>	
+                <GlobalNav items={menu} />
+				{this.props.children} 
+				</div>
+              )
+                }
+});
+
+
+module.exports = Contact;

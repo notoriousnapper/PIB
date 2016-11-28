@@ -1,0 +1,201 @@
+body{padding:0; margin:0;}
+h1, h2, h3{color:white; }
+
+nav{ float:right color: #006BEC; }
+
+a{
+/*	margin-left: 20px;
+	margin-right: 20px;
+	margin:20px;
+	 border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    text-decoration:none !important;
+	font-family: "Times New Roman", Times, serif;
+	color:#106FE9 ;
+*/}
+
+
+.wrap{
+	margin:0px;
+}
+#a{
+	border-style: solid;
+}
+
+.buta{
+	display:inline-block;
+	border-style: solid;
+	border-left-width: 10px;
+	width:23%;
+}
+
+/*Classes*/
+.box{ 
+	height: 165px;
+	width:100%;	
+	/*margin:20px;*/
+	border-color: black;
+	background-color: black;
+
+
+	padding-top: 10px;
+
+
+}
+
+
+.ele1 {
+    display:inline-block;
+    width:30%;
+    padding:0px;
+    box-sizing:border-box;          /* Make sure that 50% includes the padding */
+    -moz-box-sizing:border-box;     /* For Firefox                             */
+    -webkit-box-sizing:border-box;  /* For old mobile Safari                   */
+
+}
+.element {
+    /*background:#009; color:#cef; text-align:center;*/
+    display:block;
+}
+
+.left{ float:left;}
+.right{float:right;}
+
+
+#logo{
+	float:left;
+	font-family: 'Roboto', sans-serif;
+	font-size: 30pt;
+	font-style: bold;
+	color: #006BEC;
+}
+
+#banner{
+	/*background-color: black;*/
+}
+
+
+#header{ background-color: white;
+	height:30px;
+	box-shadow: 0px 6px 1px grey;
+	border-color: red;
+	border-width: 10px;
+}
+
+
+#headerWrapper{
+	padding:20px;
+	padding-top: 9px;
+	padding-bottom: 0;
+	height:60px;
+	margin-bottom: 0;
+	width: 49%;                     /* poor approximation for old browsers    */
+  width: calc(50% - 8px);         /* standards-based answer for IE9+, FF16+ */
+  width: -moz-calc(50% - 8px);    /* support for FF4 - FF15                 */
+  width: -webkit-calc(50% - 8px); /* support for Chrome19+ and Safari6+     */
+}
+
+#rightSide{
+	width: 49%;                     /* poor approximation for old browsers    */
+  width: calc(50% - 8px);         /* standards-based answer for IE9+, FF16+ */
+  width: -moz-calc(50% - 8px);    /* support for FF4 - FF15                 */
+  width: -webkit-calc(50% - 8px); /* support for Chrome19+ and Safari6+     */
+}
+
+
+}
+
+#bannerWrapper{
+	padding:20px;
+	padding-top: 9px;
+	padding-bottom: 0;
+	height:40px;
+	margin-bottom: 0;
+}
+
+
+#FontLogo{ 
+
+	display:inline-block;
+	padding-bottom: 30px;
+	font-size: 40px;
+	font-family: 'Roboto', sans-serif;
+	color:#006DF0;
+}
+#FontFeature{
+	color:#f1c232;
+	font-size: 40px;
+	font-family: 'AudioWide', sans-serif;
+	text-decoration: underline;
+	/*font-style: Highlight;*/
+}
+
+#FontTitle{font-family: 'Roboto', sans-serif; font-size:35px; }
+#FontEmoticon{font-size:20px; font-family: 'Roboto', sans-serif; padding: 0 15px 0 0; }
+#FontParagraph{
+	padding-right:100px;
+	padding-bottom:10px;
+	margin:0;
+	font-family: 'Arial', sans-serif;
+	font-size: 14px;
+}
+#FontBlue{color:#006DF0;}
+#FontRed{ color:#E64C3C;}
+
+
+
+#Paragraph{
+
+
+}
+#textBox{
+	float:left;
+	width:30%;
+	/*padding:20px;*/
+	padding-left: 70px;
+	padding-right: 20px;
+}
+
+#carousel{ 
+	height:300px; 
+	border-radius: 25px;
+	border-top-color:red;
+	width:500px;
+	/*padding:10px;*/
+	
+/*
+	outline:0;
+	-webkit-box-shadow: 2px 2px 103px 13px rgba(25,74,109,1);
+-moz-box-shadow: 2px 2px 103px 13px rgba(25,74,109,1);
+box-shadow: 2px 2px 103px 13px rgba(25,74,109,1);
+*//*	-webkit-box-shadow: 2px 2px 103px 13px rgba(1,5,254,1);
+-moz-box-shadow: 2px 2px 103px 13px rgba(1,5,254,1);
+box-shadow: 2px 2px 103px 13px rgba(1,5,254,1);
+*//*background-image: url("../img/pepper.png");*/
+
+}
+#navButton{
+	/*padding:-30px;*/
+	/*-top: 30px;*/
+	/*height:100%;*/
+	height: 50px;
+	width:40%;
+	border-style: solid;
+	border-width: 0px 1px 0px 1px;
+	background-color: white;
+	margin:0px;
+	padding:0px;
+}
+
+#navBar{
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	padding-right:40px;
+	color: white;
+	/*color: #006BEC;*/
+
+
+
+}

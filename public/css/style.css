@@ -1,0 +1,484 @@
+/* Fonts */
+
+@font-face {
+    font-family: 'Bebas Nueue';
+    src: url('../fonts/bebas_neue/TTF\'s/BebasNeue Regular.ttf') format('truetype');
+    font-weight: normal;
+}
+
+
+/* Fancy Effects */
+/* Fade-In */
+.image { opacity: 0; transition: opacity 1.0s; }
+.image-loaded { opacity: 1; }
+
+
+
+/* Project Page */
+/*#projectBox{
+	background-image: url("pepper.png");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    padding:10px;
+}
+*/
+
+
+/* Chart.JS */
+small
+{
+    display: block;
+    margin-top: 1em;
+}
+
+
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  
+  border-right:10px solid #89BEF6; 
+
+}
+
+#projectImage{
+	background-image: url("pepper.png");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    padding:10px;
+}
+
+
+#project_BigText{
+	font-family: 'Roboto Condensed', serif;
+	font-size:22pt; 
+	color: white;
+
+}
+#project_SmallText{
+	font-family: 'Roboto Condensed', serif;
+	font-size:13pt; 
+	color: white;
+}
+
+#box{
+	flex:1;
+
+}
+
+#infoBox{
+	flex:1;
+	float:right;
+	/*border-style:solid;*/
+	border-radius: 10px;
+	background-color: #EEEEEE; 
+	padding:15px;
+	font-family: 'Roboto Condensed', serif;
+	font-size: 14px;
+
+}
+
+
+#btnJ{
+	height:50px;
+	width: 100px;
+	border-radius: 0;
+	background-color: #DBDCDD;
+	padding: 5px 10px 5px 10px;
+	border-width: 0;
+	text-align: center;
+
+	font-family: 'Roboto', serif;
+	color:	#4A4C63;
+}
+
+#btnJ.active{
+	background-color: white;
+	font-weight: bolder;
+
+
+}
+#btnJ:hover{
+	background-color: white;
+}
+
+button:focus {outline:0;}
+
+
+.description {
+	padding: 10px 30px 10px 30px;
+	font-family: 'Roboto Condensed', serif;
+	color:	#4A4C63;
+	/*letter-spacing: 4px;*/
+	line-height: 150%;
+
+
+}
+
+
+/* ENDS */
+
+
+#nav{
+	color:#242323;
+	font-size: 13px;
+}
+
+
+.ele1 {
+    display:inline-block;
+    width:30%;
+    padding:0px;
+    box-sizing:border-box;          /* Make sure that 50% includes the padding */
+    -moz-box-sizing:border-box;     /* For Firefox                             */
+    -webkit-box-sizing:border-box;  /* For old mobile Safari                   */
+
+}
+.element {
+    /*background:#009; color:#cef; text-align:center;*/
+    display:block;
+    border-style: solid;
+}
+
+
+.master {
+/*	padding-left:100px;
+  width:60%;
+*/  display: flex;
+}
+
+.parent {
+	margin-left: 100px;
+	padding-left:100px;
+  width:60%;
+  display: flex;
+}
+
+.parent2{
+  width:22%;
+  display: flex;
+}
+
+.parent3 {
+	margin-left: 0px;
+	padding-left:0px;
+  width:100%;
+  display: flex;
+  border-style: solid;
+}
+
+
+#narrow {
+	margin-left:100px;
+	padding-left:160px;
+  width: 500px;
+  border-color: #E6E6E6;
+  border-style: solid;
+  border-width: 0px 1px 0px 0px;
+  min-width:60px;
+  font-family: 'Ubuntu', sans-serif;
+  /*background: lightblue;*/
+  /* Just so it's visible */
+  /* Testing */
+}
+#wide {
+  /*flex: 1;*/
+  /* Grow to rest of container */
+  /*background: lightgreen;*/
+  /* Just so it's visible */
+  border-color: #E6E6E6;
+  border-style: solid;
+  border-width: 0px 1px 0px 1px;
+  /*padding-left:7px;*/
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 0px 6px 0px 6px;
+  width:30%;
+}
+
+#wide2 {
+  /*flex: 1;*/
+  /* Grow to rest of container */
+  /*background: lightgreen;*/
+  /* Just so it's visible */
+  border-color: #E6E6E6;
+  border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  min-width:80px;
+  /*padding-left:7px;*/
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 0px 6px 0px 6px;
+}
+
+
+/***** For the list of pictures ****/
+#wide3 {
+  flex: 0;
+  /* Grow to rest of container */
+  /*background: lightgreen;*/
+  /* Just so it's visible */
+  border-color: #E6E6E6;
+  border-style: solid;
+  border-width: 0px 0px 0px 0px;
+  /*min-width:80px;*/
+  /*padding-left:7px;*/
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 0px 6px 0px 6px;
+}
+
+#navIcon{
+
+}
+
+
+
+
+
+
+body{padding:0; margin:0;}
+h1, h2, h3{color:white; }
+
+nav{ float:right color: #006BEC; }
+
+a{
+/*	margin-left: 20px;
+	margin-right: 20px;
+	margin:20px;
+	 border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    text-decoration:none !important;
+	font-family: "Times New Roman", Times, serif;
+	color:#106FE9 ;
+*/}
+
+
+.wrap{
+	margin:0px;
+}
+#a{
+	border-style: solid;
+}
+
+.buta{
+	display:inline-block;
+	border-style: solid;
+	border-left-width: 10px;
+	width:23%;
+}
+
+/*Classes*/
+.box{ 
+	height: 165px;
+	width:100%;	
+	/*margin:20px;*/
+	border-color: black;
+	background-color: black;
+
+	padding:20px;
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1a2930+0,1a2930+5,4b768a+100 */
+background: #1a2930; /* Old browsers */
+background: -moz-linear-gradient(left, #1a2930 0%, #1a2930 5%, #4b768a 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #1a2930 0%,#1a2930 5%,#4b768a 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #1a2930 0%,#1a2930 5%,#4b768a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a2930', endColorstr='#4b768a',GradientType=1 ); /* IE6-9 */	padding-top: 10px;
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1a2930+0,1a2930+63,4b768a+88,4b768a+100 */
+background: #1a2930; /* Old browsers */
+background: -moz-linear-gradient(left, #1a2930 0%, #1a2930 63%, #4b768a 88%, #4b768a 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #1a2930 0%,#1a2930 63%,#4b768a 88%,#4b768a 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #1a2930 0%,#1a2930 63%,#4b768a 88%,#4b768a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a2930', endColorstr='#4b768a',GradientType=1 ); /* IE6-9 */
+
+
+
+
+}
+
+
+.ele1 {
+    display:inline-block;
+    width:30%;
+    padding:0px;
+    box-sizing:border-box;          /* Make sure that 50% includes the padding */
+    -moz-box-sizing:border-box;     /* For Firefox                             */
+    -webkit-box-sizing:border-box;  /* For old mobile Safari                   */
+
+}
+.element {
+    /*background:#009; color:#cef; text-align:center;*/
+    display:block;
+}
+
+.left{ float:left;}
+.right{float:right;}
+
+
+#logo{
+	float:left;
+	font-family: 'Roboto', sans-serif;
+	font-size: 30pt;
+	font-style: bold;
+	color: #006BEC;
+}
+
+#banner{
+	/*background-color: black;*/
+}
+
+
+#header{ background-color: white;
+	height:30px;
+	box-shadow: 0px 6px 1px grey;
+	border-color: red;
+	border-width: 10px;
+}
+
+
+#headerWrapper{
+	padding:20px;
+	padding-top: 9px;
+	padding-bottom: 0;
+	height:60px;
+	margin-bottom: 0;
+	width: 49%;                     /* poor approximation for old browsers    */
+  width: calc(50% - 8px);         /* standards-based answer for IE9+, FF16+ */
+  width: -moz-calc(50% - 8px);    /* support for FF4 - FF15                 */
+  width: -webkit-calc(50% - 8px); /* support for Chrome19+ and Safari6+     */
+}
+
+#rightSide{
+	width: 49%;                     /* poor approximation for old browsers    */
+  width: calc(50% - 8px);         /* standards-based answer for IE9+, FF16+ */
+  width: -moz-calc(50% - 8px);    /* support for FF4 - FF15                 */
+  width: -webkit-calc(50% - 8px); /* support for Chrome19+ and Safari6+     */
+}
+
+
+}
+
+#bannerWrapper{
+	padding:20px;
+	padding-top: 9px;
+	padding-bottom: 0;
+	height:40px;
+	margin-bottom: 0;
+}
+
+
+#FontLogo{ 
+
+	display:inline-block;
+	padding-bottom: 30px;
+	font-size: 40px;
+	font-family: 'Roboto', sans-serif;
+	color:#006DF0;
+}
+#FontFeature{
+	color:#f1c232;
+	font-size: 40px;
+	font-family: 'Ubuntu', sans-serif;
+	font-style: medium;
+	text-decoration: underline;
+	/*font-style: Highlight;*/
+}
+
+#FontTitle{font-family: 'Ubuntu', sans-serif; font-size:26px; 
+	font-style: medium;
+	/*color:#f1c232;*/
+}
+#FontEmoticon{font-size:20px; font-family: 'Roboto', sans-serif; padding: 0 15px 0 0; }
+#FontParagraph{
+	padding-right:100px;
+	padding-bottom:10px;
+	margin:0;
+	font-family: 'Arial', sans-serif;
+	font-size: 14px;
+}
+#FontBlue{color:#006DF0;}
+#FontRed{ color:#E64C3C;}
+
+
+
+#Paragraph{
+
+
+}
+#textBox{
+	float:left;
+	width:30%;
+	/*padding:20px;*/
+	padding-left: 170px;
+	padding-right: 20px;
+}
+
+#carousel{ 
+	height:300px; 
+	border-radius: 25px;
+	/*border-top-color:red;*/
+	padding:0px;
+	width:500px;
+	/*padding:10px;*/
+
+}
+#carousel2{ 
+	height:200px; 
+	max-width:300px; 
+	/*border-radius: 25px;*/
+	/*border-top-color:red;*/
+	padding:0px;
+	/*width:500px;*/
+	/*padding:10px;*/
+}
+
+#carousel3{ 
+	height:60px; 
+	max-width:90px; 
+	/*border-radius: 25px;*/
+	/*border-top-color:red;*/
+	padding:0px;
+	/*width:500px;*/
+	/*padding:10px;*/
+	}
+	
+#navButton{
+	/*padding:-30px;*/
+	/*-top: 30px;*/
+	/*height:100%;*/
+	height: 50px;
+	width:40%;
+	border-style: solid;
+	border-width: 0px 1px 0px 1px;
+	background-color: white;
+	margin:0px;
+	padding:0px;
+}
+
+#navBar{
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	padding-right:40px;
+	color: white;
+	/*color: #006BEC;*/
+
+}
+
+
+/*#projectBox{
+	display:flex;
+	overflow: hidden;
+}
+*/
+
+
+
+
+
+
+
+
