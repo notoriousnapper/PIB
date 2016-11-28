@@ -27,7 +27,7 @@ var TestAPI = require('../scripts/TestAPI');
 var devUrl = 'http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
 /* Use devUrl or prodUrl*/
-var useUrl = devUrl;
+var useUrl = prodUrl;
 
 
 

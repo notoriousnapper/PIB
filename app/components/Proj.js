@@ -20,7 +20,7 @@ var Frame = require('../components/Frame');
 var $ = require('jquery');
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
-var useUrl = devUrl;
+var useUrl = prodUrl;
 
 
 
