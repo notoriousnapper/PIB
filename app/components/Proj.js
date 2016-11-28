@@ -16,7 +16,7 @@ var Pad = require('../components/Pad');
 
 
 var Frame = require('../components/Frame');
-var $ = require('jQuery');
+var $ = require('jquery');
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://guarded-sea-73786.herokuapp.com';
 var useUrl = prodUrl;
