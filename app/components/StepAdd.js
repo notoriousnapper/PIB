@@ -4,8 +4,7 @@
  * and easy readability.  Also has anchors (You can reach these from a toolbar, etc.)
  */
 
-
-var React = require('React');
+var React = require('react');
 var ImageComponent = require('../components/ImageComponent');
 
 var StepAdd = React.createClass({
@@ -24,14 +23,11 @@ var StepAdd = React.createClass({
 		backgroundColor:"D0D1D2"
 	}
 
-
 	var stepImage= function(){
 		if(this.props.url!='') return (<div></div>);
 		alert('Not working');
 		return ( <ImageComponent url={this.props.url}></ImageComponent>);
 	}
-
-
 
 		// Learned a new thing today...javascript parenthesis needs to BE ON SAME LINE AS RETURN
 		// Or else compiler just sees returns and exits

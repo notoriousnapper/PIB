@@ -1,10 +1,8 @@
 
 
-
-var React = require('React');
+var React = require('react');
 var SearchComponent = require('../components/SearchComponent');
 var Pad = require('../components/Pad');
-
 
 var Category = React.createClass({
 render: function(){

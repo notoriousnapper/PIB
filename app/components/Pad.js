@@ -1,15 +1,12 @@
-/* Step.js 
- * 
- * UI for a single step, which includes instructions, for bullet points, an Image, 
+/* Step.js
+ *
+ * UI for a single step, which includes instructions, for bullet points, an Image,
  * and easy readability.  Also has anchors (You can reach these from a toolbar, etc.)
  */
 
-
-var React = require('React');
+var React = require('react');
 var ImageComponent = require('../components/ImageComponent');
 var Frame = require('../components/Frame');
-
-
 
 var Pad = React.createClass({
 	getInitialState: function(){
@@ -21,19 +18,18 @@ var Pad = React.createClass({
 	// Quick Checks
 	// if (this.props.h)
 
-
 	render:function(){
 
 	/* Check if invalid input and handle */
 	/* Have better error handlers */
 	// if (isNaN(this.props.hw[0]) || isNaN(this.props.hw[1])){
-			var padStyle={ 
+			var padStyle={
 				height: this.props.hw[0],
 				width: this.props.hw[1]
 			}
 	// }else{
 	// 	/* Default Values */
-	// 	var padStyle={ 
+	// 	var padStyle={
 	// 			height: '20px',
 	// 			width: '100%'
 	// 		}
@@ -42,7 +38,6 @@ var Pad = React.createClass({
 	console.log(JSON.stringify(padStyle, null, 4));
 	console.log(JSON.stringify(this.props.hw[0], null, 4));
 	console.log(JSON.stringify(this.props.hw[1], null, 4));
-
 
 		return(
 			<div style={padStyle}>

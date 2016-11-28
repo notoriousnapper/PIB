@@ -1,19 +1,15 @@
-/* Step.js 
- * 
- * UI for a single step, which includes instructions, for bullet points, an Image, 
+/* Step.js
+ *
+ * UI for a single step, which includes instructions, for bullet points, an Image,
  * and easy readability.  Also has anchors (You can reach these from a toolbar, etc.)
  */
 
-
-var React = require('React');
+var React = require('react');
 var ImageComponent = require('../components/ImageComponent');
 var Frame = require('../components/Frame');
 var Pad = require('../components/Pad');
 
-
-
 var Step = React.createClass({
-
 
 	render:function(){
 	var barStyle={
@@ -38,7 +34,6 @@ var Step = React.createClass({
 
 	}
 
-
 	var stepImage= function(imageUrl){
 		// if(this.props.url!='') return (<div></div>);
 		// alert('Not working');
@@ -49,7 +44,7 @@ var Step = React.createClass({
 	var imgStep = stepImage(this.props.url);
 		// Learned a new thing today...javascript parenthesis needs to BE ON SAME LINE AS RETURN
 		// Or else compiler just sees returns and exits
-				
+
 		return(
 			<div style={this.props.style} >
 			<Frame>
@@ -59,14 +54,11 @@ var Step = React.createClass({
 				{this.props.info}
 				</div>
 
-
 			</Frame>
 				<br/>
 				<br/>
 
-
 				<Pad hw={'300px','300px'}/>
-
 
 			</div>
 				);

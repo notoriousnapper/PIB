@@ -1,6 +1,4 @@
-var React = require('React');
-
-
+var React = require('react');
 
 var Bar = React.createClass({
 	render:function(){
@@ -15,7 +13,6 @@ var Bar = React.createClass({
 	var endStyle={
 		height:"10px",
 		backgroundColor:"D0D1D2"
-
 
 	}
 		// Learned a new thing today...javascript parenthesis needs to BE ON SAME LINE AS RETURN
