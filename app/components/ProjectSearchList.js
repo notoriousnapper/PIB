@@ -3,19 +3,13 @@
  *
  */
 
-
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 var ProjectListing = require('../components/ProjectListing');
 
 var devUrl = 'http://localhost:3000/get';
 var devUrl2 = 'http://localhost:3000/get';
-var prodUrl = 'https://guarded-sea-73786.herokuapp.com';
-
-
-
-
+var prodUrl = 'https://still-forest-90731.herokuapp.com';
 
 var ImageboxComponent = React.createClass({
 	render: function(){
@@ -66,7 +60,6 @@ var listContainer = React.createClass({
 // 	document.getElementById('projectsList')
 // 	);
 
-
 var exampleJSON = {
 	"name": "Pepper",
 	"author": "Raul Pegan",
@@ -79,8 +72,6 @@ var ProjectSearchList = React.createClass({
 		flexWrap:"wrap",
 		height: "800px"
 	};
-
-
 
 		var projectListJSON = this.props.projectListData; //Includes array of objects
 				console.log("Full filtered JSON");
