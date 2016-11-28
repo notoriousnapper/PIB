@@ -1,4 +1,7 @@
 /* Proj.js */
+/* Proj.js */
+
+
 
 var React = require('react');
 var ReactRouter = require('react-router');
@@ -11,14 +14,22 @@ var Bar = require('../components/Bar');
 var Step = require('../components/Step');
 var Pad = require('../components/Pad');
 
+
+
 var Frame = require('../components/Frame');
 var $ = require('jquery');
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
-var useUrl = prodUrl;
+var useUrl = devUrl;
+
+
 
 var IntroData =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
+
+
+
+
 
 var Proj = React.createClass({
         getInitialState: function(){
@@ -91,6 +102,7 @@ var Proj = React.createClass({
                   this.setState({data: res[0]});
                   var Steps = this.CallSteps();
 
+
                 }.bind(this),
                 error: function(xhr, status, err) {
                   console.error(useUrl + name, status, err.toString());
@@ -123,6 +135,7 @@ var Proj = React.createClass({
         /* Server should do the filtering so traffic/ data is minimal */
         showNav: function(){
 
+
           if(!this.state.navBar){
             // this.state.navBar.map(()=> {
 
@@ -134,7 +147,10 @@ var Proj = React.createClass({
 
           }
 
+
           this.state.navBar = !(this.state.navBar); // reverse
+
+
 
         },
 
@@ -143,6 +159,7 @@ var Proj = React.createClass({
         var menu =['PROJECTS', 'HOME', 'ABOUT', 'CONTACT']
 
         var imgUrl =this.props.url;
+
 
         /* Font Styles */
         var TitleStyle ={
@@ -202,6 +219,7 @@ var Proj = React.createClass({
           flex: "10"
         }
 
+
         var testStyle= {
           display: "flex"
         }
@@ -211,7 +229,11 @@ var Proj = React.createClass({
           width: "30px",
         }
 
+
+
+
         var navBar = this.showNav();
+
 
         // By line
                               // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
@@ -220,23 +242,42 @@ var Proj = React.createClass({
 
         return(
 
+
               <div style={{display:"flex"}}>
+
 
                         {navBar}
 
-                		    <div style={containerStyle}>
+
+
+
+                        <div style={containerStyle}>
+
+
+
+
+
+
+
+
 
                           <Bar style={{minWidth:"700px", width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C"}}>
                             <div style={{ width: "100%", display:"flex", flexDirection:"column"}}>
+
+
 
                               <div>
                                       <TextComponent style={TitleStyle} message={this.state.data.name}></TextComponent>
                                       <TextComponent style={byStyle} message={'by' + this.state.data.author}></TextComponent>
                               </div>
 
+
+
+
                               <div style={{width:"100%", overFlow: "hidden", display:"flex", justifyContent: "space-between", float: "right" }}>
                                       <div style={byStyle}><button onClick={this.showNav} >{'< View Steps'}</button></div>
                                       <div style={{width:"60%"}}></div>
+
 
                                     <div className={'Filler'} style={{flexGrow:"3", width:"60%" }}></div>
                                      <div >
@@ -253,6 +294,7 @@ var Proj = React.createClass({
                             </div>
                           </Bar>
 
+
                         <Frame style={{maxHeight:"400px",   minWidth:"700px", width:"100%", display: "inline-block"}}>
                             <ImageComponent style={imgStyle} url={this.state.data.url}/>
                             <DetailBox data={this.state.data}>
@@ -263,6 +305,10 @@ var Proj = React.createClass({
                                 </div>
                             </DetailBox>
 
+
+
+
+
                       </Frame>
                           <Frame>
                           <TextComponent style={AboutStyle} message={this.state.data.about}></TextComponent>
@@ -272,7 +318,12 @@ var Proj = React.createClass({
                           {Steps}
                           </div>
 
-        				  </div>
+
+
+
+
+
+                  </div>
                 </div>
 
               )
