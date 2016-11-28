@@ -7,105 +7,176 @@ var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 var ImageComponent = require('../components/ImageComponent');
 var DetailBox = require('../components/DetailBox');
+var IntroBox = require('../components/IntroBox');
+var TextComponent = require('../components/TextComponent');
+var Bar = require('../components/Bar');
+var Step = require('../components/Step');
+var Pad = require('../components/Pad');
 
 
 
-var LogoComponent = React.createClass({
-        render: function(){
-                        var logoStyle = {
-                                width:"90px"
-                              };
-                        var containerStyle_logo = { 
-                                marginLeft:"100px",
-                                paddingLeft:"160px",
-                                height:"50px",
-                                width: "410px",
-                                borderColor: "#E6E6E6",
-                                borderStyle: "solid",
-                                borderWidth: "0px 1px 0px 0px",
-                                minWidth:"60px"
-            };
-            var url = "../public/img/logo3.png";
-            return (
-                    <div style={containerStyle_logo}>
-                                <img src={this.props.url} style={logoStyle}/>
-                    </div>
-            )
-        }
-});
-
-var GlobalNav = React.createClass({
-        render: function(){
-          var containerStyle = {
-            marginLeft: "100px",
-            paddingLeft:"100px",
-            width:"60%",
-            height:"50px",
-            display: "flex"};
-
-          var wrapperStyle = {
-                  borderColor: "#E6E6E6",
-                    borderStyle: "solid",
-                      borderWidth: "0px 1px 0px 1px",
-                        textAlign:"center",
-                          fontFamily: "'Ubuntu', sans-serif",
-                            padding: "0px 6px 0px 6px",
-                                       width:"30%"};
-
-          var topStyle= { height: '60%' };
-          var bottomStyle= {
-                  height:'30%',
-                  color: '#242323',
-                  fontSize: '13px',
-                  textDecoration:"none", 
-          };
-
-          var listItems = this.props.items.map(function(item){
-          		  var url = "/"+item.toLowerCase();
-                  return (
-                  <Link to={url} style={wrapperStyle}>
-                    <div style={topStyle}></div>
-                        <div style={bottomStyle} >{item}</div>
-                  </Link>)
-        });
-          return (
-                  <div style={containerStyle}>
-                  <LogoComponent url="../public/img/logo3.png" />
-                  {listItems}
-                  </div>
-                )
-        }
-});
+var Frame = require('../components/Frame');
+var $ = require('jQuery');
+var devUrl ='http://localhost:3000';
+var prodUrl = 'https://guarded-sea-73786.herokuapp.com';
+var useUrl = prodUrl;
 
 
-var TextComponent = React.createClass({
-    render: function(){
-    var message = this.props.message;
-    return (
-            <div style={ this.props.style}>{message} </div>
-            )
-            }
-});
+
+var IntroData =
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
+
+
+
+
 
 var Proj = React.createClass({
+        getInitialState: function(){
+          return ({
+            data: {
+            'name':'',
+            'author': '',
+            'url': '',
+            'about': '',
+            'instructions': '',
+            'likes': '',
+            'downloads': '',
+            'views': '',
+            'steps':[
+             {
+                title: '',
+                url: '',
+                instructions: ''
+              }
+            ]
+            } ,
+            /* Temporary fix, this should go in the data object above */
+            //  steps:[
+            // {
+            //     title: 'beginning State',
+            //     url: '/',
+            //     instructions: 'sth'
+            //   },
+            //   {
+            //     title: 'beginning State',
+            //     url: '/',
+            //     instructions: 'sth'
+            //   },
+            //   {
+            //     title: 'beginning State',
+            //     url: '/',
+            //     instructions: 'sth'
+            //   }
+            // ],
+            navBar: false
+          })
+        },
+
+        CallSteps: function(){
+           var ctr = 0;
+           var res = this.state.data.steps;
+
+           if(res.length== 0){ return (<div> No Instructions Here. </div>)}
+           else{
+
+           res = res.map(function(step){
+              ctr++;
+              return(
+                  <Step info={step.instructions}  title={step.title} url={step.url} num={ctr} />
+                );
+           })
+              return res;
+            }
+            },
+
+        forceAjax:function(){
+          var name = this.props.params;
+          console.log('query param is' + name);
+           $.ajax({
+                url: useUrl + '/getone/' + name,
+                dataType: 'json',
+                cache: true,
+                success: function(res) {
+                  // alert('Final Stretch' + JSON.stringify(res,null,4));
+                  this.setState({data: res[0]});
+                  var Steps = this.CallSteps();
+
+
+                }.bind(this),
+                error: function(xhr, status, err) {
+                  console.error(useUrl + name, status, err.toString());
+                }.bind(this)
+              });
+        },
+        updateLike:function(){
+          var name = this.props.params;
+          console.log('query param is' + name);
+           $.ajax({
+                url: useUrl + '/getone/' + name + '/' + 'likes',
+                dataType: 'json',
+                method: 'PUT',
+                cache: true,
+                success: function(res) {
+
+                  console.log('Response is: ' + res);
+                  var Steps = this.CallSteps();
+                }.bind(this),
+                error: function(xhr, status, err) {
+                  console.error(useUrl + name, status, err.toString());
+                }.bind(this)
+              });
+        },
+        componentDidMount: function(){
+          this.forceAjax();
+        },
 
         /* Should request another call, etc */
         /* Server should do the filtering so traffic/ data is minimal */
+        showNav: function(){
+
+
+          if(!this.state.navBar){
+            // this.state.navBar.map(()=> {
+
+              // Uncomment below when you get the chance
+            // return (<a> Hello World </a>);
+          // });
+          }
+          else{
+
+          }
+
+
+          this.state.navBar = !(this.state.navBar); // reverse
+
+
+
+        },
 
         render: function(){
         var imgs = [{"logo":"../public/img/logo3.png"}, "../public/img/logo3.png"]
         var menu =['PROJECTS', 'HOME', 'ABOUT', 'CONTACT']
+
         var imgUrl =this.props.url;
 
 
         /* Font Styles */
         var TitleStyle ={
             fontSize: "30px",
-            fontFamily: "Roboto Condensed"
+            fontFamily: "Roboto Condensed",
+            flex:"1"
         }
-        var ByStyle ={
-            fontSize: "20px",
-            fontFamily: "Roboto Condensed"
+
+        var byStyle ={
+            fontSize: "16px",
+            fontFamily: "Roboto Condensed",
+            whiteSpace: "nowrap",
+            minWidth: "200px",
+            paddingTop: "13px",
+            paddingLeft: "20px",
+            // overflow: "hidden",
+            flex:"8"
+
         }
         var AboutStyle ={
             fontSize: "18px",
@@ -115,13 +186,19 @@ var Proj = React.createClass({
         var imgStyle = {
           height: "400px",
           width: "600px",
+          width: "600px",
+          minWidth: "300px",
+          maxWidth:"100%",
+          height: "50%",
+          minHeight: "200px"
         }
 
         var containerStyle = {
           height: "400px",
-          borderStyle:"solid",
+          // marginTop: "40px",
           paddingLeft:"200px",
           paddingRight:"200px",
+          paddingTop: "100px"
         }
         var flexStyle = {
           height: "100%",
@@ -129,11 +206,12 @@ var Proj = React.createClass({
         }
         var infoBoxStyle = {
           padding: "15px",
-          paddingRight: "155px",
+          paddingRight: "155px"
 
         }
         var buttonStyle = {
           height: "40px",
+          padding: "20px",
           flex: "1"
         }
         var fillerStyle = {
@@ -145,66 +223,112 @@ var Proj = React.createClass({
           display: "flex"
         }
 
-        var DescriptionStyle= {
-
-
-
-
+        var iconStyle={
+          height: "30px",
+          width: "30px",
         }
-        //alert("These are the project's data" + JSON.stringify(this.props.params, null, 4));
-        //alert("These are the project's data" + JSON.stringify(this.props.params, null, 4));
+
+
+
+
+        var navBar = this.showNav();
+
+
+        // By line
+                              // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
+
+        var Steps = this.CallSteps();
+
         return(
-        		<div style={containerStyle}>	
-                <div style={{paddingLeft: "10px", height: "100%", display: "flex", backgroundColor: "white" }}>
-                <ImageComponent style={imgStyle} url={this.props.params.picUrl} ></ImageComponent>
-                    <div>
-                    <DetailBox params={this.props.params} /> 
-                        <div style={testStyle}>
-                            <button style={buttonStyle}> Download </button>
-                            <button style={buttonStyle}> Save </button>
-                        </div>
-                    </div>
+
+
+              <div style={{display:"flex"}}>
+
+
+                        {navBar}
+
+
+
+
+                		    <div style={containerStyle}>
+
+
+
+
+
+
+
+
+
+                          <Bar style={{minWidth:"700px", width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C"}}>
+                            <div style={{ width: "100%", display:"flex", flexDirection:"column"}}>
+
+
+
+                              <div>
+                                      <TextComponent style={TitleStyle} message={this.state.data.name}></TextComponent>
+                                      <TextComponent style={byStyle} message={'by' + this.state.data.author}></TextComponent>
+                              </div>
+
+
+
+
+                              <div style={{width:"100%", overFlow: "hidden", display:"flex", justifyContent: "space-between", float: "right" }}>
+                                      <div style={byStyle}><button onClick={this.showNav} >{'< View Steps'}</button></div>
+                                      <div style={{width:"60%"}}></div>
+
+
+                                    <div className={'Filler'} style={{flexGrow:"3", width:"60%" }}></div>
+                                     <div >
+                                      <button onClick={this.updateLike}> <ImageComponent  style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png'}/>
+                                      </button>
+                                    </div>
+                                    <TextComponent style={{ width:"40px"}} message={this.state.data.likes}/>
+                                      <Pad hw={['100%','20px']}/>
+                                     <div>
+                                      <ImageComponent style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473693376/bookmark_2_ucai4d.png'}/>
+                                    </div>
+
+                              </div>
+                            </div>
+                          </Bar>
+
+
+                        <Frame style={{maxHeight:"400px",   minWidth:"700px", width:"100%", display: "inline-block"}}>
+                            <ImageComponent style={imgStyle} url={this.state.data.url}/>
+                            <DetailBox data={this.state.data}>
+                                <div style={testStyle}>
+                                    <button> Download </button>
+                                    <button>BookMark</button>
+                                    <button>Collections </button>
+                                </div>
+                            </DetailBox>
+
+
+
+
+
+                      </Frame>
+                          <Frame>
+                          <TextComponent style={AboutStyle} message={this.state.data.about}></TextComponent>
+                          </Frame>
+                          <div className="Instructions" >
+                          Instructions
+                          {Steps}
+                          </div>
+
+
+
+
+
+
+        				  </div>
                 </div>
 
-
-            <div style={infoBoxStyle}> 
-              <div style={flexStyle}> 
-                    <div style={{marginBottom: "30px"}}>
-                    <TextComponent style={TitleStyle} message={this.props.params.name}></TextComponent>
-                    <TextComponent style={ByStyle} message={'by ' + this.props.params.author}></TextComponent>
-                    </div>
-
-
-                        <div style={fillerStyle}/>
-                    <button style={buttonStyle}> Like </button>
-                    <button style={buttonStyle}> Share </button>
-              </div>
-
-
-                <TextComponent style={AboutStyle} message={this.props.params.about}></TextComponent>
-                  <TextComponent style={AboutStyle} message={this.props.params.instructions}></TextComponent>
-            </div>
-
-
-
-
-
-
-
-            <div className="infoBox" style={DescriptionStyle}>
-              Instructions
-              <TextComponent style={AboutStyle} message={this.props.params.instructions}></TextComponent>
-            </div>
-
-
-
-
-
-
-				</div>
               )
                 }
 });
 
+                  // <Step url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png'} num={1}>Hello?</Step>
 
 module.exports = Proj;

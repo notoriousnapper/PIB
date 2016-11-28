@@ -1,0 +1,102 @@
+Projects.s copy
+
+
+		const {params} = this.props;
+		var paramStr = JSON.stringify(params,null,4);
+
+		var component = function(){
+			return <div> Not Found! </div>;
+		};
+      // Main component here 
+
+		if(paramStr=="{}"){
+			console.log("No params");
+			return(
+            <div>
+            <div style={paddingStyle}> </div>
+      	        <SearchComponent callbackParent={this.onChildQuery}/>
+                <div id={'Filter Bar'} style={filterBarStyle}>
+                      <div style={paddingStyle}> </div>
+                <div className='Buttons' style={filterInnerStyle}>
+                      <button id="Filters"> Filters</button>
+                      <button id="Categories">Categories</button>
+
+                      </div>
+                      <div style={paddingStyle}> </div>
+                 </div>
+
+
+                <div style={containerStyle}>
+                      <div style={paddingStyle}> </div>
+                      <ProjectSearchList style={projectListStyle}
+                         projectListData={this.state.data}/>
+                      <div style={paddingStyle}> </div>
+                      </div>
+            </div>
+            );
+        }
+
+
+		else{
+			console.log("Params are");
+			console.log(JSON.stringify(params,null,4));
+
+        // So System doesn't Crash.
+			if(params.id!=null){
+
+
+        var singleProjectJSON = json.Projects.filter(function(projects){
+          if(
+            (params.id === projects.name))  /* Fix this, should be params.name, not params.id  */
+            return true;
+            // && 
+            // () &&
+            // ()
+            // )
+
+
+        })[0];
+
+        if((singleProjectJSON) == null){ 
+          singleProjectJSON = { name: "Filler, error, make sure to fix this"}
+        }
+
+      // var singleProjectJSON = 
+      // {
+      //   "id": "57b7b23a653c33149f328a8e",
+      //   "index": 0,
+      //   "name": "Wall-E",
+      //   "picUrl": "../public/img/pepper.png",
+      //   "about": "Pariatur velit in labore elit cillum sit anim est labore Lorem dolore adipisicing do laboris. In sunt nostrud sint non laborum labore et non sunt quis esse nostrud voluptate. Sit amet ex nostrud aliqua duis consectetur ad sunt tempor velit id laborum. Laborum incididunt anim ut dolore fugiat ex ad voluptate ad ad cupidatat dolore.\r\n",
+      //   "author": "Pamela Perez",
+      //   "likes": 261,
+      //   "tags": [
+      //   "robot",
+      //   "computer vision",
+      //   "machine learning",
+      //   "fire",
+      //   "mollit",
+      //   "fugiat",
+      //   "magna"
+      //   ]
+      // }
+
+
+
+
+			return(
+            <div>
+            	<Proj params={singleProjectJSON}/>
+            </div>
+            /* Make sure that params.id = right project */
+            );
+			}
+
+			else {  return (<div> nothing to show here.  maybe if you come back later </div>) }
+        */
+
+
+
+
+
+		}

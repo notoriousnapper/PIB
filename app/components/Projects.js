@@ -19,7 +19,7 @@ var Proj= require('../components/Proj');
 
 
 /* Grab Data to be parsed
- * Should be in a separate JS file, probably, or a http call 
+ * Should be in a separate JS file, probably, or a http call
  */
 
 var json = require('json!../data/projects.json'); //(with path)
@@ -104,7 +104,7 @@ var filterProjectJSON= function (projectsArray, keyword){
       }
 
     ).map(function(project){ return project;});
-    console.log("filter array is: " +  JSON.stringify(results, null, 4)); 
+    console.log("filter array is: " +  JSON.stringify(results, null, 4));
     return results;
 };
 
@@ -157,7 +157,7 @@ var TextComponent = React.createClass({
 var Projects = React.createClass({
 	getInitialState: function(){
 		return ({
-			search: '', 
+			search: '',
       data: projects
 		})
 
@@ -253,7 +253,7 @@ var Projects = React.createClass({
           if(
             (params.id === projects.name))  /* Fix this, should be params.name, not params.id  */
             return true;
-            // && 
+            // &&
             // () &&
             // ()
             // )
@@ -261,11 +261,11 @@ var Projects = React.createClass({
 
         })[0];
 
-        if((singleProjectJSON) == null){ 
+        if((singleProjectJSON) == null){
           singleProjectJSON = { name: "Filler, error, make sure to fix this"}
         }
 
-      // var singleProjectJSON = 
+      // var singleProjectJSON =
       // {
       //   "id": "57b7b23a653c33149f328a8e",
       //   "index": 0,
@@ -374,16 +374,16 @@ var SearchComponent = React.createClass({
     }
     return (
       <div style={containerStyle}>
-        <div style={paddingStyle}> </div> 
+        <div style={paddingStyle}> </div>
             <input style={inputStyle} type="text" value={this.state.search}
-                    onChange={this.updateSearch.bind(this)}  
+                    onChange={this.updateSearch.bind(this)}
                     onKeyPress={this.handleKeyPress} />
-      	            <button style={buttonStyle} onClick={this.onQuery}> 
+      	            <button style={buttonStyle} onClick={this.onQuery}>
                      <img style={imgStyle} src={'../public/img/search.png'}/>
                      </button>
 
 
-        <div style={paddingStyle}> </div> 
+        <div style={paddingStyle}> </div>
 	  </div>
 
 

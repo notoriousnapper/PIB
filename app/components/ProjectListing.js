@@ -1,4 +1,4 @@
-/* ProjectListing 
+/* ProjectListing
  * Given a project object, parses and returns
  *
  */
@@ -18,104 +18,70 @@ var ReactDOM = require('react-dom');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 var ImageComponent = require('../components/ImageComponent');
+var TextComponent = require('../components/TextComponent');
 
-
-
-var ContainerComponent = React.createClass({
-	render: function(){
-		var child = this.props.child;
-		var containerStyle= { width: "60%"};
-		return(
-			<div style={containerStyle}>{
-				<ImageboxComponent/>
-			} </div>
-			)
-	}
-});
-
-
-
-var TextComponent = React.createClass({
-	render: function(){
-		var message = this.props.message;
-		var author = this.props.author
-		var likes = this.props.likes
-		return (
-			<a style={ this.props.style}>{message} </a>
-			);
-	}
-});
-
-
-/* Test Data */
-
-var ProjectSearchList = React.createClass({
-	render:function(){
-
-
-		return(
-			<div>
-			{listContainer}
-			</div>
-		);
-
-	}
-});
 
 var ProjectListing = React.createClass({
 	render: function(){
-		// var bgStyle={
-		// 	backgroundImage: "url(../public/img/pepper.png)",
-		// 	backgroundSize: "300px 400px",
-		// 	// width:"300px",
-		// 	// height:"400px"
-		// };
 		var infoBoxStyle = {
-			maxWidth:"300px",
-			backgroundColor: "#F4F4F4"
+			maxWidth:"400px",
+			width: "100%",
+			minWidth:"100px",
+			backgroundColor: "#F4F4F4",
+			paddingLeft: "10px",
+			paddingTop: "10px",
+			paddingBottom: "10px"
 		}
 		var listingStyle = {
-			width:"30%"
+			width:"30%",
+			margin:"1.6667%"
 		}
 		var imgStyle={
+			minHeight:"60px",
 			height:"200px",
-			maxWidth:"300px",
 			width: "100%",
-			padding:"0px"
+			maxWidth:"400px",
+			minWidth:"100px"
 		}
 
-		var id = this.props.id;
-		var name = this.props.name;
-		var textStyle_Big={fontFamily: "Ubuntu", fontSize:"15pt", color: "black", textDecoration: "none"  };
-		var textStyle_Small={ fontFamily: "Ubuntu", fontSize:"11pt", color: "black", textDecoration: "none"  };
+		var textStyle_Big={fontFamily: "Ubuntu", fontSize:"14pt", color: "#2C2A25", textDecoration: "none"  };
+		var textStyle_Small={ fontFamily: "Ubuntu", fontSize:"9pt", color: "black", textDecoration: "none"  };
 		var textStyle_View={ fontFamily: "Ubuntu", fontSize:"10pt", color: "#274D72", textDecoration: "none"  };
 
 
+		var id = 'filler';
+		var name = 'fillername';
 
-		
 
+		try{
+			id = this.props.id;
+			name = this.props.name;
+		}
+
+		catch(e){
+			console.error(e)
+		}
+
+
+		/* Params data = this.props.name in Link */
 		return(
 			<div style={ listingStyle } >
-			<Link to={'/projects/'+ name} data={{}}> <ImageComponent url={this.props.url} style={imgStyle}/> </Link>
+			<Link to={'/projects/'+ this.props.name} data={{}}> <ImageComponent url={this.props.url} style={imgStyle}/> </Link>
 				<div style={infoBoxStyle}>
 					<TextComponent style={textStyle_Big}
 					message={this.props.name}/>
 					<TextComponent style=	{textStyle_Small}
 					message={'by ' + this.props.author}/>
-
-					<div> 
-					<TextComponent style=	{textStyle_View}
-					message={this.props.views + ' views'}/>
-					</div>
-
-
 				</div>
 
 			</div>
 			)
 	}
 });
+					// <div>
+					// <TextComponent style=	{textStyle_View}
+					// message={this.props.views + ' views'}/>
+					// </div>
 
 
 module.exports = ProjectListing;
-

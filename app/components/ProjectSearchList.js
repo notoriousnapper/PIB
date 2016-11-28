@@ -1,6 +1,6 @@
-/* ProjectSearchList 
- * 
- * 
+/* ProjectSearchList
+ *
+ *
  */
 
 
@@ -8,6 +8,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var ProjectListing = require('../components/ProjectListing');
+
+var devUrl = 'http://localhost:3000/get';
+var devUrl2 = 'http://localhost:3000/get';
+var prodUrl = 'https://guarded-sea-73786.herokuapp.com';
+
+
+
 
 
 var ImageboxComponent = React.createClass({
@@ -46,7 +53,7 @@ var listContainer = React.createClass({
 		// var listItems = friends.map(function(friend){
 		// 	return "<li> " + friend + "</li>";
 		// });
-		return 
+		return
 			(
 				<div>listContainer</div>
 				);
@@ -68,10 +75,11 @@ var exampleJSON = {
 
 var ProjectSearchList = React.createClass({
 	render: function(){
-		var containerStyle= { borderStyle: "none", margin: "0", padding: "0px 0px 0px 30px", width:"70%", display:"flex",
+		var containerStyle= { borderStyle: "none", margin: "0", padding: "0px 0px 0px 30px", width:"100%", display:"flex",
 		flexWrap:"wrap",
-		height: "800px" 
+		height: "800px"
 	};
+
 
 
 		var projectListJSON = this.props.projectListData; //Includes array of objects
@@ -82,20 +90,20 @@ var ProjectSearchList = React.createClass({
 				console.log("url from JSON is: ");
 				console.log(projectJSON.picUrl);
 			return  (
-				<ProjectListing 
+				<ProjectListing
 
 				views={projectJSON.views}
-				id={projectJSON.id} url={ projectJSON.picUrl } 
+				id={projectJSON.id} url={ projectJSON.url }
 				name={ projectJSON.name} author={projectJSON.author}/>
 				);
 			});
 
 		return(
-			<div style={containerStyle}> 
+			<div style={containerStyle}>
 			{projectSearchList}
+
 			</div>);
 	}
 });
 
 module.exports = ProjectSearchList;
-

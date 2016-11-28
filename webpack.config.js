@@ -13,20 +13,36 @@ var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 // 3. Where to put the transformed code
 module.exports = {
         entry:[
-                './app/index.js',
-                './app/config/routes.js',
-                './app/components/Projects.js',
-                './app/components/ProjectListing.js',
-                './app/components/ProjectSearchList.js',
-                './app/components/Home.js',
-                './app/components/Main.js',
-                './app/components/About.js',
-                './app/components/Contact.js',
-                './app/components/Proj.js',
-                './app/components/ImageComponent.js',
-                './app/components/DetailBox.js',
-                './app/components/Add.js',
-                './app/components/Input.js'
+          './app/index.js',
+        './app/scripts/TestAPI.js',
+        './app/config/routes.js',
+        './app/components/Category.js',
+        './app/components/SearchComponent.js',
+        './app/components/Projects.js',
+        './app/components/ProjectListing.js',
+        './app/components/ProjectSearchList.js',
+        './app/components/Home.js',
+        './app/components/Main.js',
+        './app/components/About.js',
+        './app/components/Contact.js',
+        './app/components/Proj.js',
+        /* Submission components */
+        './app/components/Add.js',
+        './app/components/CommentForm.js',
+        './app/components/Input.js',
+        /* Basic UI Components */
+        './app/components/TextComponent.js',
+        './app/components/ImageComponent.js',
+        './app/components/Frame.js',
+        './app/components/Bar.js',
+        './app/components/Step.js',
+        './app/components/StepAdd.js',
+        './app/components/DetailBox.js',
+        './app/components/IntroBox.js',
+        './app/components/Pad.js',
+        './app/components/Login.js',
+        './app/components/SignUp.js',
+        './app/components/Profile.js'
         ],
         module: {
             /* Transformations go here */

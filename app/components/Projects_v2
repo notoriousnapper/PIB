@@ -1,0 +1,649 @@
+/* projects.js */
+/*
+ * This file holds components for the single projects display page
+ * @JesseRen
+ */
+
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var ProjectSearchList = require('../components/ProjectSearchList');
+var ProjectListing = require('../components/ProjectListing');
+var Proj= require('../components/Proj');
+var http = require('http');
+
+var $ = require('jQuery');
+// var fetch=require('node-fetch');
+var Q = require('q');
+var TestAPI = require('../scripts/TestAPI');
+
+
+
+
+
+
+
+
+function promisedRequest(requestOptions) {
+            //create a deferred object from Q
+            var deferred  = Q.defer();
+            var req = http.request(requestOptions, function(response) {
+              //set the response encoding to parse json string
+              if (response.setEncoding) {
+                response.setEncoding('utf8');
+              }
+              var responseData = '';
+              //append data to responseData variable on the 'data' event emission
+              response.on('data', function(data) {
+                responseData += data;
+
+              });
+              //listen to the 'end' event
+              response.on('end', function() {
+                //resolve the deferred object with the response
+                deferred.resolve(responseData);
+              });
+            });
+            
+            //listen to the 'error' event
+            req.on('error', function(err) {
+              //if an error occurs reject the deferred
+              deferred.reject(err);
+            });
+            req.end();
+            //we are returning a promise object
+            //if we returned the deferred object
+            //deferred object reject and resolve could potentially be modified
+            //violating the expected behavior of this function
+
+            return deferred.promise;
+          };
+
+
+// var Promise = require('bluebird');
+
+
+
+// var Search = require('react-search');
+// var Search = require("react-search").SearchTestComponent;
+
+
+
+/* Grab Data to be parsed
+ * Should be in a separate JS file, probably, or a http call 
+ */
+
+/* Hook to Database */
+
+
+/* Promise based UI Delivery */
+
+// var deferred = new Promise ()
+var projects = [];
+ var options = {
+        host: 'localhost:',
+        port: 3000, //should be 80
+        path: '/get',
+        contentType: 'application/JSON',
+        method: 'GET'
+      };
+
+      http.request(options, function(res) {
+        console.log('STATUS: ' + res.statusCode);
+        console.log('HEADERS: ' + JSON.stringify(res.headers));
+        console.log('Full response' + JSON.stringify(res, null, 4));
+        // res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+          console.log('BODY: ' + chunk);
+          projects = chunk;
+          console.log('Moment of truth: ');
+          console.log(((projects === [])? 'empty': projects));
+        });
+      }).end();
+
+console.log('is project empty?: ')
+console.log(((projects === [])? 'empty': projects)); 
+
+
+
+
+
+
+
+
+// var json = require('json!../data/projects.json'); //(with path)
+// var projects = json.Projects;
+
+// console.log(JSON.stringify(json, null, 4));
+// var projectArray = JSON.parse(json);
+// var projects = json.getJSONArray("Projects");
+// var projects = json.Projects[0];
+// console.log(projects);
+
+
+
+
+// var filterJson = function(jsonArr){
+//     jsonArr.map(function(json){
+//     if ((json.name == "pepper")){
+//       return json;
+//     }
+
+
+
+//   }
+//   );
+// };
+
+
+/* Make this into a filter function */
+
+/* For Testing */
+/* Test function to see when it breaks later */
+
+// Insert this function into filter when complete ^
+
+/* Cannot filter within map function, because it will return null, which will
+through a million errors  and was what broke */
+// var projects = projects.filter(function(project){ return (project.name === "Pepper")}).map(function(project){
+//     console.log("JSON");
+//     console.log(project.index);
+//     return project;
+// });
+
+
+
+
+var ContainerComponent = React.createClass({
+    render: function(){
+    var child = this.props.child;
+    var containerStyle= { width: "60%"};
+
+    return(
+            <div style={containerStyle}>{
+                    <ImageboxComponent/>
+            } </div>
+          )
+            }
+});
+
+var TextComponent = React.createClass({
+    render: function(){
+    var message = this.props.message;
+    return (
+            <div style={ this.props.style}>{message} </div>
+            )
+            }
+});
+            // <ProjectListing />
+            // {ProjectSearchList}
+
+
+
+/* Main Parent Component */
+
+var Projects = React.createClass({
+	getInitialState: function(){
+		return ({
+      number: 0, 
+			search: '', 
+      data: projects
+		})
+
+	},
+  // componentDidMount: function() {
+  //   this.serverRequest = $.get('localhost:3000/get', function (result) {
+  //     var lastGist = result[0];
+  //     this.setState({
+  //       data: result
+  //     });
+
+  //     alert('help please');
+  //   }.bind(this));
+
+
+  // },
+
+  // componentWillUnmount: function() {
+  //   this.serverRequest.abort();
+  // },
+
+  componentDidMount: function() {
+    // var projects = [];
+
+              $.ajax({
+                url: 'localhost:3000/get',
+                dataType: 'json',
+                cache: false,
+                success: function(data) {
+                  alert('What is: + :' + data);
+                  this.setState({data: data});
+                }.bind(this),
+                error: function(xhr, status, err) {
+                  console.error('localhost:3000/get', status, err.toString());
+                }.bind(this)
+              });
+
+
+            var options = {
+              hostname: 'localhost:',
+                  port: 3000, //should be 80
+                  path: '/get',
+                  contentType: 'application/JSON',
+                  method: 'GET'
+                };
+
+          //a js object with options
+          // var googleNewsOptions = {
+          //   hostname: 'ajax.googleapis.com',
+          //   path: '/ajax/services/search/news?v=1.0&q=nodejs',
+          //   method: 'GET'
+          // };
+
+          /**
+           * wrapper for http request object
+           * @param  {Object} requestOptions
+           * @return Promise Object
+           */
+           function promisedRequest(requestOptions) {
+            //create a deferred object from Q
+            var deferred  = Q.defer();
+            var req = http.request(requestOptions, function(response) {
+              //set the response encoding to parse json string
+              if (response.setEncoding) {
+                response.setEncoding('utf8');
+              }
+              var responseData = '';
+              //append data to responseData variable on the 'data' event emission
+              response.on('data', function(data) {
+                responseData += data;
+              });
+              //listen to the 'end' event
+              response.on('end', function() {
+                //resolve the deferred object with the response
+                deferred.resolve(responseData);
+              });
+            });
+            
+            //listen to the 'error' event
+            req.on('error', function(err) {
+              //if an error occurs reject the deferred
+              deferred.reject(err);
+            });
+            req.end();
+            //we are returning a promise object
+            //if we returned the deferred object
+            //deferred object reject and resolve could potentially be modified
+            //violating the expected behavior of this function
+            return deferred.promise;
+          };
+
+
+          //incoking the above function with the request options
+          promisedRequest(options)
+          .then(function(newsResponse) { //callback invoked on deferred.resolve
+            console.log('Mounting!');
+            console.log(JSON.stringify(newsResponse));
+            this.setState({data: newsResponse});
+          }, function(newsError) { //callback invoked on deferred.reject
+            console.log(newsError);
+          });
+
+
+      alert('Component mounted' + JSON.stringify(this.state.data, null, 4));
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
+    // You can access `this.props` and `this.state` here
+    // This function should return a boolean, whether the component should re-render.
+    console.log('Next State is: ' + JSON.stringify(nextState,null, 4));;
+    return false;
+  },
+ testAjax: function(){
+            var options = {
+              hostname: 'localhost:',
+                  port: 3000, //should be 80
+                  path: '/get',
+                  contentType: 'application/JSON',
+                  method: 'GET'
+                };
+
+          //a js object with options
+          // var googleNewsOptions = {
+          //   hostname: 'ajax.googleapis.com',
+          //   path: '/ajax/services/search/news?v=1.0&q=nodejs',
+          //   method: 'GET'
+          // };
+
+          /**
+           * wrapper for http request object
+           * @param  {Object} requestOptions
+           * @return Promise Object
+           */
+           
+
+
+          /* Uncomment */
+          //   promisedRequest(options)
+          // .then(function(newsResponse) { //callback invoked on deferred.resolve
+          //   console.log('is it coming through?' + JSON.stringify(JSON.parse(newsResponse)));
+
+
+
+          // }, function(newsError) { //callback invoked on deferred.reject
+          //   console.log(newsError);
+          // });
+          // alert(this.state.data);
+
+          alert(this.state.data);
+
+           // $.ajax({
+           //      url: 'http://localhost:3000/get',
+           //      dataType: 'json',
+           //      cache: false,
+           //      success: function(data) {
+           //        alert('What is: + :' + JSON.stringify(data, null, 4));
+           //        this.setState({data: JSON.stringify(data,null,4)});
+           //      }.bind(this),
+           //      error: function(xhr, status, err) {
+           //        console.error('localhost:3000/get', status, err.toString());
+           //      }.bind(this)
+           //    });
+
+
+
+          this.setState({number: this.state.number + 1});
+
+          // this.setState({data: })
+          //incoking the above function with the request options
+         
+  },
+
+	onChildQuery: function(queryData){
+
+
+
+    /* Testing */
+    var newData = filterProjectJSON(projects, queryData);
+    // var newData = projects;
+    this.setState({
+      data : newData
+    });
+    console.log("Data has been changed to " + JSON.stringify(this.state.data, null, 4));
+	},
+
+
+
+  render:function(){
+
+
+    var filterBarStyle = {
+      width: "100%",
+      //borderStyle: "solid",
+      height: "50px",
+      // margin: "40px",
+      margin: "0 auto",
+      display: "flex"
+      // backgroundColor: "#E0E0E0"
+    }
+
+    var filterInnerStyle = {
+      height: "100%",
+      width: "60%",
+      // //borderStyle: "solid",
+      backgroundColor: "#E0E0E0",
+      flex: "4.5"
+    }
+
+    var paddingStyle = {
+      height: "100px",
+      flex: "1"
+      // width: "20%"
+    };
+
+    var containerStyle = {
+      display: "flex",
+      margin: "0 auto"
+
+    }
+
+    var projectListmtyle = {
+      flex: "5"
+    }
+
+    return (
+      <div>
+      <button onClick={this.testAjax}>Click me</button> 
+        <div> Clicks:  {this.state.number}</div>
+        <input type="text" value={this.state.number}/>
+        <div>{this.state.search}</div>
+        <div>{this.state.data}</div>
+     <div>{'filler'}</div>
+
+     <TestComp data={this.state.data}></TestComp>
+    </div>
+    );
+    }
+
+
+});
+
+
+
+
+
+var TestComp = React.createClass({
+  render: function(){
+    var results = function(){
+        return (<li>{this.props.data}</li>);
+      }
+
+    return (
+      <div>{results}</div>
+
+      )
+    }
+
+
+
+
+});
+
+
+
+var SearchComponent = React.createClass({
+	getInitialState: function() {
+    return {
+      search: '',
+      test: 1,
+    };
+  },
+  updateSearch: function(evt){
+  	var message = evt.target.value.substr(0,20);
+  	console.log(message);
+  	this.setState({search: message, test: this.state.test + 1});
+  	 console.log("Heya" + this.state.test + this.state.search);
+
+  },
+  onQuery: function(evt){
+  	var message = this.state.search;
+
+  	this.props.callbackParent(message); // hey parent, I've changed!
+  	console.log('Calling Parents!');
+  	console.log(message);
+  },
+  handleKeyPress: function(e){
+    if (e.key === 'Enter'){
+      console.log('do validatel');
+      this.onQuery(e);
+    }
+  },
+  render: function() {
+     var buttonStyle={
+            width:"100px",
+            // height:"50px",
+            display: "flex",
+            backgroundColor: "#FAC129",
+            paddingLeft:"12px",
+            borderRadius: "5px 0px 5px 5px"
+
+     };
+     var inputStyle={
+            width:"850px",
+            fontSize: "20px",
+            fontFamily: "Helvetica",
+            paddingLeft: "10px",
+            // height:"50px",
+            display: "flex"
+
+     };
+     var containerStyle= {
+            // marginLeft: "100px",
+            // paddingLeft:"100px",
+            //borderStyle: "solid",
+            width:"100%",
+            height:"40px",
+            display: "flex",
+            margin: "0 auto"
+            // boxShadow: "0px 10px 9px grey"
+          };
+    var paddingStyle = {
+            height: "150px",
+            width: "100%"
+
+    };
+    var imgStyle = {
+      height: "20px",
+      width: "20px"
+
+
+    }
+    return (
+      <div style={containerStyle}>
+        <div style={paddingStyle}> </div> 
+            <input style={inputStyle} type="text" value={this.state.search}
+                    onChange={this.updateSearch.bind(this)}  
+                    onKeyPress={this.handleKeyPress} />
+      	            <button style={buttonStyle} onClick={this.onQuery}> 
+                     <img style={imgStyle} src={'../public/img/search.png'}/>
+                     </button>
+        <div style={paddingStyle}> </div> 
+	  </div>
+
+
+	);
+}
+});
+
+
+
+/* Helper Functions */
+
+var filterProjectJSON= function (projectsArray, keyword){
+  /* Filters by keyword */
+
+  /*
+    console.log("filter keyword is: " + keyword);
+    console.log("projectsArray is: " + projectsArray);
+
+
+    // Using direct mapping right now, because its not working /
+    var results =  projects.filter(
+
+
+
+
+      function(project){
+          console.log('filtering atm');
+        var bool = false;
+
+        var wordArray = [project.name, project.author];
+        var match = function (wordArray){
+            wordArray.map(function(word){
+
+              var keywordLower = keyword.toLowerCase();
+              if( (word.toLowerCase()).includes(keywordLower) )
+                return true;
+            })
+        }
+
+
+        match(wordArray);  // Executing main filter function
+
+        // Searches substrings for author, title, tags, and even featured //
+        // Add non-tag related search keywords here //
+        // Offers function that helps within 2-3 characters off, unless length is greater than //
+        // Tokenizes, or sees if it is substring //
+
+
+        try {
+                if (project.name.includes(keyword)) return true;
+                if (project.author.includes(keyword)) return true;
+
+                switch(keyword){
+                  case project.name: bool = true;
+                      return bool;
+                  case project.author: bool = true;
+                      return bool;
+                  // case 'featured': bool = true
+                }
+
+
+                // Tags
+                try{
+                project.tags.map(function(tag){
+                  if (tag.includes(keyword))
+                    bool = true;
+
+                    return bool;
+                });
+                }
+                catch(err){
+                  console.log('ERROR' + err);
+                }
+
+
+
+      }
+      catch(err){
+          console.log('Bypassing small checks for now, wraps so will return false and project won\'t show');
+      }
+
+      return bool; //Returning boolean for if project should show in results
+
+
+      }
+
+    )
+
+    alert(results);
+    results = results.map(function(project){ return project;});
+    console.log("filter array is: " +  JSON.stringify(results, null, 4)); 
+    return results;
+    */
+};
+
+
+
+/* Helper Functions */
+// String.prototype.escapeSpecialChars = function() {
+//     return this.replace(/\\n/g, "\\n")
+//                .replace(/\\'/g, "\\'")
+//                .replace(/\\"/g, '\\"')
+//                .replace(/\\&/g, "\\&")
+//                .replace(/\\r/g, "\\r")
+//                .replace(/\\t/g, "\\t")
+//                .replace(/\\b/g, "\\b")
+//                .replace(/\\f/g, "\\f");
+// };
+
+
+
+
+var projectName = "Pepper";
+var pepperFilter = function(project, keyword){
+  return (project.name === keyword)
+};
+
+
+module.exports = Projects;
