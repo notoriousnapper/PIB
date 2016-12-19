@@ -9,9 +9,10 @@ var Link = ReactRouter.Link;
 var Frame = require('../components/Frame');
 var Bar = require('../components/Bar');
 var TextComponent = require('../components/TextComponent');
+var Carousel = require('../components/Carousel');
 
 
-var Carousel = require('nuka-carousel');
+// var Carousel = require('nuka-carousel');
 
 const App = React.createClass({
   mixins: [Carousel.ControllerMixin],
@@ -53,7 +54,7 @@ var About = React.createClass({
         		</Bar>
 
             <div style={{width:"600px", height:"auto", margin: "auto"}}>
-              <App />
+              <Carousel />
 	            	<TextComponent style={{textAlign: "center", margin:"auto", fontSize:"30px", fontWeight: "bold"}} message= {'Welcome to Project in a Box'} />
             </div>
             	<Frame style={{paddingLeft: "100px", paddingRight: "100px"}}>
