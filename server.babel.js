@@ -201,6 +201,12 @@ app.get('/getone/:name', (req,res, next	)=> {
 	})
 });
 
+app.get('/download', function(req, res){
+  console.log("A file has been downloaded");
+  var file = __dirname + '/uploads/project.pdf';
+  res.download(file); // Set disposition and send it.
+});
+
 // app.use(function (req, res, next) { // Supposed to deal with CORS
 
 //     // Website you wish to allow to connect

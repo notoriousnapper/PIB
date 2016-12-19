@@ -41,16 +41,21 @@
     "mongoose": "^4.7.0",
     "morgan": "^1.7.0",
     "multer": "^1.2.0",
+    "nuka-carousel": "^2.0.3",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "react": "^15.4.1",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
     "react-dropdown": "^1.1.0",
+    "react-responsive-carousel": "^3.0.21",
     "react-router": "^2.0.0",
     "react-search": "^1.0.10",
     "react-search-bar": "^1.1.4",
-    "request": "^2.74.0"
+    "react-slick": "^0.14.5",
+    "request": "^2.74.0",
+    "slick-carousel": "^1.6.0"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",

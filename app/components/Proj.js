@@ -294,14 +294,15 @@ var Proj = React.createClass({
                             </div>
                           </Bar>
 
-
                         <Frame style={{maxHeight:"400px",   minWidth:"700px", width:"100%", display: "inline-block"}}>
                             <ImageComponent style={imgStyle} url={this.state.data.url}/>
                             <DetailBox data={this.state.data}>
                                 <div style={testStyle}>
-                                    <button> Download </button>
+
+                                    <form method="get" action="/download">
+                                      <button type="submit">Download!</button>
+                                    </form>
                                     <button>BookMark</button>
-                                    <button>Collections </button>
                                 </div>
                             </DetailBox>
 
