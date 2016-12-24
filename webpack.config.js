@@ -17,13 +17,11 @@ module.exports = {
         './app/scripts/TestAPI.js',
         './app/config/routes.js',
 
-        './app/components/Home.js',
         './app/components/Main.js',
         './app/components/Contact.js',
 
         './app/components/aboutpage/About.js',
-        './app/components/aboutpage/BookingFrame.js',
-
+        './app/components/homepage/Home.js',
 
         './app/components/projectlistings/SearchBar.js',
         './app/components/projectlistings/ProjectListing.js',
