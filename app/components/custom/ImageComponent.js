@@ -23,7 +23,7 @@ var ImageComponent = React.createClass({
         // Now set a transition on the opacity
         elem.style.transition = "opacity 1050ms"; // Is this asynchronous?
         // and set the opacity to 1
-        
+
         elem.style.opacity = 1;
     });
   },

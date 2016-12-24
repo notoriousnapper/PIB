@@ -3,26 +3,20 @@
  * This file holds components for the single projects display page
  * @JesseRen
  */
-
-
 var React = require('react');
-var ProjectSearchList = require('../components/ProjectSearchList');
-var ProjectListing = require('../components/ProjectListing');
-var SearchComponent = require('../components/SearchComponent');
-var Category = require('../components/Category');
-var Proj= require('../components/Proj');
-var Frame= require('../components/Frame');
-var Bar= require('../components/Bar');
-var Pad= require('../components/Pad');
-
-
+var ProjectSearchList = require('../../components/projectlistings/ProjectSearchList');
+var ProjectListing = require('../../components/projectlistings/ProjectListing');
+var SearchBar = require('../../components/projectlistings/SearchBar');
+var Category = require('../../components/projectlistings/Category');
+var Proj= require('../../components/projectpage/Proj');
+var Frame= require('../../components/Frame');
+var Bar= require('../../components/Bar');
+var Pad= require('../../components/Pad');
 
 var http = require('http');
 var $ = require('jquery');
 var Q = require('q');
-var TestAPI = require('../scripts/TestAPI');
-
-
+// var TestAPI = require('../../scripts/TestAPI');
 
 var devUrl = 'http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
@@ -104,7 +98,7 @@ var Projects = React.createClass({
     return (
       <div>
               <div style={containerStyle}>
-              <SearchComponent onMagicClick={this.getQueryProjects}/>
+              <SearchBar onMagicClick={this.getQueryProjects}/>
               <Bar>
                         <Category/>
               </Bar>
@@ -124,7 +118,6 @@ var Projects = React.createClass({
     );
   },
    op2: function(id){
-
     /* Do a search via the id * takein in from params */
     console.log('Over here is: ' + id);
     return (

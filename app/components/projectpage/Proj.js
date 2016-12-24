@@ -6,30 +6,24 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
-var ImageComponent = require('../components/ImageComponent');
-var DetailBox = require('../components/DetailBox');
-var IntroBox = require('../components/IntroBox');
-var TextComponent = require('../components/TextComponent');
-var Bar = require('../components/Bar');
-var Step = require('../components/Step');
-var Pad = require('../components/Pad');
+var ImageComponent = require('../../components/custom/ImageComponent');
+var TextComponent = require('../../components/custom/TextComponent');
+var DetailBox = require('../../components/projectpage/DetailBox');
+var IntroBox = require('../../components/IntroBox');
+var Bar = require('../../components/Bar');
 
+var Step = require('../../components/addpage/Step');
 
+var Pad = require('../../components/Pad');
+var Frame = require('../../components/Frame');
 
-var Frame = require('../components/Frame');
 var $ = require('jquery');
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
 var useUrl = prodUrl;
 
-
-
 var IntroData =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
-
-
-
-
 
 var Proj = React.createClass({
         getInitialState: function(){

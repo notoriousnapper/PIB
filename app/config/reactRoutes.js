@@ -9,16 +9,19 @@ var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 var Main = require('../components/Main');
 var Home = require('../components/Home');
-var Projects = require('../components/Projects');
-var About = require('../components/About');
+
+var About = require('../components/aboutpage/About');
+var Add = require('../components/addpage/Add');
+
+var Projects = require('../components/projectlistings/Projects');
 var Contact = require('../components/Contact');
 
-var Proj = require('../components/Proj');
+var Proj = require('../components/projectpage/Proj');
 var Input = require('../components/Input');
-var Add = require('../components/Add');
-var Login = require('../components/Login');
-var SignUp = require('../components/SignUp');
-var Profile = require('../components/Profile');
+
+var Login = require('../components/userpage/Login');
+var SignUp = require('../components/userpage/SignUp');
+var Profile = require('../components/userpage/Profile');
 
 
 /* ReactRouter Routes urls to components */

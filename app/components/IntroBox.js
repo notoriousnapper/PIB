@@ -7,8 +7,8 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
-var ImageComponent = require('../components/ImageComponent');
-var TextComponent = require('../components/TextComponent');
+var ImageComponent = require('../components/custom/ImageComponent');
+var TextComponent = require('../components/custom/TextComponent');
 var Frame = require('../components/Frame');
 
 
@@ -16,8 +16,6 @@ var IntroBox = React.createClass({
         /* Should request another call, etc */
         /* Server should do the filtering so traffic/ data is minimal */
         render: function(){
-
-
         return(
             <Frame>
         		<div style={this.props.style}>

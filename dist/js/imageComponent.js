@@ -15,6 +15,6 @@
 
 
       ReactDOM.render(
-          <ImageComponent src="public/img/imageComponent.png" />, 
+          <ImageComponent src="public/img/custom/ImageComponent.png" />, 
         document.getElementById('images');
       );

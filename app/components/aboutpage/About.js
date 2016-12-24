@@ -1,62 +1,38 @@
 /* About.js */
-
-
-
 var React = require('react');
 var ReactRouter = require('react-router');
 var Slider = require('react-slick');
 var Link = ReactRouter.Link;
-var Frame = require('../components/Frame');
-var Bar = require('../components/Bar');
-var TextComponent = require('../components/TextComponent');
-var Carousel = require('../components/Carousel');
+var Frame = require('../../components/Frame');
+var Bar = require('../../components/Bar');
+var TextComponent = require('../../components/custom/TextComponent');
+var Carousel = require('../../components/custom/Carousel');
+// var LabelCarousel = require('../../components/custom/LabelCarousel');
+// var BookingFrame = require('../../components/aboutpage/BookingFrame');
 
 
-// var Carousel = require('nuka-carousel');
 
-const App = React.createClass({
-  mixins: [Carousel.ControllerMixin],
-  render() {
-    return (
-      <Carousel>
-        <img src="/public/img/carousel_2.jpg"/>
-        <img src="/public/img/carousel_3.jpg"/>
-        <img src="/public/img/carousel_4.jpg"/>
-      </Carousel>
-    )
+
+var Label = React.createClass({
+  render: function(){
+    var labelStyle = {
+      backgroundColor: "white",
+      height: "20px"
+    }
+    return (<div>{this.props.label}</div>);
   }
-});
+})
 
-var SimpleSlider = React.createClass({
-  render: function () {
-    var settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
-    return (
-      <Slider {...settings}>
-        <div><h3>1</h3></div>
-        <div><h3>2</h3></div>
-        <div><h3>3</h3></div>
-      </Slider>
-    );
-  }
-});
-
+// <Carousel />
 var About = React.createClass({
         render: function(){
         return(
-        		<div style={{padding:"40px", backgroundColor: "white", width: "100%", height: "100%"}}>
-        		<Bar>
-        		</Bar>
-
-            <div style={{width:"600px", height:"auto", margin: "auto"}}>
+        		<div style={{padding:"0px", backgroundColor: "white", width: "100%", height: "100%"}}>
               <Carousel />
+
+              <div style={{width:"600px", height:"auto", margin: "auto"}}>
 	            	<TextComponent style={{textAlign: "center", margin:"auto", fontSize:"30px", fontWeight: "bold"}} message= {'Welcome to Project in a Box'} />
-            </div>
+              </div>
             	<Frame style={{paddingLeft: "100px", paddingRight: "100px"}}>
             		<div style={{display:"flex", flexDirection: "column"}}>
                 <br/>
@@ -67,6 +43,8 @@ var About = React.createClass({
 	            	<TextComponent mesage ={'If you’re interested, sign up for upcoming news and access to become a project-in-a-box, where you can watch your project go live and get its own special package!'}/>
 	            	</div>
             	</Frame>
+
+
 
 
 				</div>

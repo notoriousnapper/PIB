@@ -1,6 +1,6 @@
 /* home.js */
 var React = require('react');
-var TextComponent = require('../components/TextComponent');
+var TextComponent = require('../components/custom/TextComponent');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 

@@ -1,13 +1,11 @@
 var React = require('react');
 
 var Frame = React.createClass({
-
 	render:function(){
 	var bgStyle = {
 		padding: "10px",
 		backgroundColor: "white",
 		display:"flex"
-
 	}
 	var outerFrameStyle={
 		// minHeight: "40px"
@@ -20,7 +18,6 @@ var Frame = React.createClass({
 				{this.props.children}
 			</div>
 			</div>
-
 				)
 	}
 

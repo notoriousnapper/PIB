@@ -14,7 +14,7 @@ Projects.s copy
 			return(
             <div>
             <div style={paddingStyle}> </div>
-      	        <SearchComponent callbackParent={this.onChildQuery}/>
+      	        <SearchBar callbackParent={this.onChildQuery}/>
                 <div id={'Filter Bar'} style={filterBarStyle}>
                       <div style={paddingStyle}> </div>
                 <div className='Buttons' style={filterInnerStyle}>

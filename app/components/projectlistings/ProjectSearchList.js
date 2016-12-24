@@ -5,7 +5,7 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ProjectListing = require('../components/ProjectListing');
+var ProjectListing = require('../../components/projectlistings/ProjectListing');
 
 var devUrl = 'http://localhost:3000/get';
 var devUrl2 = 'http://localhost:3000/get';

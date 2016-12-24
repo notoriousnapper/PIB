@@ -1,6 +1,6 @@
 /* Login.js */
 var React = require('react');
-var Frame = require('../components/Frame');
+var Frame = require('../../components/Frame');
 
 var Login = React.createClass({
 	render:function(){

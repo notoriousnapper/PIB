@@ -1,7 +1,4 @@
 /* main.js */
-
-
-
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -131,10 +128,10 @@ var GlobalNav = React.createClass({
                   fontFamily: 'Helvetica',
                   height:'30%',
                   color: '#242323',
-                  fontSize: '18px',
+                  fontSize: '12px',
                   textDecoration:"none",
                   textAlign: "center",
-                  whiteSpace: "nowrap",
+                  whiteSpace: "nowrap"
                   // overflow: "hidden",
 
           };
@@ -156,8 +153,8 @@ var GlobalNav = React.createClass({
               <LogoComponent url="../public/img/logo3.png"/>
               <div style={fakeShadow}>▼</div>
               <div style={user}>
-                <Link to={"/login"} style={sign}>Log In</Link>
-                <Link to={"/signup"} style={sign}>Sign Up</Link>
+                <Link to={"/login"} style={bottomStyle}>Log In</Link>
+                <Link to={"/signup"} style={bottomStyle}>Sign Up</Link>
               </div>
             </div>
           )
@@ -190,10 +187,7 @@ var Main = React.createClass({
           backgroundColor: "black",
           borderWidth:"100px"
         }
-
         var textStyle = {
-
-
         }
 
         return(

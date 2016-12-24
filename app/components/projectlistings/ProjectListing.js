@@ -17,8 +17,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
-var ImageComponent = require('../components/ImageComponent');
-var TextComponent = require('../components/TextComponent');
+var ImageComponent = require('../../components/custom/ImageComponent');
+var TextComponent = require('../../components/custom/TextComponent');
 
 
 var ProjectListing = React.createClass({

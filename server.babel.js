@@ -4,6 +4,8 @@ try {
     console.error("react is not found");
     process.exit(e.code);
 }
+
+
 // import express from 'express';
 const express = require('express');
 const app = express();
@@ -25,17 +27,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+// remove your routes and replace with this code
+var controllers = require('./app/controllers');
+controllers.set(app);
+
 // var router = express.Router();
 const cloudinary =require('cloudinary');
 const cors = require('cors');
 
-var configDB = require('./app/config/database.js');
-
-
-
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
-
 require('./app/config/passport')(passport); // pass passport for configuration
 
 // set up our express application
@@ -64,12 +64,9 @@ deployment to Heroku */
    }
  }));
 
-
-
 app.use(cors());  // CORS Middleware
 // Add headers  // Because CORS Middleware ain't treatin' me right.
 
-const MongoClient = require('mongodb').MongoClient;
 const fs = require('fs');
 const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
@@ -82,15 +79,6 @@ var db;
 // });
 
 /* Configure MongoDB */
-MongoClient.connect('mongodb://banesilencio:merecino_ch3rr3@ds019756.mlab.com:19756/pib', (err, database) =>{
-	if (err) return console.log(err	)
-	db = database;
-
-// Having two app listens caused ---> ports to be re-used for listen, caused rror
-	// app.listen(3000, () => {
-	// 	console.log('listening on 3000')
-	// })
-})
 
 // app.configure('development', function(){
   // app.use(express.errorHandler());
@@ -119,7 +107,6 @@ app.use(bodyParser.urlencoded({extended: true}))  // Necessary to handle HTTP re
 
 
 // app.use('/api', router);
-
 // The urlencoded method within body-parser
 //tells body-parser to extract data from the <form> element and add them to the body property in the request object.
 
@@ -131,75 +118,19 @@ app.get('/user', function(req, res) {
 
 
 
-app.get('/get', (req,res, next)=> {
-	db.collection('projects').find().toArray((err, result)=>{
-		if (err) return console.log(error);
-
-		// Need better check.  Error occurred because projects db didn't exist at one point
-		if(result === '') console.log('No DB subset instantiated');
-		console.log("Getting Array!" + result);
-
-		//renders index.ejs
-		console.log("What's up boi, it worked!");
-		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
-	})
-});
-
-
-
-app.get('/get/:query', (req,res, next)=> {
-	/* Do all the ugly processing/ text changing here */
-	// var query =  new RegExp('/^' + req.params.query + '$', "i");
-	var query = req.params.query;
-	query = query.toLowerCase();
-
-
-
-	console.log('query url is ' + query);
-	// Have allowed tags in here.  In source code or in DB?
-	db.collection('projects').find( { $or: [ {author: new RegExp(query)}, {name:new RegExp(query)} ]}).toArray((err, result)=>{
-	// db.collection('projects').find({name: query}).toArray((err, result)=>{
-
-		if (err) return console.log(error);
-
-		// Need better check.  Error occurred because projects db didn't exist at one point
-		if(result === '') console.log('No DB subset instantiated');
-		console.log("Getting Array!" + JSON.stringify(result,null,4));
-
-		//renders index.ejs
-		console.log("What's up boi, it worked!");
-		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
-		// Ok to ping back an array? or just pure object (because what if there are duplicate id's?)
-	})
-});
-
-
-
-app.get('/getone/:name', (req,res, next	)=> {
-	// console.log('Body is: ' + JSON.stringify(req, null, 4));
-	// var id = req.query.id;
-	// var url_parts = url.parse(req.url, true);
-	// var query = url_parts.query;
-	// var id = query.name;
-	// console.log('query is ' + JSON.stringify(id, null, 4));
-	var name = req.params.name;
-	console.log('query url is ' + name);
-
-
-	// var query = req.body;
-	db.collection('projects').find( {'name': name}).toArray((err, result)=>{
-		if (err) return console.log(error);
-
-		// Need better check.  Error occurred because projects db didn't exist at one point
-		if(result === '') console.log('No DB subset instantiated');
-		console.log("Getting Array!" + JSON.stringify(result,null,4));
-
-		//renders index.ejs
-		console.log("What's up boi, it worked!");
-		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
-		// Ok to ping back an array? or just pure object (because what if there are duplicate id's?)
-	})
-});
+// app.get('/get', (req,res, next)=> {
+// 	db.collection('projects').find().toArray((err, result)=>{
+// 		if (err) return console.log(error);
+//
+// 		// Need better check.  Error occurred because projects db didn't exist at one point
+// 		if(result === '') console.log('No DB subset instantiated');
+// 		console.log("Getting Array!" + result);
+//
+// 		//renders index.ejs
+// 		console.log("What's up boi, it worked!");
+// 		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
+// 	})
+// });
 
 app.get('/download', function(req, res){
   console.log("A file has been downloaded");
@@ -235,11 +166,7 @@ app.post('/upload', upload.single('image'), (req,res)=>{
   /* Add url to package and send to mongoDB */
   var imgUrl = result.url;
   // var data = { url: imgUrl};
-
-
   console.log('Server data returned is' + JSON.stringify(data,null,4));
-
-
   // Fix up input field array for instructions
   if ((req.body.instructions == null) ||(req.body.title== null)){
   	/* Do nothing if null */
@@ -251,7 +178,6 @@ app.post('/upload', upload.single('image'), (req,res)=>{
   	/* Error Checks, if its just a single item, its no array and returns string's length
   	 * instead of number of items, which should be 1
   	 */
-
   	var steps =[];
   	var ctr = 0;
   	if( typeof req.body.title === 'string' ) { // Later make more specific,
@@ -286,7 +212,6 @@ app.post('/upload', upload.single('image'), (req,res)=>{
 
 
 	}
-
 	/* No matter if single or multiple element, append to request body */
   	req.body['steps']= steps;
   	// delete req.body["title"];
@@ -294,10 +219,7 @@ app.post('/upload', upload.single('image'), (req,res)=>{
 	console.log('Parsed data returned is' + JSON.stringify(data,null,4));
 
   }
-
 //
-
-
 
   /* Ensure passed values are inserted as ints */
   req.body.likes = parseInt(req.body.likes);
@@ -316,36 +238,26 @@ app.post('/upload', upload.single('image'), (req,res)=>{
 
   //At end, delete the uploaded file to server, only need it on cloudinary
   fs.unlink(req.file.path);
-
 });
 	// Don't uncomment this unless for multiple
 	// var imageStream = fs.createReadStream(req.file.path, { encoding: 'binary' })
  //    , cloudStream = cloudinary.uploader.upload_stream(function() { res.redirect('/'); });
  //  imageStream.on('data', cloudStream.write).on('end', cloudStream.end);
-
 });
-
-
-
 
 /* Updates views, likes, or downloads of certain project ONLY */
 //'/getone/:id/:type'   is full
 app.put('/getone/:id/:type', (req,res)=>{
 	/* Updates specific project id with specific field (like, views, etc) */
 	var fields = ['views','likes', 'downloads'];
-
-
 	if (!fields.every(function(elem){req.params.type === elem})){
-
 		var name = req.params.id;
 		var type = req.params.type;
-
 
 		console.log("id is: " + name);
 		var obj = {};
 		obj[type] = 1;
 		console.log("Object is: " + JSON.stringify(obj, null, 4));
-
 
 		db.collection('projects').updateOne(
 			{'name': name},

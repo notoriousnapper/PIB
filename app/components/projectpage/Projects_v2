@@ -7,9 +7,9 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ProjectSearchList = require('../components/ProjectSearchList');
-var ProjectListing = require('../components/ProjectListing');
-var Proj= require('../components/Proj');
+var ProjectSearchList = require('../components/projectpage/ProjectSearchList');
+var ProjectListing = require('../components/projectlistings/ProjectListing');
+var Proj= require('../components/projectpage/Proj');
 var http = require('http');
 
 var $ = require('jQuery');
@@ -44,7 +44,7 @@ function promisedRequest(requestOptions) {
                 deferred.resolve(responseData);
               });
             });
-            
+
             //listen to the 'error' event
             req.on('error', function(err) {
               //if an error occurs reject the deferred
@@ -70,7 +70,7 @@ function promisedRequest(requestOptions) {
 
 
 /* Grab Data to be parsed
- * Should be in a separate JS file, probably, or a http call 
+ * Should be in a separate JS file, probably, or a http call
  */
 
 /* Hook to Database */
@@ -102,7 +102,7 @@ var projects = [];
       }).end();
 
 console.log('is project empty?: ')
-console.log(((projects === [])? 'empty': projects)); 
+console.log(((projects === [])? 'empty': projects));
 
 
 
@@ -185,8 +185,8 @@ var TextComponent = React.createClass({
 var Projects = React.createClass({
 	getInitialState: function(){
 		return ({
-      number: 0, 
-			search: '', 
+      number: 0,
+			search: '',
       data: projects
 		})
 
@@ -264,7 +264,7 @@ var Projects = React.createClass({
                 deferred.resolve(responseData);
               });
             });
-            
+
             //listen to the 'error' event
             req.on('error', function(err) {
               //if an error occurs reject the deferred
@@ -320,7 +320,7 @@ var Projects = React.createClass({
            * @param  {Object} requestOptions
            * @return Promise Object
            */
-           
+
 
 
           /* Uncomment */
@@ -356,7 +356,7 @@ var Projects = React.createClass({
 
           // this.setState({data: })
           //incoking the above function with the request options
-         
+
   },
 
 	onChildQuery: function(queryData){
@@ -413,7 +413,7 @@ var Projects = React.createClass({
 
     return (
       <div>
-      <button onClick={this.testAjax}>Click me</button> 
+      <button onClick={this.testAjax}>Click me</button>
         <div> Clicks:  {this.state.number}</div>
         <input type="text" value={this.state.number}/>
         <div>{this.state.search}</div>
@@ -520,14 +520,14 @@ var SearchComponent = React.createClass({
     }
     return (
       <div style={containerStyle}>
-        <div style={paddingStyle}> </div> 
+        <div style={paddingStyle}> </div>
             <input style={inputStyle} type="text" value={this.state.search}
-                    onChange={this.updateSearch.bind(this)}  
+                    onChange={this.updateSearch.bind(this)}
                     onKeyPress={this.handleKeyPress} />
-      	            <button style={buttonStyle} onClick={this.onQuery}> 
+      	            <button style={buttonStyle} onClick={this.onQuery}>
                      <img style={imgStyle} src={'../public/img/search.png'}/>
                      </button>
-        <div style={paddingStyle}> </div> 
+        <div style={paddingStyle}> </div>
 	  </div>
 
 
@@ -618,7 +618,7 @@ var filterProjectJSON= function (projectsArray, keyword){
 
     alert(results);
     results = results.map(function(project){ return project;});
-    console.log("filter array is: " +  JSON.stringify(results, null, 4)); 
+    console.log("filter array is: " +  JSON.stringify(results, null, 4));
     return results;
     */
 };

@@ -5,7 +5,7 @@
  */
 
 var React = require('react');
-var ImageComponent = require('../components/ImageComponent');
+var ImageComponent = require('../../components/custom/ImageComponent');
 
 var StepAdd = React.createClass({
 	render:function(){
@@ -28,7 +28,6 @@ var StepAdd = React.createClass({
 		alert('Not working');
 		return ( <ImageComponent url={this.props.url}></ImageComponent>);
 	}
-
 		// Learned a new thing today...javascript parenthesis needs to BE ON SAME LINE AS RETURN
 		// Or else compiler just sees returns and exits
 		return(

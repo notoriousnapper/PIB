@@ -220,18 +220,10 @@ addStep: function(){
 
 
         <div style={{display:'flex'}}>
-
-
-
         <input id={'image_upload'} type='hidden' value={''}/>
-
         <div style={{flex:'1'}}></div>
         <button style={buttonStyle} type="submit"> <div style={{textAlign: 'center'}}>{'Submit'}</div> </button>
         <div style={{flex:'1'}}></div>
-
-
-
-
         </div>
 
       </form>

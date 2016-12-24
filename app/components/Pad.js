@@ -5,7 +5,7 @@
  */
 
 var React = require('react');
-var ImageComponent = require('../components/ImageComponent');
+var ImageComponent = require('../components/custom/ImageComponent');
 var Frame = require('../components/Frame');
 
 var Pad = React.createClass({

@@ -5,9 +5,9 @@
  */
 
 var React = require('react');
-var ImageComponent = require('../components/ImageComponent');
-var Frame = require('../components/Frame');
-var Pad = require('../components/Pad');
+var ImageComponent = require('../../components/custom/ImageComponent');
+var Frame = require('../../components/Frame');
+var Pad = require('../../components/Pad');
 
 var Step = React.createClass({
 
@@ -37,7 +37,7 @@ var Step = React.createClass({
 	var stepImage= function(imageUrl){
 		// if(this.props.url!='') return (<div></div>);
 		// alert('Not working');
-		// return ( [<ImageComponent url={this.props.url}></ImageComponent>]);
+		// return ( [<ImageComponent url={this.props.url}></custom/ImageComponent>]);
 		return ( [<ImageComponent style={{width: "170px", height: "170px"}} url={imageUrl}/>]);
 	};
 
