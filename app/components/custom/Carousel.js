@@ -64,14 +64,17 @@ componentDidMount: function() {
 render: function(){
 
 return(
-  <div>
+  <div style={{backgroundColor: "black"}}>
      <div style={{height: "500px", width: "100%", backgroundImage: 'url(' + this.state.paths[this.state.ctr] + ')',
-    //  backgroundSize: "auto 100%",
-     backgroundSize: "cover",
+     backgroundSize: "contain",
+     backgroundPosition: "center",
+    //  backgroundSize: "cover",
       backgroundRepeat: "no-repeat"}}>
        <div style={{margin: "30% 0px 30% 10px", verticalAlign: "middle", float: "left", height: "100%"}} ><button  style={{margin:"auto"}}  onClick={this.switchSlideLeft}> {"<"} </button> </div>
 
       <Detail />
+
+
        <div style={{margin: "30% 10px 30% 0px", marginBottom: "30%", verticalAlign: "middle", float: "right", height: "100%"}} ><button   onClick={this.switchSlideRight}> {">"} </button> </div>
      </div>
  </div>
