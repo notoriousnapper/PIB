@@ -40,20 +40,20 @@ var Panel = React.createClass({
             return (
               <Link to={"/content/" + item.hook } style={{
                 backgroundColor: "black",
-                padding: "65px 5px 15px 5px", flex:"1", width: "24%", height: "100%"}} >
+                padding: "65px 5px 15px 5px", flex:"1", width: "24%", height: "500px"}} >
                 <div style={{backgroundColor: "white", padding: "15px 5px 15px 5px", flex:"1", height: "500px"}} >
                   <img style={{width:"100%", height: "300px"}} src={item.img}></img>
-                  <div style={{padding: "5px 80px 5px 80px", textAlign: "center"}}>
-                      <h2 style={{color: "black"}}> {item.title} </h2>
+                  <div style={{padding: "5px 40px 5px 40px", textAlign: "center", height: "100px"}}>
+                      <h2 style={{color: "black", fontSize: "23px"}}> {item.title} </h2>
                   </div>
-                      <p> {item.description} </p>
+                      <p style={{textAlign: "center", fontSize: "1vw"}}> {item.description} </p>
                 </div>
               </Link>
             );
           });
 
         return(
-        		<div style={{ position: "absolute", display: "flex", width:"100%", height: "200px", backgroundColor: "black", padding: "0px 50px 0px 50px"}}>
+        		<div style={{display: "flex", width:"100%", height: "700px", backgroundColor: "black", padding: "0px 50px 0px 50px"}}>
 
               <div style={{color:"white"}}> {"What's New"}</div>
 

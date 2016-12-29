@@ -23,9 +23,11 @@ var Input = require('../components/Input');
 var Login = require('../components/userpage/Login');
 var SignUp = require('../components/userpage/SignUp');
 var Profile = require('../components/userpage/Profile');
+var Footer = require('../components/custom/Footer');
 /* ReactRouter Routes urls to components */
 // var Home = (require'../components/Main');
 var reactRoutes = (
+	<div>
 	<Router history={hashHistory}>
 		<Route  path='/' component={Main}>
 			<IndexRoute component={Home}/>
@@ -43,6 +45,10 @@ var reactRoutes = (
 			<Route path='/profile' component={Profile}/>
 		</Route>
 	</Router>
+
+
+	<Footer />
+	</div>
 );
 	    // Insert this in later
 			// <Route path='/contact' component={Contact}/>

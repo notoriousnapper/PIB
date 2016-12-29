@@ -2,19 +2,47 @@ var React  = require('react');
 var Footer = React.createClass({
   render: function(){
     return (
-      <div style={{
-        borderWidth: "5px 0 0 0 ", borderTopColor: "black", borderStyle:"solid",
-         width:"100%", padding: "20px", height: "100px",
-        backgroundColor: "white",  zIndex: "1", position: "absolute",
-        marginTop:"700px", height: "600px"
-      }}>
-        <img src="../../public/img/ucsdfont.png" />
-        <div> UCSD 858-847-5518 </div>
-        <div> Contact: jeren.neurogen@gmail.com for inquiries </div>
-      </div>
+        <div id="footer" style={{margin: "0px", padding: "0px"}}>
+          <div style={{
+            display: "flex", height:"200px", backgroundColor: "#1a2930", margin: "auto", textAlign:"left", color: "white"}}>
+            <div style={{ flex:"1", margin: "auto", paddingLeft: "20%" }}>
+              <div style={{
+                  fontWeight: "bold", fontSize: "20px"}}> 'Contact'  </div>
+              <div> <br /> 'Jesse Ren' <br/> 'Web Master' <br/> 'jeren.neurogen@gmail.com' <br/> '858-847-5518' </div>
+            </div>
+            <div style={{flex:"1", margin: "auto"}}>
+              <div style={{fontWeight: "bold", fontSize: "20px"}}> 'University and Corporate'  </div>
+              <div> <br /> 'Professor Truong Nguyen' <br/> 'Chair of Electrical and Computer Engineering'
+                 <br/> 'tqn001@ucsd.edu' <br/> '858-822-5554' </div>
+            </div>
+          </div>
+
+          <section>
+            <ul id='services'>
+              <h2>Social</h2>
+              <li>
+                <div classNameName='entypo-facebook'></div>
+                <span>Facebook</span>
+              </li>
+              <li>
+                <div className='entypo-twitter'></div>
+                <span>Twitter</span>
+              </li>
+              <li>
+                <div className='entypo-gplus'></div>
+                <span>Google Plus</span>
+              </li>
+              <li>
+                <div className='entypo-linkedin'></div>
+                <span>LinkedIn</span>
+              </li>
+            </ul>
+          </section>
+
+        </div>
     )
 
   }
-})
+});
 
 module.exports = Footer;

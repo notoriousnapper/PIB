@@ -21518,32 +21518,38 @@
 	var Login = __webpack_require__(321);
 	var SignUp = __webpack_require__(322);
 	var Profile = __webpack_require__(323);
+	var Footer = __webpack_require__(239);
 	/* ReactRouter Routes urls to components */
 	// var Home = (require'../components/Main');
 	var reactRoutes = React.createElement(
-		Router,
-		{ history: hashHistory },
+		'div',
+		null,
 		React.createElement(
-			Route,
-			{ path: '/', component: Main },
-			React.createElement(IndexRoute, { component: Home }),
-			React.createElement(Route, { path: '/home', component: Home }),
+			Router,
+			{ history: hashHistory },
 			React.createElement(
 				Route,
-				{ path: '/projects(/:id)', component: Projects },
-				React.createElement(Route, { name: 'input', path: '/input', component: Input })
-			),
-			React.createElement(
-				Route,
-				{ path: '/content(/:id)', component: Content },
-				React.createElement(Route, { name: 'input', path: '/input', component: Input })
-			),
-			React.createElement(Route, { path: '/about', component: About }),
-			React.createElement(Route, { path: '/addproject', component: Add }),
-			React.createElement(Route, { path: '/login', component: Login }),
-			React.createElement(Route, { path: '/signup', component: SignUp }),
-			React.createElement(Route, { path: '/profile', component: Profile })
-		)
+				{ path: '/', component: Main },
+				React.createElement(IndexRoute, { component: Home }),
+				React.createElement(Route, { path: '/home', component: Home }),
+				React.createElement(
+					Route,
+					{ path: '/projects(/:id)', component: Projects },
+					React.createElement(Route, { name: 'input', path: '/input', component: Input })
+				),
+				React.createElement(
+					Route,
+					{ path: '/content(/:id)', component: Content },
+					React.createElement(Route, { name: 'input', path: '/input', component: Input })
+				),
+				React.createElement(Route, { path: '/about', component: About }),
+				React.createElement(Route, { path: '/addproject', component: Add }),
+				React.createElement(Route, { path: '/login', component: Login }),
+				React.createElement(Route, { path: '/signup', component: SignUp }),
+				React.createElement(Route, { path: '/profile', component: Profile })
+			)
+		),
+		React.createElement(Footer, null)
 	);
 	// Insert this in later
 	// <Route path='/contact' component={Contact}/>
@@ -26885,12 +26891,6 @@
 
 	"use strict";
 
-	var _defineProperty2 = __webpack_require__(249);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	var React = __webpack_require__(3);
 	var Footer = React.createClass({
 	  displayName: "Footer",
@@ -26898,21 +26898,109 @@
 	  render: function render() {
 	    return React.createElement(
 	      "div",
-	      { style: (0, _defineProperty3.default)({
-	          borderWidth: "5px 0 0 0 ", borderTopColor: "black", borderStyle: "solid",
-	          width: "100%", padding: "20px", height: "100px",
-	          backgroundColor: "white", zIndex: "1", position: "absolute",
-	          marginTop: "700px" }, "height", "600px") },
-	      React.createElement("img", { src: "../../public/img/ucsdfont.png" }),
+	      { id: "footer", style: { margin: "0px", padding: "0px" } },
 	      React.createElement(
 	        "div",
-	        null,
-	        " UCSD 858-847-5518 "
+	        { style: {
+	            display: "flex", height: "200px", backgroundColor: "#1a2930", margin: "auto", textAlign: "left", color: "white" } },
+	        React.createElement(
+	          "div",
+	          { style: { flex: "1", margin: "auto", paddingLeft: "20%" } },
+	          React.createElement(
+	            "div",
+	            { style: {
+	                fontWeight: "bold", fontSize: "20px" } },
+	            " 'Contact'  "
+	          ),
+	          React.createElement(
+	            "div",
+	            null,
+	            " ",
+	            React.createElement("br", null),
+	            " 'Jesse Ren' ",
+	            React.createElement("br", null),
+	            " 'Web Master' ",
+	            React.createElement("br", null),
+	            " 'jeren.neurogen@gmail.com' ",
+	            React.createElement("br", null),
+	            " '858-847-5518' "
+	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { style: { flex: "1", margin: "auto" } },
+	          React.createElement(
+	            "div",
+	            { style: { fontWeight: "bold", fontSize: "20px" } },
+	            " 'University and Corporate'  "
+	          ),
+	          React.createElement(
+	            "div",
+	            null,
+	            " ",
+	            React.createElement("br", null),
+	            " 'Professor Truong Nguyen' ",
+	            React.createElement("br", null),
+	            " 'Chair of Electrical and Computer Engineering'",
+	            React.createElement("br", null),
+	            " 'tqn001@ucsd.edu' ",
+	            React.createElement("br", null),
+	            " '858-822-5554' "
+	          )
+	        )
 	      ),
 	      React.createElement(
-	        "div",
+	        "section",
 	        null,
-	        " Contact: jeren.neurogen@gmail.com for inquiries "
+	        React.createElement(
+	          "ul",
+	          { id: "services" },
+	          React.createElement(
+	            "h2",
+	            null,
+	            "Social"
+	          ),
+	          React.createElement(
+	            "li",
+	            null,
+	            React.createElement("div", { classNameName: "entypo-facebook" }),
+	            React.createElement(
+	              "span",
+	              null,
+	              "Facebook"
+	            )
+	          ),
+	          React.createElement(
+	            "li",
+	            null,
+	            React.createElement("div", { className: "entypo-twitter" }),
+	            React.createElement(
+	              "span",
+	              null,
+	              "Twitter"
+	            )
+	          ),
+	          React.createElement(
+	            "li",
+	            null,
+	            React.createElement("div", { className: "entypo-gplus" }),
+	            React.createElement(
+	              "span",
+	              null,
+	              "Google Plus"
+	            )
+	          ),
+	          React.createElement(
+	            "li",
+	            null,
+	            React.createElement("div", { className: "entypo-linkedin" }),
+	            React.createElement(
+	              "span",
+	              null,
+	              "LinkedIn"
+	            )
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -37384,17 +37472,17 @@
 	        Link,
 	        { to: "/content/" + item.hook, style: {
 	            backgroundColor: "black",
-	            padding: "65px 5px 15px 5px", flex: "1", width: "24%", height: "100%" } },
+	            padding: "65px 5px 15px 5px", flex: "1", width: "24%", height: "500px" } },
 	        React.createElement(
 	          'div',
 	          { style: { backgroundColor: "white", padding: "15px 5px 15px 5px", flex: "1", height: "500px" } },
 	          React.createElement('img', { style: { width: "100%", height: "300px" }, src: item.img }),
 	          React.createElement(
 	            'div',
-	            { style: { padding: "5px 80px 5px 80px", textAlign: "center" } },
+	            { style: { padding: "5px 40px 5px 40px", textAlign: "center", height: "100px" } },
 	            React.createElement(
 	              'h2',
-	              { style: { color: "black" } },
+	              { style: { color: "black", fontSize: "23px" } },
 	              ' ',
 	              item.title,
 	              ' '
@@ -37402,7 +37490,7 @@
 	          ),
 	          React.createElement(
 	            'p',
-	            null,
+	            { style: { textAlign: "center", fontSize: "1vw" } },
 	            ' ',
 	            item.description,
 	            ' '
@@ -37413,7 +37501,7 @@
 
 	    return React.createElement(
 	      'div',
-	      { style: { position: "absolute", display: "flex", width: "100%", height: "200px", backgroundColor: "black", padding: "0px 50px 0px 50px" } },
+	      { style: { display: "flex", width: "100%", height: "700px", backgroundColor: "black", padding: "0px 50px 0px 50px" } },
 	      React.createElement(
 	        'div',
 	        { style: { color: "white" } },
