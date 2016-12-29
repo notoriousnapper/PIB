@@ -4,7 +4,6 @@ var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
 var Footer = require('../components/custom/Footer');
-
 var LogoComponent = React.createClass({
   render: function(){
     var logoStyle = {
@@ -201,8 +200,6 @@ var Main = React.createClass({
                 <GlobalNav items={menu} style={navBarStyle}/>
 				{this.props.children}
 				</div>
-
-                <div style={{backgroundColor: "white", width:"100%", height: "200px"}}></div>
         </div>
               )
                 }

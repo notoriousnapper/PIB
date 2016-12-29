@@ -18,7 +18,6 @@ const compiler = webpack(config);
 
 
 var port     = process.env.PORT || 8080;
-var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 
@@ -28,6 +27,8 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 // remove your routes and replace with this code
+
+// MongoDB Module in here
 var controllers = require('./app/controllers');
 controllers.set(app);
 

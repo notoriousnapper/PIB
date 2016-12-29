@@ -7,7 +7,9 @@ var db;
 
 MongoClient.connect('mongodb://banesilencio:merecino_ch3rr3@ds019756.mlab.com:19756/pib', (err, database) =>{
 	if (err) return console.log(err	)
-	db = database;
+	else{
+	  db = database;
+	}
 })
 
 module.exports.set = function(app) {

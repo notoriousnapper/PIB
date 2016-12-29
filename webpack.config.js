@@ -23,6 +23,8 @@ module.exports = {
         './app/components/aboutpage/About.js',
         './app/components/homepage/Home.js',
 
+        './app/components/content/Content.js',
+
         './app/components/projectlistings/SearchBar.js',
         './app/components/projectlistings/ProjectListing.js',
         './app/components/projectlistings/ProjectSearchList.js',
@@ -42,6 +44,7 @@ module.exports = {
         './app/components/custom/Carousel.js',
         './app/components/custom/LabelCarousel.js',
         './app/components/custom/Detail.js',
+        './app/components/custom/Footer.js',
 
 
         './app/components/Frame.js',

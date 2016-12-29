@@ -1,6 +1,8 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var Detail = require('../../components/custom/Detail');
+var $ = require('jquery');
+
 
 
 var Carousel = React.createClass({
@@ -9,7 +11,7 @@ getInitialState: function(){
   return {
     ctr  : 0,
     paths: [
-      "../public/img/quadcopter.jpg",
+      "../public/img/arcadebox.png",
       "../public/img/carousel_2.jpg",
       "../public/img/carousel_3.jpg",
       "../public/img/carousel_4.jpg"
@@ -31,56 +33,63 @@ switchSlideRight: function(inc){
   });
 },
 componentDidMount: function() {
-  var box = document.querySelector('.carouselbox');
-   var next = box.querySelector('.next');
-   var prev = box.querySelector('.prev');
-   var items = box.querySelectorAll('.content li');
-   var counter = 0;
-   var amount = items.length;
-   var current = items[0];
-   box.classList.add('active');
-   function navigate(direction) {
-     current.classList.remove('current');
-     counter = counter + direction;
-     if (direction === -1 &&
-         counter < 0) {
-       counter = amount - 1;
-     }
-     if (direction === 1 &&
-         !items[counter]) {
-       counter = 0;
-     }
-     current = items[counter];
-     current.classList.add('current');
-   }
-   next.addEventListener('click', function(ev) {
-     navigate(1);
-   });
-   prev.addEventListener('click', function(ev) {
-     navigate(-1);
-   });
-   navigate(0);
+  var img_array = [1, 2, 3, 4],
+         newIndex = 0,
+         index = 0,
+         interval = 3000;
+     (function changeBg() {
+             index = (index + 1) % img_array.length;
+
+                 $("#cf7 img").removeClass("opaque");
+                 $("#cf7 img").eq(index).addClass("opaque");
+                 $("#cf7_controls span").removeClass("selected");
+                 $(this).addClass("selected");
+                 // console.log(newImage);
+         setTimeout(changeBg, interval);
+     })();
 },
 render: function(){
 
+    var imgStyle = {height:"700px"};
+
 return(
-  <div style={{backgroundColor: "black"}}>
-     <div style={{height: "500px", width: "100%", backgroundImage: 'url(' + this.state.paths[this.state.ctr] + ')',
-     backgroundSize: "contain",
-     backgroundPosition: "center",
-    //  backgroundSize: "cover",
-      backgroundRepeat: "no-repeat"}}>
-       <div style={{margin: "30% 0px 30% 10px", verticalAlign: "middle", float: "left", height: "100%"}} ><button  style={{margin:"auto"}}  onClick={this.switchSlideLeft}> {"<"} </button> </div>
+  <div style={{ backgroundImage: "url(../public/img/wood.jpg)", backgroundSize: "100% 100%", backgroundPosition: "center"}}>
+     <div style={{display: "flex", height:"700px"}} >
+       <div style={{flex:"0.5", paddingLeft: "0px"}}>
+          <Detail />
+       </div>
+       <div style={{flex:"1"}} id="cf7" className="shadow" >
+         <img style={imgStyle} className='opaque' src={this.state.paths[0]}/>
+         <img style={imgStyle} src={this.state.paths[1]} />
+         <img style={imgStyle} src={this.state.paths[2]} />
+         <img style={imgStyle} src={this.state.paths[3]} />
+       </div>
 
-      <Detail />
+       <div style={{flex:"0.5", paddingLeft: "0px"}}> </div>
 
-
-       <div style={{margin: "30% 10px 30% 0px", marginBottom: "30%", verticalAlign: "middle", float: "right", height: "100%"}} ><button   onClick={this.switchSlideRight}> {">"} </button> </div>
      </div>
+
+
  </div>
 )
 }
 })
+/* Correct one here */
+    //  <div style={{height: "500px", width: "100%", backgroundImage: 'url(' + this.state.paths[this.state.ctr] + ')',
+    //  backgroundSize: "contain",
+    //  backgroundPosition: "center",
+    // //  backgroundSize: "cover",
+    //   backgroundRepeat: "no-repeat"}}>
+    //    <div style={{margin: "30% 0px 30% 10px", verticalAlign: "middle", float: "left", height: "100%"}} ><button  style={{margin:"auto"}}  onClick={this.switchSlideLeft}> {"<"} </button> </div>
+    //   <Detail />
+    //
+    //
+    //    <div style={{margin: "30% 10px 30% 0px", marginBottom: "30%", verticalAlign: "middle", float: "right", height: "100%"}} ><button   onClick={this.switchSlideRight}> {">"} </button> </div>
+    //  </div>
+    //
+
+     /* fun */
+
 
     //  <img style={{height:"500px", width:"500px"}} src="/public/img/carousel_2.jpg"/>
     //  </li>

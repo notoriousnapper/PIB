@@ -1,7 +1,6 @@
 /* About.js */
 var React = require('react');
 var ReactRouter = require('react-router');
-var Slider = require('react-slick');
 var Link = ReactRouter.Link;
 var Frame = require('../../components/Frame');
 var Bar = require('../../components/Bar');
@@ -10,9 +9,6 @@ var Carousel = require('../../components/custom/Carousel');
 var Panel = require('../../components/homepage/Panel');
 // var LabelCarousel = require('../../components/custom/LabelCarousel');
 // var BookingFrame = require('../../components/aboutpage/BookingFrame');
-
-
-
 
 var Label = React.createClass({
   render: function(){
@@ -38,7 +34,7 @@ module.exports = Home;
               // <div style={{width:"100%", backgroundColor: "#F1C232", height:"60px", flex:"1"}}></div>
 
 
-              
+
               //
             	// <Frame style={{paddingLeft: "100px", paddingRight: "100px"}}>
               // <div style={{width:"600px", height:"auto", margin: "auto"}}>
