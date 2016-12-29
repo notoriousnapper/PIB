@@ -10,7 +10,7 @@ var Panel = React.createClass({
             panelData: [
                   {
                     title: "The Adventures of Class 196",
-                    description: "The Adventures of Class 196",
+                    description: "The good, the ugly, and the snacks that come with the class.  Read about it here!",
                     img: "../public/img/carousel_4.jpg",
                     hook: "class"
                   },
@@ -23,7 +23,7 @@ var Panel = React.createClass({
                   {
                     title: "Goofy Projects",
                     description: "A Curated selection of cool projects",
-                    img: "../public/img/carousel_2.jpg",
+                    img: "../public/img/guitar.jpg",
                     hook: "magic"
                   },
                   {
@@ -46,7 +46,7 @@ var Panel = React.createClass({
                   <div style={{padding: "5px 40px 5px 40px", textAlign: "center", height: "100px"}}>
                       <h2 style={{color: "black", fontSize: "23px"}}> {item.title} </h2>
                   </div>
-                      <p style={{textAlign: "center", fontSize: "1vw"}}> {item.description} </p>
+                      <p style={{padding: "0px 10px 0px 10px", textAlign: "center", fontSize: "1vw"}}> {item.description} </p>
                 </div>
               </Link>
             );

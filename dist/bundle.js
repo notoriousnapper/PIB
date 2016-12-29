@@ -26902,28 +26902,33 @@
 	      React.createElement(
 	        "div",
 	        { style: {
-	            display: "flex", height: "200px", backgroundColor: "#1a2930", margin: "auto", textAlign: "left", color: "white" } },
+	            display: "flex", height: "300px", backgroundColor: "#1a2930", margin: "auto", textAlign: "left", color: "white" } },
 	        React.createElement(
 	          "div",
-	          { style: { flex: "1", margin: "auto", paddingLeft: "20%" } },
+	          { style: { flex: "1" } },
+	          " "
+	        ),
+	        React.createElement(
+	          "div",
+	          { style: { flex: "1", margin: "auto", textAlign: "left" } },
 	          React.createElement(
 	            "div",
 	            { style: {
 	                fontWeight: "bold", fontSize: "20px" } },
-	            " 'Contact'  "
+	            " Contact  "
 	          ),
 	          React.createElement(
 	            "div",
 	            null,
 	            " ",
 	            React.createElement("br", null),
-	            " 'Jesse Ren' ",
+	            " Jesse Ren ",
 	            React.createElement("br", null),
-	            " 'Web Master' ",
+	            " Web Master ",
 	            React.createElement("br", null),
-	            " 'jeren.neurogen@gmail.com' ",
+	            " jeren.neurogen@gmail.com ",
 	            React.createElement("br", null),
-	            " '858-847-5518' "
+	            " 858-847-5518 "
 	          )
 	        ),
 	        React.createElement(
@@ -26932,21 +26937,26 @@
 	          React.createElement(
 	            "div",
 	            { style: { fontWeight: "bold", fontSize: "20px" } },
-	            " 'University and Corporate'  "
+	            " University and Corporate  "
 	          ),
 	          React.createElement(
 	            "div",
 	            null,
 	            " ",
 	            React.createElement("br", null),
-	            " 'Professor Truong Nguyen' ",
+	            " Professor Truong Nguyen ",
 	            React.createElement("br", null),
-	            " 'Chair of Electrical and Computer Engineering'",
+	            " Chair of Electrical and Computer Engineering",
 	            React.createElement("br", null),
-	            " 'tqn001@ucsd.edu' ",
+	            " tqn001@ucsd.edu ",
 	            React.createElement("br", null),
-	            " '858-822-5554' "
+	            " 858-822-5554 "
 	          )
+	        ),
+	        React.createElement(
+	          "div",
+	          { style: { flex: "1" } },
+	          " "
 	        )
 	      ),
 	      React.createElement(
@@ -26955,21 +26965,6 @@
 	        React.createElement(
 	          "ul",
 	          { id: "services" },
-	          React.createElement(
-	            "h2",
-	            null,
-	            "Social"
-	          ),
-	          React.createElement(
-	            "li",
-	            null,
-	            React.createElement("div", { classNameName: "entypo-facebook" }),
-	            React.createElement(
-	              "span",
-	              null,
-	              "Facebook"
-	            )
-	          ),
 	          React.createElement(
 	            "li",
 	            null,
@@ -27005,6 +27000,11 @@
 	    );
 	  }
 	});
+	/* FB button error rn */
+	// <li>
+	//   <div classNameName='entypo-facebook'></div>
+	//   <span>Facebook</span>
+	// </li>
 
 	module.exports = Footer;
 
@@ -37445,7 +37445,7 @@
 	    return {
 	      panelData: [{
 	        title: "The Adventures of Class 196",
-	        description: "The Adventures of Class 196",
+	        description: "The good, the ugly, and the snacks that come with the class.  Read about it here!",
 	        img: "../public/img/carousel_4.jpg",
 	        hook: "class"
 	      }, {
@@ -37456,7 +37456,7 @@
 	      }, {
 	        title: "Goofy Projects",
 	        description: "A Curated selection of cool projects",
-	        img: "../public/img/carousel_2.jpg",
+	        img: "../public/img/guitar.jpg",
 	        hook: "magic"
 	      }, {
 	        title: "ECE Department Explosion",
@@ -37490,7 +37490,7 @@
 	          ),
 	          React.createElement(
 	            'p',
-	            { style: { textAlign: "center", fontSize: "1vw" } },
+	            { style: { padding: "0px 10px 0px 10px", textAlign: "center", fontSize: "1vw" } },
 	            ' ',
 	            item.description,
 	            ' '

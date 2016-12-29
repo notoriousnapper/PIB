@@ -12,8 +12,12 @@ html, body {
 }
 
 section #services {
+  border-width: 0.01em 0px 0px 0px;
+  border-color: white;
+  border-style: solid;
   text-align: center;
   transform: translatez(0);
+  padding-bottom:50px;
 }
 section #services h2 {
   margin: 80px 0px 40px;
@@ -24,20 +28,20 @@ section #services h2 {
   text-align: center;
 }
 section #services li {
-  width: 120px;
-  height: 140px;
+  width: 70px;
+  height: 70px;
   display: inline-block;
   margin: 20px;
   list-style: none;
 }
 section #services li div {
-  width: 120px;
-  height: 120px;
+  width: 70px;
+  height: 70px;
   color: #74d4b3;
   font-size: 3.4em;
   text-align: center;
   line-height: 120px;
-  background-color: #fff;
+  background-color: #1A2930;
   transition: all 0.5s ease;
 }
 section #services li div:hover {
