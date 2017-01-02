@@ -26898,7 +26898,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      "div",
-	      { id: "footer", style: { margin: "0px", padding: "0px" } },
+	      { id: "footer", style: { margin: "0px", padding: "0px", borderTopWidth: "20px" } },
 	      React.createElement(
 	        "div",
 	        { style: {
@@ -27195,7 +27195,13 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      ctr: 0,
-	      paths: ["../public/img/arcadebox.png", "../public/img/carousel_2.jpg", "../public/img/carousel_3.jpg", "../public/img/carousel_4.jpg"]
+	      paths: [
+	      // "http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg",
+	      "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg"
+	      // "../public/img/carousel_2.jpg",
+	      // "../public/img/carousel_3.jpg",
+	      // "../public/img/carousel_4.jpg"
+	      ]
 	    };
 	  },
 	  switchSlideLeft: function switchSlideLeft(inc) {
@@ -27229,23 +27235,21 @@
 	    })();
 	  },
 	  render: function render() {
-
-	    var imgStyle = { height: "700px" };
-
+	    var imgStyle = { height: "100%", padding: "0%", width: "100%" };
 	    return React.createElement(
 	      'div',
-	      { style: { backgroundImage: "url(../public/img/wood.jpg)", backgroundSize: "100% 100%", backgroundPosition: "center" } },
+	      { style: { backgroundImage: "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1482990472/wood_njgiqu.jpg\")", backgroundSize: "100% 100%", backgroundPosition: "center" } },
 	      React.createElement(
 	        'div',
-	        { style: { display: "flex", height: "700px" } },
+	        { style: { display: "block", height: "600px", width: "100%" } },
 	        React.createElement(
 	          'div',
-	          { style: { flex: "0.5", paddingLeft: "0px" } },
-	          React.createElement(Detail, null)
+	          { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "20%", height: "100%", backgroundColor: "red" } },
+	          ' '
 	        ),
 	        React.createElement(
 	          'div',
-	          { style: { flex: "1" }, id: 'cf7', className: 'shadow' },
+	          { style: { display: "inline-block", flex: "0.6", width: "60%", height: "100%" }, id: 'cf7', className: 'shadow' },
 	          React.createElement('img', { style: imgStyle, className: 'opaque', src: this.state.paths[0] }),
 	          React.createElement('img', { style: imgStyle, src: this.state.paths[1] }),
 	          React.createElement('img', { style: imgStyle, src: this.state.paths[2] }),
@@ -27253,13 +27257,15 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { style: { flex: "0.5", paddingLeft: "0px" } },
+	          { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "20%", height: "100%" } },
 	          ' '
 	        )
-	      )
+	      ),
+	      '//'
 	    );
 	  }
 	});
+	// <Detail />
 	/* Correct one here */
 	//  <div style={{height: "500px", width: "100%", backgroundImage: 'url(' + this.state.paths[this.state.ctr] + ')',
 	//  backgroundSize: "contain",
@@ -45783,7 +45789,9 @@
 
 	/* projects.js */
 	/*
-	 * This file holds components for the single projects display page
+	 * This file holds components for BOTH the single projects display page
+	 * and the search page, effectively rendering depending on the click and returning
+	 * a page based on the effect.
 	 * @JesseRen
 	 */
 	var React = __webpack_require__(3);
@@ -45911,9 +45919,11 @@
 	  op2: function op2(id) {
 	    /* Do a search via the id * takein in from params */
 	    console.log('Over here is: ' + id);
+
+	    // Temporary Fix - Adjust fix.
 	    return React.createElement(
 	      'div',
-	      { style: { backgroundColor: "#1a2930", height: "200px" } },
+	      { style: { backgroundColor: "#1a2930", height: "1000px" } },
 	      React.createElement(Proj, { params: id })
 	    );
 	  },
@@ -46599,10 +46609,8 @@
 	  /* Should request another call, etc */
 	  /* Server should do the filtering so traffic/ data is minimal */
 	  showNav: function showNav() {
-
 	    if (!this.state.navBar) {
 	      // this.state.navBar.map(()=> {
-
 	      // Uncomment below when you get the chance
 	      // return (<a> Hello World </a>);
 	      // });
@@ -46681,18 +46689,13 @@
 	      height: "30px",
 	      width: "30px"
 	    };
-
 	    var navBar = this.showNav();
-
 	    // By line
 	    // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
-
 	    var Steps = this.CallSteps();
-
 	    return React.createElement(
 	      'div',
 	      { style: { display: "flex" } },
-	      navBar,
 	      React.createElement(
 	        'div',
 	        { style: containerStyle },
@@ -46710,7 +46713,7 @@
 	            ),
 	            React.createElement(
 	              'div',
-	              { style: { width: "100%", overFlow: "hidden", display: "flex", justifyContent: "space-between", float: "right" } },
+	              { style: { width: "100%", overFlow: "hidden", display: "flex", justifyContent: "space-between" } },
 	              React.createElement(
 	                'div',
 	                { style: byStyle },
@@ -46759,7 +46762,8 @@
 	                  'button',
 	                  { type: 'submit' },
 	                  'Download!'
-	                )
+	                ),
+	                React.createElement('input', { type: 'hidden', value: this.state.name })
 	              ),
 	              React.createElement(
 	                'button',

@@ -2,7 +2,7 @@ var React  = require('react');
 var Footer = React.createClass({
   render: function(){
     return (
-        <div id="footer" style={{margin: "0px", padding: "0px"}}>
+        <div id="footer" style={{margin: "0px", padding: "0px", borderTopWidth:"20px", }}>
           <div style={{
             display: "flex", height:"300px", backgroundColor: "#1a2930", margin: "auto", textAlign:"left", color: "white"}}>
             <div style={{flex:"1"}}> </div>

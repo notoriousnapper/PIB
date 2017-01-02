@@ -128,11 +128,8 @@ var Proj = React.createClass({
         /* Should request another call, etc */
         /* Server should do the filtering so traffic/ data is minimal */
         showNav: function(){
-
-
           if(!this.state.navBar){
             // this.state.navBar.map(()=> {
-
               // Uncomment below when you get the chance
             // return (<a> Hello World </a>);
           // });
@@ -222,57 +219,22 @@ var Proj = React.createClass({
           height: "30px",
           width: "30px",
         }
-
-
-
-
         var navBar = this.showNav();
-
-
         // By line
                               // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
-
         var Steps = this.CallSteps();
-
         return(
-
-
               <div style={{display:"flex"}}>
-
-
-                        {navBar}
-
-
-
-
                         <div style={containerStyle}>
-
-
-
-
-
-
-
-
-
                           <Bar style={{minWidth:"700px", width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C"}}>
                             <div style={{ width: "100%", display:"flex", flexDirection:"column"}}>
-
-
-
                               <div>
                                       <TextComponent style={TitleStyle} message={this.state.data.name}></TextComponent>
                                       <TextComponent style={byStyle} message={'by' + this.state.data.author}></TextComponent>
                               </div>
-
-
-
-
-                              <div style={{width:"100%", overFlow: "hidden", display:"flex", justifyContent: "space-between", float: "right" }}>
+                              <div style={{width:"100%", overFlow: "hidden", display:"flex", justifyContent: "space-between"}}>
                                       <div style={byStyle}><button onClick={this.showNav} >{'< View Steps'}</button></div>
                                       <div style={{width:"60%"}}></div>
-
-
                                     <div className={'Filler'} style={{flexGrow:"3", width:"60%" }}></div>
                                      <div >
                                       <button onClick={this.updateLike}> <ImageComponent  style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png'}/>
@@ -292,17 +254,13 @@ var Proj = React.createClass({
                             <ImageComponent style={imgStyle} url={this.state.data.url}/>
                             <DetailBox data={this.state.data}>
                                 <div style={testStyle}>
-
                                     <form method="get" action="/download">
                                       <button type="submit">Download!</button>
+                                      <input type="hidden" value={this.state.name}/>
                                     </form>
                                     <button>BookMark</button>
                                 </div>
                             </DetailBox>
-
-
-
-
 
                       </Frame>
                           <Frame>
@@ -312,11 +270,6 @@ var Proj = React.createClass({
                           Instructions
                           {Steps}
                           </div>
-
-
-
-
-
 
                   </div>
                 </div>

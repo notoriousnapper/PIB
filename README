@@ -1,0 +1,14 @@
+
+
+
+User Manual & Things to do.
+
+
+
+Little Things to fix:
+- In the Projects page, the "Proj" component has trouble when rendering footer because its
+generated after and has some weird css issues that make them overlap.  Currently hardcoded
+height to 1000.
+
+
+- 

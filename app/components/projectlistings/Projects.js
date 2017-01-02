@@ -1,6 +1,8 @@
 /* projects.js */
 /*
- * This file holds components for the single projects display page
+ * This file holds components for BOTH the single projects display page
+ * and the search page, effectively rendering depending on the click and returning
+ * a page based on the effect.
  * @JesseRen
  */
 var React = require('react');
@@ -93,8 +95,6 @@ var Projects = React.createClass({
       paddingLeft:"20px"
     };
 
-
-
     return (
       <div>
               <div style={containerStyle}>
@@ -120,15 +120,15 @@ var Projects = React.createClass({
    op2: function(id){
     /* Do a search via the id * takein in from params */
     console.log('Over here is: ' + id);
+
+
+    // Temporary Fix - Adjust fix.
     return (
-      <div style={{backgroundColor: "#1a2930", height: "200px"}}>
+      <div style={{backgroundColor: "#1a2930", height: "1000px"}}>
         <Proj params={id}/>
       </div>
     );
   },
-
-
-
 
   render: function() {
      /* Get Initial Data */
