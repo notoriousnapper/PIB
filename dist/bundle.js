@@ -27244,7 +27244,7 @@
 	        { style: { display: "block", height: "600px", width: "100%" } },
 	        React.createElement(
 	          'div',
-	          { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "20%", height: "100%", backgroundColor: "red" } },
+	          { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "20%", height: "100%" } },
 	          ' '
 	        ),
 	        React.createElement(

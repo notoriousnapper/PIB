@@ -56,7 +56,7 @@ render: function(){
 return  (
   <div style={{ backgroundImage: "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1482990472/wood_njgiqu.jpg\")", backgroundSize: "100% 100%", backgroundPosition: "center"}}>
      <div style={{display: "block", height:"600px", width:"100%"}} >
-       <div style={{display:"inline-block", flex:"0.3", padding: "0px", width:"20%", height:"100%", backgroundColor:"red"}}> </div>
+       <div style={{display:"inline-block", flex:"0.3", padding: "0px", width:"20%", height:"100%"}}> </div>
        <div style={{display:"inline-block",flex:"0.6", width: "60%", height: "100%"}} id="cf7" className="shadow" >
          <img style={imgStyle} className='opaque' src={this.state.paths[0]}/>
          <img style={imgStyle} src={this.state.paths[1]} />
