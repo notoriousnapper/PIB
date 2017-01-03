@@ -50,6 +50,7 @@ module.exports = {
         './app/components/Frame.js',
         './app/components/Bar.js',
         './app/components/projectpage/DetailBox.js',
+        './app/components/projectpage/Scroll.js',
         './app/components/IntroBox.js',
         './app/components/Pad.js',
 

@@ -45,13 +45,13 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(324);
 	__webpack_require__(325);
+	__webpack_require__(326);
 	__webpack_require__(238);
-	__webpack_require__(319);
+	__webpack_require__(320);
 	__webpack_require__(248);
 	__webpack_require__(240);
-	__webpack_require__(318);
+	__webpack_require__(319);
 	__webpack_require__(309);
 	__webpack_require__(307);
 	__webpack_require__(306);
@@ -59,24 +59,25 @@
 	__webpack_require__(310);
 	__webpack_require__(312);
 	__webpack_require__(268);
-	__webpack_require__(315);
-	__webpack_require__(326);
+	__webpack_require__(316);
+	__webpack_require__(327);
 	__webpack_require__(271);
-	__webpack_require__(320);
+	__webpack_require__(321);
 	__webpack_require__(243);
 	__webpack_require__(308);
 	__webpack_require__(244);
-	__webpack_require__(327);
+	__webpack_require__(328);
 	__webpack_require__(245);
 	__webpack_require__(239);
 	__webpack_require__(241);
 	__webpack_require__(242);
 	__webpack_require__(313);
 	__webpack_require__(314);
+	__webpack_require__(315);
 	__webpack_require__(311);
-	__webpack_require__(321);
 	__webpack_require__(322);
-	module.exports = __webpack_require__(323);
+	__webpack_require__(323);
+	module.exports = __webpack_require__(324);
 
 
 /***/ },
@@ -21509,15 +21510,15 @@
 	var Add = __webpack_require__(268);
 
 	var Projects = __webpack_require__(305);
-	var Content = __webpack_require__(318);
-	var Contact = __webpack_require__(319);
+	var Content = __webpack_require__(319);
+	var Contact = __webpack_require__(320);
 
 	var Proj = __webpack_require__(312);
-	var Input = __webpack_require__(320);
+	var Input = __webpack_require__(321);
 
-	var Login = __webpack_require__(321);
-	var SignUp = __webpack_require__(322);
-	var Profile = __webpack_require__(323);
+	var Login = __webpack_require__(322);
+	var SignUp = __webpack_require__(323);
+	var Profile = __webpack_require__(324);
 	var Footer = __webpack_require__(239);
 	/* ReactRouter Routes urls to components */
 	// var Home = (require'../components/Main');
@@ -27195,9 +27196,7 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      ctr: 0,
-	      paths: [
-	      // "http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg",
-	      "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg"
+	      paths: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg"
 	      // "../public/img/carousel_2.jpg",
 	      // "../public/img/carousel_3.jpg",
 	      // "../public/img/carousel_4.jpg"
@@ -37452,22 +37451,22 @@
 	      panelData: [{
 	        title: "The Adventures of Class 196",
 	        description: "The good, the ugly, and the snacks that come with the class.  Read about it here!",
-	        img: "../public/img/carousel_4.jpg",
+	        img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg",
 	        hook: "class"
 	      }, {
 	        title: "MakerFaire & Showcase",
 	        description: "The Adventures of Class 196",
-	        img: "../public/img/makerfairesd.jpg",
+	        img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg",
 	        hook: "makerfaire"
 	      }, {
 	        title: "Goofy Projects",
 	        description: "A Curated selection of cool projects",
-	        img: "../public/img/guitar.jpg",
+	        img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg",
 	        hook: "magic"
 	      }, {
 	        title: "ECE Department Explosion",
 	        description: "Students run the place - MakerSpace",
-	        img: "../public/img/carousel_3.jpg",
+	        img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg",
 	        hook: "ece"
 	      }]
 	    };
@@ -45806,7 +45805,7 @@
 
 	var http = __webpack_require__(272);
 	var $ = __webpack_require__(246);
-	var Q = __webpack_require__(316);
+	var Q = __webpack_require__(317);
 	// var TestAPI = require('../../scripts/TestAPI');
 
 	var devUrl = 'http://localhost:3000';
@@ -46490,10 +46489,12 @@
 	var ImageComponent = __webpack_require__(308);
 	var TextComponent = __webpack_require__(243);
 	var DetailBox = __webpack_require__(313);
-	var IntroBox = __webpack_require__(314);
+	var Scroll = __webpack_require__(314);
+
+	var IntroBox = __webpack_require__(315);
 	var Bar = __webpack_require__(242);
 
-	var Step = __webpack_require__(315);
+	var Step = __webpack_require__(316);
 
 	var Pad = __webpack_require__(311);
 	var Frame = __webpack_require__(241);
@@ -46692,7 +46693,7 @@
 	    var navBar = this.showNav();
 	    // By line
 	    // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
-	    var Steps = this.CallSteps();
+	    // var Steps = this.CallSteps();
 	    return React.createElement(
 	      'div',
 	      { style: { display: "flex" } },
@@ -46780,9 +46781,9 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'Instructions' },
+	          { style: { height: "1000px !important" }, className: 'Instructions' },
 	          'Instructions',
-	          Steps
+	          React.createElement(Scroll, null)
 	        )
 	      )
 	    );
@@ -46914,6 +46915,77 @@
 
 	'use strict';
 
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+
+	var Scroll = React.createClass({
+	  displayName: 'Scroll',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+	  render: function render() {
+
+	    var boxStyle = {
+	      verticalAlign: "top",
+	      display: "inline-block",
+	      width: "47%",
+	      height: "275px",
+	      margin: "10px",
+	      backgroundColor: "grey",
+	      /*border: 3px solid #73AD21;*/
+	      textEmphasis: "center",
+	      padding: "20px 20px"
+	    };
+
+	    var boxStyle2 = {
+	      verticalAlign: "top",
+	      display: "inline-block",
+	      width: "99%",
+	      height: "275px",
+	      margin: "10px",
+	      backgroundColor: "grey",
+	      /*border: 3px solid #73AD21;*/
+	      textEmphasis: "center",
+	      padding: "20px 20px"
+	    };
+
+	    return React.createElement(
+	      'div',
+	      { style: { display: "block", width: "100%", height: "1000px", backgroundColor: "white", padding: "0px 50px 0px 50px" } },
+	      React.createElement(
+	        'div',
+	        { style: boxStyle2 },
+	        ' ',
+	        "Introduction",
+	        ' '
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: boxStyle },
+	        ' ',
+	        "Skills Learned",
+	        ' '
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: boxStyle },
+	        ' ',
+	        "Preqs",
+	        ' '
+	      )
+	    );
+	  }
+	});
+	module.exports = Scroll;
+
+/***/ },
+/* 315 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	/* DetailBox */
 
 	/* Proj.js */
@@ -46946,7 +47018,7 @@
 	module.exports = IntroBox;
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47028,7 +47100,7 @@
 	module.exports = Step;
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, setImmediate) {// vim:ts=4:sts=4:sw=4:
@@ -49080,10 +49152,10 @@
 
 	});
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(317).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(318).setImmediate))
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(5).nextTick;
@@ -49162,10 +49234,10 @@
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).setImmediate, __webpack_require__(317).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(318).setImmediate, __webpack_require__(318).clearImmediate))
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49179,9 +49251,9 @@
 	var ImageComponent = __webpack_require__(308);
 	var TextComponent = __webpack_require__(243);
 	var DetailBox = __webpack_require__(313);
-	var IntroBox = __webpack_require__(314);
+	var IntroBox = __webpack_require__(315);
 	var Bar = __webpack_require__(242);
-	var Step = __webpack_require__(315);
+	var Step = __webpack_require__(316);
 
 	var $ = __webpack_require__(246);
 	var devUrl = 'http://localhost:3000';
@@ -49211,7 +49283,7 @@
 	module.exports = Content;
 
 /***/ },
-/* 319 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49237,7 +49309,7 @@
 	module.exports = Contact;
 
 /***/ },
-/* 320 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -49269,7 +49341,7 @@
 	module.exports = Input;
 
 /***/ },
-/* 321 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49389,7 +49461,7 @@
 	module.exports = Login;
 
 /***/ },
-/* 322 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49522,7 +49594,7 @@
 	module.exports = SignUp;
 
 /***/ },
-/* 323 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -49589,7 +49661,7 @@
 	module.exports = Profile;
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49627,7 +49699,7 @@
 	module.exports = TestAPI;
 
 /***/ },
-/* 325 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49724,7 +49796,7 @@
 	}
 
 /***/ },
-/* 326 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49781,7 +49853,7 @@
 	module.exports = StepAdd;
 
 /***/ },
-/* 327 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

@@ -11,25 +11,25 @@ var Panel = React.createClass({
                   {
                     title: "The Adventures of Class 196",
                     description: "The good, the ugly, and the snacks that come with the class.  Read about it here!",
-                    img: "../public/img/carousel_4.jpg",
+                    img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg",
                     hook: "class"
                   },
                   {
                     title: "MakerFaire & Showcase",
                     description: "The Adventures of Class 196",
-                    img: "../public/img/makerfairesd.jpg",
+                    img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg",
                     hook: "makerfaire"
                   },
                   {
                     title: "Goofy Projects",
                     description: "A Curated selection of cool projects",
-                    img: "../public/img/guitar.jpg",
+                    img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg",
                     hook: "magic"
                   },
                   {
                     title: "ECE Department Explosion",
                     description: "Students run the place - MakerSpace",
-                    img: "../public/img/carousel_3.jpg",
+                    img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg",
                     hook: "ece"
                   }
             ]

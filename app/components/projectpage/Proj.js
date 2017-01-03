@@ -9,6 +9,8 @@ var Link = ReactRouter.Link;
 var ImageComponent = require('../../components/custom/ImageComponent');
 var TextComponent = require('../../components/custom/TextComponent');
 var DetailBox = require('../../components/projectpage/DetailBox');
+var Scroll = require('../../components/projectpage/Scroll');
+
 var IntroBox = require('../../components/IntroBox');
 var Bar = require('../../components/Bar');
 
@@ -222,7 +224,7 @@ var Proj = React.createClass({
         var navBar = this.showNav();
         // By line
                               // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
-        var Steps = this.CallSteps();
+        // var Steps = this.CallSteps();
         return(
               <div style={{display:"flex"}}>
                         <div style={containerStyle}>
@@ -266,9 +268,13 @@ var Proj = React.createClass({
                           <Frame>
                           <TextComponent style={AboutStyle} message={this.state.data.about}></TextComponent>
                           </Frame>
-                          <div className="Instructions" >
+
+
+
+
+                          <div style={{height: "1000px !important"}} className="Instructions" >
                           Instructions
-                          {Steps}
+                          <Scroll />
                           </div>
 
                   </div>
