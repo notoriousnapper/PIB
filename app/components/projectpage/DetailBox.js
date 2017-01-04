@@ -79,16 +79,27 @@ var DetailBox = React.createClass({
         		<div style={containerStyle}>
               <div style={{backgroundColor:"#E2E3E5", padding: "10px"}}>
                   <Bar> <TextComponent style={{textAlign:"center"}} message={'About'}/> </Bar>
-                  <TextComponent style={AboutStyle} message={this.props.data.downloads + ' downloads'}></TextComponent>
-                  <TextComponent style={AboutStyle} message={this.props.data.views + ' views'}></TextComponent>
-                  <TextComponent style={ByStyle} message={this.props.data.author}></TextComponent>
-                  <ImageComponent url="../public/img/Faceshot.png"
-                  	style={imgStyle}/>
-                    <div style={BioBoxStyle}>
-                      <TextComponent style={BioStyle} message={'bio: ' + this.props.data.bio}></TextComponent>
+                      <TextComponent style={AboutStyle} message={this.props.data.downloads + ' downloads'}></TextComponent>
+                      <TextComponent style={AboutStyle} message={this.props.data.views + ' views'}></TextComponent>
+                      <TextComponent style={AboutStyle} message={'Author'}/>
+                  <div style={{display:"inline-block", width: "40%"}}>
+                      <TextComponent style={ByStyle} message={this.props.data.author}></TextComponent>
+                      <ImageComponent url="../public/img/Faceshot.png"
+                      	style={imgStyle}/>
+                        <div style={BioBoxStyle}>
+                          <TextComponent style={BioStyle} message={'bio: ' + this.props.data.bio}></TextComponent>
+                        </div>
                     </div>
-                    <div style={TagBoxStyle}>
-                      <TextComponent style={BioStyle} message={'Tags: ' + this.props.data.tags}></TextComponent>
+                  <div style={{display:"inline-block", width: "40%"}}>
+                      <TextComponent style={AboutStyle} message={'Topic'}/>
+                      <ImageComponent url="../public/img/ucsdlogo.png"
+                      	style={imgStyle}/>
+                        <div style={BioBoxStyle}>
+                          <TextComponent style={BioStyle} message={'bio: ' + this.props.data.bio}></TextComponent>
+                        </div>
+                        <div style={TagBoxStyle}>
+                          <TextComponent style={BioStyle} message={'Tags: ' + this.props.data.tags}></TextComponent>
+                        </div>
                     </div>
               </div>
               {this.props.children}

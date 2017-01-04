@@ -22,7 +22,7 @@ var Frame = require('../../components/Frame');
 var $ = require('jquery');
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
-var useUrl = prodUrl;
+var useUrl = devUrl;
 
 var IntroData =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
@@ -152,8 +152,10 @@ var Proj = React.createClass({
 
         /* Font Styles */
         var TitleStyle ={
-            fontSize: "30px",
+            fontSize: "40px",
             fontFamily: "Roboto Condensed",
+            fontWeight: "570",
+            textTransform: "Capitalize",
             flex:"1"
         }
 
@@ -234,31 +236,36 @@ var Proj = React.createClass({
                         <div style={containerStyle}>
                           <Bar style={{width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C"}}>
                             <div style={{ width: "100%", display:"flex", flexDirection:"column"}}>
-                              <div>
-                                      <TextComponent style={TitleStyle} message={this.state.data.name}></TextComponent>
-                                      <TextComponent style={byStyle} message={'by' + this.state.data.author}></TextComponent>
-                              </div>
-                              <div style={{width:"100%", overFlow: "hidden", display:"flex", justifyContent: "space-between"}}>
-                                      <div style={byStyle}><button onClick={this.showNav} >{'< View Steps'}</button></div>
-                                      <div style={{width:"60%"}}></div>
-                                    <div className={'Filler'} style={{flexGrow:"3", width:"60%" }}></div>
-                                     <div >
-                                      <button onClick={this.updateLike}> <ImageComponent  style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png'}/>
-                                      </button>
-                                    </div>
-                                    <TextComponent style={{ width:"40px"}} message={this.state.data.likes}/>
-                                      <Pad hw={['100%','20px']}/>
-                                     <div>
-                                      <ImageComponent style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473693376/bookmark_2_ucai4d.png'}/>
-                                    </div>
+                              <div style={{display:"block"}}>
+                                      <div style={{display:"inline-block"}}>
+                                        <TextComponent style={TitleStyle} message={this.state.data.name}></TextComponent>
+                                      </div>
+                                      <div style={{display:"inline-block"}}>
+                                        <TextComponent style={byStyle} message={'by ' + this.state.data.author}></TextComponent>
+                                      </div>
+                                      <div style={{display:"inline-block", float: "right"}}>
+                                            <div style={{width:"100%", overFlow: "hidden", display:"flex", justifyContent: "space-between"}}>
+                                              <div style={{width:"60%"}}></div>
+                                            <div className={'Filler'} style={{flexGrow:"3", width:"60%" }}></div>
+                                             <div >
+                                              <button onClick={this.updateLike}> <ImageComponent  style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png'}/>
+                                              </button>
+                                            </div>
+                                            <TextComponent style={{ width:"40px"}} message={this.state.data.likes}/>
+                                              <Pad hw={['100%','20px']}/>
+                                             <div>
+                                              <ImageComponent style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473693376/bookmark_2_ucai4d.png'}/>
+                                            </div>
+                                      </div>
 
+                              </div>
                               </div>
                             </div>
                           </Bar>
 
                         <Frame style={{maxHeight:"400px",    width:"100%", display: "inline-block"}}>
                             <ImageComponent style={imgStyle} url={this.state.data.url}/>
-                            <DetailBox data={this.state.data} url="../public/img/logo3.png">
+                            <DetailBox data={this.state.data} >
                                 <div style={testStyle}>
                                     <form method="get" action="/download">
                                       <button type="submit">Download!</button>
@@ -273,13 +280,6 @@ var Proj = React.createClass({
                           <TextComponent style={AboutStyle} message={this.state.data.about}></TextComponent>
                           </Frame>
 
-
-
-
-                          <div style={{height: "1000px !important"}} className="Instructions" >
-                          Instructions
-                          <Scroll />
-                          </div>
 
                   </div>
                 </div>

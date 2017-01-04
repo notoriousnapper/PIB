@@ -43,15 +43,10 @@ var Proj2 = React.createClass({
                                   <li> C++ </li>
                                 </ul>
                               </div>
-
-
-
                           </div>
-                              <div className="section-2"> {"Materials"} </div>
-
-
+                              <div className="section" style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
+                                  backgroundColor:"white"}}> {"Materials"} </div>
                 </div>
-
                 <div id="right" style={padding}> </div>
 
 

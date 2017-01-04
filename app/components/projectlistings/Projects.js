@@ -25,7 +25,7 @@ var Q = require('q');
 var devUrl = 'http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
 /* Use devUrl or prodUrl*/
-var useUrl = prodUrl;
+var useUrl = devUrl;
 
 
 
@@ -128,6 +128,7 @@ var Projects = React.createClass({
     return (
       <div style={{backgroundColor: "#1a2930", height: "2500px"}}>
         <Proj params={id}/>
+        <div style={{height:"170px"}}> </div>
         <Proj2 params={id}/>
       </div>
     );

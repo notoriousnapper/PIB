@@ -17,7 +17,7 @@ var SearchBar = React.createClass({
 	},
 	onQuery: function(evt){
 		var message = this.state.search;
-		this.props.callbackParent(message); // hey parent, I've changed!
+		// this.props.callbackParent(message); // hey parent, I've changed!
 		console.log('Calling Parents!');
 		console.log(message);
 	},
@@ -25,7 +25,7 @@ var SearchBar = React.createClass({
 		if (e.key === 'Enter'){
 			console.log('do validate');
 			this.onQuery(e);
-			// this.props.onMagicClick(this.state.search);
+			this.props.onMagicClick(this.state.search);
 		}
 	},
 	render: function() {

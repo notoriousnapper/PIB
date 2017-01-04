@@ -44,8 +44,8 @@ var ProjectListing = React.createClass({
 			minWidth:"100px"
 		}
 
-		var textStyle_Big={fontFamily: "Ubuntu", fontSize:"14pt", color: "#2C2A25", textDecoration: "none"  };
-		var textStyle_Small={ fontFamily: "Ubuntu", fontSize:"9pt", color: "black", textDecoration: "none"  };
+		var textStyle_Big={fontFamily: "Ubuntu", fontSize:"14pt", color: "#2C2A25",  textTranformation: "Capitalize"  };
+		var textStyle_Small={ fontFamily: "Ubuntu", fontSize:"9pt", color: "black", textDecoration: "none", textTransform: "capitalize"  };
 		var textStyle_View={ fontFamily: "Ubuntu", fontSize:"10pt", color: "#274D72", textDecoration: "none"  };
 
 
