@@ -142,11 +142,7 @@ var Proj = React.createClass({
 
 
           this.state.navBar = !(this.state.navBar); // reverse
-
-
-
         },
-
         render: function(){
         var imgs = [{"logo":"../public/img/logo3.png"}, "../public/img/logo3.png"]
         var menu =['PROJECTS', 'HOME', 'ABOUT', 'CONTACT']
@@ -180,18 +176,19 @@ var Proj = React.createClass({
         var imgStyle = {
           height: "400px",
           width: "600px",
-          width: "600px",
           minWidth: "300px",
           maxWidth:"100%",
           height: "50%",
           minHeight: "200px"
         }
 
+
+/* Padding */
         var containerStyle = {
           height: "400px",
           // marginTop: "40px",
-          paddingLeft:"200px",
-          paddingRight:"200px",
+          // paddingLeft:"400px",
+          // paddingRight:"400px",
           paddingTop: "100px"
         }
         var flexStyle = {
@@ -228,9 +225,14 @@ var Proj = React.createClass({
         return(
           <div style={{backgroundColor:"#1a2930"}}>
             <div style={{display:"flex"}}>
-              <div style={{display:"flex", flex: "1"}} >
+
+
+            <div id="left" style={{flex:"0.5"}}></div>
+
+
+              <div id="center" style={{display:"flex", flex: "1.5"}} >
                         <div style={containerStyle}>
-                          <Bar style={{minWidth:"700px", width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C"}}>
+                          <Bar style={{width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C"}}>
                             <div style={{ width: "100%", display:"flex", flexDirection:"column"}}>
                               <div>
                                       <TextComponent style={TitleStyle} message={this.state.data.name}></TextComponent>
@@ -254,9 +256,9 @@ var Proj = React.createClass({
                             </div>
                           </Bar>
 
-                        <Frame style={{maxHeight:"400px",   minWidth:"700px", width:"100%", display: "inline-block"}}>
+                        <Frame style={{maxHeight:"400px",    width:"100%", display: "inline-block"}}>
                             <ImageComponent style={imgStyle} url={this.state.data.url}/>
-                            <DetailBox data={this.state.data}>
+                            <DetailBox data={this.state.data} url="../public/img/logo3.png">
                                 <div style={testStyle}>
                                     <form method="get" action="/download">
                                       <button type="submit">Download!</button>
@@ -281,6 +283,9 @@ var Proj = React.createClass({
 
                   </div>
                 </div>
+
+
+                <div id="right" style={{flex:"0.5"}}> </div>
 
                 </div>
 

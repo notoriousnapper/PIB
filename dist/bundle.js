@@ -46621,9 +46621,7 @@
 	    } else {}
 
 	    this.state.navBar = !this.state.navBar; // reverse
-
 	  },
-
 	  render: function render() {
 	    var _imgStyle;
 
@@ -46657,14 +46655,17 @@
 
 	    var imgStyle = (_imgStyle = {
 	      height: "400px",
-	      width: "600px"
-	    }, (0, _defineProperty3.default)(_imgStyle, 'width', "600px"), (0, _defineProperty3.default)(_imgStyle, 'minWidth', "300px"), (0, _defineProperty3.default)(_imgStyle, 'maxWidth', "100%"), (0, _defineProperty3.default)(_imgStyle, 'height', "50%"), (0, _defineProperty3.default)(_imgStyle, 'minHeight', "200px"), _imgStyle);
+	      width: "600px",
+	      minWidth: "300px",
+	      maxWidth: "100%"
+	    }, (0, _defineProperty3.default)(_imgStyle, 'height', "50%"), (0, _defineProperty3.default)(_imgStyle, 'minHeight', "200px"), _imgStyle);
 
+	    /* Padding */
 	    var containerStyle = {
 	      height: "400px",
 	      // marginTop: "40px",
-	      paddingLeft: "200px",
-	      paddingRight: "200px",
+	      // paddingLeft:"400px",
+	      // paddingRight:"400px",
 	      paddingTop: "100px"
 	    };
 	    var flexStyle = {
@@ -46703,15 +46704,16 @@
 	      React.createElement(
 	        'div',
 	        { style: { display: "flex" } },
+	        React.createElement('div', { id: 'left', style: { flex: "0.5" } }),
 	        React.createElement(
 	          'div',
-	          { style: { display: "flex", flex: "1" } },
+	          { id: 'center', style: { display: "flex", flex: "1.5" } },
 	          React.createElement(
 	            'div',
 	            { style: containerStyle },
 	            React.createElement(
 	              Bar,
-	              { style: { minWidth: "700px", width: "100%", display: "inline-block", borderBottom: "2px solid #6C727C" } },
+	              { style: { width: "100%", display: "inline-block", borderBottom: "2px solid #6C727C" } },
 	              React.createElement(
 	                'div',
 	                { style: { width: "100%", display: "flex", flexDirection: "column" } },
@@ -46757,11 +46759,11 @@
 	            ),
 	            React.createElement(
 	              Frame,
-	              { style: { maxHeight: "400px", minWidth: "700px", width: "100%", display: "inline-block" } },
+	              { style: { maxHeight: "400px", width: "100%", display: "inline-block" } },
 	              React.createElement(ImageComponent, { style: imgStyle, url: this.state.data.url }),
 	              React.createElement(
 	                DetailBox,
-	                { data: this.state.data },
+	                { data: this.state.data, url: '../public/img/logo3.png' },
 	                React.createElement(
 	                  'div',
 	                  { style: testStyle },
@@ -46795,6 +46797,11 @@
 	              React.createElement(Scroll, null)
 	            )
 	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { id: 'right', style: { flex: "0.5" } },
+	          ' '
 	        )
 	      )
 	    );
@@ -49018,7 +49025,8 @@
 	      // borderStyle: "solid",
 	      height: "80%",
 	      // weight: "100px",
-	      paddingLeft: "100px"
+	      paddingLeft: "100px",
+	      width: "380px"
 	    };
 
 	    /* Font Styles */
@@ -49083,7 +49091,7 @@
 	        React.createElement(TextComponent, { style: AboutStyle, message: this.props.data.downloads + ' downloads' }),
 	        React.createElement(TextComponent, { style: AboutStyle, message: this.props.data.views + ' views' }),
 	        React.createElement(TextComponent, { style: ByStyle, message: this.props.data.author }),
-	        React.createElement(ImageComponent, { url: this.props.data.author_picUrl,
+	        React.createElement(ImageComponent, { url: '../public/img/Faceshot.png',
 	          style: imgStyle }),
 	        React.createElement(
 	          'div',
@@ -49102,6 +49110,9 @@
 	});
 
 	module.exports = DetailBox;
+
+	// "url="../public/img/logo3.png""
+	// url={this.props.data.author_picUrl}
 
 /***/ },
 /* 317 */
@@ -49976,59 +49987,19 @@
 
 	    var centerPadding = {
 	      flex: "1.5", backgroundColor: "white",
-	      // padding: "10px 10px",
 	      minWidth: "700px"
 	    };
 	    return React.createElement(
 	      'div',
-	      { style: { display: "flex", width: "100%", height: "1000px", padding: "0px 50px 0px 50px", marginTop: "100px" } },
+	      { style: { display: "flex", width: "100%", height: "1000px", padding: "0px 0px 0px 0px", marginTop: "100px" } },
 	      React.createElement(
 	        'div',
 	        { id: 'left', style: padding },
-	        'Haha'
+	        ' '
 	      ),
 	      React.createElement(
 	        'div',
 	        { id: 'center', style: centerPadding },
-	        React.createElement(
-	          'div',
-	          { className: 'section', id: 'title' },
-	          React.createElement(
-	            'div',
-	            { style: { width: "100%", fontSize: "30px" } },
-	            ' ',
-	            "ArcadeBox",
-	            ' '
-	          ),
-	          React.createElement(
-	            'div',
-	            { style: { width: "100%" } },
-	            React.createElement(
-	              'button',
-	              { className: 'cta-button' },
-	              ' Aaa '
-	            ),
-	            React.createElement(
-	              'button',
-	              { className: 'cta-button' },
-	              ' Aaa '
-	            ),
-	            React.createElement(
-	              'button',
-	              { className: 'cta-button' },
-	              ' Aaa '
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          'div',
-	          { id: 'blind' },
-	          React.createElement(
-	            'div',
-	            { className: 'main-img' },
-	            React.createElement('img', { src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg' })
-	          )
-	        ),
 	        React.createElement(
 	          'div',
 	          { className: 'section half' },

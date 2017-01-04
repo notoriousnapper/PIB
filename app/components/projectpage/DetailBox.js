@@ -23,7 +23,8 @@ var DetailBox = React.createClass({
           // borderStyle: "solid",
           height: "80%",
           // weight: "100px",
-          paddingLeft:"100px"
+          paddingLeft:"100px",
+          width: "380px"
         }
 
 
@@ -81,7 +82,7 @@ var DetailBox = React.createClass({
                   <TextComponent style={AboutStyle} message={this.props.data.downloads + ' downloads'}></TextComponent>
                   <TextComponent style={AboutStyle} message={this.props.data.views + ' views'}></TextComponent>
                   <TextComponent style={ByStyle} message={this.props.data.author}></TextComponent>
-                  <ImageComponent url={this.props.data.author_picUrl}
+                  <ImageComponent url="../public/img/Faceshot.png"
                   	style={imgStyle}/>
                     <div style={BioBoxStyle}>
                       <TextComponent style={BioStyle} message={'bio: ' + this.props.data.bio}></TextComponent>
@@ -100,3 +101,7 @@ var DetailBox = React.createClass({
 
 
 module.exports = DetailBox;
+
+
+// "url="../public/img/logo3.png""
+// url={this.props.data.author_picUrl}
