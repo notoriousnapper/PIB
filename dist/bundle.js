@@ -45,13 +45,13 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
+	__webpack_require__(324);
 	__webpack_require__(325);
-	__webpack_require__(326);
 	__webpack_require__(238);
-	__webpack_require__(320);
+	__webpack_require__(319);
 	__webpack_require__(248);
 	__webpack_require__(240);
-	__webpack_require__(319);
+	__webpack_require__(315);
 	__webpack_require__(309);
 	__webpack_require__(307);
 	__webpack_require__(306);
@@ -59,25 +59,25 @@
 	__webpack_require__(310);
 	__webpack_require__(312);
 	__webpack_require__(268);
-	__webpack_require__(316);
-	__webpack_require__(327);
+	__webpack_require__(318);
+	__webpack_require__(326);
 	__webpack_require__(271);
-	__webpack_require__(321);
+	__webpack_require__(320);
 	__webpack_require__(243);
 	__webpack_require__(308);
 	__webpack_require__(244);
-	__webpack_require__(328);
+	__webpack_require__(327);
 	__webpack_require__(245);
 	__webpack_require__(239);
 	__webpack_require__(241);
 	__webpack_require__(242);
-	__webpack_require__(313);
-	__webpack_require__(314);
-	__webpack_require__(315);
+	__webpack_require__(316);
+	__webpack_require__(328);
+	__webpack_require__(317);
 	__webpack_require__(311);
+	__webpack_require__(321);
 	__webpack_require__(322);
-	__webpack_require__(323);
-	module.exports = __webpack_require__(324);
+	module.exports = __webpack_require__(323);
 
 
 /***/ },
@@ -21510,15 +21510,15 @@
 	var Add = __webpack_require__(268);
 
 	var Projects = __webpack_require__(305);
-	var Content = __webpack_require__(319);
-	var Contact = __webpack_require__(320);
+	var Content = __webpack_require__(315);
+	var Contact = __webpack_require__(319);
 
 	var Proj = __webpack_require__(312);
-	var Input = __webpack_require__(321);
+	var Input = __webpack_require__(320);
 
-	var Login = __webpack_require__(322);
-	var SignUp = __webpack_require__(323);
-	var Profile = __webpack_require__(324);
+	var Login = __webpack_require__(321);
+	var SignUp = __webpack_require__(322);
+	var Profile = __webpack_require__(323);
 	var Footer = __webpack_require__(239);
 	/* ReactRouter Routes urls to components */
 	// var Home = (require'../components/Main');
@@ -45799,13 +45799,15 @@
 	var SearchBar = __webpack_require__(309);
 	var Category = __webpack_require__(310);
 	var Proj = __webpack_require__(312);
+	var Proj2 = __webpack_require__(329);
+
 	var Frame = __webpack_require__(241);
 	var Bar = __webpack_require__(242);
 	var Pad = __webpack_require__(311);
 
 	var http = __webpack_require__(272);
 	var $ = __webpack_require__(246);
-	var Q = __webpack_require__(317);
+	var Q = __webpack_require__(313);
 	// var TestAPI = require('../../scripts/TestAPI');
 
 	var devUrl = 'http://localhost:3000';
@@ -45922,8 +45924,9 @@
 	    // Temporary Fix - Adjust fix.
 	    return React.createElement(
 	      'div',
-	      { style: { backgroundColor: "#1a2930", height: "1000px" } },
-	      React.createElement(Proj, { params: id })
+	      { style: { backgroundColor: "#1a2930", height: "2500px" } },
+	      React.createElement(Proj, { params: id }),
+	      React.createElement(Proj2, { params: id })
 	    );
 	  },
 
@@ -46488,13 +46491,13 @@
 	var Link = ReactRouter.Link;
 	var ImageComponent = __webpack_require__(308);
 	var TextComponent = __webpack_require__(243);
-	var DetailBox = __webpack_require__(313);
-	var Scroll = __webpack_require__(314);
+	var DetailBox = __webpack_require__(316);
+	var Scroll = __webpack_require__(328);
 
-	var IntroBox = __webpack_require__(315);
+	var IntroBox = __webpack_require__(317);
 	var Bar = __webpack_require__(242);
 
-	var Step = __webpack_require__(316);
+	var Step = __webpack_require__(318);
 
 	var Pad = __webpack_require__(311);
 	var Frame = __webpack_require__(241);
@@ -46696,94 +46699,102 @@
 	    // var Steps = this.CallSteps();
 	    return React.createElement(
 	      'div',
-	      { style: { display: "flex" } },
+	      { style: { backgroundColor: "#1a2930" } },
 	      React.createElement(
 	        'div',
-	        { style: containerStyle },
+	        { style: { display: "flex" } },
 	        React.createElement(
-	          Bar,
-	          { style: { minWidth: "700px", width: "100%", display: "inline-block", borderBottom: "2px solid #6C727C" } },
+	          'div',
+	          { style: { display: "flex", flex: "1" } },
 	          React.createElement(
 	            'div',
-	            { style: { width: "100%", display: "flex", flexDirection: "column" } },
+	            { style: containerStyle },
 	            React.createElement(
-	              'div',
+	              Bar,
+	              { style: { minWidth: "700px", width: "100%", display: "inline-block", borderBottom: "2px solid #6C727C" } },
+	              React.createElement(
+	                'div',
+	                { style: { width: "100%", display: "flex", flexDirection: "column" } },
+	                React.createElement(
+	                  'div',
+	                  null,
+	                  React.createElement(TextComponent, { style: TitleStyle, message: this.state.data.name }),
+	                  React.createElement(TextComponent, { style: byStyle, message: 'by' + this.state.data.author })
+	                ),
+	                React.createElement(
+	                  'div',
+	                  { style: { width: "100%", overFlow: "hidden", display: "flex", justifyContent: "space-between" } },
+	                  React.createElement(
+	                    'div',
+	                    { style: byStyle },
+	                    React.createElement(
+	                      'button',
+	                      { onClick: this.showNav },
+	                      '< View Steps'
+	                    )
+	                  ),
+	                  React.createElement('div', { style: { width: "60%" } }),
+	                  React.createElement('div', { className: 'Filler', style: { flexGrow: "3", width: "60%" } }),
+	                  React.createElement(
+	                    'div',
+	                    null,
+	                    React.createElement(
+	                      'button',
+	                      { onClick: this.updateLike },
+	                      ' ',
+	                      React.createElement(ImageComponent, { style: iconStyle, url: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png' })
+	                    )
+	                  ),
+	                  React.createElement(TextComponent, { style: { width: "40px" }, message: this.state.data.likes }),
+	                  React.createElement(Pad, { hw: ['100%', '20px'] }),
+	                  React.createElement(
+	                    'div',
+	                    null,
+	                    React.createElement(ImageComponent, { style: iconStyle, url: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1473693376/bookmark_2_ucai4d.png' })
+	                  )
+	                )
+	              )
+	            ),
+	            React.createElement(
+	              Frame,
+	              { style: { maxHeight: "400px", minWidth: "700px", width: "100%", display: "inline-block" } },
+	              React.createElement(ImageComponent, { style: imgStyle, url: this.state.data.url }),
+	              React.createElement(
+	                DetailBox,
+	                { data: this.state.data },
+	                React.createElement(
+	                  'div',
+	                  { style: testStyle },
+	                  React.createElement(
+	                    'form',
+	                    { method: 'get', action: '/download' },
+	                    React.createElement(
+	                      'button',
+	                      { type: 'submit' },
+	                      'Download!'
+	                    ),
+	                    React.createElement('input', { type: 'hidden', value: this.state.name })
+	                  ),
+	                  React.createElement(
+	                    'button',
+	                    null,
+	                    'BookMark'
+	                  )
+	                )
+	              )
+	            ),
+	            React.createElement(
+	              Frame,
 	              null,
-	              React.createElement(TextComponent, { style: TitleStyle, message: this.state.data.name }),
-	              React.createElement(TextComponent, { style: byStyle, message: 'by' + this.state.data.author })
+	              React.createElement(TextComponent, { style: AboutStyle, message: this.state.data.about })
 	            ),
 	            React.createElement(
 	              'div',
-	              { style: { width: "100%", overFlow: "hidden", display: "flex", justifyContent: "space-between" } },
-	              React.createElement(
-	                'div',
-	                { style: byStyle },
-	                React.createElement(
-	                  'button',
-	                  { onClick: this.showNav },
-	                  '< View Steps'
-	                )
-	              ),
-	              React.createElement('div', { style: { width: "60%" } }),
-	              React.createElement('div', { className: 'Filler', style: { flexGrow: "3", width: "60%" } }),
-	              React.createElement(
-	                'div',
-	                null,
-	                React.createElement(
-	                  'button',
-	                  { onClick: this.updateLike },
-	                  ' ',
-	                  React.createElement(ImageComponent, { style: iconStyle, url: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png' })
-	                )
-	              ),
-	              React.createElement(TextComponent, { style: { width: "40px" }, message: this.state.data.likes }),
-	              React.createElement(Pad, { hw: ['100%', '20px'] }),
-	              React.createElement(
-	                'div',
-	                null,
-	                React.createElement(ImageComponent, { style: iconStyle, url: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1473693376/bookmark_2_ucai4d.png' })
-	              )
+	              { style: { height: "1000px !important" }, className: 'Instructions' },
+	              'Instructions',
+	              React.createElement(Scroll, null)
 	            )
 	          )
-	        ),
-	        React.createElement(
-	          Frame,
-	          { style: { maxHeight: "400px", minWidth: "700px", width: "100%", display: "inline-block" } },
-	          React.createElement(ImageComponent, { style: imgStyle, url: this.state.data.url }),
-	          React.createElement(
-	            DetailBox,
-	            { data: this.state.data },
-	            React.createElement(
-	              'div',
-	              { style: testStyle },
-	              React.createElement(
-	                'form',
-	                { method: 'get', action: '/download' },
-	                React.createElement(
-	                  'button',
-	                  { type: 'submit' },
-	                  'Download!'
-	                ),
-	                React.createElement('input', { type: 'hidden', value: this.state.name })
-	              ),
-	              React.createElement(
-	                'button',
-	                null,
-	                'BookMark'
-	              )
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          Frame,
-	          null,
-	          React.createElement(TextComponent, { style: AboutStyle, message: this.state.data.about })
-	        ),
-	        React.createElement(
-	          'div',
-	          { style: { height: "1000px !important" }, className: 'Instructions' },
-	          'Instructions',
-	          React.createElement(Scroll, null)
 	        )
 	      )
 	    );
@@ -46796,311 +46807,6 @@
 
 /***/ },
 /* 313 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	/* DetailBox */
-
-	/* Proj.js */
-
-	var React = __webpack_require__(3);
-	var ReactRouter = __webpack_require__(181);
-	var Link = ReactRouter.Link;
-	var ImageComponent = __webpack_require__(308);
-	var TextComponent = __webpack_require__(243);
-	var Bar = __webpack_require__(242);
-	var DetailBox = React.createClass({
-	  displayName: 'DetailBox',
-
-	  /* Should request another call, etc */
-	  /* Server should do the filtering so traffic/ data is minimal */
-	  render: function render() {
-	    var imgs = [{ "logo": "../public/img/logo3.png" }, "../public/img/logo3.png"];
-	    var menu = ['PROJECTS', 'HOME', 'ABOUT', 'CONTACT'];
-	    var imgUrl = this.props.url;
-
-	    var containerStyle = {
-	      // borderStyle: "solid",
-	      height: "80%",
-	      // weight: "100px",
-	      paddingLeft: "100px"
-	    };
-
-	    /* Font Styles */
-	    var TitleStyle = {
-	      fontSize: "30px",
-	      fontFamily: "Roboto Condensed"
-	    };
-	    var ByStyle = {
-	      fontSize: "20px",
-	      fontFamily: "Roboto Condensed"
-	    };
-	    var AboutStyle = {
-	      fontSize: "18px",
-	      fontFamily: "Roboto Condensed"
-	    };
-
-	    var BioStyle = {
-	      fontSize: "14px",
-	      fontFamily: "Roboto Condensed"
-	    };
-	    var imgStyle = {
-	      height: "70px",
-	      width: "70px"
-	    };
-	    /* Container Style */
-
-	    var BioBoxStyle = {
-	      width: "140px"
-	    };
-	    var TagBoxStyle = {
-	      // paddingTop: "20px",
-	      width: "140px"
-	    };
-	    var buttonStyle = {
-	      height: "40px",
-	      flex: "1"
-	    };
-	    // alert("These are the project's data" + JSON.stringify(this.props.data, null, 4));
-	    /* Pre-process tag */
-
-	    var tags = function tags() {
-	      var res = '';
-	      this.props.data.tags.map(function (tag) {
-	        res += tag;
-	      });
-	      return res;
-	    };
-
-	    return React.createElement(
-	      'div',
-	      { style: containerStyle },
-	      React.createElement(
-	        'div',
-	        { style: { backgroundColor: "#E2E3E5", padding: "10px" } },
-	        React.createElement(
-	          Bar,
-	          null,
-	          ' ',
-	          React.createElement(TextComponent, { style: { textAlign: "center" }, message: 'About' }),
-	          ' '
-	        ),
-	        React.createElement(TextComponent, { style: AboutStyle, message: this.props.data.downloads + ' downloads' }),
-	        React.createElement(TextComponent, { style: AboutStyle, message: this.props.data.views + ' views' }),
-	        React.createElement(TextComponent, { style: ByStyle, message: this.props.data.author }),
-	        React.createElement(ImageComponent, { url: this.props.data.author_picUrl,
-	          style: imgStyle }),
-	        React.createElement(
-	          'div',
-	          { style: BioBoxStyle },
-	          React.createElement(TextComponent, { style: BioStyle, message: 'bio: ' + this.props.data.bio })
-	        ),
-	        React.createElement(
-	          'div',
-	          { style: TagBoxStyle },
-	          React.createElement(TextComponent, { style: BioStyle, message: 'Tags: ' + this.props.data.tags })
-	        )
-	      ),
-	      this.props.children
-	    );
-	  }
-	});
-
-	module.exports = DetailBox;
-
-/***/ },
-/* 314 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(3);
-	var ReactRouter = __webpack_require__(181);
-	var Link = ReactRouter.Link;
-
-	var Scroll = React.createClass({
-	  displayName: 'Scroll',
-
-	  getInitialState: function getInitialState() {
-	    return {};
-	  },
-	  render: function render() {
-
-	    var boxStyle = {
-	      verticalAlign: "top",
-	      display: "inline-block",
-	      width: "47%",
-	      height: "275px",
-	      margin: "10px",
-	      backgroundColor: "grey",
-	      /*border: 3px solid #73AD21;*/
-	      textEmphasis: "center",
-	      padding: "20px 20px"
-	    };
-
-	    var boxStyle2 = {
-	      verticalAlign: "top",
-	      display: "inline-block",
-	      width: "99%",
-	      height: "275px",
-	      margin: "10px",
-	      backgroundColor: "grey",
-	      /*border: 3px solid #73AD21;*/
-	      textEmphasis: "center",
-	      padding: "20px 20px"
-	    };
-
-	    return React.createElement(
-	      'div',
-	      { style: { display: "block", width: "100%", height: "1000px", backgroundColor: "white", padding: "0px 50px 0px 50px" } },
-	      React.createElement(
-	        'div',
-	        { style: boxStyle2 },
-	        ' ',
-	        "Introduction",
-	        ' '
-	      ),
-	      React.createElement(
-	        'div',
-	        { style: boxStyle },
-	        ' ',
-	        "Skills Learned",
-	        ' '
-	      ),
-	      React.createElement(
-	        'div',
-	        { style: boxStyle },
-	        ' ',
-	        "Preqs",
-	        ' '
-	      )
-	    );
-	  }
-	});
-	module.exports = Scroll;
-
-/***/ },
-/* 315 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	/* DetailBox */
-
-	/* Proj.js */
-
-	var React = __webpack_require__(3);
-	var ReactRouter = __webpack_require__(181);
-	var Link = ReactRouter.Link;
-	var ImageComponent = __webpack_require__(308);
-	var TextComponent = __webpack_require__(243);
-	var Frame = __webpack_require__(241);
-
-	var IntroBox = React.createClass({
-	        displayName: 'IntroBox',
-
-	        /* Should request another call, etc */
-	        /* Server should do the filtering so traffic/ data is minimal */
-	        render: function render() {
-	                return React.createElement(
-	                        Frame,
-	                        null,
-	                        React.createElement(
-	                                'div',
-	                                { style: this.props.style },
-	                                React.createElement(TextComponent, { message: this.props.data })
-	                        )
-	                );
-	        }
-	});
-
-	module.exports = IntroBox;
-
-/***/ },
-/* 316 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	/* Step.js
-	 *
-	 * UI for a single step, which includes instructions, for bullet points, an Image,
-	 * and easy readability.  Also has anchors (You can reach these from a toolbar, etc.)
-	 */
-
-	var React = __webpack_require__(3);
-	var ImageComponent = __webpack_require__(308);
-	var Frame = __webpack_require__(241);
-	var Pad = __webpack_require__(311);
-
-	var Step = React.createClass({
-		displayName: 'Step',
-
-
-		render: function render() {
-			var barStyle = {
-				borderTopRightRadius: "2em",
-				borderTopLeftRadius: "2em",
-				backgroundColor: "white",
-				width: "100%",
-				padding: "20px",
-				paddingBottom: "8px",
-				display: "flex"
-			};
-
-			var endStyle = {
-				height: "10px",
-				backgroundColor: "D0D1D2"
-			};
-
-			var titleStyle = {
-				fontFamily: "'Ubuntu'",
-				fontWeight: 'bold',
-				fontSize: "20px"
-
-			};
-
-			var stepImage = function stepImage(imageUrl) {
-				// if(this.props.url!='') return (<div></div>);
-				// alert('Not working');
-				// return ( [<ImageComponent url={this.props.url}></custom/ImageComponent>]);
-				return [React.createElement(ImageComponent, { style: { width: "170px", height: "170px" }, url: imageUrl })];
-			};
-
-			var imgStep = stepImage(this.props.url);
-			// Learned a new thing today...javascript parenthesis needs to BE ON SAME LINE AS RETURN
-			// Or else compiler just sees returns and exits
-
-			return React.createElement(
-				'div',
-				{ style: this.props.style },
-				React.createElement(
-					Frame,
-					null,
-					React.createElement(
-						'div',
-						{ style: { display: "flex", flexDirection: "column" } },
-						React.createElement(
-							'div',
-							{ style: titleStyle },
-							'Step : ' + this.props.num + '   ' + this.props.title,
-							' '
-						),
-						imgStep,
-						this.props.info
-					)
-				),
-				React.createElement('br', null),
-				React.createElement('br', null),
-				React.createElement(Pad, { hw: ('300px', '300px') })
-			);
-		}
-	});
-	module.exports = Step;
-
-/***/ },
-/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, setImmediate) {// vim:ts=4:sts=4:sw=4:
@@ -49152,10 +48858,10 @@
 
 	});
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(318).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(314).setImmediate))
 
 /***/ },
-/* 318 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(5).nextTick;
@@ -49234,10 +48940,10 @@
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(318).setImmediate, __webpack_require__(318).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(314).setImmediate, __webpack_require__(314).clearImmediate))
 
 /***/ },
-/* 319 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49250,10 +48956,10 @@
 	var Link = ReactRouter.Link;
 	var ImageComponent = __webpack_require__(308);
 	var TextComponent = __webpack_require__(243);
-	var DetailBox = __webpack_require__(313);
-	var IntroBox = __webpack_require__(315);
+	var DetailBox = __webpack_require__(316);
+	var IntroBox = __webpack_require__(317);
 	var Bar = __webpack_require__(242);
-	var Step = __webpack_require__(316);
+	var Step = __webpack_require__(318);
 
 	var $ = __webpack_require__(246);
 	var devUrl = 'http://localhost:3000';
@@ -49283,7 +48989,241 @@
 	module.exports = Content;
 
 /***/ },
-/* 320 */
+/* 316 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/* DetailBox */
+
+	/* Proj.js */
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+	var ImageComponent = __webpack_require__(308);
+	var TextComponent = __webpack_require__(243);
+	var Bar = __webpack_require__(242);
+	var DetailBox = React.createClass({
+	  displayName: 'DetailBox',
+
+	  /* Should request another call, etc */
+	  /* Server should do the filtering so traffic/ data is minimal */
+	  render: function render() {
+	    var imgs = [{ "logo": "../public/img/logo3.png" }, "../public/img/logo3.png"];
+	    var menu = ['PROJECTS', 'HOME', 'ABOUT', 'CONTACT'];
+	    var imgUrl = this.props.url;
+
+	    var containerStyle = {
+	      // borderStyle: "solid",
+	      height: "80%",
+	      // weight: "100px",
+	      paddingLeft: "100px"
+	    };
+
+	    /* Font Styles */
+	    var TitleStyle = {
+	      fontSize: "30px",
+	      fontFamily: "Roboto Condensed"
+	    };
+	    var ByStyle = {
+	      fontSize: "20px",
+	      fontFamily: "Roboto Condensed"
+	    };
+	    var AboutStyle = {
+	      fontSize: "18px",
+	      fontFamily: "Roboto Condensed"
+	    };
+
+	    var BioStyle = {
+	      fontSize: "14px",
+	      fontFamily: "Roboto Condensed"
+	    };
+	    var imgStyle = {
+	      height: "70px",
+	      width: "70px"
+	    };
+	    /* Container Style */
+
+	    var BioBoxStyle = {
+	      width: "140px"
+	    };
+	    var TagBoxStyle = {
+	      // paddingTop: "20px",
+	      width: "140px"
+	    };
+	    var buttonStyle = {
+	      height: "40px",
+	      flex: "1"
+	    };
+	    // alert("These are the project's data" + JSON.stringify(this.props.data, null, 4));
+	    /* Pre-process tag */
+
+	    var tags = function tags() {
+	      var res = '';
+	      this.props.data.tags.map(function (tag) {
+	        res += tag;
+	      });
+	      return res;
+	    };
+
+	    return React.createElement(
+	      'div',
+	      { style: containerStyle },
+	      React.createElement(
+	        'div',
+	        { style: { backgroundColor: "#E2E3E5", padding: "10px" } },
+	        React.createElement(
+	          Bar,
+	          null,
+	          ' ',
+	          React.createElement(TextComponent, { style: { textAlign: "center" }, message: 'About' }),
+	          ' '
+	        ),
+	        React.createElement(TextComponent, { style: AboutStyle, message: this.props.data.downloads + ' downloads' }),
+	        React.createElement(TextComponent, { style: AboutStyle, message: this.props.data.views + ' views' }),
+	        React.createElement(TextComponent, { style: ByStyle, message: this.props.data.author }),
+	        React.createElement(ImageComponent, { url: this.props.data.author_picUrl,
+	          style: imgStyle }),
+	        React.createElement(
+	          'div',
+	          { style: BioBoxStyle },
+	          React.createElement(TextComponent, { style: BioStyle, message: 'bio: ' + this.props.data.bio })
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: TagBoxStyle },
+	          React.createElement(TextComponent, { style: BioStyle, message: 'Tags: ' + this.props.data.tags })
+	        )
+	      ),
+	      this.props.children
+	    );
+	  }
+	});
+
+	module.exports = DetailBox;
+
+/***/ },
+/* 317 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/* DetailBox */
+
+	/* Proj.js */
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+	var ImageComponent = __webpack_require__(308);
+	var TextComponent = __webpack_require__(243);
+	var Frame = __webpack_require__(241);
+
+	var IntroBox = React.createClass({
+	        displayName: 'IntroBox',
+
+	        /* Should request another call, etc */
+	        /* Server should do the filtering so traffic/ data is minimal */
+	        render: function render() {
+	                return React.createElement(
+	                        Frame,
+	                        null,
+	                        React.createElement(
+	                                'div',
+	                                { style: this.props.style },
+	                                React.createElement(TextComponent, { message: this.props.data })
+	                        )
+	                );
+	        }
+	});
+
+	module.exports = IntroBox;
+
+/***/ },
+/* 318 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/* Step.js
+	 *
+	 * UI for a single step, which includes instructions, for bullet points, an Image,
+	 * and easy readability.  Also has anchors (You can reach these from a toolbar, etc.)
+	 */
+
+	var React = __webpack_require__(3);
+	var ImageComponent = __webpack_require__(308);
+	var Frame = __webpack_require__(241);
+	var Pad = __webpack_require__(311);
+
+	var Step = React.createClass({
+		displayName: 'Step',
+
+
+		render: function render() {
+			var barStyle = {
+				borderTopRightRadius: "2em",
+				borderTopLeftRadius: "2em",
+				backgroundColor: "white",
+				width: "100%",
+				padding: "20px",
+				paddingBottom: "8px",
+				display: "flex"
+			};
+
+			var endStyle = {
+				height: "10px",
+				backgroundColor: "D0D1D2"
+			};
+
+			var titleStyle = {
+				fontFamily: "'Ubuntu'",
+				fontWeight: 'bold',
+				fontSize: "20px"
+
+			};
+
+			var stepImage = function stepImage(imageUrl) {
+				// if(this.props.url!='') return (<div></div>);
+				// alert('Not working');
+				// return ( [<ImageComponent url={this.props.url}></custom/ImageComponent>]);
+				return [React.createElement(ImageComponent, { style: { width: "170px", height: "170px" }, url: imageUrl })];
+			};
+
+			var imgStep = stepImage(this.props.url);
+			// Learned a new thing today...javascript parenthesis needs to BE ON SAME LINE AS RETURN
+			// Or else compiler just sees returns and exits
+
+			return React.createElement(
+				'div',
+				{ style: this.props.style },
+				React.createElement(
+					Frame,
+					null,
+					React.createElement(
+						'div',
+						{ style: { display: "flex", flexDirection: "column" } },
+						React.createElement(
+							'div',
+							{ style: titleStyle },
+							'Step : ' + this.props.num + '   ' + this.props.title,
+							' '
+						),
+						imgStep,
+						this.props.info
+					)
+				),
+				React.createElement('br', null),
+				React.createElement('br', null),
+				React.createElement(Pad, { hw: ('300px', '300px') })
+			);
+		}
+	});
+	module.exports = Step;
+
+/***/ },
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49309,7 +49249,7 @@
 	module.exports = Contact;
 
 /***/ },
-/* 321 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -49341,7 +49281,7 @@
 	module.exports = Input;
 
 /***/ },
-/* 322 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49461,7 +49401,7 @@
 	module.exports = Login;
 
 /***/ },
-/* 323 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49594,7 +49534,7 @@
 	module.exports = SignUp;
 
 /***/ },
-/* 324 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -49661,7 +49601,7 @@
 	module.exports = Profile;
 
 /***/ },
-/* 325 */
+/* 324 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -49699,7 +49639,7 @@
 	module.exports = TestAPI;
 
 /***/ },
-/* 326 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49796,7 +49736,7 @@
 	}
 
 /***/ },
-/* 327 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49853,7 +49793,7 @@
 	module.exports = StepAdd;
 
 /***/ },
-/* 328 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49936,6 +49876,239 @@
 	});
 
 	module.exports = LabelCarousel;
+
+/***/ },
+/* 328 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+
+	var Scroll = React.createClass({
+	  displayName: 'Scroll',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+	  render: function render() {
+
+	    var boxStyle = {
+	      verticalAlign: "top",
+	      display: "inline-block",
+	      width: "47%",
+	      height: "275px",
+	      margin: "10px",
+	      backgroundColor: "grey",
+	      /*border: 3px solid #73AD21;*/
+	      textEmphasis: "center",
+	      padding: "20px 20px"
+	    };
+
+	    var boxStyle2 = {
+	      verticalAlign: "top",
+	      display: "inline-block",
+	      width: "99%",
+	      height: "275px",
+	      margin: "10px",
+	      backgroundColor: "grey",
+	      /*border: 3px solid #73AD21;*/
+	      textEmphasis: "center",
+	      padding: "20px 20px"
+	    };
+
+	    return React.createElement(
+	      'div',
+	      { style: { display: "block", width: "100%", height: "1000px", backgroundColor: "white", padding: "0px 50px 0px 50px" } },
+	      React.createElement(
+	        'div',
+	        { style: boxStyle2 },
+	        ' ',
+	        "Introduction",
+	        ' '
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: boxStyle },
+	        ' ',
+	        "Skills Learned",
+	        ' '
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: boxStyle },
+	        ' ',
+	        "Preqs",
+	        ' '
+	      )
+	    );
+	  }
+	});
+	module.exports = Scroll;
+
+/***/ },
+/* 329 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+
+	var Proj2 = React.createClass({
+	  displayName: 'Proj2',
+
+	  getInitialState: function getInitialState() {
+	    return {};
+	  },
+	  render: function render() {
+	    var padding = {
+	      flex: "0.5",
+	      backgroundColor: "#1a2930"
+	    };
+	    var paddingRight = {
+	      flex: "0.5",
+	      backgroundColor: "white"
+	    };
+
+	    var centerPadding = {
+	      flex: "1.5", backgroundColor: "white",
+	      // padding: "10px 10px",
+	      minWidth: "700px"
+	    };
+	    return React.createElement(
+	      'div',
+	      { style: { display: "flex", width: "100%", height: "1000px", padding: "0px 50px 0px 50px", marginTop: "100px" } },
+	      React.createElement(
+	        'div',
+	        { id: 'left', style: padding },
+	        'Haha'
+	      ),
+	      React.createElement(
+	        'div',
+	        { id: 'center', style: centerPadding },
+	        React.createElement(
+	          'div',
+	          { className: 'section', id: 'title' },
+	          React.createElement(
+	            'div',
+	            { style: { width: "100%", fontSize: "30px" } },
+	            ' ',
+	            "ArcadeBox",
+	            ' '
+	          ),
+	          React.createElement(
+	            'div',
+	            { style: { width: "100%" } },
+	            React.createElement(
+	              'button',
+	              { className: 'cta-button' },
+	              ' Aaa '
+	            ),
+	            React.createElement(
+	              'button',
+	              { className: 'cta-button' },
+	              ' Aaa '
+	            ),
+	            React.createElement(
+	              'button',
+	              { className: 'cta-button' },
+	              ' Aaa '
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { id: 'blind' },
+	          React.createElement(
+	            'div',
+	            { className: 'main-img' },
+	            React.createElement('img', { src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg' })
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'section half' },
+	          ' ',
+	          "Introduction",
+	          ' '
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: { display: "flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle: "solid",
+	              backgroundColor: "white" } },
+	          React.createElement(
+	            'div',
+	            { className: 'section' },
+	            ' ',
+	            "Skills Learned",
+	            React.createElement(
+	              'ul',
+	              null,
+	              React.createElement(
+	                'li',
+	                null,
+	                ' Soldering '
+	              ),
+	              React.createElement(
+	                'li',
+	                null,
+	                ' Circuits '
+	              ),
+	              React.createElement(
+	                'li',
+	                null,
+	                ' C++ '
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'section' },
+	            ' ',
+	            "Preqs",
+	            React.createElement(
+	              'ul',
+	              null,
+	              React.createElement(
+	                'li',
+	                null,
+	                ' Soldering '
+	              ),
+	              React.createElement(
+	                'li',
+	                null,
+	                ' Circuits '
+	              ),
+	              React.createElement(
+	                'li',
+	                null,
+	                ' C++ '
+	              )
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'section-2' },
+	          ' ',
+	          "Materials",
+	          ' '
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { id: 'right', style: padding },
+	        ' '
+	      )
+	    );
+	  }
+	});
+	// <button className="cta-button"> Click Me</button>
+	module.exports = Proj2;
 
 /***/ }
 /******/ ]);

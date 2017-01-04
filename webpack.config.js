@@ -32,6 +32,7 @@ module.exports = {
         './app/components/projectlistings/Category.js',
 
         './app/components/projectpage/Proj.js',
+        './app/components/projectpage/Proj2.js',
         /* Submission components */
         './app/components/addpage/Add.js',
         './app/components/addpage/Step.js',

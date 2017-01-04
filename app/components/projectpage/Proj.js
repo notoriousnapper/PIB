@@ -226,7 +226,9 @@ var Proj = React.createClass({
                               // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
         // var Steps = this.CallSteps();
         return(
-              <div style={{display:"flex"}}>
+          <div style={{backgroundColor:"#1a2930"}}>
+            <div style={{display:"flex"}}>
+              <div style={{display:"flex", flex: "1"}} >
                         <div style={containerStyle}>
                           <Bar style={{minWidth:"700px", width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C"}}>
                             <div style={{ width: "100%", display:"flex", flexDirection:"column"}}>
@@ -278,6 +280,12 @@ var Proj = React.createClass({
                           </div>
 
                   </div>
+                </div>
+
+                </div>
+
+
+
                 </div>
 
               )

@@ -11,6 +11,8 @@ var ProjectListing = require('../../components/projectlistings/ProjectListing');
 var SearchBar = require('../../components/projectlistings/SearchBar');
 var Category = require('../../components/projectlistings/Category');
 var Proj= require('../../components/projectpage/Proj');
+var Proj2= require('../../components/projectpage/Proj2');
+
 var Frame= require('../../components/Frame');
 var Bar= require('../../components/Bar');
 var Pad= require('../../components/Pad');
@@ -124,8 +126,9 @@ var Projects = React.createClass({
 
     // Temporary Fix - Adjust fix.
     return (
-      <div style={{backgroundColor: "#1a2930", height: "1000px"}}>
+      <div style={{backgroundColor: "#1a2930", height: "2500px"}}>
         <Proj params={id}/>
+        <Proj2 params={id}/>
       </div>
     );
   },
