@@ -45814,7 +45814,7 @@
 	var devUrl = 'http://localhost:3000';
 	var prodUrl = 'https://still-forest-90731.herokuapp.com';
 	/* Use devUrl or prodUrl*/
-	var useUrl = devUrl;
+	var useUrl = prodUrl;
 
 	var Projects = React.createClass({
 	  displayName: 'Projects',
@@ -46511,7 +46511,7 @@
 	var $ = __webpack_require__(246);
 	var devUrl = 'http://localhost:3000';
 	var prodUrl = 'https://still-forest-90731.herokuapp.com';
-	var useUrl = devUrl;
+	var useUrl = prodUrl;
 
 	var IntroData = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
 
