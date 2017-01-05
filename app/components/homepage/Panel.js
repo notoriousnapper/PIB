@@ -23,7 +23,7 @@ var Panel = React.createClass({
                   {
                     title: "Goofy Projects",
                     description: "A Curated selection of cool projects",
-                    img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg",
+                    img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1474080899/FullSizeRender_fbkwke.jpg",
                     hook: "magic"
                   },
                   {
@@ -53,7 +53,10 @@ var Panel = React.createClass({
           });
 
         return(
-        		<div style={{display: "flex", width:"100%", height: "700px", backgroundColor: "black", padding: "0px 50px 0px 50px"}}>
+        		<div style={{display: "flex", width:"100%", height: "700px",
+            backgroundColor: "black",
+            // backgroundImage: "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1482990472/wood_njgiqu.jpg\")" ,
+            padding: "0px 50px 0px 50px"}}>
 
               <div style={{color:"white"}}> {"What's New"}</div>
 

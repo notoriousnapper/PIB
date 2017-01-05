@@ -4,6 +4,25 @@
 User Manual & Things to do.
 
 
+Important things:
+
+When pushing to heroku, must switch devUrl to prodUrl in 3 places:
+1. Proj.js
+2. Project.js
+3. Proj2.js
+
+
+// Inspecting body of requests:
+Using Body Parse
+Ex) bodyParser = require('body-parser').json();
+app.post('/itemSearch', bodyParser, function(req, res) {
+  //var Keywords = req.body.Keywords;
+  console.log("Yoooooo");
+  console.log(req.headers);
+  console.log(req.body);
+  res.status(200).send("yay");
+});
+
 
 Little Things to fix:
 - In the Projects page, the "Proj" component has trouble when rendering footer because its
@@ -11,4 +30,4 @@ generated after and has some weird css issues that make them overlap.  Currently
 height to 1000.
 
 
-- 
+-

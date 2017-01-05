@@ -90,17 +90,6 @@ var DetailBox = React.createClass({
                           <TextComponent style={BioStyle} message={'bio: ' + this.props.data.bio}></TextComponent>
                         </div>
                     </div>
-                  <div style={{display:"inline-block", width: "40%"}}>
-                      <TextComponent style={AboutStyle} message={'Topic'}/>
-                      <ImageComponent url="../public/img/ucsdlogo.png"
-                      	style={imgStyle}/>
-                        <div style={BioBoxStyle}>
-                          <TextComponent style={BioStyle} message={'bio: ' + this.props.data.bio}></TextComponent>
-                        </div>
-                        <div style={TagBoxStyle}>
-                          <TextComponent style={BioStyle} message={'Tags: ' + this.props.data.tags}></TextComponent>
-                        </div>
-                    </div>
               </div>
               {this.props.children}
 

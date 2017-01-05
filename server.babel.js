@@ -103,6 +103,10 @@ app.listen(process.env.PORT || 3000, function(){
  * Uses body-parser middleware
  */
 app.use(bodyParser.urlencoded({extended: true}))  // Necessary to handle HTTP requests as they come in.
+// app.use(bodyParser.urlencoded({ extended: false }));
+//
+// // parse application/json
+// app.use(bodyParser.json());
 
 
 
@@ -133,8 +137,28 @@ app.get('/user', function(req, res) {
 // 	})
 // });
 
-app.get('/download', function(req, res){
+// var bodyParser = require('body-parser').json();
+app.get('/download',  function(req, res){
   console.log("A file has been downloaded");
+  console.log(req.body);
+  var name = req.body.name;
+  if (name === "arcadebox") {
+    console.log("It's pepper!")
+  }
+
+  if(req.body.name!=null){
+  switch(name){
+    case 'arcadebox': console.log(name);
+    break;
+    case 'solartracker': console.log(name);
+    break;
+    case 'arcadebox': console.log(name);
+    break;
+  };
+}
+
+  console.log(req);
+
   var file = __dirname + '/uploads/project.pdf';
   res.download(file); // Set disposition and send it.
 });

@@ -234,7 +234,7 @@ var Proj = React.createClass({
 
               <div id="center" style={{display:"flex", flex: "1.5"}} >
                         <div style={containerStyle}>
-                          <Bar style={{width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C"}}>
+                          <Bar style={{width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C",  borderRadiusTop: "6px"}}>
                             <div style={{ width: "100%", display:"flex", flexDirection:"column"}}>
                               <div style={{display:"block"}}>
                                       <div style={{display:"inline-block"}}>
@@ -267,19 +267,16 @@ var Proj = React.createClass({
                             <ImageComponent style={imgStyle} url={this.state.data.url}/>
                             <DetailBox data={this.state.data} >
                                 <div style={testStyle}>
-                                    <form method="get" action="/download">
+
+                                    <form method="get" action="/download" enctype="application/x-www-form-urlencoded">
+                                      <input type="hidden" name="name" value={'Jesse'}/>
                                       <button type="submit">Download!</button>
-                                      <input type="hidden" value={this.state.name}/>
                                     </form>
                                     <button>BookMark</button>
                                 </div>
                             </DetailBox>
 
                       </Frame>
-                          <Frame>
-                          <TextComponent style={AboutStyle} message={this.state.data.about}></TextComponent>
-                          </Frame>
-
 
                   </div>
                 </div>

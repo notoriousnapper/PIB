@@ -27052,7 +27052,8 @@
 	      'div',
 	      null,
 	      React.createElement(Carousel, { style: { flex: "1" } }),
-	      React.createElement(Panel, { style: { flex: "1" } })
+	      React.createElement(Panel, { style: { flex: "1"
+	        } })
 	    );
 	  }
 	});
@@ -27197,11 +27198,7 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      ctr: 0,
-	      paths: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg"
-	      // "../public/img/carousel_2.jpg",
-	      // "../public/img/carousel_3.jpg",
-	      // "../public/img/carousel_4.jpg"
-	      ]
+	      paths: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1483597306/StreetFighter2_kfmo3f.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg"]
 	    };
 	  },
 	  switchSlideLeft: function switchSlideLeft(inc) {
@@ -27238,18 +27235,21 @@
 	    var imgStyle = { height: "100%", padding: "0%", width: "100%" };
 	    return React.createElement(
 	      'div',
-	      { style: { backgroundImage: "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1482990472/wood_njgiqu.jpg\")", backgroundSize: "100% 100%", backgroundPosition: "center" } },
+	      { style: {
+	          backgroundImage: "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1482990472/wood_njgiqu.jpg\")",
+	          // backgroundColor: "#1A2930",
+	          backgroundSize: "100% 100%", backgroundPosition: "center" } },
 	      React.createElement(
 	        'div',
-	        { style: { display: "block", height: "600px", width: "100%" } },
+	        { style: { display: "block", height: "600px", width: "100%", padding: "0" } },
 	        React.createElement(
 	          'div',
-	          { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "20%", height: "100%" } },
-	          ' '
+	          { style: { display: "inline-block", flex: "0.3", padding: "40px 0 0 90px", width: "30%", height: "100%" } },
+	          React.createElement(Detail, null)
 	        ),
 	        React.createElement(
 	          'div',
-	          { style: { display: "inline-block", flex: "0.6", width: "60%", height: "100%" }, id: 'cf7', className: 'shadow' },
+	          { style: { display: "inline-block", flex: "0.6", width: "40%", height: "100%" }, id: 'cf7', className: 'shadow' },
 	          React.createElement('img', { style: imgStyle, className: 'opaque', src: this.state.paths[0] }),
 	          React.createElement('img', { style: imgStyle, src: this.state.paths[1] }),
 	          React.createElement('img', { style: imgStyle, src: this.state.paths[2] }),
@@ -27257,7 +27257,7 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "20%", height: "100%" } },
+	          { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "30%", height: "100%" } },
 	          ' '
 	        )
 	      ),
@@ -27265,7 +27265,6 @@
 	    );
 	  }
 	});
-	// <Detail />
 	/* Correct one here */
 	//  <div style={{height: "500px", width: "100%", backgroundImage: 'url(' + this.state.paths[this.state.ctr] + ')',
 	//  backgroundSize: "contain",
@@ -27300,6 +27299,7 @@
 
 	var React = __webpack_require__(3);
 	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
 
 	var Detail = React.createClass({
 	  displayName: 'Detail',
@@ -27310,9 +27310,9 @@
 	  },
 	  componentDidMount: function componentDidMount() {},
 	  render: function render() {
-	    var boxStyle = { float: "left", width: "220px", height: "440px",
-	      backgroundColor: "transparent", padding: "10px 20px 20px 10px", margin: "180px 0px 10px 20px",
-	      color: "white", borderColor: "black", borderWidth: "10px"
+	    var boxStyle = { flex: "1", float: "left", width: "220px", height: "440px",
+	      backgroundColor: "#d5cab8", padding: "10px 20px 20px 10px", margin: "0 auto",
+	      color: "black", borderColor: "black", borderWidth: "10px"
 	    };
 	    var featuredStyle = {
 	      color: "#F1C232",
@@ -27324,28 +27324,27 @@
 	      { style: boxStyle },
 	      React.createElement(
 	        'div',
-	        { style: { padding: "10px 20px 10px 20px", backgroundColor: "#F1C232", width: "200px" } },
+	        { style: { display: "block", padding: "10px 20px 10px 20px", backgroundColor: "#F1C232", width: "200px" } },
 	        React.createElement(
 	          'h4',
-	          { style: { color: "black", fontSize: "30px" } },
-	          ' FEATURED PROJECT IN A BOX '
+	          { style: { color: "black", fontSize: "30px", noWrap: "normal" } },
+	          ' Featuring: ArcadeBox '
 	        )
 	      ),
 	      React.createElement(
 	        'h4',
-	        { style: { fontSize: "30px" } },
-	        ' Quad-Copter '
+	        { style: { fontSize: "19px", textAlign: "center" } },
+	        ' Play classic games while learning programming and circuits!'
 	      ),
 	      React.createElement(
-	        'h4',
-	        { style: { fontSize: "19px" } },
-	        ' Multirotor helicopter that is lifted and propelled by four rotors.'
-	      ),
-	      React.createElement(
-	        'button',
-	        { style: { borderColor: "white", backgroundColor: "Transparent", color: "white", padding: "10px 20px 10px 20px",
-	            height: "45px", width: "120px", fontSize: "14px" } },
-	        ' See Project '
+	        Link,
+	        { style: { margin: "0 auto" }, to: "/projects/arcadebox" },
+	        React.createElement(
+	          'button',
+	          { style: { borderColor: "white", backgroundColor: "Transparent", color: "white", padding: "10px 20px 10px 20px",
+	              height: "45px", width: "120px", fontSize: "14px", margin: "auto" } },
+	          ' See Project '
+	        )
 	      )
 	    );
 	  }
@@ -37462,7 +37461,7 @@
 	      }, {
 	        title: "Goofy Projects",
 	        description: "A Curated selection of cool projects",
-	        img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg",
+	        img: "http://res.cloudinary.com/djmk9vktk/image/upload/v1474080899/FullSizeRender_fbkwke.jpg",
 	        hook: "magic"
 	      }, {
 	        title: "ECE Department Explosion",
@@ -37507,7 +37506,10 @@
 
 	    return React.createElement(
 	      'div',
-	      { style: { display: "flex", width: "100%", height: "700px", backgroundColor: "black", padding: "0px 50px 0px 50px" } },
+	      { style: { display: "flex", width: "100%", height: "700px",
+	          backgroundColor: "black",
+	          // backgroundImage: "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1482990472/wood_njgiqu.jpg\")" ,
+	          padding: "0px 50px 0px 50px" } },
 	      React.createElement(
 	        'div',
 	        { style: { color: "white" } },
@@ -46721,7 +46723,7 @@
 	            { style: containerStyle },
 	            React.createElement(
 	              Bar,
-	              { style: { width: "100%", display: "inline-block", borderBottom: "2px solid #6C727C" } },
+	              { style: { width: "100%", display: "inline-block", borderBottom: "2px solid #6C727C", borderRadiusTop: "6px" } },
 	              React.createElement(
 	                'div',
 	                { style: { width: "100%", display: "flex", flexDirection: "column" } },
@@ -46780,13 +46782,13 @@
 	                  { style: testStyle },
 	                  React.createElement(
 	                    'form',
-	                    { method: 'get', action: '/download' },
+	                    { method: 'get', action: '/download', enctype: 'application/x-www-form-urlencoded' },
+	                    React.createElement('input', { type: 'hidden', name: 'name', value: 'Jesse' }),
 	                    React.createElement(
 	                      'button',
 	                      { type: 'submit' },
 	                      'Download!'
-	                    ),
-	                    React.createElement('input', { type: 'hidden', value: this.state.name })
+	                    )
 	                  ),
 	                  React.createElement(
 	                    'button',
@@ -46795,11 +46797,6 @@
 	                  )
 	                )
 	              )
-	            ),
-	            React.createElement(
-	              Frame,
-	              null,
-	              React.createElement(TextComponent, { style: AboutStyle, message: this.state.data.about })
 	            )
 	          )
 	        ),
@@ -46923,23 +46920,6 @@
 	            'div',
 	            { style: BioBoxStyle },
 	            React.createElement(TextComponent, { style: BioStyle, message: 'bio: ' + this.props.data.bio })
-	          )
-	        ),
-	        React.createElement(
-	          'div',
-	          { style: { display: "inline-block", width: "40%" } },
-	          React.createElement(TextComponent, { style: AboutStyle, message: 'Topic' }),
-	          React.createElement(ImageComponent, { url: '../public/img/ucsdlogo.png',
-	            style: imgStyle }),
-	          React.createElement(
-	            'div',
-	            { style: BioBoxStyle },
-	            React.createElement(TextComponent, { style: BioStyle, message: 'bio: ' + this.props.data.bio })
-	          ),
-	          React.createElement(
-	            'div',
-	            { style: TagBoxStyle },
-	            React.createElement(TextComponent, { style: BioStyle, message: 'Tags: ' + this.props.data.tags })
 	          )
 	        )
 	      ),
@@ -47149,15 +47129,48 @@
 
 	'use strict';
 
+	var _stringify = __webpack_require__(269);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var React = __webpack_require__(3);
 	var ReactRouter = __webpack_require__(181);
 	var Link = ReactRouter.Link;
+
+	var devUrl = 'http://localhost:3000';
+	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var useUrl = prodUrl;
+
+	var $ = __webpack_require__(246);
 
 	var Proj2 = React.createClass({
 	  displayName: 'Proj2',
 
 	  getInitialState: function getInitialState() {
-	    return {};
+	    return { data: [] };
+	  },
+	  forceAjax: function forceAjax() {
+	    var name = this.props.params;
+	    console.log('query param is' + name);
+	    $.ajax({
+	      url: useUrl + '/getone/' + name,
+	      dataType: 'json',
+	      cache: true,
+	      success: function (res) {
+	        // alert('Final Stretch' + JSON.stringify(res,null,4));
+	        this.setState({ data: res[0] });
+	        var Steps = this.CallSteps();
+	        alert((0, _stringify2.default)(res[0], null, 4));
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(useUrl + name, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.forceAjax();
 	  },
 	  render: function render() {
 	    var padding = {
@@ -47187,9 +47200,18 @@
 	        React.createElement(
 	          'div',
 	          { className: 'section half' },
-	          ' ',
-	          "Introduction",
-	          ' '
+	          React.createElement(
+	            'div',
+	            null,
+	            "Introduction"
+	          ),
+	          React.createElement(
+	            'p',
+	            { id: 'desc' },
+	            ' ',
+	            this.state.data.about,
+	            ' '
+	          )
 	        ),
 	        React.createElement(
 	          'div',

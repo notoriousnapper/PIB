@@ -2,10 +2,38 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
+var devUrl ='http://localhost:3000';
+var prodUrl = 'https://still-forest-90731.herokuapp.com';
+var useUrl = prodUrl;
+
+var $ = require('jquery');
 
 var Proj2 = React.createClass({
         getInitialState: function(){
-          return {}
+          return { data: []}
+        },
+        forceAjax:function(){
+  var name = this.props.params;
+  console.log('query param is' + name);
+   $.ajax({
+        url: useUrl + '/getone/' + name,
+        dataType: 'json',
+        cache: true,
+        success: function(res) {
+          // alert('Final Stretch' + JSON.stringify(res,null,4));
+          this.setState({data: res[0]});
+          var Steps = this.CallSteps();
+          alert(JSON.stringify(res[0], null, 4));
+
+
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(useUrl + name, status, err.toString());
+        }.bind(this)
+      });
+      },
+        componentDidMount: function(){
+          this.forceAjax();
         },
         render: function(){
           var padding = {
@@ -25,7 +53,12 @@ var Proj2 = React.createClass({
         		<div style={{display: "flex",  width:"100%", height: "1000px", padding: "0px 0px 0px 0px", marginTop: "100px"}}>
                 <div id="left" style={padding}> </div>
                 <div id="center" style={centerPadding}>
-                          <div className="section half"> {"Introduction"} </div>
+                          <div className="section half">
+
+                          <div>{"Introduction"}</div>
+                          <p id="desc"> {this.state.data.about} </p>
+
+                           </div>
                           <div style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
                               backgroundColor:"white"}}>
 

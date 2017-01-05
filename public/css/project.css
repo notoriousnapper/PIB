@@ -100,7 +100,7 @@
   display: inline-block;
 }
 #blind{
-  height: 700px;
+  height: 600px;
   width: 100%;
   background-color: grey;
 }
@@ -157,4 +157,10 @@
 .section ul li{
   font-size: 15px;
   font-weight: none;
+}
+
+#desc{
+  font-size: 15px;
+  font-weight: none;
+
 }

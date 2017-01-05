@@ -25,7 +25,8 @@ var Home = React.createClass({
         return(
           <div>
               <Carousel style={{flex:"1"}}/>
-              <Panel style={{flex:"1"}}/>
+              <Panel style={{flex:"1"
+            }}/>
         </div>
               )
                 }
