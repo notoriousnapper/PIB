@@ -47720,7 +47720,7 @@
 	            { role: 'presentation', className: 'active', style: { height: "auto" } },
 	            React.createElement(
 	              'a',
-	              { 'aria-controls': 'description', role: 'tab', 'data-toggle': 'tab' },
+	              { href: '#overview', 'aria-controls': 'description', role: 'tab', 'data-toggle': 'tab' },
 	              'Overview'
 	            )
 	          ),
@@ -47729,7 +47729,7 @@
 	            { role: 'presentation', style: { height: "auto" } },
 	            React.createElement(
 	              'a',
-	              { 'aria-controls': 'instructions', role: 'tab', 'data-toggle': 'tab' },
+	              { href: '#pictures', 'aria-controls': 'instructions', role: 'tab', 'data-toggle': 'tab' },
 	              'Pictures'
 	            )
 	          ),
@@ -47738,7 +47738,7 @@
 	            { role: 'presentation', style: { height: "auto" } },
 	            React.createElement(
 	              'a',
-	              { 'aria-controls': 'comments', role: 'tab', 'data-toggle': 'tab' },
+	              { href: '#resources', 'aria-controls': 'comments', role: 'tab', 'data-toggle': 'tab' },
 	              'Resources'
 	            )
 	          )
@@ -47788,7 +47788,7 @@
 	            React.createElement('a', { href: this.state.data.name + ".pdf" }),
 	            React.createElement(
 	              'div',
-	              { style: {} },
+	              null,
 	              extraImg
 	            )
 	          ),
@@ -47815,35 +47815,6 @@
 	});
 	// <button className="cta-button"> Click Me</button>
 	module.exports = Proj2;
-
-	/*
-	<div className="section half">
-
-	<div>{"Introduction"}</div>
-	<p id="desc"> {this.state.data.about} </p>
-
-	 </div>
-	<div style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
-	    backgroundColor:"white"}}>
-
-	    <div className="section" > {"Skills Learned"}
-	      <ul>
-	        <li> Soldering </li>
-	        <li> Circuits </li>
-	        <li> C++ </li>
-	      </ul>
-	    </div>
-	    <div className="section" > {"Preqs"}
-	      <ul>
-	        <li> Soldering </li>
-	        <li> Circuits </li>
-	        <li> C++ </li>
-	      </ul>
-	    </div>
-	</div>
-	    <div className="section" style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
-	        backgroundColor:"white"}}> {"Materials"} </div>
-	*/
 
 /***/ },
 /* 320 */

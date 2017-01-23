@@ -137,9 +137,9 @@ var Proj2 = React.createClass({
               <div id="left" style={padding}> </div>
               <div id="center" style={centerPadding}>
                 <ul className="nav nav-tabs" role="tablist" style={{backgroundColor:"#EEE", borderRadius:"5px 5px 0 0"}}>
-                  <li role="presentation" className="active" style={{height:"auto"}}><a aria-controls="description" role="tab" data-toggle="tab">Overview</a></li>
-                  <li role="presentation" style={{height:"auto"}}><a aria-controls="instructions" role="tab" data-toggle="tab">Pictures</a></li>
-                  <li role="presentation" style={{height:"auto"}}><a aria-controls="comments" role="tab" data-toggle="tab">Resources</a></li>
+                  <li role="presentation" className="active" style={{height:"auto"}}><a href="#overview" aria-controls="description" role="tab" data-toggle="tab">Overview</a></li>
+                  <li role="presentation" style={{height:"auto"}}><a href="#pictures" aria-controls="instructions" role="tab" data-toggle="tab">Pictures</a></li>
+                  <li role="presentation" style={{height:"auto"}}><a href="#resources" aria-controls="comments" role="tab" data-toggle="tab">Resources</a></li>
                 </ul>
 
                 <div className="tab-content" style={{padding:"10px"}}>
@@ -153,46 +153,18 @@ var Proj2 = React.createClass({
                   </div>
                   <div role="tabpanel" className="tab-pane" id="pictures" style={{height:"auto"}}>
                     <a href={this.state.data.name + ".pdf"} />
-                    <div style={{}}>{extraImg}</div>
-                  </div>
-                  <div role="tabpanel" className="tab-pane" id="resources" style={{height:"auto"}}>
-                    <div style={{paddingLeft:"20px", paddingRight: "20px"}}> {links} </div>
-                  </div>
-                </div>
-              </div>
-              <div id="right" style={padding}> </div>
-    				</div>
-              )
-                }
-});
-                      // <button className="cta-button"> Click Me</button>
-module.exports = Proj2;
+                    <div >{extraImg}</div>
 
-/*
-<div className="section half">
-
-<div>{"Introduction"}</div>
-<p id="desc"> {this.state.data.about} </p>
-
- </div>
-<div style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
-    backgroundColor:"white"}}>
-
-    <div className="section" > {"Skills Learned"}
-      <ul>
-        <li> Soldering </li>
-        <li> Circuits </li>
-        <li> C++ </li>
-      </ul>
-    </div>
-    <div className="section" > {"Preqs"}
-      <ul>
-        <li> Soldering </li>
-        <li> Circuits </li>
-        <li> C++ </li>
-      </ul>
-    </div>
-</div>
-    <div className="section" style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
-        backgroundColor:"white"}}> {"Materials"} </div>
-*/
+                                      </div>
+                                      <div role="tabpanel" className="tab-pane" id="resources" style={{height:"auto"}}>
+                                        <div style={{paddingLeft:"20px", paddingRight: "20px"}}> {links} </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div id="right" style={padding}> </div>
+                        				</div>
+                                  )
+                                    }
+                    });
+                                          // <button className="cta-button"> Click Me</button>
+                    module.exports = Proj2;
