@@ -68,4 +68,31 @@ module.exports.set = function(app) {
 	})
 });
 
+
+/* Update Likes, downloads, etc. */
+app.put('/getone/:id/:type', (req,res)=>{
+	/* Updates specific project id with specific field (like, views, etc) */
+	var fields = ['views','likes', 'downloads'];
+	if (!fields.every(function(elem){req.params.type === elem})){
+		var name = req.params.id;
+		var type = req.params.type;
+
+		console.log("id is: " + name);
+		console.log("type is: " + type);
+		var obj = {};
+		obj[type] = 1;
+		console.log("Object is: " + JSON.stringify(obj, null, 4));
+
+		db.collection('projects').updateOne(
+			{'name': name},
+			{$inc: obj },
+
+		function(err, doc){
+			console.log(err);
+		}
+	);
+
+	}
+});
+
 }

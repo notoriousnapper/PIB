@@ -1,7 +1,4 @@
 /* Proj.js */
-/* Proj.js */
-
-
 
 var React = require('react');
 var ReactRouter = require('react-router');
@@ -19,13 +16,15 @@ var Step = require('../../components/addpage/Step');
 var Pad = require('../../components/Pad');
 var Frame = require('../../components/Frame');
 
+var FontAwesome = require('react-fontawesome');
+
 var $ = require('jquery');
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
-var useUrl = prodUrl;
+var useUrl = devUrl;
 
 var IntroData =
-  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
+'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
 
 var Proj = React.createClass({
         getInitialState: function(){
@@ -33,6 +32,7 @@ var Proj = React.createClass({
             data: {
             'name':'',
             'author': '',
+            'authorImg': '',
             'url': '',
             'about': '',
             'instructions': '',
@@ -68,7 +68,24 @@ var Proj = React.createClass({
             navBar: false
           })
         },
-
+        downloadPDF: function(){
+          $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/',
+            dataType: 'json',
+            data: {
+              'name': 'arcadebox'
+            },
+            cache: false,
+            success: function(data) {
+              // alert('Success!');
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+              // alert('Not Successful!');
+            }.bind(this)
+          });
+        },
         CallSteps: function(){
            var ctr = 0;
            var res = this.state.data.steps;
@@ -96,9 +113,6 @@ var Proj = React.createClass({
                 success: function(res) {
                   // alert('Final Stretch' + JSON.stringify(res,null,4));
                   this.setState({data: res[0]});
-                  var Steps = this.CallSteps();
-
-
                 }.bind(this),
                 error: function(xhr, status, err) {
                   console.error(useUrl + name, status, err.toString());
@@ -114,9 +128,40 @@ var Proj = React.createClass({
                 method: 'PUT',
                 cache: true,
                 success: function(res) {
-
                   console.log('Response is: ' + res);
-                  var Steps = this.CallSteps();
+                  this.forceAjax();
+                }.bind(this),
+                error: function(xhr, status, err) {
+                  console.error(useUrl + name, status, err.toString());
+                }.bind(this)
+              });
+        },
+        updateDownload:function(){
+          var name = this.props.params;
+          console.log('query param is' + name);
+           $.ajax({
+                url: useUrl + '/getone/' + name + '/' + 'downloads',
+                dataType: 'json',
+                method: 'PUT',
+                cache: true,
+                success: function(res) {
+                  console.log('Response is: ' + res);
+                }.bind(this),
+                error: function(xhr, status, err) {
+                  console.error(useUrl + name, status, err.toString());
+                }.bind(this)
+              });
+        },
+        updateViews: function(){
+          var name = this.props.params;
+           $.ajax({
+                url: useUrl + '/getone/' + name + '/' + 'views',
+                dataType: 'json',
+                method: 'PUT',
+                cache: true,
+                success: function(res) {
+                  console.log('Response is: ' + res);
+                  this.forceAjax();
                 }.bind(this),
                 error: function(xhr, status, err) {
                   console.error(useUrl + name, status, err.toString());
@@ -125,6 +170,8 @@ var Proj = React.createClass({
         },
         componentDidMount: function(){
           this.forceAjax();
+          this.updateViews();
+          /* Updates Page Views */
         },
 
         /* Should request another call, etc */
@@ -143,23 +190,26 @@ var Proj = React.createClass({
 
           this.state.navBar = !(this.state.navBar); // reverse
         },
+        testName: function(){
+          // alert(this.state.data.name);
+        },
         render: function(){
-        var imgs = [{"logo":"../public/img/logo3.png"}, "../public/img/logo3.png"]
-        var menu =['PROJECTS', 'HOME', 'ABOUT', 'CONTACT']
+          var imgs = [{"logo":"../public/img/logo3.png"}, "../public/img/logo3.png"]
+          var menu =['PROJECTS', 'HOME', 'ABOUT', 'CONTACT']
 
-        var imgUrl =this.props.url;
+          var imgUrl =this.props.url;
 
 
-        /* Font Styles */
-        var TitleStyle ={
+          /* Font Styles */
+          var TitleStyle ={
             fontSize: "40px",
             fontFamily: "Roboto Condensed",
             fontWeight: "570",
             textTransform: "Capitalize",
             flex:"1"
-        }
+          }
 
-        var byStyle ={
+          var byStyle ={
             fontSize: "16px",
             fontFamily: "Roboto Condensed",
             whiteSpace: "nowrap",
@@ -169,131 +219,122 @@ var Proj = React.createClass({
             // overflow: "hidden",
             flex:"8"
 
-        }
-        var AboutStyle ={
+          }
+          var AboutStyle ={
             fontSize: "18px",
             fontFamily: "Roboto Condensed"
-        }
+          }
 
-        var imgStyle = {
-          height: "400px",
-          width: "600px",
-          minWidth: "300px",
-          maxWidth:"100%",
-          height: "50%",
-          minHeight: "200px"
-        }
-
-
-/* Padding */
-        var containerStyle = {
-          height: "400px",
-          // marginTop: "40px",
-          // paddingLeft:"400px",
-          // paddingRight:"400px",
-          paddingTop: "100px"
-        }
-        var flexStyle = {
-          height: "100%",
-          display: "flex"
-        }
-        var infoBoxStyle = {
-          padding: "15px",
-          paddingRight: "155px"
-
-        }
-        var buttonStyle = {
-          height: "40px",
-          padding: "20px",
-          flex: "1"
-        }
-        var fillerStyle = {
-          flex: "10"
-        }
+          var imgStyle = {
+            height: "400px",
+            width: "600px",
+            minWidth: "300px",
+            maxWidth:"100%",
+            minHeight: "200px",
+            margin: "auto",
+            display: "block"
+          }
 
 
-        var testStyle= {
-          display: "flex"
-        }
+          /* Padding */
+          var containerStyle = {
+            height: "400px",
+            // marginTop: "40px",
+            // paddingLeft:"400px",
+            // paddingRight:"400px",
+            paddingTop: "100px"
+          }
+          var flexStyle = {
+            height: "100%",
+            display: "flex"
+          }
+          var infoBoxStyle = {
+            padding: "15px",
+            paddingRight: "155px"
 
-        var iconStyle={
-          height: "30px",
-          width: "30px",
-        }
-        var navBar = this.showNav();
-        // By line
-                              // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
-        // var Steps = this.CallSteps();
-        return(
-          <div style={{backgroundColor:"#1a2930"}}>
+          }
+          var buttonStyle = {
+            width:"75px",
+            height:"30px",
+            verticalAlign:"middle",
+            border:"0",
+            borderRadius:"5px",
+            padding:"0",
+            margin:"0 5px",
+            backgroundColor:"#DDD",
+            boxShadow:"0 0 2px #222",
+            color: "black"
+          }
+          var fillerStyle = {
+            flex: "10"
+          }
+
+
+          var testStyle= {
+            display: "flex"
+          }
+
+          var iconStyle={
+            height: "30px",
+            width: "30px",
+          }
+          var navBar = this.showNav();
+          // By line
+          // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
+          // var Steps = this.CallSteps();
+
+          return(
             <div style={{display:"flex"}}>
+              <div id="left" style={{flex:"0.5"}}></div>
 
-
-            <div id="left" style={{flex:"0.5"}}></div>
-
-
-              <div id="center" style={{display:"flex", flex: "1.5"}} >
-                        <div style={containerStyle}>
-                          <Bar style={{width:"100%", display:"inline-block", borderBottom: "2px solid #6C727C",  borderRadiusTop: "6px"}}>
-                            <div style={{ width: "100%", display:"flex", flexDirection:"column"}}>
-                              <div style={{display:"block"}}>
-                                      <div style={{display:"inline-block"}}>
-                                        <TextComponent style={TitleStyle} message={this.state.data.name}></TextComponent>
-                                      </div>
-                                      <div style={{display:"inline-block"}}>
-                                        <TextComponent style={byStyle} message={'by ' + this.state.data.author}></TextComponent>
-                                      </div>
-                                      <div style={{display:"inline-block", float: "right"}}>
-                                            <div style={{width:"100%", overFlow: "hidden", display:"flex", justifyContent: "space-between"}}>
-                                              <div style={{width:"60%"}}></div>
-                                            <div className={'Filler'} style={{flexGrow:"3", width:"60%" }}></div>
-                                             <div >
-                                              <button onClick={this.updateLike}> <ImageComponent  style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png'}/>
-                                              </button>
-                                            </div>
-                                            <TextComponent style={{ width:"40px"}} message={this.state.data.likes}/>
-                                              <Pad hw={['100%','20px']}/>
-                                             <div>
-                                              <ImageComponent style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473693376/bookmark_2_ucai4d.png'}/>
-                                            </div>
-                                      </div>
-
-                              </div>
-                              </div>
-                            </div>
-                          </Bar>
-
-                        <Frame style={{maxHeight:"400px",    width:"100%", display: "inline-block"}}>
-                            <ImageComponent style={imgStyle} url={this.state.data.url}/>
-                            <DetailBox data={this.state.data} >
-                                <div style={testStyle}>
-
-                                    <form method="get" action="/download" enctype="application/x-www-form-urlencoded">
-                                      <input type="hidden" name="name" value={'Jesse'}/>
-                                      <button type="submit">Download!</button>
-                                    </form>
-                                    <button>BookMark</button>
-                                </div>
-                            </DetailBox>
-
-                      </Frame>
-
+              <div id="center" style={{display:"flex", flex: "1.5"}}>
+                <div style={containerStyle} style={{width:"100%", margin:"80px auto 20px", borderRadius:"5px", backgroundColor:"white"}}>
+                  <div style={{width:"100%", padding:"10px",   display:"inline-block", borderBottom: "2px solid #6C727C"}}>
+                    <div style={{ width: "100%", display:"flex", flexDirection:"column", borderRadius:"5px"}}>
+                      <div style={{display:"block"}}>
+                        <div style={{float:"right"}}>
+                          <TextComponent message={"By " + this.state.data.author} style={{fontSize:"16px"}}></TextComponent>
+                          <ImageComponent url={this.state.data.authorImg} style={{height:"60px", float:"right"}}/>
+                        </div>
+                        <div style={{display:"inline-block"}}>
+                          <TextComponent style={TitleStyle} message={this.state.data.name}></TextComponent>
+                        </div>
+                        <div>
+                          <span>{this.state.data.views} Views</span>
+                          <button onClick={this.updateLike} style={buttonStyle}>
+                            <ImageComponent style={iconStyle} url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png'}/> {this.state.data.likes}
+                          </button>
+                          <a onClick={this.updateDownload} href={this.state.data.name + ".pdf"}>
+                            <button style={buttonStyle}>
+                              <FontAwesome name="download" size="2x"/> <span style={{position:"relative", top:"-6px"}}>{this.state.data.downloads}</span>
+                            </button>
+                          </a>
+                        </div>
+                        <div style={{display:"inline-block", float: "right"}}>
+                          <div style={{width:"100%", overFlow: "hidden", display:"flex", justifyContent: "space-between"}}>
+                            <div style={{width:"60%"}}></div>
+                            <div className={'Filler'} style={{flexGrow:"3", width:"60%" }}></div>
+                            <Pad hw={['100%','20px']}/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{maxHeight:"430px", width:"100%", display: "block"}}>
+                    <div id="gallery" style={{clear:"both", padding:"10px 0"}}>
+                      <ImageComponent style={imgStyle} url={this.state.data.url}/>
+                      <div style={{margin:"10px auto", width:"600px"}}></div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
+            <div id="right" style={{flex:"0.5"}}> </div>
+            </div>
+          )
+        }
+      });
 
-                <div id="right" style={{flex:"0.5"}}> </div>
-
-                </div>
-
-
-
-                </div>
-
-              )
-                }
-});
-
-                  // <Step url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png'} num={1}>Hello?</Step>
+      // <Step url={'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png'} num={1}>Hello?</Step>
 
 module.exports = Proj;
