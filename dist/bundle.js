@@ -46147,11 +46147,6 @@
 	      'div',
 	      { style: { backgroundColor: "#1a2930", height: "2500px" } },
 	      React.createElement(Proj, { params: id }),
-	      React.createElement(
-	        'div',
-	        { style: { height: "170px" } },
-	        ' '
-	      ),
 	      React.createElement(Proj2, { params: id })
 	    );
 	  },
@@ -47554,7 +47549,7 @@
 
 	var devUrl = 'http://localhost:3000';
 	var prodUrl = 'https://still-forest-90731.herokuapp.com';
-	var useUrl = devUrl;
+	var useUrl = prodUrl;
 
 	var $ = __webpack_require__(266);
 

@@ -128,7 +128,6 @@ var Projects = React.createClass({
     return (
       <div style={{backgroundColor: "#1a2930", height: "2500px"}}>
         <Proj params={id}/>
-        <div style={{height:"170px"}}> </div>
         <Proj2 params={id}/>
       </div>
     );
