@@ -6,7 +6,7 @@ var Carousel = require('../../components/custom/Carousel');
 
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
-var useUrl = devUrl;
+var useUrl = prodUrl;
 
 var $ = require('jquery');
 
