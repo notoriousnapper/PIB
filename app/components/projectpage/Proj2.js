@@ -1,4 +1,3 @@
-
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -6,7 +5,7 @@ var Carousel = require('../../components/custom/Carousel');
 
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
-var useUrl = prodUrl;
+var useUrl = devUrl;
 
 var $ = require('jquery');
 
@@ -138,9 +137,9 @@ var Proj2 = React.createClass({
               <div id="left" style={padding}> </div>
               <div id="center" style={centerPadding}>
                 <ul className="nav nav-tabs" role="tablist" style={{backgroundColor:"#EEE", borderRadius:"5px 5px 0 0"}}>
-                  <li role="presentation" className="active" style={{height:"auto"}}><a href="#overview" aria-controls="description" role="tab" data-toggle="tab">Overview</a></li>
-                  <li role="presentation" style={{height:"auto"}}><a href="#pictures" aria-controls="instructions" role="tab" data-toggle="tab">Pictures</a></li>
-                  <li role="presentation" style={{height:"auto"}}><a href="#resources" aria-controls="comments" role="tab" data-toggle="tab">Resources</a></li>
+                  <li role="presentation" className="active" style={{height:"auto"}}><a aria-controls="description" role="tab" data-toggle="tab">Overview</a></li>
+                  <li role="presentation" style={{height:"auto"}}><a aria-controls="instructions" role="tab" data-toggle="tab">Pictures</a></li>
+                  <li role="presentation" style={{height:"auto"}}><a aria-controls="comments" role="tab" data-toggle="tab">Resources</a></li>
                 </ul>
 
                 <div className="tab-content" style={{padding:"10px"}}>
