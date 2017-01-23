@@ -49,7 +49,7 @@
 	__webpack_require__(327);
 	__webpack_require__(238);
 	__webpack_require__(321);
-	__webpack_require__(248);
+	__webpack_require__(261);
 	__webpack_require__(240);
 	__webpack_require__(320);
 	__webpack_require__(309);
@@ -64,14 +64,14 @@
 	__webpack_require__(328);
 	__webpack_require__(271);
 	__webpack_require__(322);
-	__webpack_require__(243);
+	__webpack_require__(260);
 	__webpack_require__(308);
-	__webpack_require__(244);
+	__webpack_require__(264);
 	__webpack_require__(329);
-	__webpack_require__(245);
+	__webpack_require__(265);
 	__webpack_require__(239);
-	__webpack_require__(241);
-	__webpack_require__(242);
+	__webpack_require__(262);
+	__webpack_require__(263);
 	__webpack_require__(313);
 	__webpack_require__(314);
 	__webpack_require__(315);
@@ -21507,7 +21507,7 @@
 	var Main = __webpack_require__(238);
 	var Home = __webpack_require__(240);
 
-	var About = __webpack_require__(248);
+	var About = __webpack_require__(261);
 	var Add = __webpack_require__(268);
 
 	var Projects = __webpack_require__(305);
@@ -27016,49 +27016,552 @@
 
 	'use strict';
 
+	var _defineProperty2 = __webpack_require__(241);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/* home.js */
+	var React = __webpack_require__(3);
+	var TextComponent = __webpack_require__(260);
+	var Link = __webpack_require__(181).Link;
+
+	var Home = React.createClass({
+		displayName: 'Home',
+
+		getInitialState: function getInitialState() {
+			return {
+				projects: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1485073390/robotic-arm/roboticarmcircle2.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1484803878/arcadeemulatorv2_kjs7l5.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1474080899/FullSizeRender_fbkwke.jpg"],
+				profiles: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1484808274/colinkeefcircle_hrz89a.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1484807640/asiangirl_zg3lai.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1484844829/ericho_ojewhp.jpg"]
+			};
+		},
+		render: function render() {
+			var _bgStyle;
+
+			var bgStyle = (_bgStyle = {
+				height: "800px"
+			}, (0, _defineProperty3.default)(_bgStyle, 'height', "700px"), (0, _defineProperty3.default)(_bgStyle, 'margin', "50px 0"), (0, _defineProperty3.default)(_bgStyle, 'position', "relative"), (0, _defineProperty3.default)(_bgStyle, 'maxWidth', "100%"), (0, _defineProperty3.default)(_bgStyle, 'backgroundImage', "url('http://res.cloudinary.com/djmk9vktk/image/upload/v1484795377/wood_ahxhaq.jpg')"), (0, _defineProperty3.default)(_bgStyle, 'backgroundSize', "cover"), (0, _defineProperty3.default)(_bgStyle, 'opacity', "0.9"), (0, _defineProperty3.default)(_bgStyle, 'zIndex', "1"), (0, _defineProperty3.default)(_bgStyle, 'display', "flex"), (0, _defineProperty3.default)(_bgStyle, 'flexDirection', "column"), _bgStyle);
+
+			var buttonStyle = {
+				padding: "20px",
+				width: "170px",
+				backgroundColor: "#F1CD3F",
+				color: "#463700",
+				borderRadius: "5px",
+				borderStyle: "none",
+				fontSize: "18px",
+				fontWeight: "bold",
+				fontFamily: "\'Montserrat\', sans-serif"
+			};
+			var textStyle = {
+				fontFamily: "\'Montserrat\', sans-serif",
+				fontSize: "27px",
+				fontWeight: "700",
+				textAlign: "center",
+				color: "white",
+				flex: "2"
+			};
+
+			var linkStyle = {
+				// textAlign:"center",
+				// color: "black",
+				// fontWeight: "bold",
+				// fontSize:"18px",
+				// paddingLeft: "50px"
+			};
+
+			return React.createElement(
+				'div',
+				{ style: bgStyle },
+				React.createElement(
+					Link,
+					{ className: 'image-cropper', style: { height: "250px", width: "250px", top: "88px", right: "16px" },
+						to: "/projects/robotic arm" },
+					React.createElement('img', { src: this.state.projects[0] })
+				),
+				React.createElement(
+					Link,
+					{ className: 'image-cropper', style: { height: "140px", width: "140px", top: "52%", right: "20%" },
+						to: "/projects/arcadebox" },
+					React.createElement('img', { src: this.state.projects[1] })
+				),
+				React.createElement(
+					Link,
+					{ className: 'image-cropper', style: { height: "220px", width: "220px", top: "63%", right: "16px" },
+						to: "/projects/guitar effect pedals" },
+					React.createElement('img', { src: this.state.projects[2] })
+				),
+				React.createElement(
+					Link,
+					{ className: 'image-cropper no-border', style: { borderStyle: "none", height: "110px", width: "110px", top: "16%", left: "192px" }, to: "" },
+					React.createElement('img', { src: this.state.profiles[0] })
+				),
+				React.createElement(
+					Link,
+					{ className: 'image-cropper no-border', style: { borderStyle: "none", height: "180px", width: "180px", top: "33%", left: "22px" },
+						to: "" },
+					React.createElement('img', { src: this.state.profiles[1] })
+				),
+				React.createElement(
+					Link,
+					{ className: 'image-cropper no-border', style: { borderStyle: "none", height: "150px", width: "150px", top: "69%", left: "112px" }, to: "" },
+					React.createElement('img', { src: this.state.profiles[2] })
+				),
+				React.createElement('div', { style: { height: "200px" } }),
+				React.createElement('br', null),
+				React.createElement('br', null),
+				React.createElement('br', null),
+				React.createElement(TextComponent, { style: textStyle, message: ' Instructional Projects created by UCSD Students ' }),
+				React.createElement('br', null),
+				React.createElement(TextComponent, { style: textStyle, message: ' For UCSD Students ' }),
+				React.createElement('br', null),
+				React.createElement('br', null),
+				React.createElement('br', null),
+				React.createElement('br', null),
+				React.createElement('br', null),
+				React.createElement(
+					'div',
+					{ style: { flex: "2", height: "100%" } },
+					React.createElement(
+						'div',
+						{ style: { width: "100%", display: "flex" } },
+						React.createElement('div', { style: { flex: "1" } }),
+						React.createElement(
+							Link,
+							{ to: '/projects' },
+							' ',
+							React.createElement(
+								'button',
+								{ className: 'home-btn' },
+								' See Projects '
+							),
+							' '
+						),
+						React.createElement('div', { style: { width: "60px" } }),
+						React.createElement(
+							Link,
+							{ to: '/about' },
+							' ',
+							React.createElement(
+								'button',
+								{ className: 'home-btn' },
+								'Learn More'
+							),
+							' '
+						),
+						React.createElement('div', { style: { flex: "1" } })
+					)
+				),
+				React.createElement('div', { style: { height: "200px" } })
+			);
+		}
+	});
+
+	module.exports = Home;
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _defineProperty = __webpack_require__(242);
+
+	var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (obj, key, value) {
+	  if (key in obj) {
+	    (0, _defineProperty2.default)(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
+
+	  return obj;
+	};
+
+/***/ },
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(243), __esModule: true };
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(244);
+	var $Object = __webpack_require__(247).Object;
+	module.exports = function defineProperty(it, key, desc){
+	  return $Object.defineProperty(it, key, desc);
+	};
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $export = __webpack_require__(245);
+	// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+	$export($export.S + $export.F * !__webpack_require__(255), 'Object', {defineProperty: __webpack_require__(251).f});
+
+/***/ },
+/* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var global    = __webpack_require__(246)
+	  , core      = __webpack_require__(247)
+	  , ctx       = __webpack_require__(248)
+	  , hide      = __webpack_require__(250)
+	  , PROTOTYPE = 'prototype';
+
+	var $export = function(type, name, source){
+	  var IS_FORCED = type & $export.F
+	    , IS_GLOBAL = type & $export.G
+	    , IS_STATIC = type & $export.S
+	    , IS_PROTO  = type & $export.P
+	    , IS_BIND   = type & $export.B
+	    , IS_WRAP   = type & $export.W
+	    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
+	    , expProto  = exports[PROTOTYPE]
+	    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
+	    , key, own, out;
+	  if(IS_GLOBAL)source = name;
+	  for(key in source){
+	    // contains in native
+	    own = !IS_FORCED && target && target[key] !== undefined;
+	    if(own && key in exports)continue;
+	    // export native or passed
+	    out = own ? target[key] : source[key];
+	    // prevent global pollution for namespaces
+	    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
+	    // bind timers to global for call from export context
+	    : IS_BIND && own ? ctx(out, global)
+	    // wrap global constructors for prevent change them in library
+	    : IS_WRAP && target[key] == out ? (function(C){
+	      var F = function(a, b, c){
+	        if(this instanceof C){
+	          switch(arguments.length){
+	            case 0: return new C;
+	            case 1: return new C(a);
+	            case 2: return new C(a, b);
+	          } return new C(a, b, c);
+	        } return C.apply(this, arguments);
+	      };
+	      F[PROTOTYPE] = C[PROTOTYPE];
+	      return F;
+	    // make static versions for prototype methods
+	    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+	    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
+	    if(IS_PROTO){
+	      (exports.virtual || (exports.virtual = {}))[key] = out;
+	      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
+	      if(type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
+	    }
+	  }
+	};
+	// type bitmap
+	$export.F = 1;   // forced
+	$export.G = 2;   // global
+	$export.S = 4;   // static
+	$export.P = 8;   // proto
+	$export.B = 16;  // bind
+	$export.W = 32;  // wrap
+	$export.U = 64;  // safe
+	$export.R = 128; // real proto method for `library` 
+	module.exports = $export;
+
+/***/ },
+/* 246 */
+/***/ function(module, exports) {
+
+	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+	var global = module.exports = typeof window != 'undefined' && window.Math == Math
+	  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+
+/***/ },
+/* 247 */
+/***/ function(module, exports) {
+
+	var core = module.exports = {version: '2.4.0'};
+	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+
+/***/ },
+/* 248 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// optional / simple context binding
+	var aFunction = __webpack_require__(249);
+	module.exports = function(fn, that, length){
+	  aFunction(fn);
+	  if(that === undefined)return fn;
+	  switch(length){
+	    case 1: return function(a){
+	      return fn.call(that, a);
+	    };
+	    case 2: return function(a, b){
+	      return fn.call(that, a, b);
+	    };
+	    case 3: return function(a, b, c){
+	      return fn.call(that, a, b, c);
+	    };
+	  }
+	  return function(/* ...args */){
+	    return fn.apply(that, arguments);
+	  };
+	};
+
+/***/ },
+/* 249 */
+/***/ function(module, exports) {
+
+	module.exports = function(it){
+	  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+	  return it;
+	};
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var dP         = __webpack_require__(251)
+	  , createDesc = __webpack_require__(259);
+	module.exports = __webpack_require__(255) ? function(object, key, value){
+	  return dP.f(object, key, createDesc(1, value));
+	} : function(object, key, value){
+	  object[key] = value;
+	  return object;
+	};
+
+/***/ },
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var anObject       = __webpack_require__(252)
+	  , IE8_DOM_DEFINE = __webpack_require__(254)
+	  , toPrimitive    = __webpack_require__(258)
+	  , dP             = Object.defineProperty;
+
+	exports.f = __webpack_require__(255) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+	  anObject(O);
+	  P = toPrimitive(P, true);
+	  anObject(Attributes);
+	  if(IE8_DOM_DEFINE)try {
+	    return dP(O, P, Attributes);
+	  } catch(e){ /* empty */ }
+	  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
+	  if('value' in Attributes)O[P] = Attributes.value;
+	  return O;
+	};
+
+/***/ },
+/* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var isObject = __webpack_require__(253);
+	module.exports = function(it){
+	  if(!isObject(it))throw TypeError(it + ' is not an object!');
+	  return it;
+	};
+
+/***/ },
+/* 253 */
+/***/ function(module, exports) {
+
+	module.exports = function(it){
+	  return typeof it === 'object' ? it !== null : typeof it === 'function';
+	};
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = !__webpack_require__(255) && !__webpack_require__(256)(function(){
+	  return Object.defineProperty(__webpack_require__(257)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+	});
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Thank's IE8 for his funny defineProperty
+	module.exports = !__webpack_require__(256)(function(){
+	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+	});
+
+/***/ },
+/* 256 */
+/***/ function(module, exports) {
+
+	module.exports = function(exec){
+	  try {
+	    return !!exec();
+	  } catch(e){
+	    return true;
+	  }
+	};
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var isObject = __webpack_require__(253)
+	  , document = __webpack_require__(246).document
+	  // in old IE typeof document.createElement is 'object'
+	  , is = isObject(document) && isObject(document.createElement);
+	module.exports = function(it){
+	  return is ? document.createElement(it) : {};
+	};
+
+/***/ },
+/* 258 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 7.1.1 ToPrimitive(input [, PreferredType])
+	var isObject = __webpack_require__(253);
+	// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+	// and the second argument - flag - preferred type is a string
+	module.exports = function(it, S){
+	  if(!isObject(it))return it;
+	  var fn, val;
+	  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
+	  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
+	  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
+	  throw TypeError("Can't convert object to primitive value");
+	};
+
+/***/ },
+/* 259 */
+/***/ function(module, exports) {
+
+	module.exports = function(bitmap, value){
+	  return {
+	    enumerable  : !(bitmap & 1),
+	    configurable: !(bitmap & 2),
+	    writable    : !(bitmap & 4),
+	    value       : value
+	  };
+	};
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+
+	var TextComponent = React.createClass({
+	    displayName: 'TextComponent',
+
+	    render: function render() {
+	        var message = this.props.message;
+	        return React.createElement(
+	            'div',
+	            { style: this.props.style },
+	            message,
+	            ' '
+	        );
+	    }
+	});
+
+	module.exports = TextComponent;
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _defineProperty2 = __webpack_require__(241);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	/* About.js */
 	var React = __webpack_require__(3);
 	var ReactRouter = __webpack_require__(181);
 	var Link = ReactRouter.Link;
-	var Frame = __webpack_require__(241);
-	var Bar = __webpack_require__(242);
-	var TextComponent = __webpack_require__(243);
-	var Carousel = __webpack_require__(244);
-	var Panel = __webpack_require__(247);
+	var Frame = __webpack_require__(262);
+	var Bar = __webpack_require__(263);
+	var TextComponent = __webpack_require__(260);
+	var Carousel = __webpack_require__(264);
+	var Panel = __webpack_require__(267);
 	// var LabelCarousel = require('../../components/custom/LabelCarousel');
 	// var BookingFrame = require('../../components/aboutpage/BookingFrame');
 
 	var Label = React.createClass({
-	  displayName: 'Label',
+			displayName: 'Label',
 
-	  render: function render() {
-	    var labelStyle = {
-	      backgroundColor: "white",
-	      height: "20px"
-	    };
-	    return React.createElement(
-	      'div',
-	      null,
-	      this.props.label
-	    );
-	  }
+			render: function render() {
+					var labelStyle = {
+							backgroundColor: "white",
+							height: "20px"
+					};
+					return React.createElement(
+							'div',
+							null,
+							this.props.label
+					);
+			}
 	});
 	// <Carousel />
-	var Home = React.createClass({
-	  displayName: 'Home',
+	var About = React.createClass({
+			displayName: 'About',
 
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(Carousel, { style: { flex: "1" } }),
-	      React.createElement(Panel, { style: { flex: "1"
-	        } }),
-	      React.createElement('embed', { src: 'http://www.apa.org/pubs/journals/features/hea-a0034406.pdf', width: '550', height: '750' })
-	    );
-	  }
+
+			render: function render() {
+					var _bgImgStyle, _bgImgStyle2;
+
+					var textStyle = {
+							fontSize: "18px",
+							fontWeight: "bold",
+							fontFamily: "\'Montserrat\', sans-serif",
+							backgroundColor: "white",
+							textAlign: "center"
+					};
+					var boldStyle = {
+							fontSize: "32px",
+							fontWeight: "bold",
+							fontFamily: "\'Montserrat\', sans-serif",
+							textAlign: "center",
+							backgroundColor: "white"
+					};
+					var bgStyle = {
+							padding: "80px 20px 0",
+							backgroundColor: "white"
+					};
+					var bgImgStyle = (_bgImgStyle = {
+							padding: "10px 10%",
+							height: "800px"
+					}, (0, _defineProperty3.default)(_bgImgStyle, 'height', "100vh"), (0, _defineProperty3.default)(_bgImgStyle, 'maxWidth', "80%"), (0, _defineProperty3.default)(_bgImgStyle, 'backgroundImage', "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg\")"), (0, _defineProperty3.default)(_bgImgStyle, 'backgroundSize', "cover"), (0, _defineProperty3.default)(_bgImgStyle, 'opacity', "0.8"), (0, _defineProperty3.default)(_bgImgStyle, 'zIndex', "1"), (0, _defineProperty3.default)(_bgImgStyle, 'display', "flex"), (0, _defineProperty3.default)(_bgImgStyle, 'flexDirection', "column"), (0, _defineProperty3.default)(_bgImgStyle, 'flex', "1"), _bgImgStyle);
+					var bgImgStyle2 = (_bgImgStyle2 = {
+							height: "500px"
+					}, (0, _defineProperty3.default)(_bgImgStyle2, 'height', "100vh"), (0, _defineProperty3.default)(_bgImgStyle2, 'maxWidth', "80%"), (0, _defineProperty3.default)(_bgImgStyle2, 'width', "auto"), (0, _defineProperty3.default)(_bgImgStyle2, 'backgroundImage', "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg\")"), (0, _defineProperty3.default)(_bgImgStyle2, 'backgroundSize', "cover"), (0, _defineProperty3.default)(_bgImgStyle2, 'opacity', "0.8"), (0, _defineProperty3.default)(_bgImgStyle2, 'zIndex', "1"), (0, _defineProperty3.default)(_bgImgStyle2, 'display', "flex"), (0, _defineProperty3.default)(_bgImgStyle2, 'flexDirection', "column"), _bgImgStyle2);
+					return React.createElement(
+							'div',
+							{ style: bgStyle },
+							React.createElement(TextComponent, { style: boldStyle, message: 'Educational. Personal.' }),
+							React.createElement(TextComponent, { style: textStyle, message: 'Projects bring a dimension of learning that can\'t be taught with just lectures.  That\'s why there\'s Project-in-a-box, A collection of projects designed to help students engage and learn while having fun.' }),
+							React.createElement('img', { src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg', style: { width: "45%", height: "45%", margin: "2.5%" } }),
+							React.createElement('img', { src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg', style: { width: "45%", height: "45%", margin: "2.5%" } })
+					);
+			}
 	});
-	module.exports = Home;
+	module.exports = About;
+	// <Carousel style={{flex:"1"}}/>
+	// <Panel style={{flex:"1" }}/>
+	// <embed src="http://www.apa.org/pubs/journals/features/hea-a0034406.pdf" width="550" height="750"/>
 	// <div style={{width:"100%", backgroundColor: "#F1C232", height:"60px", flex:"1"}}></div>
 
 
@@ -27081,7 +27584,7 @@
 	//
 
 /***/ },
-/* 241 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27117,7 +27620,7 @@
 	module.exports = Frame;
 
 /***/ },
-/* 242 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27158,39 +27661,15 @@
 	module.exports = Bar;
 
 /***/ },
-/* 243 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(3);
-
-	var TextComponent = React.createClass({
-	    displayName: 'TextComponent',
-
-	    render: function render() {
-	        var message = this.props.message;
-	        return React.createElement(
-	            'div',
-	            { style: this.props.style },
-	            message,
-	            ' '
-	        );
-	    }
-	});
-
-	module.exports = TextComponent;
-
-/***/ },
-/* 244 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(3);
 	var ReactRouter = __webpack_require__(181);
-	var Detail = __webpack_require__(245);
-	var $ = __webpack_require__(246);
+	var Detail = __webpack_require__(265);
+	var $ = __webpack_require__(266);
 
 	var Carousel = React.createClass({
 	  displayName: 'Carousel',
@@ -27293,7 +27772,7 @@
 	module.exports = Carousel;
 
 /***/ },
-/* 245 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27354,7 +27833,7 @@
 	module.exports = Detail;
 
 /***/ },
-/* 246 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*eslint-disable no-unused-vars*/
@@ -37434,7 +37913,7 @@
 
 
 /***/ },
-/* 247 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37524,401 +38003,6 @@
 	module.exports = Panel;
 
 /***/ },
-/* 248 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _defineProperty2 = __webpack_require__(249);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	/* home.js */
-	var React = __webpack_require__(3);
-	var TextComponent = __webpack_require__(243);
-	var ReactRouter = __webpack_require__(181);
-	var Link = ReactRouter.Link;
-
-	var About = React.createClass({
-		displayName: 'About',
-
-		render: function render() {
-			var _bgStyle;
-
-			var bgStyle = (_bgStyle = {
-				height: "800px"
-			}, (0, _defineProperty3.default)(_bgStyle, 'height', "100vh"), (0, _defineProperty3.default)(_bgStyle, 'maxWidth', "100%"), (0, _defineProperty3.default)(_bgStyle, 'backgroundImage', "url('/public/img/landingpage.jpg')"), (0, _defineProperty3.default)(_bgStyle, 'backgroundSize', "cover"), (0, _defineProperty3.default)(_bgStyle, 'opacity', "0.8"), (0, _defineProperty3.default)(_bgStyle, 'zIndex', "1"), (0, _defineProperty3.default)(_bgStyle, 'display', "flex"), (0, _defineProperty3.default)(_bgStyle, 'flexDirection', "column"), _bgStyle);
-			var buttonStyle = {
-				padding: "20px",
-				width: "170px",
-				backgroundColor: "#FAC129",
-				// color: "#383838",
-				color: "white",
-				//          // paddingLeft:"12px",
-				//          textAlign: "center",
-				borderRadius: "5px"
-				// borderRadius: "5px 0px 5px 5px"
-			};
-			var textStyle = {
-				fontFamily: "'Bebas Neue', sans-serif",
-				fontSize: "30px",
-				fontWeight: "bold",
-				textAlign: "center",
-				color: "white",
-				flex: "2"
-			};
-
-			var linkStyle = {
-				textAlign: "center",
-				color: "black",
-				fontWeight: "bold",
-				fontSize: "18px",
-				paddingLeft: "50px"
-			};
-
-			return React.createElement(
-				'div',
-				{ style: bgStyle },
-				React.createElement(
-					'div',
-					{ style: { flex: "1.3" } },
-					' '
-				),
-				React.createElement(TextComponent, { style: textStyle, message: 'A collection of projects carefully-crafted by UCSD students, designed to help students build cool things.' }),
-				React.createElement(
-					'div',
-					{ style: { flex: "2", height: "100%" } },
-					React.createElement(
-						'div',
-						{ style: { width: "100%", display: "flex" } },
-						React.createElement('div', { style: { flex: "1" } }),
-						React.createElement(
-							Link,
-							{ style: linkStyle, to: '/projects' },
-							' ',
-							React.createElement(
-								'button',
-								{ style: buttonStyle },
-								' Projects '
-							),
-							' '
-						),
-						React.createElement('div', { style: { width: "60px" } }),
-						React.createElement(
-							Link,
-							{ style: linkStyle, to: '/about' },
-							' ',
-							React.createElement(
-								'button',
-								{ style: buttonStyle },
-								'Learn More'
-							),
-							' '
-						),
-						React.createElement('div', { style: { flex: "1" } })
-					)
-				)
-			);
-		}
-	});
-
-	module.exports = About;
-
-/***/ },
-/* 249 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	exports.__esModule = true;
-
-	var _defineProperty = __webpack_require__(250);
-
-	var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (obj, key, value) {
-	  if (key in obj) {
-	    (0, _defineProperty2.default)(obj, key, {
-	      value: value,
-	      enumerable: true,
-	      configurable: true,
-	      writable: true
-	    });
-	  } else {
-	    obj[key] = value;
-	  }
-
-	  return obj;
-	};
-
-/***/ },
-/* 250 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(251), __esModule: true };
-
-/***/ },
-/* 251 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(252);
-	var $Object = __webpack_require__(255).Object;
-	module.exports = function defineProperty(it, key, desc){
-	  return $Object.defineProperty(it, key, desc);
-	};
-
-/***/ },
-/* 252 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var $export = __webpack_require__(253);
-	// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
-	$export($export.S + $export.F * !__webpack_require__(263), 'Object', {defineProperty: __webpack_require__(259).f});
-
-/***/ },
-/* 253 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var global    = __webpack_require__(254)
-	  , core      = __webpack_require__(255)
-	  , ctx       = __webpack_require__(256)
-	  , hide      = __webpack_require__(258)
-	  , PROTOTYPE = 'prototype';
-
-	var $export = function(type, name, source){
-	  var IS_FORCED = type & $export.F
-	    , IS_GLOBAL = type & $export.G
-	    , IS_STATIC = type & $export.S
-	    , IS_PROTO  = type & $export.P
-	    , IS_BIND   = type & $export.B
-	    , IS_WRAP   = type & $export.W
-	    , exports   = IS_GLOBAL ? core : core[name] || (core[name] = {})
-	    , expProto  = exports[PROTOTYPE]
-	    , target    = IS_GLOBAL ? global : IS_STATIC ? global[name] : (global[name] || {})[PROTOTYPE]
-	    , key, own, out;
-	  if(IS_GLOBAL)source = name;
-	  for(key in source){
-	    // contains in native
-	    own = !IS_FORCED && target && target[key] !== undefined;
-	    if(own && key in exports)continue;
-	    // export native or passed
-	    out = own ? target[key] : source[key];
-	    // prevent global pollution for namespaces
-	    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
-	    // bind timers to global for call from export context
-	    : IS_BIND && own ? ctx(out, global)
-	    // wrap global constructors for prevent change them in library
-	    : IS_WRAP && target[key] == out ? (function(C){
-	      var F = function(a, b, c){
-	        if(this instanceof C){
-	          switch(arguments.length){
-	            case 0: return new C;
-	            case 1: return new C(a);
-	            case 2: return new C(a, b);
-	          } return new C(a, b, c);
-	        } return C.apply(this, arguments);
-	      };
-	      F[PROTOTYPE] = C[PROTOTYPE];
-	      return F;
-	    // make static versions for prototype methods
-	    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
-	    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
-	    if(IS_PROTO){
-	      (exports.virtual || (exports.virtual = {}))[key] = out;
-	      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
-	      if(type & $export.R && expProto && !expProto[key])hide(expProto, key, out);
-	    }
-	  }
-	};
-	// type bitmap
-	$export.F = 1;   // forced
-	$export.G = 2;   // global
-	$export.S = 4;   // static
-	$export.P = 8;   // proto
-	$export.B = 16;  // bind
-	$export.W = 32;  // wrap
-	$export.U = 64;  // safe
-	$export.R = 128; // real proto method for `library` 
-	module.exports = $export;
-
-/***/ },
-/* 254 */
-/***/ function(module, exports) {
-
-	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-	var global = module.exports = typeof window != 'undefined' && window.Math == Math
-	  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-
-/***/ },
-/* 255 */
-/***/ function(module, exports) {
-
-	var core = module.exports = {version: '2.4.0'};
-	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-
-/***/ },
-/* 256 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// optional / simple context binding
-	var aFunction = __webpack_require__(257);
-	module.exports = function(fn, that, length){
-	  aFunction(fn);
-	  if(that === undefined)return fn;
-	  switch(length){
-	    case 1: return function(a){
-	      return fn.call(that, a);
-	    };
-	    case 2: return function(a, b){
-	      return fn.call(that, a, b);
-	    };
-	    case 3: return function(a, b, c){
-	      return fn.call(that, a, b, c);
-	    };
-	  }
-	  return function(/* ...args */){
-	    return fn.apply(that, arguments);
-	  };
-	};
-
-/***/ },
-/* 257 */
-/***/ function(module, exports) {
-
-	module.exports = function(it){
-	  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
-	  return it;
-	};
-
-/***/ },
-/* 258 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var dP         = __webpack_require__(259)
-	  , createDesc = __webpack_require__(267);
-	module.exports = __webpack_require__(263) ? function(object, key, value){
-	  return dP.f(object, key, createDesc(1, value));
-	} : function(object, key, value){
-	  object[key] = value;
-	  return object;
-	};
-
-/***/ },
-/* 259 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var anObject       = __webpack_require__(260)
-	  , IE8_DOM_DEFINE = __webpack_require__(262)
-	  , toPrimitive    = __webpack_require__(266)
-	  , dP             = Object.defineProperty;
-
-	exports.f = __webpack_require__(263) ? Object.defineProperty : function defineProperty(O, P, Attributes){
-	  anObject(O);
-	  P = toPrimitive(P, true);
-	  anObject(Attributes);
-	  if(IE8_DOM_DEFINE)try {
-	    return dP(O, P, Attributes);
-	  } catch(e){ /* empty */ }
-	  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
-	  if('value' in Attributes)O[P] = Attributes.value;
-	  return O;
-	};
-
-/***/ },
-/* 260 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isObject = __webpack_require__(261);
-	module.exports = function(it){
-	  if(!isObject(it))throw TypeError(it + ' is not an object!');
-	  return it;
-	};
-
-/***/ },
-/* 261 */
-/***/ function(module, exports) {
-
-	module.exports = function(it){
-	  return typeof it === 'object' ? it !== null : typeof it === 'function';
-	};
-
-/***/ },
-/* 262 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = !__webpack_require__(263) && !__webpack_require__(264)(function(){
-	  return Object.defineProperty(__webpack_require__(265)('div'), 'a', {get: function(){ return 7; }}).a != 7;
-	});
-
-/***/ },
-/* 263 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// Thank's IE8 for his funny defineProperty
-	module.exports = !__webpack_require__(264)(function(){
-	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-	});
-
-/***/ },
-/* 264 */
-/***/ function(module, exports) {
-
-	module.exports = function(exec){
-	  try {
-	    return !!exec();
-	  } catch(e){
-	    return true;
-	  }
-	};
-
-/***/ },
-/* 265 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isObject = __webpack_require__(261)
-	  , document = __webpack_require__(254).document
-	  // in old IE typeof document.createElement is 'object'
-	  , is = isObject(document) && isObject(document.createElement);
-	module.exports = function(it){
-	  return is ? document.createElement(it) : {};
-	};
-
-/***/ },
-/* 266 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// 7.1.1 ToPrimitive(input [, PreferredType])
-	var isObject = __webpack_require__(261);
-	// instead of the ES6 spec version, we didn't implement @@toPrimitive case
-	// and the second argument - flag - preferred type is a string
-	module.exports = function(it, S){
-	  if(!isObject(it))return it;
-	  var fn, val;
-	  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-	  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
-	  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-	  throw TypeError("Can't convert object to primitive value");
-	};
-
-/***/ },
-/* 267 */
-/***/ function(module, exports) {
-
-	module.exports = function(bitmap, value){
-	  return {
-	    enumerable  : !(bitmap & 1),
-	    configurable: !(bitmap & 2),
-	    writable    : !(bitmap & 4),
-	    value       : value
-	  };
-	};
-
-/***/ },
 /* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -37941,7 +38025,7 @@
 	var CommentForm = __webpack_require__(271);
 	// var request = require('request');
 	// var cloudinary = require('cloudinary');
-	var $ = __webpack_require__(246); // To use JQuery
+	var $ = __webpack_require__(266); // To use JQuery
 	var http = __webpack_require__(272);
 	// tutorial17.js
 	var Add = React.createClass({
@@ -38052,7 +38136,7 @@
 /* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var core  = __webpack_require__(255)
+	var core  = __webpack_require__(247)
 	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
 	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
 	  return $JSON.stringify.apply($JSON, arguments);
@@ -38073,7 +38157,7 @@
 	/* Add.js */
 	/* First, if project name already exists, can't input form */
 	var React = __webpack_require__(3);
-	var $ = __webpack_require__(246); // To use JQuery
+	var $ = __webpack_require__(266); // To use JQuery
 	var http = __webpack_require__(272);
 	// tutorial17.js
 	var CommentForm = React.createClass({
@@ -45784,7 +45868,7 @@
 
 	'use strict';
 
-	var _defineProperty2 = __webpack_require__(249);
+	var _defineProperty2 = __webpack_require__(241);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -45805,12 +45889,12 @@
 	var Proj = __webpack_require__(312);
 	var Proj2 = __webpack_require__(317);
 
-	var Frame = __webpack_require__(241);
-	var Bar = __webpack_require__(242);
+	var Frame = __webpack_require__(262);
+	var Bar = __webpack_require__(263);
 	var Pad = __webpack_require__(311);
 
 	var http = __webpack_require__(272);
-	var $ = __webpack_require__(246);
+	var $ = __webpack_require__(266);
 	var Q = __webpack_require__(318);
 	// var TestAPI = require('../../scripts/TestAPI');
 
@@ -46102,7 +46186,7 @@
 	var ReactRouter = __webpack_require__(181);
 	var Link = ReactRouter.Link;
 	var ImageComponent = __webpack_require__(308);
-	var TextComponent = __webpack_require__(243);
+	var TextComponent = __webpack_require__(260);
 
 	var ProjectListing = React.createClass({
 		displayName: 'ProjectListing',
@@ -46440,7 +46524,7 @@
 
 	var React = __webpack_require__(3);
 	var ImageComponent = __webpack_require__(308);
-	var Frame = __webpack_require__(241);
+	var Frame = __webpack_require__(262);
 
 	var Pad = React.createClass({
 		displayName: 'Pad',
@@ -46486,35 +46570,36 @@
 
 	'use strict';
 
-	var _defineProperty2 = __webpack_require__(249);
+	var _defineProperty2 = __webpack_require__(241);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/* Proj.js */
-	/* Proj.js */
 
 	var React = __webpack_require__(3);
 	var ReactRouter = __webpack_require__(181);
 	var Link = ReactRouter.Link;
 	var ImageComponent = __webpack_require__(308);
-	var TextComponent = __webpack_require__(243);
+	var TextComponent = __webpack_require__(260);
 	var DetailBox = __webpack_require__(313);
 	var Scroll = __webpack_require__(314);
 
 	var IntroBox = __webpack_require__(315);
-	var Bar = __webpack_require__(242);
+	var Bar = __webpack_require__(263);
 
 	var Step = __webpack_require__(316);
 
 	var Pad = __webpack_require__(311);
-	var Frame = __webpack_require__(241);
+	var Frame = __webpack_require__(262);
 
-	var $ = __webpack_require__(246);
+	var FontAwesome = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-fontawesome\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var $ = __webpack_require__(266);
 	var devUrl = 'http://localhost:3000';
 	var prodUrl = 'https://still-forest-90731.herokuapp.com';
-	var useUrl = prodUrl;
+	var useUrl = devUrl;
 
 	var IntroData = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
 
@@ -46526,6 +46611,7 @@
 	      data: {
 	        'name': '',
 	        'author': '',
+	        'authorImg': '',
 	        'url': '',
 	        'about': '',
 	        'instructions': '',
@@ -46559,7 +46645,24 @@
 	      navBar: false
 	    };
 	  },
-
+	  downloadPDF: function downloadPDF() {
+	    $.ajax({
+	      type: 'GET',
+	      url: 'http://localhost:3000/',
+	      dataType: 'json',
+	      data: {
+	        'name': 'arcadebox'
+	      },
+	      cache: false,
+	      success: function (data) {
+	        // alert('Success!');
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(this.props.url, status, err.toString());
+	        // alert('Not Successful!');
+	      }.bind(this)
+	    });
+	  },
 	  CallSteps: function CallSteps() {
 	    var ctr = 0;
 	    var res = this.state.data.steps;
@@ -46590,7 +46693,6 @@
 	      success: function (res) {
 	        // alert('Final Stretch' + JSON.stringify(res,null,4));
 	        this.setState({ data: res[0] });
-	        var Steps = this.CallSteps();
 	      }.bind(this),
 	      error: function (xhr, status, err) {
 	        console.error(useUrl + name, status, err.toString());
@@ -46606,9 +46708,40 @@
 	      method: 'PUT',
 	      cache: true,
 	      success: function (res) {
-
 	        console.log('Response is: ' + res);
-	        var Steps = this.CallSteps();
+	        this.forceAjax();
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(useUrl + name, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  updateDownload: function updateDownload() {
+	    var name = this.props.params;
+	    console.log('query param is' + name);
+	    $.ajax({
+	      url: useUrl + '/getone/' + name + '/' + 'downloads',
+	      dataType: 'json',
+	      method: 'PUT',
+	      cache: true,
+	      success: function (res) {
+	        console.log('Response is: ' + res);
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(useUrl + name, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  updateViews: function updateViews() {
+	    var name = this.props.params;
+	    $.ajax({
+	      url: useUrl + '/getone/' + name + '/' + 'views',
+	      dataType: 'json',
+	      method: 'PUT',
+	      cache: true,
+	      success: function (res) {
+	        console.log('Response is: ' + res);
+	        this.forceAjax();
 	      }.bind(this),
 	      error: function (xhr, status, err) {
 	        console.error(useUrl + name, status, err.toString());
@@ -46617,6 +46750,8 @@
 	  },
 	  componentDidMount: function componentDidMount() {
 	    this.forceAjax();
+	    this.updateViews();
+	    /* Updates Page Views */
 	  },
 
 	  /* Should request another call, etc */
@@ -46631,9 +46766,10 @@
 
 	    this.state.navBar = !this.state.navBar; // reverse
 	  },
+	  testName: function testName() {
+	    // alert(this.state.data.name);
+	  },
 	  render: function render() {
-	    var _imgStyle;
-
 	    var imgs = [{ "logo": "../public/img/logo3.png" }, "../public/img/logo3.png"];
 	    var menu = ['PROJECTS', 'HOME', 'ABOUT', 'CONTACT'];
 
@@ -46664,12 +46800,15 @@
 	      fontFamily: "Roboto Condensed"
 	    };
 
-	    var imgStyle = (_imgStyle = {
+	    var imgStyle = {
 	      height: "400px",
 	      width: "600px",
 	      minWidth: "300px",
-	      maxWidth: "100%"
-	    }, (0, _defineProperty3.default)(_imgStyle, 'height', "50%"), (0, _defineProperty3.default)(_imgStyle, 'minHeight', "200px"), _imgStyle);
+	      maxWidth: "100%",
+	      minHeight: "200px",
+	      margin: "auto",
+	      display: "block"
+	    };
 
 	    /* Padding */
 	    var containerStyle = {
@@ -46689,9 +46828,16 @@
 
 	    };
 	    var buttonStyle = {
-	      height: "40px",
-	      padding: "20px",
-	      flex: "1"
+	      width: "75px",
+	      height: "30px",
+	      verticalAlign: "middle",
+	      border: "0",
+	      borderRadius: "5px",
+	      padding: "0",
+	      margin: "0 5px",
+	      backgroundColor: "#DDD",
+	      boxShadow: "0 0 2px #222",
+	      color: "black"
 	    };
 	    var fillerStyle = {
 	      flex: "10"
@@ -46709,103 +46855,99 @@
 	    // By line
 	    // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
 	    // var Steps = this.CallSteps();
+
 	    return React.createElement(
 	      'div',
-	      { style: { backgroundColor: "#1a2930" } },
+	      { style: { display: "flex" } },
+	      React.createElement('div', { id: 'left', style: { flex: "0.5" } }),
 	      React.createElement(
 	        'div',
-	        { style: { display: "flex" } },
-	        React.createElement('div', { id: 'left', style: { flex: "0.5" } }),
+	        { id: 'center', style: { display: "flex", flex: "1.5" } },
 	        React.createElement(
 	          'div',
-	          { id: 'center', style: { display: "flex", flex: "1.5" } },
+	          (0, _defineProperty3.default)({ style: containerStyle }, 'style', { width: "100%", margin: "80px auto 20px", borderRadius: "5px", backgroundColor: "white" }),
 	          React.createElement(
 	            'div',
-	            { style: containerStyle },
+	            { style: { width: "100%", padding: "10px", display: "inline-block", borderBottom: "2px solid #6C727C" } },
 	            React.createElement(
-	              Bar,
-	              { style: { width: "100%", display: "inline-block", borderBottom: "2px solid #6C727C", borderRadiusTop: "6px" } },
+	              'div',
+	              { style: { width: "100%", display: "flex", flexDirection: "column", borderRadius: "5px" } },
 	              React.createElement(
 	                'div',
-	                { style: { width: "100%", display: "flex", flexDirection: "column" } },
+	                { style: { display: "block" } },
 	                React.createElement(
 	                  'div',
-	                  { style: { display: "block" } },
-	                  React.createElement(
-	                    'div',
-	                    { style: { display: "inline-block" } },
-	                    React.createElement(TextComponent, { style: TitleStyle, message: this.state.data.name })
-	                  ),
-	                  React.createElement(
-	                    'div',
-	                    { style: { display: "inline-block" } },
-	                    React.createElement(TextComponent, { style: byStyle, message: 'by ' + this.state.data.author })
-	                  ),
-	                  React.createElement(
-	                    'div',
-	                    { style: { display: "inline-block", float: "right" } },
-	                    React.createElement(
-	                      'div',
-	                      { style: { width: "100%", overFlow: "hidden", display: "flex", justifyContent: "space-between" } },
-	                      React.createElement('div', { style: { width: "60%" } }),
-	                      React.createElement('div', { className: 'Filler', style: { flexGrow: "3", width: "60%" } }),
-	                      React.createElement(
-	                        'div',
-	                        null,
-	                        React.createElement(
-	                          'button',
-	                          { onClick: this.updateLike },
-	                          ' ',
-	                          React.createElement(ImageComponent, { style: iconStyle, url: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png' })
-	                        )
-	                      ),
-	                      React.createElement(TextComponent, { style: { width: "40px" }, message: this.state.data.likes }),
-	                      React.createElement(Pad, { hw: ['100%', '20px'] }),
-	                      React.createElement(
-	                        'div',
-	                        null,
-	                        React.createElement(ImageComponent, { style: iconStyle, url: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1473693376/bookmark_2_ucai4d.png' })
-	                      )
-	                    )
-	                  )
-	                )
-	              )
-	            ),
-	            React.createElement(
-	              Frame,
-	              { style: { maxHeight: "400px", width: "100%", display: "inline-block" } },
-	              React.createElement(ImageComponent, { style: imgStyle, url: this.state.data.url }),
-	              React.createElement(
-	                DetailBox,
-	                { data: this.state.data },
+	                  { style: { float: "right" } },
+	                  React.createElement(TextComponent, { message: "By " + this.state.data.author, style: { fontSize: "16px" } }),
+	                  React.createElement(ImageComponent, { url: this.state.data.authorImg, style: { height: "60px", float: "right" } })
+	                ),
 	                React.createElement(
 	                  'div',
-	                  { style: testStyle },
+	                  { style: { display: "inline-block" } },
+	                  React.createElement(TextComponent, { style: TitleStyle, message: this.state.data.name })
+	                ),
+	                React.createElement(
+	                  'div',
+	                  null,
 	                  React.createElement(
-	                    'form',
-	                    { method: 'get', action: '/download', enctype: 'application/x-www-form-urlencoded' },
-	                    React.createElement('input', { type: 'hidden', name: 'name', value: 'Jesse' }),
-	                    React.createElement(
-	                      'button',
-	                      { type: 'submit' },
-	                      'Download!'
-	                    )
+	                    'span',
+	                    null,
+	                    this.state.data.views,
+	                    ' Views'
 	                  ),
 	                  React.createElement(
 	                    'button',
-	                    null,
-	                    'BookMark'
+	                    { onClick: this.updateLike, style: buttonStyle },
+	                    React.createElement(ImageComponent, { style: iconStyle, url: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png' }),
+	                    ' ',
+	                    this.state.data.likes
+	                  ),
+	                  React.createElement(
+	                    'a',
+	                    { onClick: this.updateDownload, href: this.state.data.name + ".pdf" },
+	                    React.createElement(
+	                      'button',
+	                      { style: buttonStyle },
+	                      React.createElement(FontAwesome, { name: 'download', size: '2x' }),
+	                      ' ',
+	                      React.createElement(
+	                        'span',
+	                        { style: { position: "relative", top: "-6px" } },
+	                        this.state.data.downloads
+	                      )
+	                    )
+	                  )
+	                ),
+	                React.createElement(
+	                  'div',
+	                  { style: { display: "inline-block", float: "right" } },
+	                  React.createElement(
+	                    'div',
+	                    { style: { width: "100%", overFlow: "hidden", display: "flex", justifyContent: "space-between" } },
+	                    React.createElement('div', { style: { width: "60%" } }),
+	                    React.createElement('div', { className: 'Filler', style: { flexGrow: "3", width: "60%" } }),
+	                    React.createElement(Pad, { hw: ['100%', '20px'] })
 	                  )
 	                )
 	              )
 	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { style: { maxHeight: "430px", width: "100%", display: "block" } },
+	            React.createElement(
+	              'div',
+	              { id: 'gallery', style: { clear: "both", padding: "10px 0" } },
+	              React.createElement(ImageComponent, { style: imgStyle, url: this.state.data.url }),
+	              React.createElement('div', { style: { margin: "10px auto", width: "600px" } })
+	            )
 	          )
-	        ),
-	        React.createElement(
-	          'div',
-	          { id: 'right', style: { flex: "0.5" } },
-	          ' '
 	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { id: 'right', style: { flex: "0.5" } },
+	        ' '
 	      )
 	    );
 	  }
@@ -46829,8 +46971,8 @@
 	var ReactRouter = __webpack_require__(181);
 	var Link = ReactRouter.Link;
 	var ImageComponent = __webpack_require__(308);
-	var TextComponent = __webpack_require__(243);
-	var Bar = __webpack_require__(242);
+	var TextComponent = __webpack_require__(260);
+	var Bar = __webpack_require__(263);
 	var DetailBox = React.createClass({
 	  displayName: 'DetailBox',
 
@@ -47019,8 +47161,8 @@
 	var ReactRouter = __webpack_require__(181);
 	var Link = ReactRouter.Link;
 	var ImageComponent = __webpack_require__(308);
-	var TextComponent = __webpack_require__(243);
-	var Frame = __webpack_require__(241);
+	var TextComponent = __webpack_require__(260);
+	var Frame = __webpack_require__(262);
 
 	var IntroBox = React.createClass({
 	        displayName: 'IntroBox',
@@ -47056,7 +47198,7 @@
 
 	var React = __webpack_require__(3);
 	var ImageComponent = __webpack_require__(308);
-	var Frame = __webpack_require__(241);
+	var Frame = __webpack_require__(262);
 	var Pad = __webpack_require__(311);
 
 	var Step = React.createClass({
@@ -47130,27 +47272,46 @@
 
 	'use strict';
 
-	var _stringify = __webpack_require__(269);
-
-	var _stringify2 = _interopRequireDefault(_stringify);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	var React = __webpack_require__(3);
 	var ReactRouter = __webpack_require__(181);
 	var Link = ReactRouter.Link;
+	var Carousel = __webpack_require__(264);
 
 	var devUrl = 'http://localhost:3000';
 	var prodUrl = 'https://still-forest-90731.herokuapp.com';
-	var useUrl = prodUrl;
+	var useUrl = devUrl;
 
-	var $ = __webpack_require__(246);
+	var $ = __webpack_require__(266);
 
 	var Proj2 = React.createClass({
 	  displayName: 'Proj2',
 
 	  getInitialState: function getInitialState() {
 	    return { data: [] };
+	  },
+	  activeOne: function activeOne() {
+	    $("#i2").attr('class', 'tab-pane');
+	    $("#i3").attr('class', 'tab-pane');
+	    $("#i1").attr('class', 'active');
+	    $("#i12").attr('class', 'tab-pane');
+	    $("#i13").attr('class', 'tab-pane');
+	    $("#i11").attr('class', 'active');
+	  },
+	  activeTwo: function activeTwo() {
+	    $("#i3").attr('class', 'tab-pane');
+	    $("#i1").attr('class', 'tab-pane');
+	    $("#i2").attr('class', 'active');
+	    $("#i12").attr('class', 'tab-pane');
+	    $("#i13").attr('class', 'tab-pane');
+	    $("#i12").attr('class', 'active');
+	  },
+	  activeThree: function activeThree() {
+	    $("#i2").attr('class', 'tab-pane');
+	    $("#i1").attr('class', 'tab-pane');
+	    $("#i3").attr('class', 'active');
+	    $("#i12").attr('class', 'tab-pane');
+	    $("#i11").attr('class', 'tab-pane');
+	    $("#i13").attr('class', 'active');
 	  },
 	  forceAjax: function forceAjax() {
 	    var name = this.props.params;
@@ -47162,8 +47323,8 @@
 	      success: function (res) {
 	        // alert('Final Stretch' + JSON.stringify(res,null,4));
 	        this.setState({ data: res[0] });
-	        var Steps = this.CallSteps();
-	        alert((0, _stringify2.default)(res[0], null, 4));
+	        // var Steps = this.CallSteps();
+	        // alert(JSON.stringify(res[0], null, 4));
 	      }.bind(this),
 	      error: function (xhr, status, err) {
 	        console.error(useUrl + name, status, err.toString());
@@ -47175,21 +47336,99 @@
 	  },
 	  render: function render() {
 	    var padding = {
-	      flex: "0.5",
-	      backgroundColor: "#1a2930"
-	    };
-	    var paddingRight = {
-	      flex: "0.5",
-	      backgroundColor: "white"
+	      flex: "0.5"
 	    };
 
 	    var centerPadding = {
 	      flex: "1.5", backgroundColor: "white",
-	      minWidth: "700px"
+	      minWidth: "700px",
+	      borderRadius: "5px",
+	      marginBottom: "20px"
 	    };
+
+	    var descriptionStyle = {
+	      fontSize: "20px",
+	      padding: "10px 25px"
+	    };
+
+	    var imgStyle = {
+	      maxHeight: "400px !important",
+	      maxWidth: "400px !important"
+	    };
+
+	    // alert(JSON.stringify(this.state.data.materials, null, 4));
+	    var arr = this.state.data.links;
+	    var res = [];
+	    if (arr != null) {
+	      res = arr.map(function (item) {
+	        return React.createElement(
+	          'li',
+	          { style: { height: "30px !important", width: "100%" } },
+	          ' ',
+	          item,
+	          ' '
+	        );
+	      });
+	    }
+
+	    var extraImg = [];
+	    var skills = [];
+	    var materials = [];
+	    var links = [];
+
+	    // alert(this.state.data.carouselFiles);
+	    // if(this.state.data.carouselFiles != null){
+	    //   return <div style={{width:"100px", height: "100px"}}>  <img src={item} /> </div>
+	    // });
+	    // }
+	    if (this.state.data.skills != null) {
+	      skills = this.state.data.skills.map(function (item) {
+	        return React.createElement(
+	          'div',
+	          null,
+	          ' ',
+	          item,
+	          ' '
+	        );
+	      });
+	    }
+	    if (this.state.data.materials != null) {
+	      materials = this.state.data.materials.map(function (item) {
+	        return React.createElement(
+	          'div',
+	          null,
+	          ' ',
+	          item,
+	          ' '
+	        );
+	      });
+	    }
+	    if (this.state.data.links != null) {
+	      links = this.state.data.links.map(function (item) {
+	        return React.createElement(
+	          'div',
+	          null,
+	          ' ',
+	          item,
+	          ' '
+	        );
+	      });
+	    }
+
+	    /* Extra images right now will be no video*/
+	    if (this.state.data.carouselFiles != null) {
+	      extraImg = this.state.data.carouselFiles.map(function (item) {
+	        if (item[item.length - 1] != "g") {
+	          return React.createElement('div', null);
+	        } else {
+	          return React.createElement('img', { style: { height: "300px", width: "300px", padding: "20px" }, src: item });
+	        }
+	      });
+	    }
+
 	    return React.createElement(
 	      'div',
-	      { style: { display: "flex", width: "100%", height: "1000px", padding: "0px 0px 0px 0px", marginTop: "100px" } },
+	      { style: { display: "flex", width: "100%" } },
 	      React.createElement(
 	        'div',
 	        { id: 'left', style: padding },
@@ -47199,83 +47438,96 @@
 	        'div',
 	        { id: 'center', style: centerPadding },
 	        React.createElement(
-	          'div',
-	          { className: 'section half' },
+	          'ul',
+	          { className: 'nav nav-tabs', role: 'tablist', style: { backgroundColor: "#EEE", borderRadius: "5px 5px 0 0" } },
 	          React.createElement(
-	            'div',
-	            null,
-	            "Introduction"
-	          ),
-	          React.createElement(
-	            'p',
-	            { id: 'desc' },
-	            ' ',
-	            this.state.data.about,
-	            ' '
-	          )
-	        ),
-	        React.createElement(
-	          'div',
-	          { style: { display: "flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle: "solid",
-	              backgroundColor: "white" } },
-	          React.createElement(
-	            'div',
-	            { className: 'section' },
-	            ' ',
-	            "Skills Learned",
+	            'li',
+	            { role: 'presentation', className: 'active', style: { height: "auto" } },
 	            React.createElement(
-	              'ul',
-	              null,
-	              React.createElement(
-	                'li',
-	                null,
-	                ' Soldering '
-	              ),
-	              React.createElement(
-	                'li',
-	                null,
-	                ' Circuits '
-	              ),
-	              React.createElement(
-	                'li',
-	                null,
-	                ' C++ '
-	              )
+	              'a',
+	              { href: '#overview', 'aria-controls': 'description', role: 'tab', 'data-toggle': 'tab' },
+	              'Overview'
 	            )
 	          ),
 	          React.createElement(
-	            'div',
-	            { className: 'section' },
-	            ' ',
-	            "Preqs",
+	            'li',
+	            { role: 'presentation', style: { height: "auto" } },
 	            React.createElement(
-	              'ul',
-	              null,
-	              React.createElement(
-	                'li',
-	                null,
-	                ' Soldering '
-	              ),
-	              React.createElement(
-	                'li',
-	                null,
-	                ' Circuits '
-	              ),
-	              React.createElement(
-	                'li',
-	                null,
-	                ' C++ '
-	              )
+	              'a',
+	              { href: '#pictures', 'aria-controls': 'instructions', role: 'tab', 'data-toggle': 'tab' },
+	              'Pictures'
+	            )
+	          ),
+	          React.createElement(
+	            'li',
+	            { role: 'presentation', style: { height: "auto" } },
+	            React.createElement(
+	              'a',
+	              { href: '#resources', 'aria-controls': 'comments', role: 'tab', 'data-toggle': 'tab' },
+	              'Resources'
 	            )
 	          )
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'section', style: { display: "flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle: "solid",
-	              backgroundColor: "white" } },
-	          ' ',
-	          "Materials",
-	          ' '
+	          { className: 'tab-content', style: { padding: "10px" } },
+	          React.createElement(
+	            'div',
+	            { role: 'tabpanel', className: 'tab-pane active', id: 'overview', style: { height: "auto" } },
+	            React.createElement(
+	              'div',
+	              { style: descriptionStyle },
+	              ' ',
+	              this.state.data.about,
+	              ' '
+	            ),
+	            React.createElement(
+	              'h1',
+	              null,
+	              ' Skills Learned '
+	            ),
+	            React.createElement(
+	              'div',
+	              { style: descriptionStyle },
+	              ' ',
+	              skills,
+	              ' '
+	            ),
+	            React.createElement(
+	              'h1',
+	              null,
+	              ' Materials '
+	            ),
+	            React.createElement('img', { style: { width: "500px", height: "500px" }, src: this.state.data.partsImg }),
+	            React.createElement(
+	              'div',
+	              { style: descriptionStyle },
+	              ' ',
+	              materials,
+	              ' '
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { role: 'tabpanel', className: 'tab-pane', id: 'pictures', style: { height: "auto" } },
+	            React.createElement('a', { href: this.state.data.name + ".pdf" }),
+	            React.createElement(
+	              'div',
+	              { style: {} },
+	              extraImg
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { role: 'tabpanel', className: 'tab-pane', id: 'resources', style: { height: "auto" } },
+	            React.createElement(
+	              'div',
+	              { style: { paddingLeft: "20px", paddingRight: "20px" } },
+	              ' ',
+	              links,
+	              ' '
+	            )
+	          )
 	        )
 	      ),
 	      React.createElement(
@@ -47288,6 +47540,35 @@
 	});
 	// <button className="cta-button"> Click Me</button>
 	module.exports = Proj2;
+
+	/*
+	<div className="section half">
+
+	<div>{"Introduction"}</div>
+	<p id="desc"> {this.state.data.about} </p>
+
+	 </div>
+	<div style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
+	    backgroundColor:"white"}}>
+
+	    <div className="section" > {"Skills Learned"}
+	      <ul>
+	        <li> Soldering </li>
+	        <li> Circuits </li>
+	        <li> C++ </li>
+	      </ul>
+	    </div>
+	    <div className="section" > {"Preqs"}
+	      <ul>
+	        <li> Soldering </li>
+	        <li> Circuits </li>
+	        <li> C++ </li>
+	      </ul>
+	    </div>
+	</div>
+	    <div className="section" style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
+	        backgroundColor:"white"}}> {"Materials"} </div>
+	*/
 
 /***/ },
 /* 318 */
@@ -49439,13 +49720,13 @@
 	var ReactRouter = __webpack_require__(181);
 	var Link = ReactRouter.Link;
 	var ImageComponent = __webpack_require__(308);
-	var TextComponent = __webpack_require__(243);
+	var TextComponent = __webpack_require__(260);
 	var DetailBox = __webpack_require__(313);
 	var IntroBox = __webpack_require__(315);
-	var Bar = __webpack_require__(242);
+	var Bar = __webpack_require__(263);
 	var Step = __webpack_require__(316);
 
-	var $ = __webpack_require__(246);
+	var $ = __webpack_require__(266);
 	var devUrl = 'http://localhost:3000';
 	var prodUrl = 'https://still-forest-90731.herokuapp.com';
 	var useUrl = prodUrl;
@@ -49536,7 +49817,7 @@
 
 	'use strict';
 
-	var _defineProperty2 = __webpack_require__(249);
+	var _defineProperty2 = __webpack_require__(241);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
@@ -49544,7 +49825,7 @@
 
 	/* Login.js */
 	var React = __webpack_require__(3);
-	var Frame = __webpack_require__(241);
+	var Frame = __webpack_require__(262);
 
 	var Login = React.createClass({
 	  displayName: 'Login',
