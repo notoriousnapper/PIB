@@ -71,7 +71,7 @@ var About = React.createClass({
         return(
         <div style={bgStyle}>
           <TextComponent style={boldStyle} message={'Educational. Personal.'} />
-          <TextComponent style={textStyle} message={'Projects bring a dimension of learning that can\'t be taught with just lectures.  That\'s why there\'s Project-in-a-box, A collection of projects designed to help students engage and learn while having fun.'}/>
+          <TextComponent style={textStyle} message={'Projects bring a dimension of learning that can\'t be captured in lectures.  That\'s why we built Project-in-a-box, a collection of projects designed to help students engage and learn while having fun.'}/>
           <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"45%",margin:"2.5%"}}/>
           <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg" style={{width:"45%",height:"45%",margin:"2.5%"}}/>
         </div>
