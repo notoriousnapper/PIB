@@ -28,7 +28,8 @@ var About = React.createClass({
 					fontWeight: "bold",
 					fontFamily: "\'Montserrat\', sans-serif",
 					backgroundColor: "white",
-          textAlign: "center"
+          textAlign: "center",
+					padding: "10px 30px"
 				};
 				var boldStyle = {
 					fontSize:"32px",
@@ -70,10 +71,12 @@ var About = React.createClass({
 		};
         return(
         <div style={bgStyle}>
-          <TextComponent style={boldStyle} message={'Educational. Personal.'} />
+          <TextComponent style={boldStyle} message={'Educational.    Personal.    Fun.'} />
           <TextComponent style={textStyle} message={'Projects bring a dimension of learning that can\'t be captured in lectures.  That\'s why we built Project-in-a-box, a collection of projects designed to help students engage and learn while having fun.'}/>
           <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"45%",margin:"2.5%"}}/>
           <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg" style={{width:"45%",height:"45%",margin:"2.5%"}}/>
+					<TextComponent style={textStyle} message={'ECE 196 is designed for students to gain hands-on engineering experience throughprojects in team building environments. Students will work in groups of two to build projects thatincorporate a combination of electrical and mechanical engineering. In the course of one quarter,students will work on beginner, intermediate, and advance projects that will test their ability to problemsolve, learn, and engineer.'}/>
+					<div style={{height:"100px"}}>/</div>
         </div>
               )
                 }
