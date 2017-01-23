@@ -27,11 +27,13 @@ var Home = React.createClass({
               <Carousel style={{flex:"1"}}/>
               <Panel style={{flex:"1"
             }}/>
+
         </div>
               )
                 }
 });
 module.exports = Home;
+            // <embed src="http://www.apa.org/pubs/journals/features/hea-a0034406.pdf" width="550" height="750"/>
               // <div style={{width:"100%", backgroundColor: "#F1C232", height:"60px", flex:"1"}}></div>
 
 
