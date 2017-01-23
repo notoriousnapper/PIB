@@ -136,30 +136,57 @@ app.get('/user', function(req, res) {
 // 		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
 // 	})
 // });
-
 // var bodyParser = require('body-parser').json();
 app.get('/download',  function(req, res){
   console.log("A file has been downloaded");
-  console.log(req.body);
-  var name = req.body.name;
+  console.log(req.query);
+  var name = req.query.name;
   if (name === "arcadebox") {
     console.log("It's pepper!")
   }
 
-  if(req.body.name!=null){
-  switch(name){
-    case 'arcadebox': console.log(name);
-    break;
-    case 'solartracker': console.log(name);
-    break;
-    case 'arcadebox': console.log(name);
-    break;
-  };
-}
+  if(req.query.name!=null){
+    switch(name){
+      case 'arcadebox': console.log(name);
+      break;
+      case 'solartracker': console.log(name);
+      break;
+    };
+  }
 
-  console.log(req);
+  //console.log(req);
+  console.log("name is");
 
-  var file = __dirname + '/uploads/project.pdf';
+
+  var name = 'solartracker';
+
+  var file = __dirname + '/uploads/' + name + '.pdf';
+  res.download(file); // Set disposition and send it.
+});
+
+app.get('*.pdf', function(req, res){
+  var filename;
+    console.log("debugging " + req.originalUrl);
+  if(req.originalUrl=="solartracker.pdf"){
+    filename = "solartracker.pdf";
+  }
+  else if(req.originalUrl == "/guitar%20effect%20pedals.pdf"){
+    filename = "guitareffects.pdf";
+  }
+  else if(req.originalUrl == "/arcadebox.pdf"){
+    filename = "arcadeemulator.pdf";
+  }
+  else if(req.originalUrl == "/the%20binary%20clk.pdf"){
+    filename = "binaryclock.pdf";
+  }
+  else if(req.originalUrl == "/robotic%20arm.pdf"){
+    filename = "roboticarm.pdf";
+  }
+  else {
+    filename = req.originalUrl;
+  }
+  console.log(filename);
+  var file = __dirname + '/uploads/' + filename;
   res.download(file); // Set disposition and send it.
 });
 
@@ -272,26 +299,3 @@ app.post('/upload', upload.single('image'), (req,res)=>{
 
 /* Updates views, likes, or downloads of certain project ONLY */
 //'/getone/:id/:type'   is full
-app.put('/getone/:id/:type', (req,res)=>{
-	/* Updates specific project id with specific field (like, views, etc) */
-	var fields = ['views','likes', 'downloads'];
-	if (!fields.every(function(elem){req.params.type === elem})){
-		var name = req.params.id;
-		var type = req.params.type;
-
-		console.log("id is: " + name);
-		var obj = {};
-		obj[type] = 1;
-		console.log("Object is: " + JSON.stringify(obj, null, 4));
-
-		db.collection('projects').updateOne(
-			{'name': name},
-			{$inc: obj },
-
-		function(err, doc){
-			console.log(err);
-		}
-	);
-
-	}
-});

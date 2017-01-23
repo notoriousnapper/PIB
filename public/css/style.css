@@ -583,3 +583,71 @@ p#cf7_controls {
   height: 300px;
   color: black;
 }
+
+.image-cropper {
+    z-index: 0;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 50%;
+    border-color: #2E0E01;
+    border-color: white;
+    border-width: 4px;
+    border-style: solid;
+}
+
+.image-cropper .no-border{
+  border-style: none;
+}
+
+.image-cropper:hover { transform: scale(1.1); }
+.image-cropper img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.home-btn{
+        padding:20px;
+        width:170px;
+        background-color: #F1C020;
+        color: #463700;
+        border-radius: 5px;
+        border-style: none;
+        font-size:18px;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+}
+
+.home-btn:hover{
+  /*background-color: white;*/
+  opacity: 0.4;
+}
+
+
+
+/* React Tab example */
+.nav {
+  padding: 10px 10px 0;
+  background: #333;
+}
+.is-visible {
+  border: solid 1px red;
+}
+section {
+  margin: 20px;
+}
+h2, p {
+  margin: 0;
+}
+
+.special li{
+
+}
+
+/* somehow changed at the top */
+h1{
+  color: black;
+}
