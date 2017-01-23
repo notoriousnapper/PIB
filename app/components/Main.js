@@ -54,9 +54,9 @@ var GlobalNav = React.createClass({
             boxShadow:"0 0 1px 1px gray"
           };
           var navList = {
-            width:"calc(50% - 343.3px)",
+            width:"calc(50% - 18%)",
             position:"absolute",
-            left:"0",
+            left:"20",
             top:"10px",
             borderRightColor: "black",
             borderRightWidth: "10px"
@@ -159,8 +159,6 @@ var GlobalNav = React.createClass({
               <LogoComponent url="../public/img/logo3.png"/>
               <div style={fakeShadow}>▼</div>
               <div style={user}>
-                <Link to={"/login"} style={bottomStyle}>Log In</Link>
-                <Link to={"/signup"} style={bottomStyle}>Sign Up</Link>
               </div>
             </div>
           )
@@ -183,7 +181,7 @@ var whiteOverlayStyle = {
 var Main = React.createClass({
         render: function(){
         var imgs = [{"logo":"../public/img/logo3.png"}, "../public/img/logo3.png"]
-        var menu =['HOME', 'PROJECTS', 'THE TEAM', 'ABOUT']
+        var menu =['HOME', 'PROJECTS', 'NEWS', 'ABOUT']
         var navBarStyle={
           boxShadow: "10px 10px 5px grey",
           // borderStyle:"solid",
