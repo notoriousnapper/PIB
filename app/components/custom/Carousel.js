@@ -3,10 +3,7 @@ var ReactRouter = require('react-router');
 var Detail = require('../../components/custom/Detail');
 var $ = require('jquery');
 
-
-
 var Carousel = React.createClass({
-
 getInitialState: function(){
   return {
     ctr  : 0,
@@ -51,6 +48,10 @@ componentDidMount: function() {
                  // console.log(newImage);
          setTimeout(changeBg, interval);
      })();
+     this.setState({
+       ctr  : newCtr,
+       paths: this.props.links
+     });
 },
 render: function(){
     var imgStyle = {height:"100%", padding: "0%", width:"100%"};
@@ -61,9 +62,8 @@ return  (
     backgroundSize: "100% 100%", backgroundPosition: "center"}}>
      <div style={{display: "block", height:"600px", width:"100%", padding: "0"}} >
        <div style={{display:"inline-block", flex:"0.3", padding: "40px 0 0 90px", width:"30%", height:"100%"}}>
-          <Detail />
        </div>
-       <div style={{display:"inline-block",flex:"0.6", width: "40%", height: "100%"}} id="cf7" className="shadow" >
+       <div style={{display:"inline-block",flex:"0.6", width: "40%", height: "100%", marginTop:"10px"}} id="cf7" className="shadow">
          <img style={imgStyle} className='opaque' src={this.state.paths[0]}/>
          <img style={imgStyle} src={this.state.paths[1]} />
          <img style={imgStyle} src={this.state.paths[2]} />

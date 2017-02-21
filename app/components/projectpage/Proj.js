@@ -21,7 +21,7 @@ var FontAwesome = require('react-fontawesome');
 var $ = require('jquery');
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
-var useUrl = prodUrl;
+var useUrl = devUrl;
 
 var IntroData =
 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
@@ -283,6 +283,12 @@ var Proj = React.createClass({
           // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
           // var Steps = this.CallSteps();
 
+          var nameArray = this.state.data.name.split(" ");
+      		var displayName = nameArray[0].charAt(0).toUpperCase() + nameArray[0].substr(1);
+      		for(var i = 1; i < nameArray.length; i++){
+      			var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
+      		}
+
           return(
             <div style={{display:"flex"}}>
               <div id="left" style={{flex:"0.5"}}></div>
@@ -297,7 +303,7 @@ var Proj = React.createClass({
                           <ImageComponent url={this.state.data.authorImg} style={{height:"60px", float:"right"}}/>
                         </div>
                         <div style={{display:"inline-block"}}>
-                          <TextComponent style={TitleStyle} message={this.state.data.name}></TextComponent>
+                          <TextComponent style={TitleStyle} message={displayName}></TextComponent>
                         </div>
                         <div>
                           <span>{this.state.data.views} Views</span>

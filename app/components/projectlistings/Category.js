@@ -17,19 +17,29 @@ render: function(){
       width: "160px"
     }
 
+		var buttonStyle = {
+			//width:"75px",
+			//height:"30px",
+			//verticalAlign:"middle",
+			border:"0",
+			borderRadius:"5px",
+			padding:"5px",
+			margin:"0 5px",
+			backgroundColor:"#EECA47",
+			boxShadow:"0 0 2px #222",
+			color: "black",
+			cursor: "pointer"
+		}
+
 	return (
             <div>
                   <div style={paddingStyle}> </div>
                       <div className='Buttons' style={filterInnerStyle}>
 
-                            <a> Most Recent </a>
-                                <Pad hw={['100%','50px']} />
-                            <a> Most Popular </a>
-                                <Pad hw={['100%','50px']} />
-                            <a> Most Views </a>
-                                <Pad hw={['100%','50px']} />
+                            <a onClick={this.props.popular} style={buttonStyle}> Popular </a>
+                            <a onClick={this.props.view} style={buttonStyle}> Most Views </a>
 
-                            </div>
+                            </div >
                             <div style={paddingStyle}> </div>
             </div>
             );

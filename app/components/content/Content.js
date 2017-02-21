@@ -16,7 +16,7 @@ var Step = require('../../components/addpage/Step');
 var $ = require('jquery');
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
-var useUrl = prodUrl;
+var useUrl = devUrl;
 
 var Content = React.createClass({
         render: function(){

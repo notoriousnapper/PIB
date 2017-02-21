@@ -1,3 +1,4 @@
+
 /* About.js */
 var React = require('react');
 var ReactRouter = require('react-router');
@@ -24,23 +25,36 @@ var About = React.createClass({
 
         render: function(){
 				var textStyle = {
-					fontSize:"18px",
-					fontWeight: "bold",
+          margin: "0 auto",
+          width: "40%",
+					fontSize:"14px",
+					// fontWeight: "n",
 					fontFamily: "\'Montserrat\', sans-serif",
-					backgroundColor: "white",
+					// backgroundColor: "white",
           textAlign: "center",
-					padding: "10px 30px"
+          marginTop: "20px",
+          color: "#7691AA"
 				};
+
+        var textStyle2 = {
+          ...textStyle, ...{marginTop:"0"}
+        };
+
+
+
 				var boldStyle = {
-					fontSize:"32px",
-					fontWeight: "bold",
+					fontSize:"26px",
+					fontWeight: "bold", //400 normal, 700 bold
 					fontFamily: "\'Montserrat\', sans-serif",
 					textAlign: "center",
-					backgroundColor: "white"
+					// backgroundColor: "white",
+          color: "#164065"
 				};
 				var bgStyle = {
-          padding: "80px 20px 0",
-          backgroundColor: "white"
+          padding: "0px 50px 0",
+          // backgroundColor: "white",
+  				// backgroundImage: "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1487692846/bgyellow_nevfha.jpg\")",
+          backgroundColor: "#EEEEEE"
 				};
 				var bgImgStyle = {
 				padding: "10px 10%",
@@ -71,22 +85,68 @@ var About = React.createClass({
 		};
         return(
         <div style={bgStyle}>
-          <TextComponent style={boldStyle} message={'Educational.    Personal.    Fun.'} />
-          <TextComponent style={textStyle} message={'Projects bring a dimension of learning that can\'t be captured in lectures.  That\'s why we built Project-in-a-box, a collection of projects designed to help students engage and learn while having fun.'}/>
-          <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"45%",margin:"2.5%"}}/>
-          <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg" style={{width:"45%",height:"45%",margin:"2.5%"}}/>
-					<TextComponent style={textStyle} message={'ECE 196 is designed for students to gain hands-on engineering experience throughprojects in team building environments. Students will work in groups of two to build projects thatincorporate a combination of electrical and mechanical engineering. In the course of one quarter,students will work on beginner, intermediate, and advance projects that will test their ability to problemsolve, learn, and engineer.'}/>
-					<div style={{height:"100px"}}>/</div>
+          <div style={{backgroundColor:"white", height: "800px"}}>
+            <div>
+              <div style={{height: "60px", marginTop: "30px"}}></div>
+                <TextComponent style={boldStyle} message={'Learning should be:'} />
+              <TextComponent style={boldStyle} message={'Educational, Personal, and Fun.'} />
+
+              <div style={{margin: "0 auto", height: "45px", width:"50px"}} >
+                <img style={boldStyle} src="http://res.cloudinary.com/djmk9vktk/image/upload/v1487699066/arcadeboxflat_agzujk.png" style={{margin: "0 auto", width:"100%" ,height:"100%"}}/>
+                </div>
+
+              <TextComponent style={textStyle} message={'That\'s why there\'s \'Project In a Box\', an Engineering program at UCSD that promotes education with projects built by students, for students.' } />
+              <TextComponent style={textStyle} message={'Since its inception in 2015, the program has now grown to host more than 35 tutors, and offers a highly-sought after ECE class for upperclassmen.'} />
+            </div>
+
+            <div style={{width: "80%", margin: "0 auto", height: "300px"}}>
+              <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"100%",margin:"2.5%"}}/>
+              <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg" style={{width:"45%",height:"100%",margin:"2.5%"}}/>
+            </div>
+
+          </div>
         </div>
               )
                 }
-                //
 });
 module.exports = About;
+
+
+            /* Background Stretch */
+            //   <div id="bgImg" style={{marginTop: "40px", height: "400px", width: "100%", backgroundImage:
+            //   "url(\"http://res.cloudinary.com/djmk9vktk/image/upload/v1487696496/bgabout_nsjx3k.jpg\")",
+            //   backgroundSize: "cover"
+            // }}> </div>
+
+
+
+              // <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{minHeight:"100%", maxHeight: "100%"}}/>
+            // <TextComponent style={textStyle} message={'Projects bring a dimension of learning and growth that crucial to an engineers growth.  That\'s why there\'s Project-in-a-box, a program designed to help students engage and learn while having fun.'}/>
               // <Carousel style={{flex:"1"}}/>
               // <Panel style={{flex:"1" }}/>
             // <embed src="http://www.apa.org/pubs/journals/features/hea-a0034406.pdf" width="550" height="750"/>
               // <div style={{width:"100%", backgroundColor: "#F1C232", height:"60px", flex:"1"}}></div>
+
+
+              /* Flex */
+              // <div style={{display: "flex"}}>
+              //   <div style={{flex: "1"}}>
+              //   <TextComponent style={boldStyle} message={'Educational, Personal, and Fun'} />
+              //   <TextComponent style={textStyle} message={'Projects bring a dimension of learning and growth that crucial to an engineerse growth.  That\'s why there\'s Project-in-a-box, a program designed to help students engage and learn while having fun.'}/>
+              //   </div>
+              //   <div style={{flex: "1"}}>
+              //     <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"45%",margin:"2.5%"}}/>
+              //     <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg" style={{width:"45%",height:"45%",margin:"2.5%"}}/>
+              //     <div style={textStyle}> {'“It was a chill class. I appreciated being able to come into class and go straight into working on projects. I loved the vibe and intimate environment I had with my classmates and professor/TA/tutors.  Hearing what Professor Nguyen had to say about the direction he wants the department to go to was amazing. I\'ve been recommending this class to my ECE friends.'} </div>
+              //     <div style={textStyle}> {'-Luzanne Batoon'} </div>
+              //   </div>
+              // </div>
+              //
+
+
+
+
+
 
 
 

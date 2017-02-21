@@ -5,7 +5,7 @@ var Carousel = require('../../components/custom/Carousel');
 
 var devUrl ='http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
-var useUrl = prodUrl;
+var useUrl = devUrl;
 
 var $ = require('jquery');
 
@@ -153,18 +153,46 @@ var Proj2 = React.createClass({
                   </div>
                   <div role="tabpanel" className="tab-pane" id="pictures" style={{height:"auto"}}>
                     <a href={this.state.data.name + ".pdf"} />
-                    <div >{extraImg}</div>
+                    <div style={{}}>{extraImg}</div>
+                  </div>
+                  <div role="tabpanel" className="tab-pane" id="resources" style={{height:"auto"}}>
+                    <div style={{paddingLeft:"20px", paddingRight: "20px"}}> {links} </div>
+                  </div>
+                </div>
+              </div>
+              <div id="right" style={padding}> </div>
+    				</div>
+              )
+                }
+});
+                      // <button className="cta-button"> Click Me</button>
+module.exports = Proj2;
 
-                                      </div>
-                                      <div role="tabpanel" className="tab-pane" id="resources" style={{height:"auto"}}>
-                                        <div style={{paddingLeft:"20px", paddingRight: "20px"}}> {links} </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div id="right" style={padding}> </div>
-                        				</div>
-                                  )
-                                    }
-                    });
-                                          // <button className="cta-button"> Click Me</button>
-                    module.exports = Proj2;
+/*
+<div className="section half">
+
+<div>{"Introduction"}</div>
+<p id="desc"> {this.state.data.about} </p>
+
+ </div>
+<div style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
+    backgroundColor:"white"}}>
+
+    <div className="section" > {"Skills Learned"}
+      <ul>
+        <li> Soldering </li>
+        <li> Circuits </li>
+        <li> C++ </li>
+      </ul>
+    </div>
+    <div className="section" > {"Preqs"}
+      <ul>
+        <li> Soldering </li>
+        <li> Circuits </li>
+        <li> C++ </li>
+      </ul>
+    </div>
+</div>
+    <div className="section" style={{display:"flex", margin: "0", borderWidth: "4px 0 0 0", borderColor: "black", borderStyle:"solid",
+        backgroundColor:"white"}}> {"Materials"} </div>
+*/

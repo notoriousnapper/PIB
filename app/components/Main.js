@@ -138,7 +138,7 @@ var GlobalNav = React.createClass({
                   textDecoration:"none",
                   textAlign: "center",
                   whiteSpace: "nowrap",
-                  color: "#666666"
+                  color: "#164065"
                   // overflow: "hidden",
 
           };
@@ -181,7 +181,7 @@ var whiteOverlayStyle = {
 var Main = React.createClass({
         render: function(){
         var imgs = [{"logo":"../public/img/logo3.png"}, "../public/img/logo3.png"]
-        var menu =['HOME', 'PROJECTS', 'NEWS', 'ABOUT']
+        var menu =['HOME', 'PROJECTS', 'ABOUT', 'APPLY']
         var navBarStyle={
           boxShadow: "10px 10px 5px grey",
           // borderStyle:"solid",

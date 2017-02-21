@@ -5,6 +5,8 @@
  * a page based on the effect.
  * @JesseRen
  */
+
+
 var React = require('react');
 var ProjectSearchList = require('../../components/projectlistings/ProjectSearchList');
 var ProjectListing = require('../../components/projectlistings/ProjectListing');
@@ -25,12 +27,20 @@ var Q = require('q');
 var devUrl = 'http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
 /* Use devUrl or prodUrl*/
-var useUrl = prodUrl;
+var useUrl = devUrl;
 
-
-
-
-
+// var B2 = require('backblaze-b2');
+// var b2 = new B2({
+//     accountId: '8051682cf9cf',
+//     applicationKey: '0012b1b11b03da7d33341c630d8da8b8259bac0cbd'
+// });
+// // download file by name
+// b2.authorize();
+// b2.downloadFileByName({
+//     bucketName: 'project-docs',
+//     fileName: 'arcadeemulator'
+// });  // returns promise
+//
 
 var Projects = React.createClass({
   getInitialState: function() {
@@ -38,6 +48,37 @@ var Projects = React.createClass({
       clicks: 0,
       data: []
     };
+  },
+  getPopularProjects: function(){
+    $.ajax({
+               url: useUrl + '/getpopular',
+               dataType: 'json',
+               cache: false,
+               success: function(res) {
+                 this.setState({
+                   data: res,
+                  //  clicks: this.state.clicks + 1
+                 });
+               }.bind(this),
+               error: function(xhr, status, err) {
+                 console.error(prodUrl, status, err.toString());
+               }.bind(this)
+             });
+  },
+  getMostViewsProjects: function(){
+    $.ajax({
+               url: useUrl + '/getviews',
+               dataType: 'json',
+               cache: false,
+               success: function(res) {
+                 this.setState({
+                   data: res
+                 });
+               }.bind(this),
+               error: function(xhr, status, err) {
+                 console.error(prodUrl, status, err.toString());
+               }.bind(this)
+             });
   },
   getQueryProjects: function(query){
     // Transformations to make query work
@@ -102,7 +143,7 @@ var Projects = React.createClass({
               <div style={containerStyle}>
               <SearchBar onMagicClick={this.getQueryProjects}/>
               <Bar>
-                        <Category/>
+                        <Category popular={this.getPopularProjects} view={this.getMostViewsProjects}/>
               </Bar>
                     <Frame style={{display:"inline-block"}}>
                             <div style={{display:"flex", flexDirection: "column"}}>
@@ -122,11 +163,13 @@ var Projects = React.createClass({
    op2: function(id){
     /* Do a search via the id * takein in from params */
     console.log('Over here is: ' + id);
-
-
     // Temporary Fix - Adjust fix.
+    /*<div style={{backgroundColor: "#1a2930", height: "2500px"}}>
+        <Proj params={id}/>
+        <Proj2 params={id}/>
+      </div>*/
     return (
-      <div style={{backgroundColor: "#1a2930", height: "2500px"}}>
+      <div>
         <Proj params={id}/>
         <Proj2 params={id}/>
       </div>

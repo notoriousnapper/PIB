@@ -44,7 +44,7 @@ var ProjectListing = React.createClass({
 			minWidth:"100px"
 		}
 
-		var textStyle_Big={fontFamily: "Ubuntu", fontSize:"14pt", color: "#2C2A25",  textTranformation: "Capitalize"  };
+		var textStyle_Big={fontFamily: "Ubuntu", fontSize:"14pt", color: "#2C2A25",  textTranform: "capitalize"  };
 		var textStyle_Small={ fontFamily: "Ubuntu", fontSize:"9pt", color: "black", textDecoration: "none", textTransform: "capitalize"  };
 		var textStyle_View={ fontFamily: "Ubuntu", fontSize:"10pt", color: "#274D72", textDecoration: "none"  };
 
@@ -62,6 +62,12 @@ var ProjectListing = React.createClass({
 			console.error(e)
 		}
 
+		var nameArray = this.props.name.split(" ");
+		var displayName = nameArray[0].charAt(0).toUpperCase() + nameArray[0].substr(1);
+		for(var i = 1; i < nameArray.length; i++){
+			var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
+		}
+
 
 		/* Params data = this.props.name in Link */
 		return(
@@ -69,7 +75,7 @@ var ProjectListing = React.createClass({
 			<Link to={'/projects/'+ this.props.name} data={{}}> <ImageComponent url={this.props.url} style={imgStyle}/> </Link>
 				<div style={infoBoxStyle}>
 					<TextComponent style={textStyle_Big}
-					message={this.props.name}/>
+					message={displayName}/>
 					<TextComponent style=	{textStyle_Small}
 					message={'by ' + this.props.author}/>
 				</div>

@@ -3,7 +3,6 @@
 /* Proj.js */
 
 
-
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -74,7 +73,6 @@ var DetailBox = React.createClass({
         })
           return res;
         };
-
         return(
         		<div style={containerStyle}>
               <div style={{backgroundColor:"#E2E3E5", padding: "10px"}}>
@@ -83,12 +81,8 @@ var DetailBox = React.createClass({
                       <TextComponent style={AboutStyle} message={this.props.data.views + ' views'}></TextComponent>
                       <TextComponent style={AboutStyle} message={'Author'}/>
                   <div style={{display:"inline-block", width: "40%"}}>
-                      <TextComponent style={ByStyle} message={this.props.data.author}></TextComponent>
-                      <ImageComponent url="../public/img/Faceshot.png"
+                      <ImageComponent url={this.props.data.authorImg}
                       	style={imgStyle}/>
-                        <div style={BioBoxStyle}>
-                          <TextComponent style={BioStyle} message={'bio: ' + this.props.data.bio}></TextComponent>
-                        </div>
                     </div>
               </div>
               {this.props.children}
@@ -102,6 +96,7 @@ var DetailBox = React.createClass({
 
 module.exports = DetailBox;
 
+                      // <TextComponent style={ByStyle} message={this.props.data.author}></TextComponent>
 
 // "url="../public/img/logo3.png""
 // url={this.props.data.author_picUrl}
