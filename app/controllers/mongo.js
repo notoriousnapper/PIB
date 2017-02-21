@@ -21,7 +21,6 @@ module.exports.set = function(app) {
   		// Need better check.  Error occurred because projects db didn't exist at one point
   		if(result === '') console.log('No DB subset instantiated');
   		console.log("Getting Array!" + result);
-
   		//renders index.ejs
   		console.log("What's up boi, it worked!");
   		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
@@ -37,7 +36,6 @@ module.exports.set = function(app) {
   	// Have allowed tags in here.  In source code or in DB?
   	db.collection('projects').find( { $or: [ {author: new RegExp(query)}, {name:new RegExp(query)} ]}).toArray((err, result)=>{
   	// db.collection('projects').find({name: query}).toArray((err, result)=>{
-
   		if (err) return console.log(error);
 
   		// Need better check.  Error occurred because projects db didn't exist at one point
@@ -50,6 +48,7 @@ module.exports.set = function(app) {
   		// Ok to ping back an array? or just pure object (because what if there are duplicate id's?)
   	})
   });
+
 
   app.get('/getone/:name', (req,res, next	)=> {
 	var name = req.params.name;
@@ -66,6 +65,60 @@ module.exports.set = function(app) {
 		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
 		// Ok to ping back an array? or just pure object (because what if there are duplicate id's?)
 	})
+});
+
+// Test API's for returning most popular projects
+app.get('/getpopular', (req, res)=>{
+	console.log("Getting projects sorted by popularity");
+	db.collection('projects').find().toArray((err, result)=>{
+		if (err) return console.log(error);
+
+		// Need better check.  Error occurred because projects db didn't exist at one point
+		if(result === '') console.log('No DB subset instantiated');
+		console.log("Getting Array!" + result);
+		//renders index.ejs
+		console.log("What's up boi, it worked!");
+
+		function compare(a, b) {
+		  if (a.likes > b.likes){
+				console.log(a.likes + "vs. " +  b.likes);
+		    return -1;
+		  }
+		  if (a.likes < b.likes)
+				console.log(a.likes + "vs. " +  b.likes);
+		    return 1;
+		  };
+		result.sort(compare);
+		console.log("Sorted: " + result);
+
+		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
+	});
+});
+app.get('/getviews', (req, res)=>{
+	console.log("Getting projects sorted by popularity");
+	db.collection('projects').find().toArray((err, result)=>{
+		if (err) return console.log(error);
+
+		// Need better check.  Error occurred because projects db didn't exist at one point
+		if(result === '') console.log('No DB subset instantiated');
+		console.log("Getting Array!" + result);
+		//renders index.ejs
+		console.log("What's up boi, it worked!");
+
+		function compare(a, b) {
+		  if (a.views > b.views){
+				console.log(a.views + "vs. " +  b.views);
+		    return -1;
+		  }
+		  if (a.views < b.views)
+				console.log(a.views + "vs. " +  b.views);
+		    return 1;
+		  };
+		result.sort(compare);
+		console.log("Sorted: " + result);
+
+		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
+	});
 });
 
 
