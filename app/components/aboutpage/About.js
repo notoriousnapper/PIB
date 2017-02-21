@@ -80,6 +80,7 @@ var About = React.createClass({
         </div>
               )
                 }
+                //
 });
 module.exports = About;
               // <Carousel style={{flex:"1"}}/>
