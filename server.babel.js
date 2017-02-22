@@ -28,8 +28,6 @@ var session      = require('express-session');
 // remove your routes and replace with this code
 
 // MongoDB Module in here
-var controllers = require('./app/controllers');
-controllers.set(app);
 
 // var router = express.Router();
 const cloudinary =require('cloudinary');
@@ -70,6 +68,9 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+var controllers = require('./app/controllers');
+controllers.set(app);
 // Add headers  // Because CORS Middleware ain't treatin' me right.
 
 const fs = require('fs');

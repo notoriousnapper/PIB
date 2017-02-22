@@ -47221,8 +47221,8 @@
 	  downloadPDF: function downloadPDF() {
 	    $.ajax({
 	      type: 'GET',
-	      url: 'http://localhost:3000/',
-	      dataType: 'json',
+	      url: useUrl,
+	      dataType: 'jsonp',
 	      data: {
 	        'name': 'arcadebox'
 	      },
@@ -47261,7 +47261,7 @@
 	    console.log('query param is' + name);
 	    $.ajax({
 	      url: useUrl + '/getone/' + name,
-	      dataType: 'json',
+	      dataType: 'jsonp',
 	      cache: true,
 	      success: function (res) {
 	        // alert('Final Stretch' + JSON.stringify(res,null,4));
@@ -47277,7 +47277,7 @@
 	    console.log('query param is' + name);
 	    $.ajax({
 	      url: useUrl + '/getone/' + name + '/' + 'likes',
-	      dataType: 'json',
+	      dataType: 'jsonp',
 	      method: 'PUT',
 	      cache: true,
 	      success: function (res) {
@@ -47294,7 +47294,7 @@
 	    console.log('query param is' + name);
 	    $.ajax({
 	      url: useUrl + '/getone/' + name + '/' + 'downloads',
-	      dataType: 'json',
+	      dataType: 'jsonp',
 	      method: 'PUT',
 	      cache: true,
 	      success: function (res) {
@@ -47309,7 +47309,7 @@
 	    var name = this.props.params;
 	    $.ajax({
 	      url: useUrl + '/getone/' + name + '/' + 'views',
-	      dataType: 'json',
+	      dataType: 'jsonp',
 	      method: 'PUT',
 	      cache: true,
 	      success: function (res) {
