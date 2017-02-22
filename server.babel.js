@@ -65,6 +65,11 @@ deployment to Heroku */
  }));
 
 app.use(cors());  // CORS Middleware
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // Add headers  // Because CORS Middleware ain't treatin' me right.
 
 const fs = require('fs');
