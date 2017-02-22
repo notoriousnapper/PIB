@@ -72,7 +72,7 @@ var Proj = React.createClass({
           $.ajax({
             type: 'GET',
             url: useUrl,
-            dataType: 'jsonp',
+            dataType: 'json',
             data: {
               'name': 'arcadebox'
             },
@@ -108,7 +108,7 @@ var Proj = React.createClass({
           console.log('query param is' + name);
            $.ajax({
                 url: useUrl + '/getone/' + name,
-                dataType: 'jsonp',
+                dataType: 'json',
                 cache: true,
                 success: function(res) {
                   // alert('Final Stretch' + JSON.stringify(res,null,4));
@@ -124,7 +124,7 @@ var Proj = React.createClass({
           console.log('query param is' + name);
            $.ajax({
                 url: useUrl + '/getone/' + name + '/' + 'likes',
-                dataType: 'jsonp',
+                dataType: 'json',
                 method: 'PUT',
                 cache: true,
                 success: function(res) {
@@ -141,7 +141,7 @@ var Proj = React.createClass({
           console.log('query param is' + name);
            $.ajax({
                 url: useUrl + '/getone/' + name + '/' + 'downloads',
-                dataType: 'jsonp',
+                dataType: 'json',
                 method: 'PUT',
                 cache: true,
                 success: function(res) {
@@ -156,7 +156,7 @@ var Proj = React.createClass({
           var name = this.props.params;
            $.ajax({
                 url: useUrl + '/getone/' + name + '/' + 'views',
-                dataType: 'jsonp',
+                dataType: 'json',
                 method: 'PUT',
                 cache: true,
                 success: function(res) {
