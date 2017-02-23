@@ -3,6 +3,10 @@ var React = require('react');
 var TextComponent = require('../../components/custom/TextComponent');
 var Link = require('react-router').Link;
 
+// import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group') // ES5 with npm
+// var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup; // ES5 with react-with-addons.js
+
 
 var HoverInfo = React.createClass({
      getInitialState: function () {
@@ -32,15 +36,16 @@ var HoverInfo = React.createClass({
  							</Link>
 
 
-	 							<div style={hoverStyleMain}>
+	 							<div className="testhover" style={hoverStyleMain}>
 								  <div style={{padding: "10px 15px", color: "D83320 !important", fontSize: "14px !important"}}>
 										<img style={{display:"inline-block", width: "25px", height: "25px", marginRight: "3px"}} src="../public/img/hearts.png"/>
-											<div style={{display:"inline-block", }}> { this.props.likes } </div>
-										<div style={{display:"block"}}> {this.props.projectTitle} </div>
+											<div style={{display:"inline-block", color: "#E54C3B" }}> { this.props.likes } </div>
+										<div style={{display:"block", color:"black !important", fontFamily: "Montserrat", fontSize: "15px"}}> {this.props.projectTitle} </div>
 	 								<div style={{position:"absolute", right:"0", top:"100%", width:"0px", height:"0px", borderRight:"20px solid white", borderBottom:"20px solid transparent"}}></div>
+   							</div>
  							</div>
 
- 							</div>
+
  						</div>
          );
      }
@@ -133,7 +138,9 @@ var Home = React.createClass({
 
 				<HoverInfo url={this.state.projects[1]} circlePosition={{ position:"absolute",  top: "52%", right: "20%", height: "140px", width: "140px"}}
 					circleSize={{height: "140px", width: "140px"}}
-					hoverStyle={{position:"relative", right:"65%", width:"140px", height:"90px", padding:"5px", borderRadius:"3px 3px 0 3px", backgroundColor:"white"}}
+					hoverStyle={{position:"relative", right:"95%", top: "-80%", width:"140px", height:"90px", padding:"5px",
+          borderRadius:"3px 3px 0 3px", backgroundColor:"white",
+          fontFamily: "Montserrat", fontSize: "14px" }}
 					likes={4}
 					downloads={5}
 					projectTitle={"Arcade Emulator"}
