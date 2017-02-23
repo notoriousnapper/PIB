@@ -7,7 +7,8 @@ var Footer = require('../components/custom/Footer');
 var LogoComponent = React.createClass({
   render: function(){
     var logoStyle = {
-      width:"87px",
+      paddingTop: "10px",
+      width:"87px"
     };
     var centerStyle = {
       display:"block",
@@ -21,7 +22,6 @@ var LogoComponent = React.createClass({
     };
     var cornerStyle = {
       width:"0",
-      height:"0",
       borderLeft:"43.5px solid transparent",
       borderRight:"43.5px solid transparent",
       borderTop:"25px solid white",
@@ -72,10 +72,11 @@ var GlobalNav = React.createClass({
           var fakeShadow = {
             width:"1em",
             margin:"auto",
+            marginTop:"12px",
             position:"relative",
-            textShadow:"0 1px 1px gray",
-            fontSize:"35px",
-            lineHeight:"21px",
+            textShadow:"0 0px 0px gray",
+            fontSize:"25px",
+            lineHeight:"11px",
             transform:"scaleX(3.1)",
             color:"white",
             zIndex:"-1"

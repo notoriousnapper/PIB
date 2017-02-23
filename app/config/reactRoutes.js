@@ -11,6 +11,7 @@ var Main = require('../components/Main');
 var Home = require('../components/homepage/Home');
 
 var About = require('../components/aboutpage/About');
+var Apply = require('../components/applypage/Apply');
 var Add = require('../components/addpage/Add');
 
 var Projects = require('../components/projectlistings/Projects');
@@ -39,6 +40,7 @@ var reactRoutes = (
 				<Route name="input" path="/input" component={Input}/>
 			</Route>
 			<Route path='/about' component={About}/>
+			<Route path='/apply' component={Apply}/>
 			<Route path='/addproject' component={Add}/>
 			<Route path='/login' component={Login}/>
 			<Route path='/signup' component={SignUp}/>

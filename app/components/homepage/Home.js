@@ -54,7 +54,7 @@ var Home = React.createClass({
 				projects: [
 					"http://res.cloudinary.com/djmk9vktk/image/upload/v1485073390/robotic-arm/roboticarmcircle2.jpg",
 					"http://res.cloudinary.com/djmk9vktk/image/upload/v1484803878/arcadeemulatorv2_kjs7l5.jpg",
-					"http://res.cloudinary.com/djmk9vktk/image/upload/v1474080899/FullSizeRender_fbkwke.jpg"
+					"http://res.cloudinary.com/djmk9vktk/image/upload/v1487729049/guitar_gmjnpt.jpg"
 				],
 				profiles:[
 					"http://res.cloudinary.com/djmk9vktk/image/upload/v1484808274/colinkeefcircle_hrz89a.jpg",

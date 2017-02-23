@@ -24,8 +24,8 @@ var Label = React.createClass({
 var Apply = React.createClass({
         render: function(){
         return(
-        <div style={{display:"block"}}>
-          <iframe style={{margin:"0 auto"}} src="https://docs.google.com/forms/d/e/1FAIpQLScfuuRaDmji9bq_dTDNkIGg1efn3R-k7FTy6tElOsJltLlM-Q/viewform?embedded=true" width="760" height="800px" frameborder="0"> Loading...</iframe>
+        <div style={{display:"block", margin:"0 auto"}}>
+          <iframe style={{margin:"0 auto"}} src="https://docs.google.com/forms/d/e/1FAIpQLScfuuRaDmji9bq_dTDNkIGg1efn3R-k7FTy6tElOsJltLlM-Q/viewform?embedded=true" width="100%" height="800px" frameborder="0"> Loading...</iframe>
         </div>
               )
                 }
