@@ -169,8 +169,10 @@ app.get('/download',  function(req, res){
 });
 
 app.get('*.pdf', function(req, res){
-  var filename = req.originalUrl.replace("%20", ""); // Rid of %20
-  console.log(filename);
+  var pattern = /%20/g;
+  var filename = req.originalUrl.replace(pattern , ""); // Rid of %20
+  // Need regex, or only replaces first
+  console.log("parse url" + filename);
 
   // if(filename == "solartracker.pdf"){
   //   filename = "solartracker.pdf";
