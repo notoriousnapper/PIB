@@ -67,24 +67,6 @@ var Proj = React.createClass({
             navBar: false
           })
         },
-        downloadPDF: function(){
-          $.ajax({
-            type: 'GET',
-            url: useUrl,
-            dataType: 'json',
-            data: {
-              'name': 'arcadebox'
-            },
-            cache: false,
-            success: function(data) {
-              // alert('Success!');
-            }.bind(this),
-            error: function(xhr, status, err) {
-              console.error(this.props.url, status, err.toString());
-              // alert('Not Successful!');
-            }.bind(this)
-          });
-        },
         CallSteps: function(){
            var ctr = 0;
            var res = this.state.data.steps;

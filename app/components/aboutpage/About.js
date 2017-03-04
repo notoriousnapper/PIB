@@ -85,24 +85,35 @@ var About = React.createClass({
 		};
         return(
         <div style={bgStyle}>
-          <div style={{backgroundColor:"white", height: "800px"}}>
+          <div style={{backgroundColor:"#E2E7E9", height: "1800px"}}>
+          <div style={{backgroundColor:"#12678C", height: "100px", color: "white"}}>
+                <TextComponent style={boldStyle} message={'About Us'} />
+          </div>
             <div>
               <div style={{height: "60px", marginTop: "30px"}}></div>
-                <TextComponent style={boldStyle} message={'Learning should be:'} />
+                <TextComponent style={boldStyle} message={'We Think Learning Should Be'} />
               <TextComponent style={boldStyle} message={'Educational, Personal, and Fun.'} />
 
               <div style={{margin: "0 auto", height: "45px", width:"50px"}} >
                 <img style={boldStyle} src="http://res.cloudinary.com/djmk9vktk/image/upload/v1487699066/arcadeboxflat_agzujk.png" style={{margin: "0 auto", width:"100%" ,height:"100%"}}/>
                 </div>
 
-              <TextComponent style={textStyle} message={'That\'s why there\'s \'Project In a Box\', an Engineering program at UCSD that promotes education with projects built by students, for students.' } />
-              <TextComponent style={textStyle} message={'Since its inception in 2015, the program has now grown to host more than 35 tutors, and offers a highly-sought after ECE class for upperclassmen.'} />
+              <TextComponent style={textStyle} message={'That\'s why there\'s \'Project In a Box\', an Engineering program at UCSD that promotes education through building projects and workshopping skills in an open environment.' } />
             </div>
 
             <div style={{width: "80%", margin: "0 auto", height: "300px"}}>
-              <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"100%",margin:"2.5%"}}/>
-              <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg" style={{width:"45%",height:"100%",margin:"2.5%"}}/>
+              <img style={{height:"100%"}}   src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"100%",margin:"2.5%"}}/>
+              <img style={{height:"100%"}}  src="/public/img/prof_t.jpg"/>
             </div>
+            <hr className="style-one"/>
+
+              <br/>
+              <br/>
+              <div style={textStyle}> <strong> Professor Truong Nguyen </strong> , who has been working closely with student organizations and undergraduates, noticed that UCSD had many great ECE classes, but not enough project-based classes for students to practice the skills they learned in real-world applications. </div>
+              <TextComponent style={textStyle} message={'He set together to work closely with a group of students to create projects that were not only educational and easy to create, but also that would be enjoyable.'} />
+              <TextComponent style={textStyle} message={'Since its inception in 2015, the program has now grown to host more than 35 tutors, and offers a highly-sought after ECE class for upperclassmen.'} />
+
+            <hr className="style-one"/>
 
           </div>
         </div>
@@ -111,6 +122,7 @@ var About = React.createClass({
 });
 module.exports = About;
 
+              // <img style={{height:"100%"}}   src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"100%",margin:"2.5%"}}/>
 
             /* Background Stretch */
             //   <div id="bgImg" style={{marginTop: "40px", height: "400px", width: "100%", backgroundImage:

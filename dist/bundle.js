@@ -45,8 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(365);
 	__webpack_require__(366);
+	__webpack_require__(367);
 	__webpack_require__(238);
 	__webpack_require__(360);
 	__webpack_require__(297);
@@ -61,13 +61,13 @@
 	__webpack_require__(356);
 	__webpack_require__(305);
 	__webpack_require__(353);
-	__webpack_require__(367);
+	__webpack_require__(368);
 	__webpack_require__(308);
 	__webpack_require__(361);
 	__webpack_require__(283);
 	__webpack_require__(345);
 	__webpack_require__(300);
-	__webpack_require__(368);
+	__webpack_require__(369);
 	__webpack_require__(301);
 	__webpack_require__(239);
 	__webpack_require__(298);
@@ -21522,6 +21522,8 @@
 	var SignUp = __webpack_require__(363);
 	var Profile = __webpack_require__(364);
 	var Footer = __webpack_require__(239);
+
+	var Test = __webpack_require__(365);
 	/* ReactRouter Routes urls to components */
 	// var Home = (require'../components/Main');
 	var reactRoutes = React.createElement(
@@ -21550,7 +21552,8 @@
 				React.createElement(Route, { path: '/addproject', component: Add }),
 				React.createElement(Route, { path: '/login', component: Login }),
 				React.createElement(Route, { path: '/signup', component: SignUp }),
-				React.createElement(Route, { path: '/profile', component: Profile })
+				React.createElement(Route, { path: '/profile', component: Profile }),
+				React.createElement(Route, { path: '/test', component: Test })
 			)
 		),
 		React.createElement(Footer, null)
@@ -30024,32 +30027,55 @@
 	      { style: bgStyle },
 	      React.createElement(
 	        'div',
-	        { style: { backgroundColor: "white", height: "800px" } },
+	        { style: { backgroundColor: "#E2E7E9", height: "1800px" } },
+	        React.createElement(
+	          'div',
+	          { style: { backgroundColor: "#12678C", height: "100px", color: "white" } },
+	          React.createElement(TextComponent, { style: boldStyle, message: 'About Us' })
+	        ),
 	        React.createElement(
 	          'div',
 	          null,
 	          React.createElement('div', { style: { height: "60px", marginTop: "30px" } }),
-	          React.createElement(TextComponent, { style: boldStyle, message: 'Learning should be:' }),
+	          React.createElement(TextComponent, { style: boldStyle, message: 'We Think Learning Should Be' }),
 	          React.createElement(TextComponent, { style: boldStyle, message: 'Educational, Personal, and Fun.' }),
 	          React.createElement(
 	            'div',
 	            { style: { margin: "0 auto", height: "45px", width: "50px" } },
 	            React.createElement('img', (0, _defineProperty3.default)({ style: boldStyle, src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1487699066/arcadeboxflat_agzujk.png' }, 'style', { margin: "0 auto", width: "100%", height: "100%" }))
 	          ),
-	          React.createElement(TextComponent, { style: textStyle, message: 'That\'s why there\'s \'Project In a Box\', an Engineering program at UCSD that promotes education with projects built by students, for students.' }),
-	          React.createElement(TextComponent, { style: textStyle, message: 'Since its inception in 2015, the program has now grown to host more than 35 tutors, and offers a highly-sought after ECE class for upperclassmen.' })
+	          React.createElement(TextComponent, { style: textStyle, message: 'That\'s why there\'s \'Project In a Box\', an Engineering program at UCSD that promotes education through building projects and workshopping skills in an open environment.' })
 	        ),
 	        React.createElement(
 	          'div',
 	          { style: { width: "80%", margin: "0 auto", height: "300px" } },
-	          React.createElement('img', { src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg', style: { width: "45%", height: "100%", margin: "2.5%" } }),
-	          React.createElement('img', { src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_4_gnmo2p.jpg', style: { width: "45%", height: "100%", margin: "2.5%" } })
-	        )
+	          React.createElement('img', (0, _defineProperty3.default)({ style: { height: "100%" }, src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg' }, 'style', { width: "45%", height: "100%", margin: "2.5%" })),
+	          React.createElement('img', { style: { height: "100%" }, src: '/public/img/prof_t.jpg' })
+	        ),
+	        React.createElement('hr', { className: 'style-one' }),
+	        React.createElement('br', null),
+	        React.createElement('br', null),
+	        React.createElement(
+	          'div',
+	          { style: textStyle },
+	          ' ',
+	          React.createElement(
+	            'strong',
+	            null,
+	            ' Professor Truong Nguyen '
+	          ),
+	          ' , who has been working closely with student organizations and undergraduates, noticed that UCSD had many great ECE classes, but not enough project-based classes for students to practice the skills they learned in real-world applications. '
+	        ),
+	        React.createElement(TextComponent, { style: textStyle, message: 'He set together to work closely with a group of students to create projects that were not only educational and easy to create, but also that would be enjoyable.' }),
+	        React.createElement(TextComponent, { style: textStyle, message: 'Since its inception in 2015, the program has now grown to host more than 35 tutors, and offers a highly-sought after ECE class for upperclassmen.' }),
+	        React.createElement('hr', { className: 'style-one' })
 	      )
 	    );
 	  }
 	});
 	module.exports = About;
+
+	// <img style={{height:"100%"}}   src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"100%",margin:"2.5%"}}/>
 
 	/* Background Stretch */
 	//   <div id="bgImg" style={{marginTop: "40px", height: "400px", width: "100%", backgroundImage:
@@ -49435,24 +49461,6 @@
 	      navBar: false
 	    };
 	  },
-	  downloadPDF: function downloadPDF() {
-	    $.ajax({
-	      type: 'GET',
-	      url: useUrl,
-	      dataType: 'json',
-	      data: {
-	        'name': 'arcadebox'
-	      },
-	      cache: false,
-	      success: function (data) {
-	        // alert('Success!');
-	      }.bind(this),
-	      error: function (xhr, status, err) {
-	        console.error(this.props.url, status, err.toString());
-	        // alert('Not Successful!');
-	      }.bind(this)
-	    });
-	  },
 	  CallSteps: function CallSteps() {
 	    var ctr = 0;
 	    var res = this.state.data.steps;
@@ -53066,6 +53074,95 @@
 
 /***/ },
 /* 365 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var Detail = __webpack_require__(301);
+	var $ = __webpack_require__(302);
+
+	var Carousel = React.createClass({
+	  displayName: 'Carousel',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      ctr: 0,
+	      paths: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1483597306/StreetFighter2_kfmo3f.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg"]
+	    };
+	  },
+	  switchSlideLeft: function switchSlideLeft(inc) {
+	    var newCtr = this.state.ctr == 3 ? 0 : this.state.ctr + 1;
+	    this.setState({
+	      ctr: newCtr,
+	      paths: this.state.paths
+	    });
+	  },
+	  switchSlideRight: function switchSlideRight(inc) {
+	    var newCtr = this.state.ctr == 0 ? 3 : this.state.ctr - 1;
+	    this.setState({
+	      ctr: newCtr,
+	      paths: this.state.paths
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var img_array = [1, 2, 3, 4],
+	        newIndex = 0,
+	        index = 0,
+	        interval = 3000;
+	    (function changeBg() {
+	      index = (index + 1) % img_array.length;
+
+	      $("#cf7 img").removeClass("opaque");
+	      $("#cf7 img").eq(index).addClass("opaque");
+	      $("#cf7_controls span").removeClass("selected");
+	      $(this).addClass("selected");
+	      // console.log(newImage);
+	      setTimeout(changeBg, interval);
+	    })();
+	    this.setState({
+	      ctr: newCtr,
+	      paths: this.props.links
+	    });
+	  },
+	  render: function render() {
+	    var imgStyle = { height: "100%", padding: "0%", width: "100%" };
+	    return React.createElement(
+	      'div',
+	      { style: { backgroundColor: "#192930", height: "1000px", marginTop: "20px", paddingLeft: "20px", paddingRight: "20px" } },
+	      '//'
+	    );
+	  }
+	});
+	/* Correct one here */
+	//  <div style={{height: "500px", width: "100%", backgroundImage: 'url(' + this.state.paths[this.state.ctr] + ')',
+	//  backgroundSize: "contain",
+	//  backgroundPosition: "center",
+	// //  backgroundSize: "cover",
+	//   backgroundRepeat: "no-repeat"}}>
+	//    <div style={{margin: "30% 0px 30% 10px", verticalAlign: "middle", float: "left", height: "100%"}} ><button  style={{margin:"auto"}}  onClick={this.switchSlideLeft}> {"<"} </button> </div>
+	//   <Detail />
+	//
+	//
+	//    <div style={{margin: "30% 10px 30% 0px", marginBottom: "30%", verticalAlign: "middle", float: "right", height: "100%"}} ><button   onClick={this.switchSlideRight}> {">"} </button> </div>
+	//  </div>
+	//
+
+	/* fun */
+
+	//  <img style={{height:"500px", width:"500px"}} src="/public/img/carousel_2.jpg"/>
+	//  </li>
+	//  <li>
+	//  <img style={{height:"500px", width:"500px"}} src="/public/img/carousel_3.jpg"/>
+	//  </li>
+	//  <li>
+	//  <img  style={{height:"500px", width:"500px"}} src="/public/img/carousel_4.jpg"/>
+
+	module.exports = Carousel;
+
+/***/ },
+/* 366 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53103,7 +53200,7 @@
 	module.exports = TestAPI;
 
 /***/ },
-/* 366 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53200,7 +53297,7 @@
 	}
 
 /***/ },
-/* 367 */
+/* 368 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53257,7 +53354,7 @@
 	module.exports = StepAdd;
 
 /***/ },
-/* 368 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

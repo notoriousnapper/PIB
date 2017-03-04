@@ -25,6 +25,8 @@ var Login = require('../components/userpage/Login');
 var SignUp = require('../components/userpage/SignUp');
 var Profile = require('../components/userpage/Profile');
 var Footer = require('../components/custom/Footer');
+
+var Test = require('../components/custom/Test');
 /* ReactRouter Routes urls to components */
 // var Home = (require'../components/Main');
 var reactRoutes = (
@@ -45,6 +47,7 @@ var reactRoutes = (
 			<Route path='/login' component={Login}/>
 			<Route path='/signup' component={SignUp}/>
 			<Route path='/profile' component={Profile}/>
+			<Route path='/test' component={Test}/>
 		</Route>
 	</Router>
 

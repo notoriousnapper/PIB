@@ -168,6 +168,20 @@ app.get('/download',  function(req, res){
   res.download(file); // Set disposition and send it.
 });
 
+app.get('*.pdf', function(req, res){
+  var filename = req.originalUrl.replace("%20", ""); // Rid of %20
+  console.log(filename);
+
+  // if(filename == "solartracker.pdf"){
+  //   filename = "solartracker.pdf";
+  // }
+  // else {
+  //   filename = req.originalUrl;
+  // }
+  console.log(filename);
+  var file = __dirname + '/uploads/' + filename;
+  res.download(file); // Set disposition and send it.
+});
 // app.use(function (req, res, next) { // Supposed to deal with CORS
 
 //     // Website you wish to allow to connect
