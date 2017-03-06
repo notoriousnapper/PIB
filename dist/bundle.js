@@ -49607,7 +49607,6 @@
 	      margin: "auto",
 	      display: "block"
 	    };
-
 	    /* Padding */
 	    var containerStyle = {
 	      height: "400px",
@@ -53078,88 +53077,270 @@
 
 	'use strict';
 
+	var _extends2 = __webpack_require__(260);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _defineProperty2 = __webpack_require__(241);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var React = __webpack_require__(3);
 	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
 	var Detail = __webpack_require__(301);
+	var Carousel = __webpack_require__(300);
+	var FontAwesome = __webpack_require__(354);
 	var $ = __webpack_require__(302);
 
-	var Carousel = React.createClass({
-	  displayName: 'Carousel',
+	var documentStrings = ['Schematic', 'Eagle Files', 'Schematic'];
+
+	var Test = React.createClass({
+	  displayName: 'Test',
 
 	  getInitialState: function getInitialState() {
 	    return {
 	      ctr: 0,
-	      paths: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1483597306/StreetFighter2_kfmo3f.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990180/carousel_3_ez6iml.jpg"]
+	      paths: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1483597306/StreetFighter2_kfmo3f.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg"]
 	    };
 	  },
 	  switchSlideLeft: function switchSlideLeft(inc) {
-	    var newCtr = this.state.ctr == 3 ? 0 : this.state.ctr + 1;
+	    var newCtr = this.state.ctr == 2 ? 0 : this.state.ctr + 1;
 	    this.setState({
 	      ctr: newCtr,
 	      paths: this.state.paths
 	    });
+	    alert(newCtr);
+	    $("#cf7 img").removeClass("opaque");
+	    $("#cf7 img").eq(newCtr).addClass("opaque");
+	    $("#cf7_controls span").removeClass("selected");
+	    $(this).addClass("selected");
 	  },
 	  switchSlideRight: function switchSlideRight(inc) {
-	    var newCtr = this.state.ctr == 0 ? 3 : this.state.ctr - 1;
+	    var newCtr = this.state.ctr == 0 ? 2 : this.state.ctr - 1;
 	    this.setState({
 	      ctr: newCtr,
 	      paths: this.state.paths
 	    });
+	    $("#cf7 img").removeClass("opaque");
+	    $("#cf7 img").eq(newCtr).addClass("opaque");
+	    $("#cf7_controls span").removeClass("selected");
+	    $(this).addClass("selected");
 	  },
 	  componentDidMount: function componentDidMount() {
-	    var img_array = [1, 2, 3, 4],
-	        newIndex = 0,
-	        index = 0,
-	        interval = 3000;
-	    (function changeBg() {
-	      index = (index + 1) % img_array.length;
-
-	      $("#cf7 img").removeClass("opaque");
-	      $("#cf7 img").eq(index).addClass("opaque");
-	      $("#cf7_controls span").removeClass("selected");
-	      $(this).addClass("selected");
-	      // console.log(newImage);
-	      setTimeout(changeBg, interval);
-	    })();
-	    this.setState({
-	      ctr: newCtr,
-	      paths: this.props.links
-	    });
+	    // var img_array = [1, 2, 3, 4],
+	    //        newIndex = 0,
+	    //        index = 0,
+	    //        interval = 3000;
+	    //    (function changeBg() {
+	    //            index = (index + 1) % img_array.length;
+	    //
+	    //                $("#cf7 img").removeClass("opaque");
+	    //                $("#cf7 img").eq(index).addClass("opaque");
+	    //                $("#cf7_controls span").removeClass("selected");
+	    //                $(this).addClass("selected");
+	    //                // console.log(newImage);
+	    //        setTimeout(changeBg, interval);
+	    //    })();
+	    //  this.setState({
+	    //    ctr  : newCtr,
+	    //    paths: this.props.links
+	    //  });
 	  },
 	  render: function render() {
+	    var _chevronStyle;
+
 	    var imgStyle = { height: "100%", padding: "0%", width: "100%" };
+	    var mainImgStyle = { height: "auto", width: "100%", minHeight: "200px", minWidth: "200px" };
+	    var imgBoxStyle = { marginRight: "15px", height: "120px", width: "120px" };
+	    var chevronStyle = (_chevronStyle = { display: "inline-block", cursor: "pointer", verticalAlign: "middle", paddingTop: "50px", margin: "auto",
+	      height: "120px", width: "100px" }, (0, _defineProperty3.default)(_chevronStyle, 'verticalAlign', "center"), (0, _defineProperty3.default)(_chevronStyle, 'color', "#b5b3b3"), _chevronStyle);
+	    var chevronContainerStyle = { display: "inline-block", backgroundColor: "white",
+	      // borderColor:"black", borderStyle: "solid",
+	      height: "100%", width: "40px" };
+
+	    var imgBox = this.state.paths.map(function (item) {
+	      return React.createElement('img', { style: imgBoxStyle, src: item });
+	    });
+	    var documentsList = documentStrings.map(function (item) {
+	      return React.createElement(
+	        'li',
+	        null,
+	        ' ',
+	        React.createElement(
+	          'a',
+	          { style: { color: "#D74B1F" } },
+	          ' ',
+	          item,
+	          ' '
+	        ),
+	        ' '
+	      );
+	    });
 	    return React.createElement(
 	      'div',
-	      { style: { backgroundColor: "#192930", height: "1000px", marginTop: "20px", paddingLeft: "20px", paddingRight: "20px" } },
-	      '//'
+	      { style: { backgroundColor: "#192930", height: "1000px", marginTop: "20px", paddingLeft: "0px", paddingRight: "0px" } },
+	      React.createElement(
+	        'div',
+	        { id: 'bg', style: { backgroundColor: "white" } },
+	        React.createElement(
+	          'div',
+	          { style: { backgroundColor: "#192930", height: "150px", marginTop: "20px", paddingLeft: "0px", paddingRight: "20px",
+	              paddingTop: "80px" } },
+	          React.createElement(
+	            'div',
+	            { id: 'breadCrumbsBar', style: { backgroundColor: "white", height: "50px", width: "40%", paddingTop: "13px", paddingLeft: "20px", fontSize: "18px", fontWeight: "500" } },
+	            'Projects',
+	            ' / ',
+	            'IOT',
+	            ' / ',
+	            'GuitarEffectsX/'
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { id: 'container', style: { display: "flex", padding: "30px", paddingRight: "10px" } },
+	          React.createElement(
+	            'div',
+	            { id: 'left', style: { flex: "1", width: "500px", padding: "20px", paddingRight: "30px", paddingTop: "0px" } },
+	            React.createElement(
+	              'div',
+	              { style: mainImgStyle },
+	              React.createElement('img', { id: 'mainImg', className: 'opaque', style: imgStyle, src: this.state.paths[0] })
+	            ),
+	            React.createElement('br', null),
+	            React.createElement('br', null),
+	            React.createElement('br', null),
+	            React.createElement(
+	              'div',
+	              { id: 'mainImg2', style: { display: "block", height: "600px", width: "100%", padding: "0" } },
+	              React.createElement('div', { style: { display: "inline-block", flex: "0.3", padding: "40px 0 0 90px", width: "30%", height: "100%" } }),
+	              React.createElement(
+	                'div',
+	                { style: { display: "inline-block", flex: "0.6", width: "40%", height: "100%", marginTop: "10px" }, id: 'cf7', className: 'shadow' },
+	                React.createElement('img', { style: imgStyle, className: 'opaque', src: this.state.paths[0] }),
+	                React.createElement('img', { style: imgStyle, src: this.state.paths[0] }),
+	                React.createElement('img', { style: imgStyle, src: this.state.paths[1] }),
+	                React.createElement('img', { style: imgStyle, src: this.state.paths[2] })
+	              ),
+	              React.createElement(
+	                'div',
+	                { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "30%", height: "100%" } },
+	                ' '
+	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { style: { backgroundColor: "none", margin: "0 auto", padding: "0 2%" } },
+	              React.createElement(
+	                'div',
+	                { id: 'leftChevron', style: chevronContainerStyle },
+	                React.createElement(FontAwesome, { style: chevronStyle, onClick: this.switchSlideLeft, name: 'chevron-left', size: '2x' })
+	              ),
+	              React.createElement(
+	                'div',
+	                { id: 'imgBox', style: { width: "450px", display: "inline-block" } },
+	                ' ',
+	                imgBox,
+	                ' '
+	              ),
+	              React.createElement(
+	                'div',
+	                { id: 'rightChevron', style: (0, _extends3.default)({}, chevronContainerStyle, { float: "right" }) },
+	                React.createElement(FontAwesome, { style: chevronStyle, onClick: this.switchSlideRight, name: 'chevron-right', size: '2x' }),
+	                ' '
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { id: 'center', style: { flex: "1", width: "500px" } },
+	            React.createElement(
+	              'h1',
+	              { style: { color: "#3A3333", padding: "0", margin: "0", paddingBottom: "5px" } },
+	              ' Guitar Effects X '
+	            ),
+	            React.createElement(
+	              'h3',
+	              { style: { color: "#4C516C", padding: "0", margin: "0" } },
+	              React.createElement(
+	                'div',
+	                { style: { display: "inline-block", fontWeight: "300", marginRight: "4px" } },
+	                ' by  '
+	              ),
+	              React.createElement(
+	                'div',
+	                { style: { display: "inline-block", fontWeight: "500" } },
+	                ' Jesse Ren '
+	              ),
+	              ' '
+	            ),
+	            React.createElement(
+	              'div',
+	              { style: { display: "inline-block", marginRight: "20px" } },
+	              ' 100 views '
+	            ),
+	            React.createElement(
+	              'div',
+	              { style: { display: "inline-block" } },
+	              ' 100 '
+	            ),
+	            React.createElement('img', { src: '/public/img/hearts.png', style: { height: "20px", display: "inline-block" } }),
+	            React.createElement('br', null),
+	            React.createElement(
+	              'div',
+	              { style: { fontSize: "18px", color: "#575b84" } },
+	              React.createElement('br', null),
+	              React.createElement(
+	                'strong',
+	                null,
+	                ' Description: '
+	              ),
+	              ' My Project is the Guitar Project',
+	              React.createElement(
+	                'div',
+	                null,
+	                ' "My project is the guitar effect pedals. I began this project because I\'ve been playing guitar since high school. When I took ECE65 I became intrigued that simple components can act as filters. Building guitar effect pedals was my way of connecting my hobbies and my area of study." '
+	              ),
+	              React.createElement('br', null),
+	              React.createElement(
+	                'div',
+	                null,
+	                ' \'There are many types of effects, all used in different types of music. Each effect is based on principles we learn in our analog circuit classes. Building guitar effects is a very rewarding experience. All you need to know is how to read a schematic.\' '
+	              ),
+	              React.createElement('br', null),
+	              React.createElement(
+	                'div',
+	                null,
+	                ' \'Knowing the basics on what resistors, capacitors and transistors do helps, but is not require. In the process of building, you observe the clipping circuits, the frequency filters, and oscillator circuits in action. You gain troubleshooting skills and get up close and familiar with electrical components. You get better intuition on how a circuit behaves and how you can design it.\' '
+	              ),
+	              React.createElement('br', null),
+	              React.createElement(
+	                'strong',
+	                null,
+	                ' Documents: '
+	              ),
+	              React.createElement(
+	                'ul',
+	                null,
+	                documentsList
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { id: 'infoBox', style: { backgroundColor: "#B4B5C0", flex: "0.5", width: "500px" } },
+	            React.createElement('div', { style: { backgroundColor: "red", width: "50px", height: "50px" } })
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
-	/* Correct one here */
-	//  <div style={{height: "500px", width: "100%", backgroundImage: 'url(' + this.state.paths[this.state.ctr] + ')',
-	//  backgroundSize: "contain",
-	//  backgroundPosition: "center",
-	// //  backgroundSize: "cover",
-	//   backgroundRepeat: "no-repeat"}}>
-	//    <div style={{margin: "30% 0px 30% 10px", verticalAlign: "middle", float: "left", height: "100%"}} ><button  style={{margin:"auto"}}  onClick={this.switchSlideLeft}> {"<"} </button> </div>
-	//   <Detail />
-	//
-	//
-	//    <div style={{margin: "30% 10px 30% 0px", marginBottom: "30%", verticalAlign: "middle", float: "right", height: "100%"}} ><button   onClick={this.switchSlideRight}> {">"} </button> </div>
-	//  </div>
-	//
 
-	/* fun */
-
-	//  <img style={{height:"500px", width:"500px"}} src="/public/img/carousel_2.jpg"/>
-	//  </li>
-	//  <li>
-	//  <img style={{height:"500px", width:"500px"}} src="/public/img/carousel_3.jpg"/>
-	//  </li>
-	//  <li>
-	//  <img  style={{height:"500px", width:"500px"}} src="/public/img/carousel_4.jpg"/>
-
-	module.exports = Carousel;
+	module.exports = Test;
 
 /***/ },
 /* 366 */

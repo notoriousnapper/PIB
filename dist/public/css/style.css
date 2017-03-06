@@ -542,9 +542,13 @@ p#cf7_controls {
 }
 #cf7 {
   position:relative;
-  height:301px;
+  height: auto;
+  width:100%;
+  min-height: 200px;
+  min-width:200px;
+  /*height:301px;
   width:450px;
-  margin:0 auto 0px;
+  margin:0 auto 0px;*/
 }
 #cf7 img {
   position:absolute;
@@ -696,4 +700,16 @@ hr.style-one {
     height: 1px;
     background: #333;
     background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+
+ul {
+    list-style-type: none;
+}
+
+ul > li:before {
+    content: "–"; /* en dash here */
+    position: absolute;
+    margin-left: -1.1em;
+    color: #D74B1F;
 }

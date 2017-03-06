@@ -215,8 +215,6 @@ var Proj = React.createClass({
             margin: "auto",
             display: "block"
           }
-
-
           /* Padding */
           var containerStyle = {
             height: "400px",
