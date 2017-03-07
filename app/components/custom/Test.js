@@ -32,18 +32,6 @@ getInitialState: function(){
   }
 },
 switchSlideLeft: function(inc){
-  var newCtr = (this.state.ctr == 2) ? 0 : this.state.ctr + 1;
-  this.setState({
-    ctr  : newCtr,
-    paths: this.state.paths
-  });
-  alert(newCtr);
-                 $("#cf7 img").removeClass("opaque");
-                 $("#cf7 img").eq(newCtr).addClass("opaque");
-                 $("#cf7_controls span").removeClass("selected");
-                 $(this).addClass("selected");
-},
-switchSlideRight: function(inc){
   var newCtr = (this.state.ctr == 0) ? 2 : this.state.ctr - 1;
   this.setState({
     ctr  : newCtr,
@@ -54,29 +42,22 @@ switchSlideRight: function(inc){
                  $("#cf7_controls span").removeClass("selected");
                  $(this).addClass("selected");
 },
+switchSlideRight: function(inc){
+  var newCtr = (this.state.ctr == 2) ? 0 : this.state.ctr + 1;
+  this.setState({
+    ctr  : newCtr,
+    paths: this.state.paths
+  });
+                 $("#cf7 img").removeClass("opaque");
+                 $("#cf7 img").eq(newCtr).addClass("opaque");
+                 $("#cf7_controls span").removeClass("selected");
+                 $(this).addClass("selected");
+},
 componentDidMount: function() {
-  // var img_array = [1, 2, 3, 4],
-  //        newIndex = 0,
-  //        index = 0,
-  //        interval = 3000;
-  //    (function changeBg() {
-  //            index = (index + 1) % img_array.length;
-  //
-  //                $("#cf7 img").removeClass("opaque");
-  //                $("#cf7 img").eq(index).addClass("opaque");
-  //                $("#cf7_controls span").removeClass("selected");
-  //                $(this).addClass("selected");
-  //                // console.log(newImage);
-  //        setTimeout(changeBg, interval);
-  //    })();
-    //  this.setState({
-    //    ctr  : newCtr,
-    //    paths: this.props.links
-    //  });
 },
 render: function(){
     var imgStyle = {height:"100%", padding: "0%", width:"100%"};
-    var mainImgStyle = {height: "auto", width:"100%", minHeight: "200px", minWidth:"200px"}
+    var mainImgStyle = {height: "500px", width:"100%", minHeight: "200px", minWidth:"200px"}
     var imgBoxStyle = {marginRight: "15px", height: "120px", width:"120px"};
     var chevronStyle = {display: "inline-block", cursor: "pointer", verticalAlign: "middle", paddingTop:"50px", margin: "auto",
     height: "120px", width: "100px", verticalAlign:"center", color:"#b5b3b3"};
@@ -95,7 +76,7 @@ return  (
 
 
 
-<div id="bg" style={{backgroundColor:"white"}}>
+<div id="bg" style={{backgroundColor:"#E2E7E9"}}>
   <div  style={{ backgroundColor:"#192930", height: "150px", marginTop:"20px", paddingLeft:"0px", paddingRight:"20px"
   ,paddingTop: "80px"}} >
 
@@ -111,23 +92,15 @@ return  (
   </div>
   <div id="container" style={{display:"flex", padding: "30px", paddingRight: "10px"}}>
     <div id="left" style={{flex:"1", width: "500px", padding: "20px", paddingRight:"30px", paddingTop: "0px"}}>
-      <div  style={mainImgStyle} >
-        <img id="mainImg"  className='opaque'  style={imgStyle} src={this.state.paths[0]} />
-      </div>
-      <br/>
-      <br/>
-      <br/>
-     <div id="mainImg2" style={{display: "block", height:"600px", width:"100%", padding: "0"}} >
-       <div style={{display:"inline-block", flex:"0.3", padding: "40px 0 0 90px", width:"30%", height:"100%"}}>
-       </div>
-       <div style={{display:"inline-block",flex:"0.6", width: "40%", height: "100%", marginTop:"10px"}} id="cf7" className="shadow">
+     <div id="mainImg2" style={mainImgStyle}  id="cf7" className="shadow" >
          <img style={imgStyle} className='opaque' src={this.state.paths[0]}/>
-         <img style={imgStyle} src={this.state.paths[0]} />
          <img style={imgStyle} src={this.state.paths[1]} />
          <img style={imgStyle} src={this.state.paths[2]} />
-       </div>
        <div style={{display:"inline-block",flex:"0.3", padding: "0px", width:"30%", height:"100%"}}> </div>
      </div>
+      <br/>
+      <br/>
+      <br/>
 
       <div style={{backgroundColor: "none", margin: "0 auto", padding:"0 2%"}}>
         <div id="leftChevron" style={chevronContainerStyle}>
@@ -146,10 +119,7 @@ return  (
       <h3 style={{color:"#4C516C", padding: "0", margin:"0"}}>
       <div style={{display:"inline-block", fontWeight:"300", marginRight:"4px"}}> by  </div>
       <div style={{display:"inline-block", fontWeight:"500"}}> Jesse Ren </div> </h3>
-
       <div style={{display:"inline-block", marginRight: "20px"}}> 100 views </div>
-      <div style={{display:"inline-block"}}> 100 </div>
-      <img src="/public/img/hearts.png" style={{height:"20px", display:"inline-block"}}/>
 
       <br/>
 
@@ -171,7 +141,13 @@ return  (
      </div>
 
     <div id="infoBox" style={{backgroundColor: "#B4B5C0", flex:"0.5", width: "500px"}}>
-       <div style={{backgroundColor:"red", width:"50px", height:"50px"}}/>
+
+      <div style={{backgroundColor:"red", width:"50px", height:"50px"}}/>
+        <div style={{display:"inline-block", paddingRight: "4px"}}> 100 </div>
+        <img src="/public/img/hearts.png" style={{height:"20px", display:"inline-block"}}/>
+
+        <div style={{display:"inline-block", paddingRight: "4px"}}> 100 </div>
+        <img src="/public/img/hearts.png" style={{height:"20px", display:"inline-block"}}/>
     </div>
 
  </div>

@@ -29946,9 +29946,9 @@
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _extends2 = __webpack_require__(260);
+	var _extends3 = __webpack_require__(260);
 
-	var _extends3 = _interopRequireDefault(_extends2);
+	var _extends4 = _interopRequireDefault(_extends3);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29985,24 +29985,23 @@
 
 
 	  render: function render() {
-	    var _bgImgStyle, _bgImgStyle2;
+	    var _bgImgStyle, _bgImgStyle2, _extends2;
 
 	    var textStyle = {
 	      margin: "0 auto",
 	      width: "40%",
-	      fontSize: "14px",
-	      // fontWeight: "n",
-	      fontFamily: "\'Montserrat\', sans-serif",
 	      // backgroundColor: "white",
 	      textAlign: "center",
 	      marginTop: "20px",
+	      fontSize: "14px",
+	      fontFamily: "\'Montserrat\', sans-serif",
 	      color: "#7691AA"
 	    };
 
-	    var textStyle2 = (0, _extends3.default)({}, textStyle, { marginTop: "0" });
+	    var textStyle2 = (0, _extends4.default)({}, textStyle, { marginTop: "0" });
 
 	    var boldStyle = {
-	      fontSize: "26px",
+	      fontSize: "36px",
 	      fontWeight: "bold", //400 normal, 700 bold
 	      fontFamily: "\'Montserrat\', sans-serif",
 	      textAlign: "center",
@@ -30030,45 +30029,46 @@
 	        { style: { backgroundColor: "#E2E7E9", height: "1800px" } },
 	        React.createElement(
 	          'div',
-	          { style: { backgroundColor: "#12678C", height: "100px", color: "white" } },
-	          React.createElement(TextComponent, { style: boldStyle, message: 'About Us' })
-	        ),
-	        React.createElement(
-	          'div',
-	          null,
-	          React.createElement('div', { style: { height: "60px", marginTop: "30px" } }),
-	          React.createElement(TextComponent, { style: boldStyle, message: 'We Think Learning Should Be' }),
-	          React.createElement(TextComponent, { style: boldStyle, message: 'Educational, Personal, and Fun.' }),
+	          { id: 'panelOne', style: { backgroundColor: "#656786",
+	              // backgroundImage: "url('http://res.cloudinary.com/djmk9vktk/image/upload/v1484795377/wood_ahxhaq.jpg')",
+	              height: "720px", color: "white", paddingTop: "120px" } },
+	          React.createElement(TextComponent, { id: 'title', style: (0, _extends4.default)({}, boldStyle, { fontSize: "35px", color: "#DCDDE1" }), message: 'ABOUT US' }),
 	          React.createElement(
 	            'div',
-	            { style: { margin: "0 auto", height: "45px", width: "50px" } },
-	            React.createElement('img', (0, _defineProperty3.default)({ style: boldStyle, src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1487699066/arcadeboxflat_agzujk.png' }, 'style', { margin: "0 auto", width: "100%", height: "100%" }))
-	          ),
-	          React.createElement(TextComponent, { style: textStyle, message: 'That\'s why there\'s \'Project In a Box\', an Engineering program at UCSD that promotes education through building projects and workshopping skills in an open environment.' })
+	            { style: { margin: "0 auto" } },
+	            React.createElement('img', { style: { display: "block", margin: "0 auto", marginTop: "20px", height: "400px", width: "400px" }, src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1488857527/arcade-emulator/boy_graphic.png' }),
+	            React.createElement(TextComponent, { style: (0, _extends4.default)({}, textStyle, { color: "#DCDDE1", fontSize: "20px" }), message: "Hi There! We are Project-In-A-Box, and we promote hands-on learning for ECE students through projects" })
+	          )
 	        ),
 	        React.createElement(
 	          'div',
-	          { style: { width: "80%", margin: "0 auto", height: "300px" } },
-	          React.createElement('img', (0, _defineProperty3.default)({ style: { height: "100%" }, src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg' }, 'style', { width: "45%", height: "100%", margin: "2.5%" })),
-	          React.createElement('img', { style: { height: "100%" }, src: '/public/img/prof_t.jpg' })
-	        ),
-	        React.createElement('hr', { className: 'style-one' }),
-	        React.createElement('br', null),
-	        React.createElement('br', null),
-	        React.createElement(
-	          'div',
-	          { style: textStyle },
-	          ' ',
+	          { id: 'panelTwo', style: { display: "block", width: "100%", height: "900px" } },
+	          React.createElement('div', { style: { height: "60px", marginTop: "30px" } }),
+	          React.createElement(TextComponent, { style: boldStyle, message: 'Our Goal:' }),
+	          React.createElement(TextComponent, { style: boldStyle, message: 'To Bridge Lecture Learning With Application' }),
+	          React.createElement('div', { style: { margin: "0 auto", height: "45px", width: "50px" } }),
 	          React.createElement(
-	            'strong',
-	            null,
-	            ' Professor Truong Nguyen '
-	          ),
-	          ' , who has been working closely with student organizations and undergraduates, noticed that UCSD had many great ECE classes, but not enough project-based classes for students to practice the skills they learned in real-world applications. '
-	        ),
-	        React.createElement(TextComponent, { style: textStyle, message: 'He set together to work closely with a group of students to create projects that were not only educational and easy to create, but also that would be enjoyable.' }),
-	        React.createElement(TextComponent, { style: textStyle, message: 'Since its inception in 2015, the program has now grown to host more than 35 tutors, and offers a highly-sought after ECE class for upperclassmen.' }),
-	        React.createElement('hr', { className: 'style-one' })
+	            'div',
+	            { id: 'centerFold', style: { display: "flex", padding: "10px 30px" } },
+	            React.createElement(
+	              'div',
+	              { style: { flex: "1", width: "80%", margin: "0 auto", height: "300px" } },
+	              React.createElement('img', (0, _defineProperty3.default)({ style: { height: "100%" }, src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg' }, 'style', { width: "80%", height: "100%", margin: "2.5%" })),
+	              React.createElement('img', (0, _defineProperty3.default)({ style: { height: "100%" }, src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1485133458/arcade-emulator/IMG_2504_w7gudt.jpg' }, 'style', { width: "80%", height: "100%", margin: "2.5%" }))
+	            ),
+	            React.createElement(
+	              'div',
+	              { id: 'centerText', style: { flex: "1", paddingTop: "20px" } },
+	              React.createElement(TextComponent, { style: (0, _extends4.default)((_extends2 = { fontSize: "14px", fontFamily: "\'Montserrat\', sans-serif", color: "#164065" }, (0, _defineProperty3.default)(_extends2, 'fontSize', "20px"), (0, _defineProperty3.default)(_extends2, 'padding', "0px"), _extends2)), message: " Project-In-A-Box is an engineering program started by UCSD's ECE department to give undergraduates more hands-on projects to learn from." }),
+	              React.createElement('br', null),
+	              React.createElement('br', null),
+	              React.createElement(TextComponent, { style: (0, _extends4.default)({ fontFamily: "\'Montserrat\', sans-serif", color: "#164065", fontSize: "20px", padding: "0px" }), message: "  The program began when Professor Truong Nguyen noticed that students were taking many theoretical classes without application, or seeing the concepts in action.  Working together with various student orgs, he started this program focusing on a student-first environment with a selection of projects made by students, for students" }),
+	              React.createElement('br', null),
+	              React.createElement('br', null),
+	              React.createElement(TextComponent, { style: (0, _extends4.default)({ fontFamily: "\'Montserrat\', sans-serif", color: "#164065", fontSize: "20px", paddingLeft: "0px", paddingRight: "0px" }), message: "Since its inception in 2015, the program has now grown to host more than 35 tutors, and also includes an upper-divison ECE class for undergraduates." })
+	            )
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -53107,18 +53107,6 @@
 	    };
 	  },
 	  switchSlideLeft: function switchSlideLeft(inc) {
-	    var newCtr = this.state.ctr == 2 ? 0 : this.state.ctr + 1;
-	    this.setState({
-	      ctr: newCtr,
-	      paths: this.state.paths
-	    });
-	    alert(newCtr);
-	    $("#cf7 img").removeClass("opaque");
-	    $("#cf7 img").eq(newCtr).addClass("opaque");
-	    $("#cf7_controls span").removeClass("selected");
-	    $(this).addClass("selected");
-	  },
-	  switchSlideRight: function switchSlideRight(inc) {
 	    var newCtr = this.state.ctr == 0 ? 2 : this.state.ctr - 1;
 	    this.setState({
 	      ctr: newCtr,
@@ -53129,31 +53117,23 @@
 	    $("#cf7_controls span").removeClass("selected");
 	    $(this).addClass("selected");
 	  },
-	  componentDidMount: function componentDidMount() {
-	    // var img_array = [1, 2, 3, 4],
-	    //        newIndex = 0,
-	    //        index = 0,
-	    //        interval = 3000;
-	    //    (function changeBg() {
-	    //            index = (index + 1) % img_array.length;
-	    //
-	    //                $("#cf7 img").removeClass("opaque");
-	    //                $("#cf7 img").eq(index).addClass("opaque");
-	    //                $("#cf7_controls span").removeClass("selected");
-	    //                $(this).addClass("selected");
-	    //                // console.log(newImage);
-	    //        setTimeout(changeBg, interval);
-	    //    })();
-	    //  this.setState({
-	    //    ctr  : newCtr,
-	    //    paths: this.props.links
-	    //  });
+	  switchSlideRight: function switchSlideRight(inc) {
+	    var newCtr = this.state.ctr == 2 ? 0 : this.state.ctr + 1;
+	    this.setState({
+	      ctr: newCtr,
+	      paths: this.state.paths
+	    });
+	    $("#cf7 img").removeClass("opaque");
+	    $("#cf7 img").eq(newCtr).addClass("opaque");
+	    $("#cf7_controls span").removeClass("selected");
+	    $(this).addClass("selected");
 	  },
+	  componentDidMount: function componentDidMount() {},
 	  render: function render() {
-	    var _chevronStyle;
+	    var _chevronStyle, _React$createElement;
 
 	    var imgStyle = { height: "100%", padding: "0%", width: "100%" };
-	    var mainImgStyle = { height: "auto", width: "100%", minHeight: "200px", minWidth: "200px" };
+	    var mainImgStyle = { height: "500px", width: "100%", minHeight: "200px", minWidth: "200px" };
 	    var imgBoxStyle = { marginRight: "15px", height: "120px", width: "120px" };
 	    var chevronStyle = (_chevronStyle = { display: "inline-block", cursor: "pointer", verticalAlign: "middle", paddingTop: "50px", margin: "auto",
 	      height: "120px", width: "100px" }, (0, _defineProperty3.default)(_chevronStyle, 'verticalAlign', "center"), (0, _defineProperty3.default)(_chevronStyle, 'color', "#b5b3b3"), _chevronStyle);
@@ -53184,7 +53164,7 @@
 	      { style: { backgroundColor: "#192930", height: "1000px", marginTop: "20px", paddingLeft: "0px", paddingRight: "0px" } },
 	      React.createElement(
 	        'div',
-	        { id: 'bg', style: { backgroundColor: "white" } },
+	        { id: 'bg', style: { backgroundColor: "#E2E7E9" } },
 	        React.createElement(
 	          'div',
 	          { style: { backgroundColor: "#192930", height: "150px", marginTop: "20px", paddingLeft: "0px", paddingRight: "20px",
@@ -53207,30 +53187,19 @@
 	            { id: 'left', style: { flex: "1", width: "500px", padding: "20px", paddingRight: "30px", paddingTop: "0px" } },
 	            React.createElement(
 	              'div',
-	              { style: mainImgStyle },
-	              React.createElement('img', { id: 'mainImg', className: 'opaque', style: imgStyle, src: this.state.paths[0] })
-	            ),
-	            React.createElement('br', null),
-	            React.createElement('br', null),
-	            React.createElement('br', null),
-	            React.createElement(
-	              'div',
-	              { id: 'mainImg2', style: { display: "block", height: "600px", width: "100%", padding: "0" } },
-	              React.createElement('div', { style: { display: "inline-block", flex: "0.3", padding: "40px 0 0 90px", width: "30%", height: "100%" } }),
-	              React.createElement(
-	                'div',
-	                { style: { display: "inline-block", flex: "0.6", width: "40%", height: "100%", marginTop: "10px" }, id: 'cf7', className: 'shadow' },
-	                React.createElement('img', { style: imgStyle, className: 'opaque', src: this.state.paths[0] }),
-	                React.createElement('img', { style: imgStyle, src: this.state.paths[0] }),
-	                React.createElement('img', { style: imgStyle, src: this.state.paths[1] }),
-	                React.createElement('img', { style: imgStyle, src: this.state.paths[2] })
-	              ),
+	              (_React$createElement = { id: 'mainImg2', style: mainImgStyle }, (0, _defineProperty3.default)(_React$createElement, 'id', 'cf7'), (0, _defineProperty3.default)(_React$createElement, 'className', 'shadow'), _React$createElement),
+	              React.createElement('img', { style: imgStyle, className: 'opaque', src: this.state.paths[0] }),
+	              React.createElement('img', { style: imgStyle, src: this.state.paths[1] }),
+	              React.createElement('img', { style: imgStyle, src: this.state.paths[2] }),
 	              React.createElement(
 	                'div',
 	                { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "30%", height: "100%" } },
 	                ' '
 	              )
 	            ),
+	            React.createElement('br', null),
+	            React.createElement('br', null),
+	            React.createElement('br', null),
 	            React.createElement(
 	              'div',
 	              { style: { backgroundColor: "none", margin: "0 auto", padding: "0 2%" } },
@@ -53282,12 +53251,6 @@
 	              { style: { display: "inline-block", marginRight: "20px" } },
 	              ' 100 views '
 	            ),
-	            React.createElement(
-	              'div',
-	              { style: { display: "inline-block" } },
-	              ' 100 '
-	            ),
-	            React.createElement('img', { src: '/public/img/hearts.png', style: { height: "20px", display: "inline-block" } }),
 	            React.createElement('br', null),
 	            React.createElement(
 	              'div',
@@ -53332,7 +53295,19 @@
 	          React.createElement(
 	            'div',
 	            { id: 'infoBox', style: { backgroundColor: "#B4B5C0", flex: "0.5", width: "500px" } },
-	            React.createElement('div', { style: { backgroundColor: "red", width: "50px", height: "50px" } })
+	            React.createElement('div', { style: { backgroundColor: "red", width: "50px", height: "50px" } }),
+	            React.createElement(
+	              'div',
+	              { style: { display: "inline-block", paddingRight: "4px" } },
+	              ' 100 '
+	            ),
+	            React.createElement('img', { src: '/public/img/hearts.png', style: { height: "20px", display: "inline-block" } }),
+	            React.createElement(
+	              'div',
+	              { style: { display: "inline-block", paddingRight: "4px" } },
+	              ' 100 '
+	            ),
+	            React.createElement('img', { src: '/public/img/hearts.png', style: { height: "20px", display: "inline-block" } })
 	          )
 	        )
 	      )

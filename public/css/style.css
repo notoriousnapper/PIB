@@ -541,11 +541,12 @@ p#cf7_controls {
   cursor:pointer;
 }
 #cf7 {
+  display: block;
   position:relative;
-  height: auto;
+  height: 500px;
   width:100%;
-  min-height: 200px;
-  min-width:200px;
+  /*min-height: 200px;
+  min-width:200px;*/
   /*height:301px;
   width:450px;
   margin:0 auto 0px;*/

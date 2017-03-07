@@ -27,12 +27,11 @@ var About = React.createClass({
 				var textStyle = {
           margin: "0 auto",
           width: "40%",
-					fontSize:"14px",
-					// fontWeight: "n",
-					fontFamily: "\'Montserrat\', sans-serif",
 					// backgroundColor: "white",
           textAlign: "center",
           marginTop: "20px",
+					fontSize:"14px",
+					fontFamily: "\'Montserrat\', sans-serif",
           color: "#7691AA"
 				};
 
@@ -43,7 +42,7 @@ var About = React.createClass({
 
 
 				var boldStyle = {
-					fontSize:"26px",
+					fontSize:"36px",
 					fontWeight: "bold", //400 normal, 700 bold
 					fontFamily: "\'Montserrat\', sans-serif",
 					textAlign: "center",
@@ -82,40 +81,47 @@ var About = React.createClass({
 			  zIndex:"1" ,
 			  display:"flex",
 			  flexDirection: "column"
+                // <img style={{display:"inline-block", float:"right", height:"400px", width:"400px"}} src={'/public/img/girl_graphic.png'}/>
+                // <img style={{display:"inline-block", float:"left",height:"400px", width:"400px"}} src={'/public/img/boy_graphic.png'}/>
 		};
         return(
         <div style={bgStyle}>
           <div style={{backgroundColor:"#E2E7E9", height: "1800px"}}>
-          <div style={{backgroundColor:"#12678C", height: "100px", color: "white"}}>
-                <TextComponent style={boldStyle} message={'About Us'} />
+          <div id="panelOne" style={{backgroundColor:"#656786",
+            // backgroundImage: "url('http://res.cloudinary.com/djmk9vktk/image/upload/v1484795377/wood_ahxhaq.jpg')",
+                height: "720px", color: "white", paddingTop:"120px"}}>
+                <TextComponent id="title" style={{...boldStyle, ...{fontSize:"35px", color:"#DCDDE1"}}} message={'ABOUT US'}/>
+              <div style={{margin:"0 auto"}}>
+                <img style={{display:"block", margin:"0 auto", marginTop:"20px", height:"400px", width:"400px"}} src={'http://res.cloudinary.com/djmk9vktk/image/upload/v1488857527/arcade-emulator/boy_graphic.png'}/>
+                <TextComponent style={{...textStyle,...{color:"#DCDDE1", fontSize:"20px"}}} message={"Hi There! We are Project-In-A-Box, and we promote hands-on learning for ECE students through projects"}/>
+              </div>
           </div>
-            <div>
+          <div id="panelTwo" style={{display:"block", width:"100%", height: "900px"}}>
               <div style={{height: "60px", marginTop: "30px"}}></div>
-                <TextComponent style={boldStyle} message={'We Think Learning Should Be'} />
-              <TextComponent style={boldStyle} message={'Educational, Personal, and Fun.'} />
-
-              <div style={{margin: "0 auto", height: "45px", width:"50px"}} >
-                <img style={boldStyle} src="http://res.cloudinary.com/djmk9vktk/image/upload/v1487699066/arcadeboxflat_agzujk.png" style={{margin: "0 auto", width:"100%" ,height:"100%"}}/>
+                <TextComponent style={boldStyle} message={'Our Goal:'}/>
+                <TextComponent style={boldStyle} message={'To Bridge Lecture Learning With Application'}/>
+                <div style={{margin: "0 auto", height: "45px", width:"50px"}} >
                 </div>
 
-              <TextComponent style={textStyle} message={'That\'s why there\'s \'Project In a Box\', an Engineering program at UCSD that promotes education through building projects and workshopping skills in an open environment.' } />
+                <div id="centerFold" style={{display:"flex", padding:"10px 30px"}}>
+                  <div style={{flex:"1", width: "80%", margin: "0 auto", height: "300px"}}>
+                    <img style={{height:"100%"}}   src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"80%",height:"100%",margin:"2.5%"}}/>
+                    <img style={{height:"100%"}}   src="http://res.cloudinary.com/djmk9vktk/image/upload/v1485133458/arcade-emulator/IMG_2504_w7gudt.jpg" style={{width:"80%",height:"100%",margin:"2.5%"}}/>
+                  </div>
+
+                <div id="centerText" style={{flex:"1", paddingTop:"20px"}}>
+                  <TextComponent style={{...{fontSize:"14px", fontFamily: "\'Montserrat\', sans-serif", color: "#164065",fontSize:"20px", padding:"0px"}}} message={" Project-In-A-Box is an engineering program started by UCSD's ECE department to give undergraduates more hands-on projects to learn from."} />
+                  <br/>
+                  <br/>
+                  <TextComponent style={{...{fontFamily: "\'Montserrat\', sans-serif", color: "#164065",fontSize:"20px", padding:"0px"}}} message={ "  The program began when Professor Truong Nguyen noticed that students were taking many theoretical classes without application, or seeing the concepts in action.  Working together with various student orgs, he started this program focusing on a student-first environment with a selection of projects made by students, for students"}/>
+                  <br/>
+                  <br/>
+                  <TextComponent style={{...{fontFamily: "\'Montserrat\', sans-serif", color: "#164065",fontSize:"20px", paddingLeft:"0px", paddingRight:"0px"}}} message={"Since its inception in 2015, the program has now grown to host more than 35 tutors, and also includes an upper-divison ECE class for undergraduates."} />
+                </div>
+                </div>
+            </div>
             </div>
 
-            <div style={{width: "80%", margin: "0 auto", height: "300px"}}>
-              <img style={{height:"100%"}}   src="http://res.cloudinary.com/djmk9vktk/image/upload/v1472778560/landingpage.jpg" style={{width:"45%",height:"100%",margin:"2.5%"}}/>
-              <img style={{height:"100%"}}  src="/public/img/prof_t.jpg"/>
-            </div>
-            <hr className="style-one"/>
-
-              <br/>
-              <br/>
-              <div style={textStyle}> <strong> Professor Truong Nguyen </strong> , who has been working closely with student organizations and undergraduates, noticed that UCSD had many great ECE classes, but not enough project-based classes for students to practice the skills they learned in real-world applications. </div>
-              <TextComponent style={textStyle} message={'He set together to work closely with a group of students to create projects that were not only educational and easy to create, but also that would be enjoyable.'} />
-              <TextComponent style={textStyle} message={'Since its inception in 2015, the program has now grown to host more than 35 tutors, and offers a highly-sought after ECE class for upperclassmen.'} />
-
-            <hr className="style-one"/>
-
-          </div>
         </div>
               )
                 }
