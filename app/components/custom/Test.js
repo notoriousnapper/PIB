@@ -58,10 +58,11 @@ componentDidMount: function() {
 render: function(){
     var imgStyle = {height:"100%", padding: "0%", width:"100%"};
     var mainImgStyle = {height: "500px", width:"100%", minHeight: "200px", minWidth:"200px"}
-    var imgBoxStyle = {marginRight: "15px", height: "120px", width:"120px"};
+    var imgBoxStyle = {marginRight: "15px", height: "100px", width:"100px"};
     var chevronStyle = {display: "inline-block", cursor: "pointer", verticalAlign: "middle", paddingTop:"50px", margin: "auto",
     height: "120px", width: "100px", verticalAlign:"center", color:"#b5b3b3"};
-    var chevronContainerStyle = {display:"inline-block", backgroundColor:"white",
+    var chevronContainerStyle = {display:"inline-block",
+    // backgroundColor:"white",
     // borderColor:"black", borderStyle: "solid",
      height:"100%", width:"40px" };
 
@@ -107,7 +108,7 @@ return  (
           <FontAwesome style={chevronStyle} onClick={this.switchSlideLeft} name="chevron-left" size="2x"/>
           </div>
 
-        <div id="imgBox" style={{width: "450px", display:"inline-block"}}> {imgBox} </div>
+        <div id="imgBox" style={{width: "400px", display:"inline-block"}}> {imgBox} </div>
 
         <div id="rightChevron" style={{...chevronContainerStyle,...{float:"right"}}}>
         <FontAwesome style={chevronStyle} onClick={this.switchSlideRight} name="chevron-right" size="2x"/> </div>

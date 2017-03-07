@@ -53134,10 +53134,11 @@
 
 	    var imgStyle = { height: "100%", padding: "0%", width: "100%" };
 	    var mainImgStyle = { height: "500px", width: "100%", minHeight: "200px", minWidth: "200px" };
-	    var imgBoxStyle = { marginRight: "15px", height: "120px", width: "120px" };
+	    var imgBoxStyle = { marginRight: "15px", height: "100px", width: "100px" };
 	    var chevronStyle = (_chevronStyle = { display: "inline-block", cursor: "pointer", verticalAlign: "middle", paddingTop: "50px", margin: "auto",
 	      height: "120px", width: "100px" }, (0, _defineProperty3.default)(_chevronStyle, 'verticalAlign', "center"), (0, _defineProperty3.default)(_chevronStyle, 'color', "#b5b3b3"), _chevronStyle);
-	    var chevronContainerStyle = { display: "inline-block", backgroundColor: "white",
+	    var chevronContainerStyle = { display: "inline-block",
+	      // backgroundColor:"white",
 	      // borderColor:"black", borderStyle: "solid",
 	      height: "100%", width: "40px" };
 
@@ -53210,7 +53211,7 @@
 	              ),
 	              React.createElement(
 	                'div',
-	                { id: 'imgBox', style: { width: "450px", display: "inline-block" } },
+	                { id: 'imgBox', style: { width: "400px", display: "inline-block" } },
 	                ' ',
 	                imgBox,
 	                ' '
