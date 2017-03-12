@@ -121,7 +121,8 @@ var Projects = React.createClass({
           this.getAllProjects();
         },
   op1: function(){
-    var containerStyle = {paddingTop: "100px", paddingLeft: "100px", paddingRight: "100px", display: "flex", flexDirection: "column", margin: "0 auto"
+    var containerStyle = {paddingTop: "100px", paddingLeft: "100px", paddingRight: "100px", display: "flex", flexDirection: "column",
+    margin: "0 auto"
     }
      var projectListStyle = {flex: "5"
      }
@@ -146,7 +147,9 @@ var Projects = React.createClass({
                         <Category popular={this.getPopularProjects} view={this.getMostViewsProjects}/>
               </Bar>
                     <Frame style={{display:"inline-block"}}>
-                            <div style={{display:"flex", flexDirection: "column"}}>
+                            <div style={{display:"flex", flexDirection: "column",
+			                         backgroundColor: "#F4F4F4",
+                          }}>
                               <ProjectSearchList style={projectListStyle} projectListData={this.state.data}/>
 
                               <div style={{display:"flex", paddingTop:"30px"}}>

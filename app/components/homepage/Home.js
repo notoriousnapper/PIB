@@ -31,7 +31,7 @@ var HoverInfo = React.createClass({
              {onMouseOver: this.mouseOver, onMouseOut: this.mouseOut},
  						<div style={this.props.circlePosition}>
  							<Link className="image-cropper" style={this.props.circleSize}
- 						  	to={"/projects/robotic arm"} >
+ 						  	to={this.props.projectTitle} >
  								<img src={this.props.url}/>
  							</Link>
 
@@ -121,9 +121,7 @@ var Home = React.createClass({
 				// 	<img src={this.state.projects[0]}/>
 				// </Link>
 
-
 				// to={"/projects/arcadebox"} >
-
 		return(
 			<div style={bgStyle}>
 
@@ -132,7 +130,7 @@ var Home = React.createClass({
 					hoverStyle={{position:"relative", right:"65%", width:"140px", height:"90px", padding:"5px", borderRadius:"3px 3px 0 3px", backgroundColor:"white"}}
 					likes={13}
 					downloads={3}
-					projectTitle={"Robotic Arm"}
+					projectTitle={"/projects/robotic arm"}
 				/>
 
 
@@ -143,7 +141,7 @@ var Home = React.createClass({
           fontFamily: "Montserrat", fontSize: "14px" }}
 					likes={4}
 					downloads={5}
-					projectTitle={"Arcade Emulator"}
+					projectTitle={"projects/arcade emulator"}
 				/>
 
 				<Link className="image-cropper" style={{ height: "220px", width: "220px", top: "63%", right: "16px"}}

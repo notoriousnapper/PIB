@@ -27016,7 +27016,7 @@
 				React.createElement(
 					Link,
 					{ className: 'image-cropper', style: this.props.circleSize,
-						to: "/projects/robotic arm" },
+						to: this.props.projectTitle },
 					React.createElement('img', { src: this.props.url })
 				),
 				React.createElement(
@@ -27096,9 +27096,7 @@
 			// 	<img src={this.state.projects[0]}/>
 			// </Link>
 
-
 			// to={"/projects/arcadebox"} >
-
 			;return React.createElement(
 				'div',
 				{ style: bgStyle },
@@ -27107,7 +27105,7 @@
 					hoverStyle: { position: "relative", right: "65%", width: "140px", height: "90px", padding: "5px", borderRadius: "3px 3px 0 3px", backgroundColor: "white" },
 					likes: 13,
 					downloads: 3,
-					projectTitle: "Robotic Arm"
+					projectTitle: "/projects/robotic arm"
 				}),
 				React.createElement(HoverInfo, { url: this.state.projects[1], circlePosition: { position: "absolute", top: "52%", right: "20%", height: "140px", width: "140px" },
 					circleSize: { height: "140px", width: "140px" },
@@ -27116,7 +27114,7 @@
 						fontFamily: "Montserrat", fontSize: "14px" },
 					likes: 4,
 					downloads: 5,
-					projectTitle: "Arcade Emulator"
+					projectTitle: "projects/arcade emulator"
 				}),
 				React.createElement(
 					Link,
@@ -48759,7 +48757,8 @@
 	    this.getAllProjects();
 	  },
 	  op1: function op1() {
-	    var containerStyle = { paddingTop: "100px", paddingLeft: "100px", paddingRight: "100px", display: "flex", flexDirection: "column", margin: "0 auto"
+	    var containerStyle = { paddingTop: "100px", paddingLeft: "100px", paddingRight: "100px", display: "flex", flexDirection: "column",
+	      margin: "0 auto"
 	    };
 	    var projectListStyle = { flex: "5"
 	    };
@@ -48792,7 +48791,9 @@
 	          { style: { display: "inline-block" } },
 	          React.createElement(
 	            'div',
-	            { style: { display: "flex", flexDirection: "column" } },
+	            { style: { display: "flex", flexDirection: "column",
+	                backgroundColor: "#F4F4F4"
+	              } },
 	            React.createElement(ProjectSearchList, { style: projectListStyle, projectListData: this.state.data }),
 	            React.createElement(
 	              'div',
@@ -49001,7 +49002,7 @@
 				maxWidth: "400px",
 				width: "100%",
 				minWidth: "100px",
-				backgroundColor: "#F4F4F4",
+				backgroundColor: "white",
 				paddingLeft: "10px",
 				paddingTop: "10px",
 				paddingBottom: "10px"
@@ -53133,10 +53134,10 @@
 	    var _chevronStyle, _React$createElement;
 
 	    var imgStyle = { height: "100%", padding: "0%", width: "100%" };
-	    var mainImgStyle = { height: "500px", width: "100%", minHeight: "200px", minWidth: "200px" };
-	    var imgBoxStyle = { marginRight: "15px", height: "100px", width: "100px" };
+	    var mainImgStyle = { float: "right", height: "400px", width: "400px", minHeight: "200px", minWidth: "200px" };
+	    var imgBoxStyle = { marginRight: "15px", height: "80px", width: "80px", cursor: "pointer" };
 	    var chevronStyle = (_chevronStyle = { display: "inline-block", cursor: "pointer", verticalAlign: "middle", paddingTop: "50px", margin: "auto",
-	      height: "120px", width: "100px" }, (0, _defineProperty3.default)(_chevronStyle, 'verticalAlign', "center"), (0, _defineProperty3.default)(_chevronStyle, 'color', "#b5b3b3"), _chevronStyle);
+	      height: "90px", width: "90px" }, (0, _defineProperty3.default)(_chevronStyle, 'verticalAlign', "center"), (0, _defineProperty3.default)(_chevronStyle, 'color', "#b5b3b3"), _chevronStyle);
 	    var chevronContainerStyle = { display: "inline-block",
 	      // backgroundColor:"white",
 	      // borderColor:"black", borderStyle: "solid",
@@ -53162,7 +53163,7 @@
 	    });
 	    return React.createElement(
 	      'div',
-	      { style: { backgroundColor: "#192930", height: "1000px", marginTop: "20px", paddingLeft: "0px", paddingRight: "0px" } },
+	      { style: { backgroundColor: "#192930", height: "1000px", marginTop: "20px", paddingLeft: "100px", paddingRight: "100px" } },
 	      React.createElement(
 	        'div',
 	        { id: 'bg', style: { backgroundColor: "#E2E7E9" } },
@@ -53182,10 +53183,10 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { id: 'container', style: { display: "flex", padding: "30px", paddingRight: "10px" } },
+	          { id: 'container', style: { display: "flex", paddingRight: "10px", backgroundColor: "white" } },
 	          React.createElement(
 	            'div',
-	            { id: 'left', style: { flex: "1", width: "500px", padding: "20px", paddingRight: "30px", paddingTop: "0px" } },
+	            { id: 'left', style: { borderWidth: "0px 2px 0px 0px", borderColor: "#D9DADF", borderStyle: "solid", backgroundColor: "none", display: "inline-block", padding: "30px", paddingTop: "40px" } },
 	            React.createElement(
 	              'div',
 	              (_React$createElement = { id: 'mainImg2', style: mainImgStyle }, (0, _defineProperty3.default)(_React$createElement, 'id', 'cf7'), (0, _defineProperty3.default)(_React$createElement, 'className', 'shadow'), _React$createElement),
@@ -53203,7 +53204,7 @@
 	            React.createElement('br', null),
 	            React.createElement(
 	              'div',
-	              { style: { backgroundColor: "none", margin: "0 auto", padding: "0 2%" } },
+	              { style: { float: "right", backgroundColor: "none", margin: "0 auto", padding: "0 2%" } },
 	              React.createElement(
 	                'div',
 	                { id: 'leftChevron', style: chevronContainerStyle },
@@ -53211,7 +53212,7 @@
 	              ),
 	              React.createElement(
 	                'div',
-	                { id: 'imgBox', style: { width: "400px", display: "inline-block" } },
+	                { id: 'imgBox', style: { width: "300px", display: "inline-block" } },
 	                ' ',
 	                imgBox,
 	                ' '
@@ -53226,10 +53227,11 @@
 	          ),
 	          React.createElement(
 	            'div',
-	            { id: 'center', style: { flex: "1", width: "500px" } },
+	            { id: 'center', style: { flex: "1", width: "500px", paddingRight: "20px", paddingTop: "40px", paddingLeft: "40px",
+	                borderWidth: "0px 2px 0px 0px", borderColor: "#D9DADF", borderStyle: "solid" } },
 	            React.createElement(
 	              'h1',
-	              { style: { color: "#3A3333", padding: "0", margin: "0", paddingBottom: "5px" } },
+	              { style: { color: "#4C516C", padding: "0", margin: "0", paddingBottom: "5px", fontFamily: "Roboto Condensed", fontStyle: "bold" } },
 	              ' Guitar Effects X '
 	            ),
 	            React.createElement(
@@ -53237,32 +53239,45 @@
 	              { style: { color: "#4C516C", padding: "0", margin: "0" } },
 	              React.createElement(
 	                'div',
-	                { style: { display: "inline-block", fontWeight: "300", marginRight: "4px" } },
+	                { style: { display: "inline-block", fontWeight: "300", marginRight: "4px", fontSize: "20px" } },
 	                ' by  '
 	              ),
 	              React.createElement(
 	                'div',
-	                { style: { display: "inline-block", fontWeight: "500" } },
+	                { style: { display: "inline-block", fontWeight: "300", fontFamily: "Montserrat; Roboto", fontSize: "20px" } },
 	                ' Jesse Ren '
 	              ),
 	              ' '
 	            ),
+	            React.createElement('div', { id: 'buttonBar' }),
 	            React.createElement(
 	              'div',
 	              { style: { display: "inline-block", marginRight: "20px" } },
 	              ' 100 views '
 	            ),
+	            React.createElement(
+	              'button',
+	              { style: { backgroundColor: "white", borderRadius: "5px" } },
+	              React.createElement('img', { src: '/public/img/hearts.png', style: { height: "20px", display: "inline-block", marginRight: "7px" } }),
+	              '  100'
+	            ),
+	            React.createElement(
+	              'button',
+	              { style: { backgroundColor: "white", borderRadius: "5px" } },
+	              React.createElement('img', { src: '/public/img/cloud_blue.png', style: { height: "20px", display: "inline-block", marginRight: "7px" } }),
+	              ' 67'
+	            ),
 	            React.createElement('br', null),
 	            React.createElement(
 	              'div',
-	              { style: { fontSize: "18px", color: "#575b84" } },
+	              { style: { lineHeight: "175%", fontSize: "18px", color: "#4C516C", paddingRight: "50px" } },
+	              React.createElement('br', null),
 	              React.createElement('br', null),
 	              React.createElement(
 	                'strong',
 	                null,
 	                ' Description: '
 	              ),
-	              ' My Project is the Guitar Project',
 	              React.createElement(
 	                'div',
 	                null,
@@ -53281,34 +53296,81 @@
 	                ' \'Knowing the basics on what resistors, capacitors and transistors do helps, but is not require. In the process of building, you observe the clipping circuits, the frequency filters, and oscillator circuits in action. You gain troubleshooting skills and get up close and familiar with electrical components. You get better intuition on how a circuit behaves and how you can design it.\' '
 	              ),
 	              React.createElement('br', null),
+	              React.createElement('ul', null),
 	              React.createElement(
 	                'strong',
 	                null,
 	                ' Documents: '
 	              ),
-	              React.createElement(
-	                'ul',
-	                null,
-	                documentsList
-	              )
+	              documentsList
 	            )
 	          ),
 	          React.createElement(
 	            'div',
-	            { id: 'infoBox', style: { backgroundColor: "#B4B5C0", flex: "0.5", width: "500px" } },
-	            React.createElement('div', { style: { backgroundColor: "red", width: "50px", height: "50px" } }),
+	            { id: 'infoBox', style: { flexDirection: "column", backgroundColor: "white", flex: "0.5", padding: "0px", width: "500px", height: "800px",
+	                borderRadius: "20px" } },
 	            React.createElement(
 	              'div',
-	              { style: { display: "inline-block", paddingRight: "4px" } },
-	              ' 100 '
+	              { style: { height: "50px", width: "100%", backgroundColor: "none", textAlign: "center", color: "black", fontSize: "20px", paddingTop: "7px" } },
+	              'Project Details'
 	            ),
-	            React.createElement('img', { src: '/public/img/hearts.png', style: { height: "20px", display: "inline-block" } }),
 	            React.createElement(
 	              'div',
-	              { style: { display: "inline-block", paddingRight: "4px" } },
-	              ' 100 '
-	            ),
-	            React.createElement('img', { src: '/public/img/hearts.png', style: { height: "20px", display: "inline-block" } })
+	              { id: 'outerBox', style: { padding: "0px" } },
+	              React.createElement(
+	                'div',
+	                { id: 'sectionOne', style: { flex: "1", height: "100px", borderColor: "#D9DADF", borderStyle: "solid",
+	                    borderWidth: "0px 0px 2px 0px", paddingRight: "20px", paddingLeft: "40px", margin: "0 auto" } },
+	                React.createElement('img', { style: { height: "40px", display: "inline-block", marginRight: "20px" }, src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png' }),
+	                React.createElement(
+	                  'div',
+	                  { style: { display: "inline-block", paddingRight: "4px", marginBottom: "20px", marginRight: "20px" } },
+	                  ' 100 '
+	                ),
+	                React.createElement('img', { src: '/public/img/hearts.png', style: { height: "40px", display: "inline-block", marginRight: "20px" } }),
+	                React.createElement(
+	                  'div',
+	                  { style: { display: "inline-block", paddingRight: "4px", marginBottom: "20px", marginRight: "20px" } },
+	                  ' 100 '
+	                )
+	              ),
+	              React.createElement('div', null),
+	              React.createElement(
+	                'div',
+	                { id: 'sectionTwo', style: { flex: "1", height: "200px", borderColor: "#D9DADF", borderStyle: "solid",
+	                    borderWidth: "0px 0px 2px 0px" } },
+	                React.createElement(
+	                  'div',
+	                  null,
+	                  React.createElement('img', { src: 'https://expertbeacon.com/sites/default/files/advice_for_men_on_selecting_your_online_dating_profile_photo.jpg',
+	                    style: { height: "100px", display: "inline-block" } }),
+	                  React.createElement(
+	                    'div',
+	                    null,
+	                    'Now '
+	                  )
+	                ),
+	                React.createElement(
+	                  'div',
+	                  null,
+	                  React.createElement(
+	                    'strong',
+	                    null,
+	                    ' Team Members: '
+	                  ),
+	                  React.createElement('br', null),
+	                  'Colin Keef, Julia Mou'
+	                )
+	              ),
+	              React.createElement(
+	                'div',
+	                { id: 'sectionThree', style: { flex: "1", height: "300px" } },
+	                React.createElement('br', null),
+	                'Related Projects:',
+	                React.createElement('br', null),
+	                React.createElement('img', { style: imgBoxStyle, src: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg" })
+	              )
+	            )
 	          )
 	        )
 	      )

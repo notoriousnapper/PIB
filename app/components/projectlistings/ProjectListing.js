@@ -27,7 +27,7 @@ var ProjectListing = React.createClass({
 			maxWidth:"400px",
 			width: "100%",
 			minWidth:"100px",
-			backgroundColor: "#F4F4F4",
+			backgroundColor: "white",
 			paddingLeft: "10px",
 			paddingTop: "10px",
 			paddingBottom: "10px"
