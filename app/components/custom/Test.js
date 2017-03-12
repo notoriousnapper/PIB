@@ -159,7 +159,7 @@ return  (
           <div>
           </div>
           <div id="sectionTwo" style={{display:"block", height: "200px", borderColor:"#D9DADF", borderStyle:"solid",
-              borderWidth:"0px 0px 2px 0px", paddingLeft:"130px", paddingTop: "30px", margin: "0 auto", backgroundColor:"white"}}>
+              borderWidth:"0px 0px 2px 0px", paddingLeft:"30px", paddingTop: "30px", margin: "0 auto", backgroundColor:"white"}}>
               <div style={{display:"block", margin:"0 auto"}}>
                 <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1484844829/ericho_ojewhp.jpg"
                   style={{height:"100px", display:"inline-block"}}/>
