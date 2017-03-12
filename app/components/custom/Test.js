@@ -9,6 +9,7 @@ var $ = require('jquery');
 
 
 var documentStrings = [
+  'Main Document',
   'Schematic',
   'Eagle Files',
   'Schematic'
@@ -70,7 +71,7 @@ render: function(){
       return <img style={imgBoxStyle} src={item} />
     });
     var documentsList = documentStrings.map(function(item){
-      return <li > <a style={{color:"#D74B1F"}}> {item} </a> </li>
+      return <li style={{content: "-"}} > <a style={{color:"#D74B1F"}}> {item} </a> </li>
     });
 return  (
   <div style={{backgroundColor:"#192930", height: "1000px", marginTop:"20px", paddingLeft:"100px", paddingRight:"100px" }} >
@@ -116,7 +117,7 @@ return  (
         <h1 style={{color: "#4C516C", padding: "0", margin:"0", paddingBottom:"5px", fontFamily:"Roboto Condensed", fontStyle:"bold"}}> Guitar Effects X </h1>
         <h3 style={{color:"#4C516C", padding: "0", margin:"0"}}>
         <div style={{display:"inline-block", fontWeight:"300", marginRight:"4px", fontSize:"20px"}}> by  </div>
-        <div style={{display:"inline-block", fontWeight:"300", fontFamily:"Montserrat; Roboto", fontSize:"20px"}}> Jesse Ren </div> </h3>
+        <div style={{display:"inline-block", fontWeight:"300", fontFamily:"Montserrat; Roboto", fontSize:"20px"}}> Eric Hou</div> </h3>
 
         <div id="buttonBar">
 
@@ -134,7 +135,6 @@ return  (
 
         <div style={{lineHeight:"175%", fontSize: "18px", color: "#4C516C", paddingRight: "50px"}} >
           <br/>
-          <br/>
 
 
           <strong> Description: </strong>
@@ -144,35 +144,25 @@ return  (
           <br/>
           <div> 'Knowing the basics on what resistors, capacitors and transistors do helps, but is not require. In the process of building, you observe the clipping circuits, the frequency filters, and oscillator circuits in action. You gain troubleshooting skills and get up close and familiar with electrical components. You get better intuition on how a circuit behaves and how you can design it.' </div>
           <br/>
-          <ul>
-          </ul>
-            <strong> Documents: </strong>
-              {documentsList}
         </div>
        </div>
 
-      <div id="infoBox" style={{ flexDirection: "column", backgroundColor: "white", flex:"0.5", padding:"0px", width: "500px", height: "800px",
-         borderRadius:"20px"}}>
-        <div style={{height:"50px", width:"100%", backgroundColor:"none", textAlign:"center", color:"black", fontSize:"20px", paddingTop:"7px"}}>
+      <div id="infoBox" style={{ flexDirection: "column", backgroundColor: "#F3F2F2", flex:"0.5", padding:"0px", width: "500px", height: "800px",
+         }}>
+        <div style={{height:"40px", width:"100%", backgroundColor:"none", textAlign:"center", color:"black", fontSize:"20px", paddingTop:"37px"}}>
          Project Details
          </div>
         <div id="outerBox" style={{padding:"0px"}}>
-          <div id="sectionOne" style={{flex:"1", height: "100px", borderColor:"#D9DADF", borderStyle:"solid",
+          <div id="sectionOne" style={{flex:"1", height: "60px", borderColor:"#D9DADF", borderStyle:"solid",
               borderWidth:"0px 0px 2px 0px", paddingRight:"20px", paddingLeft:"40px", margin:"0 auto" }}>
-
-              <img style={{height:"40px", display:"inline-block", marginRight:"20px"}} src="http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png"/>
-              <div style={{display:"inline-block", paddingRight: "4px", marginBottom:"20px", marginRight:"20px"}}> 100 </div>
-              <img src="/public/img/hearts.png" style={{height:"40px", display:"inline-block", marginRight:"20px"}}/>
-              <div style={{display:"inline-block", paddingRight: "4px", marginBottom:"20px", marginRight:"20px"}}> 100 </div>
           </div>
           <div>
           </div>
-          <div id="sectionTwo" style={{flex:"1", height: "200px", borderColor:"#D9DADF", borderStyle:"solid",
-              borderWidth:"0px 0px 2px 0px"} }>
-              <div>
-                <img src="https://expertbeacon.com/sites/default/files/advice_for_men_on_selecting_your_online_dating_profile_photo.jpg"
+          <div id="sectionTwo" style={{display:"block", height: "200px", borderColor:"#D9DADF", borderStyle:"solid",
+              borderWidth:"0px 0px 2px 0px", paddingLeft:"130px", paddingTop: "30px", margin: "0 auto", backgroundColor:"white"}}>
+              <div style={{display:"block", margin:"0 auto"}}>
+                <img src="http://res.cloudinary.com/djmk9vktk/image/upload/v1484844829/ericho_ojewhp.jpg"
                   style={{height:"100px", display:"inline-block"}}/>
-                  <div >Now </div>
               </div>
               <div>
                  <strong> Team Members: </strong>
@@ -180,12 +170,15 @@ return  (
                  {'Colin Keef, Julia Mou'}
               </div>
           </div>
+          <div id="sectionOne" style={{flex:"1", height: "160px", borderColor:"#D9DADF", borderStyle:"solid",
+              borderWidth:"0px 0px 2px 0px", paddingRight:"20px", paddingLeft:"40px", margin:"0 auto", textAlign:"center", paddingTop:"30px" }}>
+            <strong style={{fontSize:"20px", fontFamily:"Roboto Condensed", textAlign:"center"}}> Documents: </strong>
+              <ul style={{listStyle:"hyphen", cursor: "pointer"}}>{documentsList} </ul>
+          </div>
 
           <div id="sectionThree" style={{flex:"1", height: "300px"}}>
             <br/>
-            Related Projects:
             <br/>
-              <img style={imgBoxStyle} src={"http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg"}/>
 
           </div>
 

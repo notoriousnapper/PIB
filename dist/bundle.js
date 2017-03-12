@@ -53096,7 +53096,7 @@
 	var FontAwesome = __webpack_require__(354);
 	var $ = __webpack_require__(302);
 
-	var documentStrings = ['Schematic', 'Eagle Files', 'Schematic'];
+	var documentStrings = ['Main Document', 'Schematic', 'Eagle Files', 'Schematic'];
 
 	var Test = React.createClass({
 	  displayName: 'Test',
@@ -53149,7 +53149,7 @@
 	    var documentsList = documentStrings.map(function (item) {
 	      return React.createElement(
 	        'li',
-	        null,
+	        { style: { content: "-" } },
 	        ' ',
 	        React.createElement(
 	          'a',
@@ -53245,7 +53245,7 @@
 	              React.createElement(
 	                'div',
 	                { style: { display: "inline-block", fontWeight: "300", fontFamily: "Montserrat; Roboto", fontSize: "20px" } },
-	                ' Jesse Ren '
+	                ' Eric Hou'
 	              ),
 	              ' '
 	            ),
@@ -53272,7 +53272,6 @@
 	              'div',
 	              { style: { lineHeight: "175%", fontSize: "18px", color: "#4C516C", paddingRight: "50px" } },
 	              React.createElement('br', null),
-	              React.createElement('br', null),
 	              React.createElement(
 	                'strong',
 	                null,
@@ -53295,60 +53294,33 @@
 	                null,
 	                ' \'Knowing the basics on what resistors, capacitors and transistors do helps, but is not require. In the process of building, you observe the clipping circuits, the frequency filters, and oscillator circuits in action. You gain troubleshooting skills and get up close and familiar with electrical components. You get better intuition on how a circuit behaves and how you can design it.\' '
 	              ),
-	              React.createElement('br', null),
-	              React.createElement('ul', null),
-	              React.createElement(
-	                'strong',
-	                null,
-	                ' Documents: '
-	              ),
-	              documentsList
+	              React.createElement('br', null)
 	            )
 	          ),
 	          React.createElement(
 	            'div',
-	            { id: 'infoBox', style: { flexDirection: "column", backgroundColor: "white", flex: "0.5", padding: "0px", width: "500px", height: "800px",
-	                borderRadius: "20px" } },
+	            { id: 'infoBox', style: { flexDirection: "column", backgroundColor: "#F3F2F2", flex: "0.5", padding: "0px", width: "500px", height: "800px"
+	              } },
 	            React.createElement(
 	              'div',
-	              { style: { height: "50px", width: "100%", backgroundColor: "none", textAlign: "center", color: "black", fontSize: "20px", paddingTop: "7px" } },
+	              { style: { height: "40px", width: "100%", backgroundColor: "none", textAlign: "center", color: "black", fontSize: "20px", paddingTop: "37px" } },
 	              'Project Details'
 	            ),
 	            React.createElement(
 	              'div',
 	              { id: 'outerBox', style: { padding: "0px" } },
-	              React.createElement(
-	                'div',
-	                { id: 'sectionOne', style: { flex: "1", height: "100px", borderColor: "#D9DADF", borderStyle: "solid",
-	                    borderWidth: "0px 0px 2px 0px", paddingRight: "20px", paddingLeft: "40px", margin: "0 auto" } },
-	                React.createElement('img', { style: { height: "40px", display: "inline-block", marginRight: "20px" }, src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1473436332/like_tb1jbs.png' }),
-	                React.createElement(
-	                  'div',
-	                  { style: { display: "inline-block", paddingRight: "4px", marginBottom: "20px", marginRight: "20px" } },
-	                  ' 100 '
-	                ),
-	                React.createElement('img', { src: '/public/img/hearts.png', style: { height: "40px", display: "inline-block", marginRight: "20px" } }),
-	                React.createElement(
-	                  'div',
-	                  { style: { display: "inline-block", paddingRight: "4px", marginBottom: "20px", marginRight: "20px" } },
-	                  ' 100 '
-	                )
-	              ),
+	              React.createElement('div', { id: 'sectionOne', style: { flex: "1", height: "60px", borderColor: "#D9DADF", borderStyle: "solid",
+	                  borderWidth: "0px 0px 2px 0px", paddingRight: "20px", paddingLeft: "40px", margin: "0 auto" } }),
 	              React.createElement('div', null),
 	              React.createElement(
 	                'div',
-	                { id: 'sectionTwo', style: { flex: "1", height: "200px", borderColor: "#D9DADF", borderStyle: "solid",
-	                    borderWidth: "0px 0px 2px 0px" } },
+	                { id: 'sectionTwo', style: { display: "block", height: "200px", borderColor: "#D9DADF", borderStyle: "solid",
+	                    borderWidth: "0px 0px 2px 0px", paddingLeft: "130px", paddingTop: "30px", margin: "0 auto", backgroundColor: "white" } },
 	                React.createElement(
 	                  'div',
-	                  null,
-	                  React.createElement('img', { src: 'https://expertbeacon.com/sites/default/files/advice_for_men_on_selecting_your_online_dating_profile_photo.jpg',
-	                    style: { height: "100px", display: "inline-block" } }),
-	                  React.createElement(
-	                    'div',
-	                    null,
-	                    'Now '
-	                  )
+	                  { style: { display: "block", margin: "0 auto" } },
+	                  React.createElement('img', { src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1484844829/ericho_ojewhp.jpg',
+	                    style: { height: "100px", display: "inline-block" } })
 	                ),
 	                React.createElement(
 	                  'div',
@@ -53364,11 +53336,25 @@
 	              ),
 	              React.createElement(
 	                'div',
+	                { id: 'sectionOne', style: { flex: "1", height: "160px", borderColor: "#D9DADF", borderStyle: "solid",
+	                    borderWidth: "0px 0px 2px 0px", paddingRight: "20px", paddingLeft: "40px", margin: "0 auto", textAlign: "center", paddingTop: "30px" } },
+	                React.createElement(
+	                  'strong',
+	                  { style: { fontSize: "20px", fontFamily: "Roboto Condensed", textAlign: "center" } },
+	                  ' Documents: '
+	                ),
+	                React.createElement(
+	                  'ul',
+	                  { style: { listStyle: "hyphen", cursor: "pointer" } },
+	                  documentsList,
+	                  ' '
+	                )
+	              ),
+	              React.createElement(
+	                'div',
 	                { id: 'sectionThree', style: { flex: "1", height: "300px" } },
 	                React.createElement('br', null),
-	                'Related Projects:',
-	                React.createElement('br', null),
-	                React.createElement('img', { style: imgBoxStyle, src: "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg" })
+	                React.createElement('br', null)
 	              )
 	            )
 	          )
