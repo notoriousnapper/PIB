@@ -6,12 +6,6 @@
 /* Load JSON for testing */
 // var fs = require('fs');
 // var obj = JSON.parse(fs.readFileSync('../data/projects.json', 'utf8'));
-
-
-
-
-
-
 /* Hello */
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -33,12 +27,16 @@ var ProjectListing = React.createClass({
 			paddingBottom: "10px"
 		}
 		var listingStyle = {
+			borderRadius: "5px",
+			borderWidth: "1px",
+			borderStyle: "solid",
+			borderColor: "#C7C7C7",
 			width:"30%",
 			margin:"1.6667%"
 		}
 		var imgStyle={
 			minHeight:"60px",
-			height:"200px",
+			height:"300px",
 			width: "100%",
 			maxWidth:"400px",
 			minWidth:"100px"

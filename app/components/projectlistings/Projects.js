@@ -12,7 +12,8 @@ var ProjectSearchList = require('../../components/projectlistings/ProjectSearchL
 var ProjectListing = require('../../components/projectlistings/ProjectListing');
 var SearchBar = require('../../components/projectlistings/SearchBar');
 var Category = require('../../components/projectlistings/Category');
-var Proj= require('../../components/projectpage/Proj');
+var Test = require('../../components/projectpage/Test');
+var Proj = require('../../components/projectpage/Proj');
 var Proj2= require('../../components/projectpage/Proj2');
 
 var Frame= require('../../components/Frame');
@@ -173,8 +174,7 @@ var Projects = React.createClass({
       </div>*/
     return (
       <div>
-        <Proj params={id}/>
-        <Proj2 params={id}/>
+        <Test params={id}/>
       </div>
     );
   },

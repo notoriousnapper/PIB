@@ -6,15 +6,12 @@ var Carousel = require('./Carousel');
 var FontAwesome = require('react-fontawesome');
 var $ = require('jquery');
 
-
-
 var documentStrings = [
   'Main Document',
   'Schematic',
   'Eagle Files',
   'Schematic'
 ]
-
 
 var Test = React.createClass({
 getInitialState: function(){
@@ -32,29 +29,43 @@ getInitialState: function(){
     ]
   }
 },
-switchSlideLeft: function(inc){
-  var newCtr = (this.state.ctr == 0) ? 2 : this.state.ctr - 1;
+switchSlide: function(direction){ //0 left, 1 right
+  var left = (this.state.ctr == 0) ? 2 : this.state.ctr - 1;
+  var right = (this.state.ctr == 2) ? 0 : this.state.ctr + 1;
+  var newCtr = (direction) ? left: right;
   this.setState({
     ctr  : newCtr,
     paths: this.state.paths
   });
-                 $("#cf7 img").removeClass("opaque");
-                 $("#cf7 img").eq(newCtr).addClass("opaque");
-                 $("#cf7_controls span").removeClass("selected");
-                 $(this).addClass("selected");
+  $("#cf7 img").removeClass("opaque");
+  $("#cf7 img").eq(newCtr).addClass("opaque");
+  $("#cf7_controls span").removeClass("selected");
+  $(this).addClass("selected");
 },
-switchSlideRight: function(inc){
-  var newCtr = (this.state.ctr == 2) ? 0 : this.state.ctr + 1;
-  this.setState({
-    ctr  : newCtr,
-    paths: this.state.paths
-  });
-                 $("#cf7 img").removeClass("opaque");
-                 $("#cf7 img").eq(newCtr).addClass("opaque");
-                 $("#cf7_controls span").removeClass("selected");
-                 $(this).addClass("selected");
+switchSlideLeft: function(){
+  this.switchSlide(0);
+},
+switchSlideRight: function(){
+  this.switchSlide(1);
+},
+forceAjax:function(){
+  var name = this.props.params;
+  console.log('query param is' + name);
+   $.ajax({
+        url: useUrl + '/getone/' + name,
+        dataType: 'json',
+        cache: true,
+        success: function(res) {
+          this.setState({data: res[0]});
+          alert(res[0]);
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(useUrl + name, status, err.toString());
+        }.bind(this)
+      });
 },
 componentDidMount: function() {
+  this.forceAjax();
 },
 render: function(){
     var imgStyle = {height:"100%", padding: "0%", width:"100%"};
@@ -62,10 +73,7 @@ render: function(){
     var imgBoxStyle = {marginRight: "15px", height: "80px", width:"80px", cursor: "pointer"};
     var chevronStyle = {display: "inline-block", cursor: "pointer", verticalAlign: "middle", paddingTop:"50px", margin: "auto",
     height: "90px", width: "90px", verticalAlign:"center", color:"#b5b3b3"};
-    var chevronContainerStyle = {display:"inline-block",
-    // backgroundColor:"white",
-    // borderColor:"black", borderStyle: "solid",
-     height:"100%", width:"40px" };
+    var chevronContainerStyle = {display:"inline-block", height:"100%", width:"40px" };
 
     var imgBox = this.state.paths.map(function(item){
       return <img style={imgBoxStyle} src={item} />
@@ -74,7 +82,7 @@ render: function(){
       return <li style={{content: "-"}} > <a style={{color:"#D74B1F"}}> {item} </a> </li>
     });
 return  (
-  <div style={{backgroundColor:"#192930", height: "1000px", marginTop:"20px", paddingLeft:"100px", paddingRight:"100px" }} >
+  <div style={{backgroundColor:"#192930", height: "100%", marginTop:"20px", paddingLeft:"100px", paddingRight:"100px" }} >
   <div id="bg" style={{backgroundColor:"#E2E7E9"}}>
 
 
@@ -88,7 +96,7 @@ return  (
         {'GuitarEffectsX/'}
       </div>
     </div>
-    <div id="container" style={{display:"flex", paddingRight: "10px", backgroundColor:"white"}}>
+    <div id="project-container" style={{display:"flex", paddingRight: "10px", backgroundColor:"white"}}>
       <div id="left" style={{borderWidth: "0px 2px 0px 0px", borderColor:"#D9DADF", borderStyle:"solid", backgroundColor: "none", display:"inline-block", padding: "30px",  paddingTop: "40px"}}>
        <div id="mainImg2" style={mainImgStyle}  id="cf7" className="shadow" >
            <img style={imgStyle} className='opaque' src={this.state.paths[0]}/>
@@ -99,7 +107,6 @@ return  (
         <br/>
         <br/>
         <br/>
-
         <div style={{float:"right", backgroundColor: "none", margin: "0 auto", padding:"0 2%"}}>
           <div id="leftChevron" style={chevronContainerStyle}>
             <FontAwesome style={chevronStyle} onClick={this.switchSlideLeft} name="chevron-left" size="2x"/>
@@ -149,7 +156,7 @@ return  (
 
       <div id="infoBox" style={{ flexDirection: "column", backgroundColor: "#F3F2F2", flex:"0.5", padding:"0px", width: "500px", height: "800px",
          }}>
-        <div style={{height:"40px", width:"100%", backgroundColor:"none", textAlign:"center", color:"black", fontSize:"20px", paddingTop:"37px"}}>
+        <div style={{height:"40px", width:"100%", backgroundColor:"none", textAlign:"center", color:"black", fontSize:"20px", paddingTop:"37px", fontFamily: "Helvetica Neue"}}>
          Project Details
          </div>
         <div id="outerBox" style={{padding:"0px"}}>
@@ -171,9 +178,9 @@ return  (
               </div>
           </div>
           <div id="sectionOne" style={{flex:"1", height: "160px", borderColor:"#D9DADF", borderStyle:"solid",
-              borderWidth:"0px 0px 2px 0px", paddingRight:"20px", paddingLeft:"40px", margin:"0 auto", textAlign:"center", paddingTop:"30px" }}>
-            <strong style={{fontSize:"20px", fontFamily:"Roboto Condensed", textAlign:"center"}}> Documents: </strong>
-              <ul style={{listStyle:"hyphen", cursor: "pointer"}}>{documentsList} </ul>
+              borderWidth:"0px 0px 2px 0px", paddingRight:"20px",  margin:"0 auto", textAlign:"center", paddingTop:"30px" }}>
+            <strong style={{paddingLeft:"40px", fontSize:"20px", fontFamily:"Helvetica Neue", textAlign:"center"}}> Documents: </strong>
+              <ul style={{textAlign: "left", listStyle:"hyphen", cursor: "pointer"}}>{documentsList} </ul>
           </div>
 
           <div id="sectionThree" style={{flex:"1", height: "300px"}}>

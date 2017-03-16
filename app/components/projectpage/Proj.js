@@ -67,23 +67,6 @@ var Proj = React.createClass({
             navBar: false
           })
         },
-        CallSteps: function(){
-           var ctr = 0;
-           var res = this.state.data.steps;
-
-           if(res.length== 0){ return (<div> No Instructions Here. </div>)}
-           else{
-
-           res = res.map(function(step){
-              ctr++;
-              return(
-                  <Step info={step.instructions}  title={step.title} url={step.url} num={ctr} />
-                );
-           })
-              return res;
-            }
-            },
-
         forceAjax:function(){
           var name = this.props.params;
           console.log('query param is' + name);
@@ -92,7 +75,6 @@ var Proj = React.createClass({
                 dataType: 'json',
                 cache: true,
                 success: function(res) {
-                  // alert('Final Stretch' + JSON.stringify(res,null,4));
                   this.setState({data: res[0]});
                 }.bind(this),
                 error: function(xhr, status, err) {
@@ -100,11 +82,16 @@ var Proj = React.createClass({
                 }.bind(this)
               });
         },
-        updateLike:function(){
-          var name = this.props.params;
-          console.log('query param is' + name);
+        updateField: function(type){
+          var projectName = this.props.params;
+          var field = "";
+          switch(type){
+            case 0:  field = 'likes'; break;
+            case 1:  field = 'downloads'; break;
+            case 3:  field = 'views'; break;
+          }
            $.ajax({
-                url: useUrl + '/getone/' + name + '/' + 'likes',
+                url: useUrl + '/getone/' + projectName + '/' + field,
                 dataType: 'json',
                 method: 'PUT',
                 cache: true,
@@ -116,71 +103,25 @@ var Proj = React.createClass({
                   console.error(useUrl + name, status, err.toString());
                 }.bind(this)
               });
+        },
+        updateLike:function(){
+          this.updateField(0);
         },
         updateDownload:function(){
-          var name = this.props.params;
-          console.log('query param is' + name);
-           $.ajax({
-                url: useUrl + '/getone/' + name + '/' + 'downloads',
-                dataType: 'json',
-                method: 'PUT',
-                cache: true,
-                success: function(res) {
-                  console.log('Response is: ' + res);
-                }.bind(this),
-                error: function(xhr, status, err) {
-                  console.error(useUrl + name, status, err.toString());
-                }.bind(this)
-              });
+          this.updateField(1);
         },
         updateViews: function(){
-          var name = this.props.params;
-           $.ajax({
-                url: useUrl + '/getone/' + name + '/' + 'views',
-                dataType: 'json',
-                method: 'PUT',
-                cache: true,
-                success: function(res) {
-                  console.log('Response is: ' + res);
-                  this.forceAjax();
-                }.bind(this),
-                error: function(xhr, status, err) {
-                  console.error(useUrl + name, status, err.toString());
-                }.bind(this)
-              });
+          this.updateField(2);
         },
         componentDidMount: function(){
           this.forceAjax();
           this.updateViews();
           /* Updates Page Views */
         },
-
         /* Should request another call, etc */
         /* Server should do the filtering so traffic/ data is minimal */
-        showNav: function(){
-          if(!this.state.navBar){
-            // this.state.navBar.map(()=> {
-              // Uncomment below when you get the chance
-            // return (<a> Hello World </a>);
-          // });
-          }
-          else{
-
-          }
-
-
-          this.state.navBar = !(this.state.navBar); // reverse
-        },
-        testName: function(){
-          // alert(this.state.data.name);
-        },
         render: function(){
-          var imgs = [{"logo":"../public/img/logo3.png"}, "../public/img/logo3.png"]
-          var menu =['PROJECTS', 'HOME', 'ABOUT', 'CONTACT']
-
           var imgUrl =this.props.url;
-
-
           /* Font Styles */
           var TitleStyle ={
             fontSize: "40px",
@@ -189,7 +130,6 @@ var Proj = React.createClass({
             textTransform: "Capitalize",
             flex:"1"
           }
-
           var byStyle ={
             fontSize: "16px",
             fontFamily: "Roboto Condensed",
@@ -199,7 +139,6 @@ var Proj = React.createClass({
             paddingLeft: "20px",
             // overflow: "hidden",
             flex:"8"
-
           }
           var AboutStyle ={
             fontSize: "18px",
@@ -247,21 +186,16 @@ var Proj = React.createClass({
           var fillerStyle = {
             flex: "10"
           }
-
-
           var testStyle= {
             display: "flex"
           }
-
           var iconStyle={
             height: "30px",
             width: "30px",
           }
-          var navBar = this.showNav();
           // By line
           // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
           // var Steps = this.CallSteps();
-
           var nameArray = this.state.data.name.split(" ");
       		var displayName = nameArray[0].charAt(0).toUpperCase() + nameArray[0].substr(1);
       		for(var i = 1; i < nameArray.length; i++){
@@ -271,7 +205,6 @@ var Proj = React.createClass({
           return(
             <div style={{display:"flex"}}>
               <div id="left" style={{flex:"0.5"}}></div>
-
               <div id="center" style={{display:"flex", flex: "1.5"}}>
                 <div style={containerStyle} style={{width:"100%", margin:"80px auto 20px", borderRadius:"5px", backgroundColor:"white"}}>
                   <div style={{width:"100%", padding:"10px",   display:"inline-block", borderBottom: "2px solid #6C727C"}}>

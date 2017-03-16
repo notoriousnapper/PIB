@@ -4,6 +4,9 @@
 User Manual & Things to do.
 
 
+Notes:
+1. In Project Page, separates by comma, so if there are Exclamations, the parsing
+code doesn't do anything.
 Important things:
 
 When pushing to heroku, must switch devUrl to prodUrl in 3 places:
@@ -31,3 +34,7 @@ height to 1000.
 
 
 -
+
+Add to Robotic arm
+"http://res.cloudinary.com/djmk9vktk/video/upload/v1485070354/roboticarm/IMG_0851_ui4pn5.mov",
+"http://res.cloudinary.com/djmk9vktk/video/upload/v1485070340/roboticarm/IMG_0852_ifqmyz.mov",

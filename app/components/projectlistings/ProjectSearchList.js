@@ -82,7 +82,6 @@ var ProjectSearchList = React.createClass({
 				console.log(projectJSON.picUrl);
 			return  (
 				<ProjectListing
-
 				views={projectJSON.views}
 				id={projectJSON.id} url={ projectJSON.url }
 				name={ projectJSON.name} author={projectJSON.author}/>

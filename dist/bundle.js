@@ -48,22 +48,22 @@
 	__webpack_require__(366);
 	__webpack_require__(367);
 	__webpack_require__(238);
-	__webpack_require__(360);
+	__webpack_require__(361);
 	__webpack_require__(297);
 	__webpack_require__(240);
-	__webpack_require__(359);
+	__webpack_require__(360);
 	__webpack_require__(346);
 	__webpack_require__(344);
 	__webpack_require__(343);
 	__webpack_require__(342);
 	__webpack_require__(347);
-	__webpack_require__(349);
-	__webpack_require__(356);
+	__webpack_require__(352);
+	__webpack_require__(357);
 	__webpack_require__(305);
-	__webpack_require__(353);
+	__webpack_require__(356);
 	__webpack_require__(368);
 	__webpack_require__(308);
-	__webpack_require__(361);
+	__webpack_require__(362);
 	__webpack_require__(283);
 	__webpack_require__(345);
 	__webpack_require__(300);
@@ -72,13 +72,13 @@
 	__webpack_require__(239);
 	__webpack_require__(298);
 	__webpack_require__(299);
-	__webpack_require__(350);
-	__webpack_require__(351);
-	__webpack_require__(352);
+	__webpack_require__(353);
+	__webpack_require__(354);
+	__webpack_require__(355);
 	__webpack_require__(348);
-	__webpack_require__(362);
 	__webpack_require__(363);
-	module.exports = __webpack_require__(364);
+	__webpack_require__(364);
+	module.exports = __webpack_require__(365);
 
 
 /***/ },
@@ -21512,18 +21512,18 @@
 	var Add = __webpack_require__(305);
 
 	var Projects = __webpack_require__(342);
-	var Content = __webpack_require__(359);
-	var Contact = __webpack_require__(360);
+	var Content = __webpack_require__(360);
+	var Contact = __webpack_require__(361);
 
-	var Proj = __webpack_require__(349);
-	var Input = __webpack_require__(361);
+	var Proj = __webpack_require__(352);
+	var Input = __webpack_require__(362);
 
-	var Login = __webpack_require__(362);
-	var SignUp = __webpack_require__(363);
-	var Profile = __webpack_require__(364);
+	var Login = __webpack_require__(363);
+	var SignUp = __webpack_require__(364);
+	var Profile = __webpack_require__(365);
 	var Footer = __webpack_require__(239);
 
-	var Test = __webpack_require__(365);
+	var Test = __webpack_require__(349);
 	/* ReactRouter Routes urls to components */
 	// var Home = (require'../components/Main');
 	var reactRoutes = React.createElement(
@@ -48648,8 +48648,9 @@
 	var ProjectListing = __webpack_require__(344);
 	var SearchBar = __webpack_require__(346);
 	var Category = __webpack_require__(347);
-	var Proj = __webpack_require__(349);
-	var Proj2 = __webpack_require__(356);
+	var Test = __webpack_require__(349);
+	var Proj = __webpack_require__(352);
+	var Proj2 = __webpack_require__(357);
 
 	var Frame = __webpack_require__(298);
 	var Bar = __webpack_require__(299);
@@ -48657,7 +48658,7 @@
 
 	var http = __webpack_require__(309);
 	var $ = __webpack_require__(302);
-	var Q = __webpack_require__(357);
+	var Q = __webpack_require__(358);
 	// var TestAPI = require('../../scripts/TestAPI');
 
 	var devUrl = 'http://localhost:3000';
@@ -48824,8 +48825,7 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Proj, { params: id }),
-	      React.createElement(Proj2, { params: id })
+	      React.createElement(Test, { params: id })
 	    );
 	  },
 
@@ -48954,7 +48954,6 @@
 				console.log("url from JSON is: ");
 				console.log(projectJSON.picUrl);
 				return React.createElement(ProjectListing, {
-
 					views: projectJSON.views,
 					id: projectJSON.id, url: projectJSON.url,
 					name: projectJSON.name, author: projectJSON.author });
@@ -48984,8 +48983,6 @@
 	/* Load JSON for testing */
 	// var fs = require('fs');
 	// var obj = JSON.parse(fs.readFileSync('../data/projects.json', 'utf8'));
-
-
 	/* Hello */
 	var React = __webpack_require__(3);
 	var ReactDOM = __webpack_require__(34);
@@ -49008,12 +49005,16 @@
 				paddingBottom: "10px"
 			};
 			var listingStyle = {
+				borderRadius: "5px",
+				borderWidth: "1px",
+				borderStyle: "solid",
+				borderColor: "#C7C7C7",
 				width: "30%",
 				margin: "1.6667%"
 			};
 			var imgStyle = {
 				minHeight: "60px",
-				height: "200px",
+				height: "300px",
 				width: "100%",
 				maxWidth: "400px",
 				minWidth: "100px"
@@ -49388,6 +49389,604 @@
 
 	'use strict';
 
+	var _extends2 = __webpack_require__(260);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _defineProperty2 = __webpack_require__(241);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(3);
+	var FontAwesome = __webpack_require__(350);
+	var $ = __webpack_require__(302);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+
+	var devUrl = 'http://localhost:3000';
+	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var useUrl = devUrl;
+
+	var documentStrings = ['Main Document', 'Schematic', 'Eagle Files', 'Schematic'];
+	// Algorithm - Every 4 sentences, break it up into a chunk/ array.
+	// Spit chunks out with format <div>{'text'} </div> <br/>
+	//
+	// var ex = "My project is the guitar effect pedals. I began this project because I've been playing guitar since high school. When I took ECE65 I became intrigued that simple components can act as filters. Building guitar effect pedals was my way of connecting my hobbies and my area of study. There are many types of effects, all used in different types of music. Each effect is based on principles we learn in our analog circuit classes. Building guitar effects is a very rewarding experience. All you need to know is how to read a schematic. Knowing the basics on what resistors, capacitors and transistors do helps, but is not require. In the process of building, you observe the clipping circuits, the frequency filters, and oscillator circuits in action. You gain troubleshooting skills and get up close and familiar with electrical components. You get better intuition on how a circuit behaves and how you can design it.";
+
+
+	var Test = React.createClass({
+	  displayName: 'Test',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      data: {
+	        'name': '',
+	        'author': '',
+	        'authorImg': '',
+	        'url': '',
+	        'about': '',
+	        'instructions': '',
+	        'likes': '',
+	        'downloads': '',
+	        'views': '',
+	        "carouselFiles": [], // Initialized so code doesn't deal with null
+	        'steps': [{
+	          title: '',
+	          url: '',
+	          instructions: ''
+	        }]
+	      },
+	      navBar: false,
+	      ctr: 0,
+	      paths: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1483597306/StreetFighter2_kfmo3f.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg"]
+	    };
+	  },
+	  switchSlide: function switchSlide(direction) {
+	    //0 left, 1 right
+	    var left = this.state.ctr == 0 ? 2 : this.state.ctr - 1;
+	    var right = this.state.ctr == 2 ? 0 : this.state.ctr + 1;
+	    var newCtr = direction ? left : right;
+	    this.setState({
+	      ctr: newCtr,
+	      paths: this.state.paths
+	    });
+	    $("#cf7 img").removeClass("opaque");
+	    $("#cf7 img").eq(newCtr).addClass("opaque");
+	    $("#cf7_controls span").removeClass("selected");
+	    $(this).addClass("selected");
+	  },
+	  switchSlideLeft: function switchSlideLeft() {
+	    this.switchSlide(0);
+	  },
+	  switchSlideRight: function switchSlideRight() {
+	    this.switchSlide(1);
+	  },
+	  updateField: function updateField(type) {
+	    var projectName = this.props.params;
+	    var field = "";
+	    switch (type) {
+	      case 0:
+	        field = 'likes';break;
+	      case 1:
+	        field = 'downloads';break;
+	      case 2:
+	        field = 'views';break;
+	    }
+	    $.ajax({
+	      url: useUrl + '/getone/' + projectName + '/' + field,
+	      dataType: 'json',
+	      method: 'PUT',
+	      cache: true,
+	      success: function (res) {
+	        this.forceAjax();
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(useUrl + name, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  updateLike: function updateLike() {
+	    this.updateField(0);
+	  },
+	  updateDownload: function updateDownload() {
+	    this.updateField(1);
+	  },
+	  updateViews: function updateViews() {
+	    this.updateField(2);
+	  },
+	  forceAjax: function forceAjax() {
+	    var name = this.props.params;
+	    $.ajax({
+	      url: useUrl + '/getone/' + name,
+	      dataType: 'json',
+	      cache: true,
+	      success: function (res) {
+	        this.setState({ data: res[0] });
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(useUrl + name, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.forceAjax();
+	  },
+	  render: function render() {
+	    var _chevronStyle, _React$createElement;
+
+	    var imgStyle = { height: "100%", padding: "0%", width: "100%" };
+	    var mainImgStyle = { float: "right", height: "400px", width: "400px", minHeight: "200px", minWidth: "200px" };
+	    var imgBoxStyle = { marginRight: "15px", height: "80px", width: "80px", cursor: "pointer" };
+	    var chevronStyle = (_chevronStyle = { display: "inline-block", cursor: "pointer", verticalAlign: "middle", paddingTop: "50px", margin: "auto",
+	      height: "90px", width: "90px" }, (0, _defineProperty3.default)(_chevronStyle, 'verticalAlign', "center"), (0, _defineProperty3.default)(_chevronStyle, 'color', "#b5b3b3"), _chevronStyle);
+	    var chevronContainerStyle = { display: "inline-block", height: "100%", width: "40px" };
+
+	    var split = function split(str) {
+	      var partitionSize = 3,
+	          i = 0,
+	          ctr = 0; // split into 'x' sentences
+	      var arr = str.split(".");
+	      var res = [];
+	      var temp = "";
+	      for (i = 0; i < arr.length; i++) {
+	        temp += arr[i] + ".";
+	        ctr++;
+	        if (ctr == partitionSize) {
+	          ctr = 0;
+	          res.push(temp);
+	          temp = "";
+	        }
+	      }
+	      if (temp != "") {
+	        res.push(temp);
+	      }
+	      return res;
+	    };
+	    var projectDescription = split(this.state.data.about).map(function (item) {
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'div',
+	          null,
+	          ' ',
+	          item,
+	          '  '
+	        ),
+	        ' ',
+	        React.createElement('br', null)
+	      );
+	    });
+
+	    var ctr = 0;
+	    var self = this;
+	    var documentsList = documentStrings.map(function (item) {
+	      if (ctr == 0) {
+	        ctr++;
+	        return React.createElement(
+	          'li',
+	          { style: { content: "-" } },
+	          ' ',
+	          React.createElement(
+	            'a',
+	            { href: self.state.data.name + ".pdf", style: { color: "#D74B1F" } },
+	            ' ',
+	            item,
+	            ' '
+	          ),
+	          ' '
+	        );
+	      } else {
+	        return React.createElement(
+	          'li',
+	          { style: { content: "-" } },
+	          ' ',
+	          React.createElement(
+	            'a',
+	            { style: { color: "#D74B1F" } },
+	            ' ',
+	            item,
+	            ' '
+	          ),
+	          ' '
+	        );
+	      }
+	    });
+
+	    var ctr = 3;
+	    var imgBox = [React.createElement('img', { style: imgBoxStyle, src: this.state.data.url })];
+	    imgBox.push(this.state.data.carouselFiles.map(function (item) {
+	      if (ctr != 1) {
+	        ctr--;
+	        return React.createElement('img', { style: imgBoxStyle, src: item });
+	      }
+	    }));;
+
+	    var ctr = 3;
+	    var imgCarousel = this.state.data.carouselFiles.map(function (item) {
+	      if (item[item.length - 1] != "g" && item != null) {
+	        return React.createElement('div', null);
+	      } else if (ctr != 1) {
+	        ctr--;
+	        return React.createElement('img', { style: imgStyle, src: item });
+	      }
+	    });
+	    return React.createElement(
+	      'div',
+	      { style: { backgroundColor: "#192930", height: "100%", marginTop: "20px", paddingLeft: "100px", paddingRight: "100px" } },
+	      React.createElement(
+	        'div',
+	        { id: 'bg', style: { backgroundColor: "#E2E7E9" } },
+	        React.createElement(
+	          'div',
+	          { style: { backgroundColor: "#192930", height: "150px", marginTop: "20px", paddingLeft: "0px", paddingRight: "20px",
+	              paddingTop: "80px" } },
+	          React.createElement(
+	            'div',
+	            { id: 'breadCrumbsBar', style: { backgroundColor: "white", height: "50px", width: "40%", paddingTop: "13px", paddingLeft: "20px", fontSize: "18px", fontWeight: "500" } },
+	            React.createElement(
+	              Link,
+	              { to: '/projects/', style: { color: "black", textTransform: "capitalize" } },
+	              ' ',
+	              'Projects',
+	              ' '
+	            ),
+	            ' / ',
+	            'IOT',
+	            ' / ',
+	            React.createElement(
+	              Link,
+	              { to: '/projects/' + this.state.data.name, style: { color: "black", textTransform: "capitalize" } },
+	              ' ',
+	              this.state.data.name,
+	              ' '
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { id: 'project-container', style: { display: "flex", paddingRight: "10px", backgroundColor: "white" } },
+	          React.createElement(
+	            'div',
+	            { id: 'left', style: { borderWidth: "0px 2px 0px 0px", borderColor: "#D9DADF", borderStyle: "solid", backgroundColor: "none", display: "inline-block", padding: "30px", paddingTop: "40px" } },
+	            React.createElement(
+	              'div',
+	              (_React$createElement = { id: 'mainImg2', style: mainImgStyle }, (0, _defineProperty3.default)(_React$createElement, 'id', 'cf7'), (0, _defineProperty3.default)(_React$createElement, 'className', 'shadow'), _React$createElement),
+	              React.createElement('img', { style: imgStyle, className: 'opaque', src: this.state.data.url }),
+	              imgCarousel,
+	              React.createElement(
+	                'div',
+	                { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "30%", height: "100%" } },
+	                ' '
+	              )
+	            ),
+	            React.createElement('br', null),
+	            React.createElement('br', null),
+	            React.createElement('br', null),
+	            React.createElement(
+	              'div',
+	              { style: { float: "right", backgroundColor: "none", margin: "0 auto", padding: "0 2%" } },
+	              React.createElement(
+	                'div',
+	                { id: 'leftChevron', style: chevronContainerStyle },
+	                React.createElement(FontAwesome, { style: chevronStyle, onClick: this.switchSlideLeft, name: 'chevron-left', size: '2x' })
+	              ),
+	              React.createElement(
+	                'div',
+	                { id: 'imgBox', style: { width: "300px", display: "inline-block" } },
+	                ' ',
+	                imgBox,
+	                ' '
+	              ),
+	              React.createElement(
+	                'div',
+	                { id: 'rightChevron', style: (0, _extends3.default)({}, chevronContainerStyle, { float: "right" }) },
+	                React.createElement(FontAwesome, { style: chevronStyle, onClick: this.switchSlideRight, name: 'chevron-right', size: '2x' }),
+	                ' '
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { id: 'center', style: { flex: "1", width: "500px", paddingRight: "20px", paddingTop: "40px", paddingLeft: "40px",
+	                borderWidth: "0px 2px 0px 0px", borderColor: "#D9DADF", borderStyle: "solid" } },
+	            React.createElement(
+	              'h1',
+	              { style: { color: "#4C516C", padding: "0", margin: "0", paddingBottom: "5px", fontFamily: "Helvetica Neue", fontStyle: "bold", textTransform: "capitalize" } },
+	              ' ',
+	              this.state.data.name
+	            ),
+	            React.createElement(
+	              'h3',
+	              { style: { color: "#4C516C", padding: "0", margin: "0" } },
+	              React.createElement(
+	                'div',
+	                { style: { display: "inline-block", fontWeight: "300", marginRight: "4px", fontSize: "20px" } },
+	                ' by  '
+	              ),
+	              React.createElement(
+	                'div',
+	                { style: { display: "inline-block", fontWeight: "300", fontFamily: "Montserrat; Roboto", fontSize: "20px" } },
+	                ' ',
+	                this.state.data.author,
+	                ' '
+	              ),
+	              ' '
+	            ),
+	            React.createElement(
+	              'div',
+	              { id: 'buttonBar' },
+	              ' '
+	            ),
+	            React.createElement(
+	              'div',
+	              { style: { display: "inline-block", marginRight: "20px" } },
+	              ' ',
+	              this.state.data.views + " views",
+	              ' '
+	            ),
+	            React.createElement(
+	              'button',
+	              { onClick: this.updateLike, style: { backgroundColor: "white", borderRadius: "5px" } },
+	              React.createElement('img', { src: '/public/img/hearts.png', style: { height: "20px", display: "inline-block", marginRight: "7px" } }),
+	              '  ',
+	              this.state.data.likes
+	            ),
+	            React.createElement(
+	              'button',
+	              { onClick: this.updateDownloads, style: { backgroundColor: "white", borderRadius: "5px" } },
+	              React.createElement(
+	                'a',
+	                { href: this.state.data.name + ".pdf" },
+	                ' ',
+	                React.createElement('img', { src: '/public/img/cloud_blue.png', style: { height: "20px", display: "inline-block", marginRight: "7px" } }),
+	                ' '
+	              ),
+	              ' ',
+	              this.state.data.downloads
+	            ),
+	            React.createElement('br', null),
+	            React.createElement(
+	              'div',
+	              { style: { lineHeight: "175%", fontSize: "18px", color: "#4C516C", paddingRight: "30px" } },
+	              React.createElement('br', null),
+	              React.createElement(
+	                'strong',
+	                null,
+	                ' Description: '
+	              ),
+	              React.createElement(
+	                'div',
+	                { style: { textAlign: "justified" } },
+	                ' ',
+	                projectDescription,
+	                ' '
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { id: 'infoBox', style: { flexDirection: "column", backgroundColor: "#F3F2F2", flex: "0.5", padding: "0px", width: "500px", height: "800px"
+	              } },
+	            React.createElement(
+	              'div',
+	              { style: { height: "40px", width: "100%", backgroundColor: "none", textAlign: "center", color: "#4C506D", fontSize: "20px", paddingTop: "37px", fontFamily: "Helvetica Neue" } },
+	              React.createElement(
+	                'strong',
+	                { style: { color: "#4C506D" } },
+	                ' Project Details '
+	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { id: 'outerBox', style: { padding: "0px" } },
+	              React.createElement('div', { id: 'sectionOne', style: { flex: "1", height: "60px", borderColor: "#D9DADF", borderStyle: "solid",
+	                  borderWidth: "0px 0px 2px 0px", paddingRight: "20px", paddingLeft: "40px", margin: "0 auto" } }),
+	              React.createElement('div', null),
+	              React.createElement(
+	                'div',
+	                { id: 'sectionTwo', style: { display: "block", height: "200px", borderColor: "#D9DADF", borderStyle: "solid",
+	                    borderWidth: "0px 0px 2px 0px", paddingLeft: "30px", paddingTop: "30px", margin: "0 auto", backgroundColor: "white" } },
+	                React.createElement(
+	                  'div',
+	                  { style: { display: "block", margin: "0 auto" } },
+	                  React.createElement('img', { src: this.state.data.authorImg,
+	                    style: { height: "100px", display: "inline-block" } })
+	                ),
+	                React.createElement(
+	                  'div',
+	                  null,
+	                  React.createElement(
+	                    'strong',
+	                    null,
+	                    ' Team Members: '
+	                  ),
+	                  React.createElement('br', null),
+	                  'Colin Keef, Julia Mou'
+	                )
+	              ),
+	              React.createElement(
+	                'div',
+	                { id: 'sectionOne', style: { flex: "1", height: "160px", borderColor: "#D9DADF", borderStyle: "solid",
+	                    borderWidth: "0px 0px 2px 0px", paddingRight: "20px", margin: "0 auto", textAlign: "center", paddingTop: "30px" } },
+	                React.createElement(
+	                  'strong',
+	                  { style: { paddingLeft: "40px", fontSize: "16px", fontFamily: "Helvetica Neue", textAlign: "center" } },
+	                  ' Documents: '
+	                ),
+	                React.createElement(
+	                  'ul',
+	                  { style: { textAlign: "left", listStyle: "hyphen", cursor: "pointer" } },
+	                  documentsList,
+	                  ' '
+	                )
+	              ),
+	              React.createElement(
+	                'div',
+	                { id: 'sectionThree', style: { flex: "1", height: "300px" } },
+	                React.createElement('br', null),
+	                React.createElement('br', null)
+	              )
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Test;
+
+/***/ },
+/* 350 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _screenReaderStyles = __webpack_require__(351);
+
+	var _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	/**
+	 * A React component for the font-awesome icon library.
+	 *
+	 *
+	 * @param {String} [ariaLabel] An extra accessibility label to put on the icon
+	 * @param {Boolean} [border=false] Whether or not to show a border radius
+	 * @param {String} [className] An extra set of CSS classes to add to the component
+	 * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module
+	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
+	 * @param {String} [flip=false] Flip the icon's orientation.
+	 * @param {Boolean} [inverse=false]Inverse the icon's color
+	 * @param {String} name Name of the icon to use
+	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
+	 * @param {Number} [rotate] The degress to rotate the icon by
+	 * @param {String} [size] The icon scaling size
+	 * @param {Boolean} [spin=false] Spin the icon
+	 * @param {String} [stack] Stack an icon on top of another
+	 * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
+	 * @module FontAwesome
+	 * @type {ReactClass}
+	 */
+	exports.default = _react2.default.createClass({
+
+	  displayName: 'FontAwesome',
+
+	  propTypes: {
+	    ariaLabel: _react2.default.PropTypes.string,
+	    border: _react2.default.PropTypes.bool,
+	    className: _react2.default.PropTypes.string,
+	    cssModule: _react2.default.PropTypes.object,
+	    fixedWidth: _react2.default.PropTypes.bool,
+	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
+	    inverse: _react2.default.PropTypes.bool,
+	    name: _react2.default.PropTypes.string.isRequired,
+	    pulse: _react2.default.PropTypes.bool,
+	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
+	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
+	    spin: _react2.default.PropTypes.bool,
+	    stack: _react2.default.PropTypes.oneOf(['1x', '2x']),
+	    tag: _react2.default.PropTypes.string
+	  },
+
+	  render: function render() {
+	    var _props = this.props;
+	    var border = _props.border;
+	    var cssModule = _props.cssModule;
+	    var className = _props.className;
+	    var fixedWidth = _props.fixedWidth;
+	    var flip = _props.flip;
+	    var inverse = _props.inverse;
+	    var name = _props.name;
+	    var pulse = _props.pulse;
+	    var rotate = _props.rotate;
+	    var size = _props.size;
+	    var spin = _props.spin;
+	    var stack = _props.stack;
+	    var _props$tag = _props.tag;
+	    var tag = _props$tag === undefined ? 'span' : _props$tag;
+	    var ariaLabel = _props.ariaLabel;
+
+	    var props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack', 'tag', 'ariaLabel']);
+
+	    var classNames = [];
+
+	    if (cssModule) {
+	      classNames.push(cssModule['fa']);
+	      classNames.push(cssModule['fa-' + name]);
+	      size && classNames.push(cssModule['fa-' + size]);
+	      spin && classNames.push(cssModule['fa-spin']);
+	      pulse && classNames.push(cssModule['fa-pulse']);
+	      border && classNames.push(cssModule['fa-border']);
+	      fixedWidth && classNames.push(cssModule['fa-fw']);
+	      inverse && classNames.push(cssModule['fa-inverse']);
+	      flip && classNames.push(cssModule['fa-flip-' + flip]);
+	      rotate && classNames.push(cssModule['fa-rotate-' + rotate]);
+	      stack && classNames.push(cssModule['fa-stack-' + stack]);
+	    } else {
+	      classNames.push('fa');
+	      classNames.push('fa-' + name);
+	      size && classNames.push('fa-' + size);
+	      spin && classNames.push('fa-spin');
+	      pulse && classNames.push('fa-pulse');
+	      border && classNames.push('fa-border');
+	      fixedWidth && classNames.push('fa-fw');
+	      inverse && classNames.push('fa-inverse');
+	      flip && classNames.push('fa-flip-' + flip);
+	      rotate && classNames.push('fa-rotate-' + rotate);
+	      stack && classNames.push('fa-stack-' + stack);
+	    }
+
+	    // Add any custom class names at the end.
+	    className && classNames.push(className);
+	    return _react2.default.createElement(tag, _extends({}, props, { 'aria-hidden': true, className: classNames.join(' ') }), ariaLabel ? _react2.default.createElement('span', { style: _screenReaderStyles2.default }, ariaLabel) : null);
+	  }
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 351 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  position: 'absolute',
+	  width: '1px',
+	  height: '1px',
+	  padding: '0px',
+	  margin: '-1px',
+	  overflow: 'hidden',
+	  clip: 'rect(0px, 0px, 0px, 0px)',
+	  border: '0px'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 352 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var _defineProperty2 = __webpack_require__(241);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
@@ -49400,18 +49999,18 @@
 	var Link = ReactRouter.Link;
 	var ImageComponent = __webpack_require__(345);
 	var TextComponent = __webpack_require__(283);
-	var DetailBox = __webpack_require__(350);
-	var Scroll = __webpack_require__(351);
+	var DetailBox = __webpack_require__(353);
+	var Scroll = __webpack_require__(354);
 
-	var IntroBox = __webpack_require__(352);
+	var IntroBox = __webpack_require__(355);
 	var Bar = __webpack_require__(299);
 
-	var Step = __webpack_require__(353);
+	var Step = __webpack_require__(356);
 
 	var Pad = __webpack_require__(348);
 	var Frame = __webpack_require__(298);
 
-	var FontAwesome = __webpack_require__(354);
+	var FontAwesome = __webpack_require__(350);
 
 	var $ = __webpack_require__(302);
 	var devUrl = 'http://localhost:3000';
@@ -49462,26 +50061,6 @@
 	      navBar: false
 	    };
 	  },
-	  CallSteps: function CallSteps() {
-	    var ctr = 0;
-	    var res = this.state.data.steps;
-
-	    if (res.length == 0) {
-	      return React.createElement(
-	        'div',
-	        null,
-	        ' No Instructions Here. '
-	      );
-	    } else {
-
-	      res = res.map(function (step) {
-	        ctr++;
-	        return React.createElement(Step, { info: step.instructions, title: step.title, url: step.url, num: ctr });
-	      });
-	      return res;
-	    }
-	  },
-
 	  forceAjax: function forceAjax() {
 	    var name = this.props.params;
 	    console.log('query param is' + name);
@@ -49490,7 +50069,6 @@
 	      dataType: 'json',
 	      cache: true,
 	      success: function (res) {
-	        // alert('Final Stretch' + JSON.stringify(res,null,4));
 	        this.setState({ data: res[0] });
 	      }.bind(this),
 	      error: function (xhr, status, err) {
@@ -49498,11 +50076,19 @@
 	      }.bind(this)
 	    });
 	  },
-	  updateLike: function updateLike() {
-	    var name = this.props.params;
-	    console.log('query param is' + name);
+	  updateField: function updateField(type) {
+	    var projectName = this.props.params;
+	    var field = "";
+	    switch (type) {
+	      case 0:
+	        field = 'likes';break;
+	      case 1:
+	        field = 'downloads';break;
+	      case 3:
+	        field = 'views';break;
+	    }
 	    $.ajax({
-	      url: useUrl + '/getone/' + name + '/' + 'likes',
+	      url: useUrl + '/getone/' + projectName + '/' + field,
 	      dataType: 'json',
 	      method: 'PUT',
 	      cache: true,
@@ -49514,66 +50100,25 @@
 	        console.error(useUrl + name, status, err.toString());
 	      }.bind(this)
 	    });
+	  },
+	  updateLike: function updateLike() {
+	    this.updateField(0);
 	  },
 	  updateDownload: function updateDownload() {
-	    var name = this.props.params;
-	    console.log('query param is' + name);
-	    $.ajax({
-	      url: useUrl + '/getone/' + name + '/' + 'downloads',
-	      dataType: 'json',
-	      method: 'PUT',
-	      cache: true,
-	      success: function (res) {
-	        console.log('Response is: ' + res);
-	      }.bind(this),
-	      error: function (xhr, status, err) {
-	        console.error(useUrl + name, status, err.toString());
-	      }.bind(this)
-	    });
+	    this.updateField(1);
 	  },
 	  updateViews: function updateViews() {
-	    var name = this.props.params;
-	    $.ajax({
-	      url: useUrl + '/getone/' + name + '/' + 'views',
-	      dataType: 'json',
-	      method: 'PUT',
-	      cache: true,
-	      success: function (res) {
-	        console.log('Response is: ' + res);
-	        this.forceAjax();
-	      }.bind(this),
-	      error: function (xhr, status, err) {
-	        console.error(useUrl + name, status, err.toString());
-	      }.bind(this)
-	    });
+	    this.updateField(2);
 	  },
 	  componentDidMount: function componentDidMount() {
 	    this.forceAjax();
 	    this.updateViews();
 	    /* Updates Page Views */
 	  },
-
 	  /* Should request another call, etc */
 	  /* Server should do the filtering so traffic/ data is minimal */
-	  showNav: function showNav() {
-	    if (!this.state.navBar) {
-	      // this.state.navBar.map(()=> {
-	      // Uncomment below when you get the chance
-	      // return (<a> Hello World </a>);
-	      // });
-	    } else {}
-
-	    this.state.navBar = !this.state.navBar; // reverse
-	  },
-	  testName: function testName() {
-	    // alert(this.state.data.name);
-	  },
 	  render: function render() {
-	    var imgs = [{ "logo": "../public/img/logo3.png" }, "../public/img/logo3.png"];
-	    var menu = ['PROJECTS', 'HOME', 'ABOUT', 'CONTACT'];
-
 	    var imgUrl = this.props.url;
-
 	    /* Font Styles */
 	    var TitleStyle = {
 	      fontSize: "40px",
@@ -49582,7 +50127,6 @@
 	      textTransform: "Capitalize",
 	      flex: "1"
 	    };
-
 	    var byStyle = {
 	      fontSize: "16px",
 	      fontFamily: "Roboto Condensed",
@@ -49592,7 +50136,6 @@
 	      paddingLeft: "20px",
 	      // overflow: "hidden",
 	      flex: "8"
-
 	    };
 	    var AboutStyle = {
 	      fontSize: "18px",
@@ -49640,20 +50183,16 @@
 	    var fillerStyle = {
 	      flex: "10"
 	    };
-
 	    var testStyle = {
 	      display: "flex"
 	    };
-
 	    var iconStyle = {
 	      height: "30px",
 	      width: "30px"
 	    };
-	    var navBar = this.showNav();
 	    // By line
 	    // <div style={{fontSize: "16px", fontFamily: "Roboto Condensed", whiteSpace: "nowrap", minWidth: "200px", flex:"3"}}>{'by ' + this.state.data.author}</div>
 	    // var Steps = this.CallSteps();
-
 	    var nameArray = this.state.data.name.split(" ");
 	    var displayName = nameArray[0].charAt(0).toUpperCase() + nameArray[0].substr(1);
 	    for (var i = 1; i < nameArray.length; i++) {
@@ -49762,7 +50301,7 @@
 	module.exports = Proj;
 
 /***/ },
-/* 350 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49876,7 +50415,7 @@
 	// url={this.props.data.author_picUrl}
 
 /***/ },
-/* 351 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49947,7 +50486,7 @@
 	module.exports = Scroll;
 
 /***/ },
-/* 352 */
+/* 355 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49984,7 +50523,7 @@
 	module.exports = IntroBox;
 
 /***/ },
-/* 353 */
+/* 356 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50066,149 +50605,7 @@
 	module.exports = Step;
 
 /***/ },
-/* 354 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _react = __webpack_require__(3);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _screenReaderStyles = __webpack_require__(355);
-
-	var _screenReaderStyles2 = _interopRequireDefault(_screenReaderStyles);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	/**
-	 * A React component for the font-awesome icon library.
-	 *
-	 *
-	 * @param {String} [ariaLabel] An extra accessibility label to put on the icon
-	 * @param {Boolean} [border=false] Whether or not to show a border radius
-	 * @param {String} [className] An extra set of CSS classes to add to the component
-	 * @param {Object} [cssModule] Option to pass FontAwesome CSS as a module
-	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
-	 * @param {String} [flip=false] Flip the icon's orientation.
-	 * @param {Boolean} [inverse=false]Inverse the icon's color
-	 * @param {String} name Name of the icon to use
-	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
-	 * @param {Number} [rotate] The degress to rotate the icon by
-	 * @param {String} [size] The icon scaling size
-	 * @param {Boolean} [spin=false] Spin the icon
-	 * @param {String} [stack] Stack an icon on top of another
-	 * @param {String} [tag=span] The HTML tag to use as a string (eg 'i' or 'em')
-	 * @module FontAwesome
-	 * @type {ReactClass}
-	 */
-	exports.default = _react2.default.createClass({
-
-	  displayName: 'FontAwesome',
-
-	  propTypes: {
-	    ariaLabel: _react2.default.PropTypes.string,
-	    border: _react2.default.PropTypes.bool,
-	    className: _react2.default.PropTypes.string,
-	    cssModule: _react2.default.PropTypes.object,
-	    fixedWidth: _react2.default.PropTypes.bool,
-	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
-	    inverse: _react2.default.PropTypes.bool,
-	    name: _react2.default.PropTypes.string.isRequired,
-	    pulse: _react2.default.PropTypes.bool,
-	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
-	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
-	    spin: _react2.default.PropTypes.bool,
-	    stack: _react2.default.PropTypes.oneOf(['1x', '2x']),
-	    tag: _react2.default.PropTypes.string
-	  },
-
-	  render: function render() {
-	    var _props = this.props;
-	    var border = _props.border;
-	    var cssModule = _props.cssModule;
-	    var className = _props.className;
-	    var fixedWidth = _props.fixedWidth;
-	    var flip = _props.flip;
-	    var inverse = _props.inverse;
-	    var name = _props.name;
-	    var pulse = _props.pulse;
-	    var rotate = _props.rotate;
-	    var size = _props.size;
-	    var spin = _props.spin;
-	    var stack = _props.stack;
-	    var _props$tag = _props.tag;
-	    var tag = _props$tag === undefined ? 'span' : _props$tag;
-	    var ariaLabel = _props.ariaLabel;
-
-	    var props = _objectWithoutProperties(_props, ['border', 'cssModule', 'className', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack', 'tag', 'ariaLabel']);
-
-	    var classNames = [];
-
-	    if (cssModule) {
-	      classNames.push(cssModule['fa']);
-	      classNames.push(cssModule['fa-' + name]);
-	      size && classNames.push(cssModule['fa-' + size]);
-	      spin && classNames.push(cssModule['fa-spin']);
-	      pulse && classNames.push(cssModule['fa-pulse']);
-	      border && classNames.push(cssModule['fa-border']);
-	      fixedWidth && classNames.push(cssModule['fa-fw']);
-	      inverse && classNames.push(cssModule['fa-inverse']);
-	      flip && classNames.push(cssModule['fa-flip-' + flip]);
-	      rotate && classNames.push(cssModule['fa-rotate-' + rotate]);
-	      stack && classNames.push(cssModule['fa-stack-' + stack]);
-	    } else {
-	      classNames.push('fa');
-	      classNames.push('fa-' + name);
-	      size && classNames.push('fa-' + size);
-	      spin && classNames.push('fa-spin');
-	      pulse && classNames.push('fa-pulse');
-	      border && classNames.push('fa-border');
-	      fixedWidth && classNames.push('fa-fw');
-	      inverse && classNames.push('fa-inverse');
-	      flip && classNames.push('fa-flip-' + flip);
-	      rotate && classNames.push('fa-rotate-' + rotate);
-	      stack && classNames.push('fa-stack-' + stack);
-	    }
-
-	    // Add any custom class names at the end.
-	    className && classNames.push(className);
-	    return _react2.default.createElement(tag, _extends({}, props, { 'aria-hidden': true, className: classNames.join(' ') }), ariaLabel ? _react2.default.createElement('span', { style: _screenReaderStyles2.default }, ariaLabel) : null);
-	  }
-	});
-	module.exports = exports['default'];
-
-/***/ },
-/* 355 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	  position: 'absolute',
-	  width: '1px',
-	  height: '1px',
-	  padding: '0px',
-	  margin: '-1px',
-	  overflow: 'hidden',
-	  clip: 'rect(0px, 0px, 0px, 0px)',
-	  border: '0px'
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 356 */
+/* 357 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50512,7 +50909,7 @@
 	*/
 
 /***/ },
-/* 357 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, setImmediate) {// vim:ts=4:sts=4:sw=4:
@@ -52564,10 +52961,10 @@
 
 	});
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(358).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(359).setImmediate))
 
 /***/ },
-/* 358 */
+/* 359 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(5).nextTick;
@@ -52646,10 +53043,10 @@
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(358).setImmediate, __webpack_require__(358).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(359).setImmediate, __webpack_require__(359).clearImmediate))
 
 /***/ },
-/* 359 */
+/* 360 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52662,10 +53059,10 @@
 	var Link = ReactRouter.Link;
 	var ImageComponent = __webpack_require__(345);
 	var TextComponent = __webpack_require__(283);
-	var DetailBox = __webpack_require__(350);
-	var IntroBox = __webpack_require__(352);
+	var DetailBox = __webpack_require__(353);
+	var IntroBox = __webpack_require__(355);
 	var Bar = __webpack_require__(299);
-	var Step = __webpack_require__(353);
+	var Step = __webpack_require__(356);
 
 	var $ = __webpack_require__(302);
 	var devUrl = 'http://localhost:3000';
@@ -52695,7 +53092,7 @@
 	module.exports = Content;
 
 /***/ },
-/* 360 */
+/* 361 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52721,7 +53118,7 @@
 	module.exports = Contact;
 
 /***/ },
-/* 361 */
+/* 362 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -52753,7 +53150,7 @@
 	module.exports = Input;
 
 /***/ },
-/* 362 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52873,7 +53270,7 @@
 	module.exports = Login;
 
 /***/ },
-/* 363 */
+/* 364 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53006,7 +53403,7 @@
 	module.exports = SignUp;
 
 /***/ },
-/* 364 */
+/* 365 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -53071,300 +53468,6 @@
 	});
 
 	module.exports = Profile;
-
-/***/ },
-/* 365 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _extends2 = __webpack_require__(260);
-
-	var _extends3 = _interopRequireDefault(_extends2);
-
-	var _defineProperty2 = __webpack_require__(241);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var React = __webpack_require__(3);
-	var ReactRouter = __webpack_require__(181);
-	var Link = ReactRouter.Link;
-	var Detail = __webpack_require__(301);
-	var Carousel = __webpack_require__(300);
-	var FontAwesome = __webpack_require__(354);
-	var $ = __webpack_require__(302);
-
-	var documentStrings = ['Main Document', 'Schematic', 'Eagle Files', 'Schematic'];
-
-	var Test = React.createClass({
-	  displayName: 'Test',
-
-	  getInitialState: function getInitialState() {
-	    return {
-	      ctr: 0,
-	      paths: ["http://res.cloudinary.com/djmk9vktk/image/upload/v1482991159/arcadebox_slsyln.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1483597306/StreetFighter2_kfmo3f.jpg", "http://res.cloudinary.com/djmk9vktk/image/upload/v1482990179/carousel_2_lvukal.jpg"]
-	    };
-	  },
-	  switchSlideLeft: function switchSlideLeft(inc) {
-	    var newCtr = this.state.ctr == 0 ? 2 : this.state.ctr - 1;
-	    this.setState({
-	      ctr: newCtr,
-	      paths: this.state.paths
-	    });
-	    $("#cf7 img").removeClass("opaque");
-	    $("#cf7 img").eq(newCtr).addClass("opaque");
-	    $("#cf7_controls span").removeClass("selected");
-	    $(this).addClass("selected");
-	  },
-	  switchSlideRight: function switchSlideRight(inc) {
-	    var newCtr = this.state.ctr == 2 ? 0 : this.state.ctr + 1;
-	    this.setState({
-	      ctr: newCtr,
-	      paths: this.state.paths
-	    });
-	    $("#cf7 img").removeClass("opaque");
-	    $("#cf7 img").eq(newCtr).addClass("opaque");
-	    $("#cf7_controls span").removeClass("selected");
-	    $(this).addClass("selected");
-	  },
-	  componentDidMount: function componentDidMount() {},
-	  render: function render() {
-	    var _chevronStyle, _React$createElement;
-
-	    var imgStyle = { height: "100%", padding: "0%", width: "100%" };
-	    var mainImgStyle = { float: "right", height: "400px", width: "400px", minHeight: "200px", minWidth: "200px" };
-	    var imgBoxStyle = { marginRight: "15px", height: "80px", width: "80px", cursor: "pointer" };
-	    var chevronStyle = (_chevronStyle = { display: "inline-block", cursor: "pointer", verticalAlign: "middle", paddingTop: "50px", margin: "auto",
-	      height: "90px", width: "90px" }, (0, _defineProperty3.default)(_chevronStyle, 'verticalAlign', "center"), (0, _defineProperty3.default)(_chevronStyle, 'color', "#b5b3b3"), _chevronStyle);
-	    var chevronContainerStyle = { display: "inline-block",
-	      // backgroundColor:"white",
-	      // borderColor:"black", borderStyle: "solid",
-	      height: "100%", width: "40px" };
-
-	    var imgBox = this.state.paths.map(function (item) {
-	      return React.createElement('img', { style: imgBoxStyle, src: item });
-	    });
-	    var documentsList = documentStrings.map(function (item) {
-	      return React.createElement(
-	        'li',
-	        { style: { content: "-" } },
-	        ' ',
-	        React.createElement(
-	          'a',
-	          { style: { color: "#D74B1F" } },
-	          ' ',
-	          item,
-	          ' '
-	        ),
-	        ' '
-	      );
-	    });
-	    return React.createElement(
-	      'div',
-	      { style: { backgroundColor: "#192930", height: "1000px", marginTop: "20px", paddingLeft: "100px", paddingRight: "100px" } },
-	      React.createElement(
-	        'div',
-	        { id: 'bg', style: { backgroundColor: "#E2E7E9" } },
-	        React.createElement(
-	          'div',
-	          { style: { backgroundColor: "#192930", height: "150px", marginTop: "20px", paddingLeft: "0px", paddingRight: "20px",
-	              paddingTop: "80px" } },
-	          React.createElement(
-	            'div',
-	            { id: 'breadCrumbsBar', style: { backgroundColor: "white", height: "50px", width: "40%", paddingTop: "13px", paddingLeft: "20px", fontSize: "18px", fontWeight: "500" } },
-	            'Projects',
-	            ' / ',
-	            'IOT',
-	            ' / ',
-	            'GuitarEffectsX/'
-	          )
-	        ),
-	        React.createElement(
-	          'div',
-	          { id: 'container', style: { display: "flex", paddingRight: "10px", backgroundColor: "white" } },
-	          React.createElement(
-	            'div',
-	            { id: 'left', style: { borderWidth: "0px 2px 0px 0px", borderColor: "#D9DADF", borderStyle: "solid", backgroundColor: "none", display: "inline-block", padding: "30px", paddingTop: "40px" } },
-	            React.createElement(
-	              'div',
-	              (_React$createElement = { id: 'mainImg2', style: mainImgStyle }, (0, _defineProperty3.default)(_React$createElement, 'id', 'cf7'), (0, _defineProperty3.default)(_React$createElement, 'className', 'shadow'), _React$createElement),
-	              React.createElement('img', { style: imgStyle, className: 'opaque', src: this.state.paths[0] }),
-	              React.createElement('img', { style: imgStyle, src: this.state.paths[1] }),
-	              React.createElement('img', { style: imgStyle, src: this.state.paths[2] }),
-	              React.createElement(
-	                'div',
-	                { style: { display: "inline-block", flex: "0.3", padding: "0px", width: "30%", height: "100%" } },
-	                ' '
-	              )
-	            ),
-	            React.createElement('br', null),
-	            React.createElement('br', null),
-	            React.createElement('br', null),
-	            React.createElement(
-	              'div',
-	              { style: { float: "right", backgroundColor: "none", margin: "0 auto", padding: "0 2%" } },
-	              React.createElement(
-	                'div',
-	                { id: 'leftChevron', style: chevronContainerStyle },
-	                React.createElement(FontAwesome, { style: chevronStyle, onClick: this.switchSlideLeft, name: 'chevron-left', size: '2x' })
-	              ),
-	              React.createElement(
-	                'div',
-	                { id: 'imgBox', style: { width: "300px", display: "inline-block" } },
-	                ' ',
-	                imgBox,
-	                ' '
-	              ),
-	              React.createElement(
-	                'div',
-	                { id: 'rightChevron', style: (0, _extends3.default)({}, chevronContainerStyle, { float: "right" }) },
-	                React.createElement(FontAwesome, { style: chevronStyle, onClick: this.switchSlideRight, name: 'chevron-right', size: '2x' }),
-	                ' '
-	              )
-	            )
-	          ),
-	          React.createElement(
-	            'div',
-	            { id: 'center', style: { flex: "1", width: "500px", paddingRight: "20px", paddingTop: "40px", paddingLeft: "40px",
-	                borderWidth: "0px 2px 0px 0px", borderColor: "#D9DADF", borderStyle: "solid" } },
-	            React.createElement(
-	              'h1',
-	              { style: { color: "#4C516C", padding: "0", margin: "0", paddingBottom: "5px", fontFamily: "Roboto Condensed", fontStyle: "bold" } },
-	              ' Guitar Effects X '
-	            ),
-	            React.createElement(
-	              'h3',
-	              { style: { color: "#4C516C", padding: "0", margin: "0" } },
-	              React.createElement(
-	                'div',
-	                { style: { display: "inline-block", fontWeight: "300", marginRight: "4px", fontSize: "20px" } },
-	                ' by  '
-	              ),
-	              React.createElement(
-	                'div',
-	                { style: { display: "inline-block", fontWeight: "300", fontFamily: "Montserrat; Roboto", fontSize: "20px" } },
-	                ' Eric Hou'
-	              ),
-	              ' '
-	            ),
-	            React.createElement('div', { id: 'buttonBar' }),
-	            React.createElement(
-	              'div',
-	              { style: { display: "inline-block", marginRight: "20px" } },
-	              ' 100 views '
-	            ),
-	            React.createElement(
-	              'button',
-	              { style: { backgroundColor: "white", borderRadius: "5px" } },
-	              React.createElement('img', { src: '/public/img/hearts.png', style: { height: "20px", display: "inline-block", marginRight: "7px" } }),
-	              '  100'
-	            ),
-	            React.createElement(
-	              'button',
-	              { style: { backgroundColor: "white", borderRadius: "5px" } },
-	              React.createElement('img', { src: '/public/img/cloud_blue.png', style: { height: "20px", display: "inline-block", marginRight: "7px" } }),
-	              ' 67'
-	            ),
-	            React.createElement('br', null),
-	            React.createElement(
-	              'div',
-	              { style: { lineHeight: "175%", fontSize: "18px", color: "#4C516C", paddingRight: "50px" } },
-	              React.createElement('br', null),
-	              React.createElement(
-	                'strong',
-	                null,
-	                ' Description: '
-	              ),
-	              React.createElement(
-	                'div',
-	                null,
-	                ' "My project is the guitar effect pedals. I began this project because I\'ve been playing guitar since high school. When I took ECE65 I became intrigued that simple components can act as filters. Building guitar effect pedals was my way of connecting my hobbies and my area of study." '
-	              ),
-	              React.createElement('br', null),
-	              React.createElement(
-	                'div',
-	                null,
-	                ' \'There are many types of effects, all used in different types of music. Each effect is based on principles we learn in our analog circuit classes. Building guitar effects is a very rewarding experience. All you need to know is how to read a schematic.\' '
-	              ),
-	              React.createElement('br', null),
-	              React.createElement(
-	                'div',
-	                null,
-	                ' \'Knowing the basics on what resistors, capacitors and transistors do helps, but is not require. In the process of building, you observe the clipping circuits, the frequency filters, and oscillator circuits in action. You gain troubleshooting skills and get up close and familiar with electrical components. You get better intuition on how a circuit behaves and how you can design it.\' '
-	              ),
-	              React.createElement('br', null)
-	            )
-	          ),
-	          React.createElement(
-	            'div',
-	            { id: 'infoBox', style: { flexDirection: "column", backgroundColor: "#F3F2F2", flex: "0.5", padding: "0px", width: "500px", height: "800px"
-	              } },
-	            React.createElement(
-	              'div',
-	              { style: { height: "40px", width: "100%", backgroundColor: "none", textAlign: "center", color: "black", fontSize: "20px", paddingTop: "37px" } },
-	              'Project Details'
-	            ),
-	            React.createElement(
-	              'div',
-	              { id: 'outerBox', style: { padding: "0px" } },
-	              React.createElement('div', { id: 'sectionOne', style: { flex: "1", height: "60px", borderColor: "#D9DADF", borderStyle: "solid",
-	                  borderWidth: "0px 0px 2px 0px", paddingRight: "20px", paddingLeft: "40px", margin: "0 auto" } }),
-	              React.createElement('div', null),
-	              React.createElement(
-	                'div',
-	                { id: 'sectionTwo', style: { display: "block", height: "200px", borderColor: "#D9DADF", borderStyle: "solid",
-	                    borderWidth: "0px 0px 2px 0px", paddingLeft: "130px", paddingTop: "30px", margin: "0 auto", backgroundColor: "white" } },
-	                React.createElement(
-	                  'div',
-	                  { style: { display: "block", margin: "0 auto" } },
-	                  React.createElement('img', { src: 'http://res.cloudinary.com/djmk9vktk/image/upload/v1484844829/ericho_ojewhp.jpg',
-	                    style: { height: "100px", display: "inline-block" } })
-	                ),
-	                React.createElement(
-	                  'div',
-	                  null,
-	                  React.createElement(
-	                    'strong',
-	                    null,
-	                    ' Team Members: '
-	                  ),
-	                  React.createElement('br', null),
-	                  'Colin Keef, Julia Mou'
-	                )
-	              ),
-	              React.createElement(
-	                'div',
-	                { id: 'sectionOne', style: { flex: "1", height: "160px", borderColor: "#D9DADF", borderStyle: "solid",
-	                    borderWidth: "0px 0px 2px 0px", paddingRight: "20px", paddingLeft: "40px", margin: "0 auto", textAlign: "center", paddingTop: "30px" } },
-	                React.createElement(
-	                  'strong',
-	                  { style: { fontSize: "20px", fontFamily: "Roboto Condensed", textAlign: "center" } },
-	                  ' Documents: '
-	                ),
-	                React.createElement(
-	                  'ul',
-	                  { style: { listStyle: "hyphen", cursor: "pointer" } },
-	                  documentsList,
-	                  ' '
-	                )
-	              ),
-	              React.createElement(
-	                'div',
-	                { id: 'sectionThree', style: { flex: "1", height: "300px" } },
-	                React.createElement('br', null),
-	                React.createElement('br', null)
-	              )
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = Test;
 
 /***/ },
 /* 366 */

@@ -26,7 +26,7 @@ var SignUp = require('../components/userpage/SignUp');
 var Profile = require('../components/userpage/Profile');
 var Footer = require('../components/custom/Footer');
 
-var Test = require('../components/custom/Test');
+var Test = require('../components/projectpage/Test');
 /* ReactRouter Routes urls to components */
 // var Home = (require'../components/Main');
 var reactRoutes = (
