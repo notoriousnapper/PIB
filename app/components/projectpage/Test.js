@@ -10,8 +10,6 @@ var useUrl = prodUrl;
 
 var documentStrings = [
   'Main Document',
-  'Schematic',
-  'Eagle Files',
   'Schematic'
 ]
 // Algorithm - Every 4 sentences, break it up into a chunk/ array.
@@ -26,6 +24,7 @@ getInitialState: function(){
     data: {
     'name':'',
     'author': '',
+    'team': [''],
     'authorImg': '',
     'url': '',
     'about': '',
@@ -184,6 +183,16 @@ render: function(){
         return (<img style={imgStyle} src={item} />);
       }
     });
+
+    var res = "";
+    var team = "";
+    if(this.state.data.team != null){
+    team = this.state.data.team.map(function(item){
+      res+= item + ", ";
+    });
+    }
+    var team = res.substring(0, res.length-2);
+
 return  (
   <div style={{backgroundColor:"#192930", height: "100%", marginTop:"20px", paddingLeft:"100px", paddingRight:"100px" }} >
   <div id="bg" style={{backgroundColor:"#E2E7E9"}}>
@@ -262,16 +271,16 @@ return  (
           </div>
           <div>
           </div>
-          <div id="sectionTwo" style={{display:"block", height: "200px", borderColor:"#D9DADF", borderStyle:"solid",
+          <div id="sectionTwo" style={{display:"block", height: "100%", borderColor:"#D9DADF", borderStyle:"solid",
               borderWidth:"0px 0px 2px 0px", paddingLeft:"30px", paddingTop: "30px", margin: "0 auto", backgroundColor:"white"}}>
               <div style={{display:"block", margin:"0 auto"}}>
                 <img src={this.state.data.authorImg}
                   style={{height:"100px", display:"inline-block"}}/>
               </div>
-              <div>
-                 <strong> Team Members: </strong>
+              <div style={{padding:"10px 5px"}}>
+                 <strong style={{marginTop:"10px"}}> Team Members: </strong>
                  <br/>
-                 {'Colin Keef, Julia Mou'}
+                 {team}
               </div>
           </div>
           <div id="sectionOne" style={{flex:"1", height: "160px", borderColor:"#D9DADF", borderStyle:"solid",

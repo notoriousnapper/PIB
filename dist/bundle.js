@@ -49407,9 +49407,9 @@
 
 	var devUrl = 'http://localhost:3000';
 	var prodUrl = 'https://still-forest-90731.herokuapp.com';
-	var useUrl = devUrl;
+	var useUrl = prodUrl;
 
-	var documentStrings = ['Main Document', 'Schematic', 'Eagle Files', 'Schematic'];
+	var documentStrings = ['Main Document', 'Schematic'];
 	// Algorithm - Every 4 sentences, break it up into a chunk/ array.
 	// Spit chunks out with format <div>{'text'} </div> <br/>
 	//
@@ -49424,6 +49424,7 @@
 	      data: {
 	        'name': '',
 	        'author': '',
+	        'team': [''],
 	        'authorImg': '',
 	        'url': '',
 	        'about': '',
@@ -49613,6 +49614,16 @@
 	        return React.createElement('img', { style: imgStyle, src: item });
 	      }
 	    });
+
+	    var res = "";
+	    var team = "";
+	    if (this.state.data.team != null) {
+	      team = this.state.data.team.map(function (item) {
+	        res += item + ", ";
+	      });
+	    }
+	    var team = res.substring(0, res.length - 2);
+
 	    return React.createElement(
 	      'div',
 	      { style: { backgroundColor: "#192930", height: "100%", marginTop: "20px", paddingLeft: "100px", paddingRight: "100px" } },
@@ -49787,7 +49798,7 @@
 	              React.createElement('div', null),
 	              React.createElement(
 	                'div',
-	                { id: 'sectionTwo', style: { display: "block", height: "200px", borderColor: "#D9DADF", borderStyle: "solid",
+	                { id: 'sectionTwo', style: { display: "block", height: "100%", borderColor: "#D9DADF", borderStyle: "solid",
 	                    borderWidth: "0px 0px 2px 0px", paddingLeft: "30px", paddingTop: "30px", margin: "0 auto", backgroundColor: "white" } },
 	                React.createElement(
 	                  'div',
@@ -49797,14 +49808,14 @@
 	                ),
 	                React.createElement(
 	                  'div',
-	                  null,
+	                  { style: { padding: "10px 5px" } },
 	                  React.createElement(
 	                    'strong',
-	                    null,
+	                    { style: { marginTop: "10px" } },
 	                    ' Team Members: '
 	                  ),
 	                  React.createElement('br', null),
-	                  'Colin Keef, Julia Mou'
+	                  team
 	                )
 	              ),
 	              React.createElement(
