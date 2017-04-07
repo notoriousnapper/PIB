@@ -4,15 +4,18 @@ mongoose.connect(configDB.url); // connect to our database
 const MongoClient = require('mongodb').MongoClient;
 
 var db;
-
+var dbConnected = false;
 MongoClient.connect('mongodb://banesilencio:merecino_ch3rr3@ds019756.mlab.com:19756/pib', (err, database) =>{
-	if (err) return console.log(err	)
+	if (err) {
+		return console.log(err);
+	}
 	else{
+		dbConnected = true;
 	  db = database;
 	}
 })
 
-module.exports.set = function(app) {
+module.exports.set = (dbConnected) ? ()=>{} : function(app) {
    // copy your routes listed in your app.js directly into here
   app.get('/get', (req,res, next)=> {
   	db.collection('projects').find().toArray((err, result)=>{

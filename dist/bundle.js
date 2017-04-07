@@ -27105,7 +27105,7 @@
 					hoverStyle: { position: "relative", right: "65%", width: "140px", height: "90px", padding: "5px", borderRadius: "3px 3px 0 3px", backgroundColor: "white" },
 					likes: 13,
 					downloads: 3,
-					projectTitle: "/projects/robotic arm"
+					projectTitle: "robotic arm"
 				}),
 				React.createElement(HoverInfo, { url: this.state.projects[1], circlePosition: { position: "absolute", top: "52%", right: "20%", height: "140px", width: "140px" },
 					circleSize: { height: "140px", width: "140px" },
@@ -27114,7 +27114,16 @@
 						fontFamily: "Montserrat", fontSize: "14px" },
 					likes: 4,
 					downloads: 5,
-					projectTitle: "projects/arcade emulator"
+					projectTitle: "arcade emulator"
+				}),
+				React.createElement(HoverInfo, { url: this.state.projects[1], circlePosition: { position: "absolute", top: "52%", right: "20%", height: "140px", width: "140px" },
+					circleSize: { height: "140px", width: "140px" },
+					hoverStyle: { position: "relative", right: "95%", top: "-80%", width: "140px", height: "90px", padding: "5px",
+						borderRadius: "3px 3px 0 3px", backgroundColor: "white",
+						fontFamily: "Montserrat", fontSize: "14px" },
+					likes: 4,
+					downloads: 5,
+					projectTitle: "arcade emulator"
 				}),
 				React.createElement(
 					Link,

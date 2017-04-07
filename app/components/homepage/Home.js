@@ -130,9 +130,8 @@ var Home = React.createClass({
 					hoverStyle={{position:"relative", right:"65%", width:"140px", height:"90px", padding:"5px", borderRadius:"3px 3px 0 3px", backgroundColor:"white"}}
 					likes={13}
 					downloads={3}
-					projectTitle={"/projects/robotic arm"}
+					projectTitle={"robotic arm"}
 				/>
-
 
 				<HoverInfo url={this.state.projects[1]} circlePosition={{ position:"absolute",  top: "52%", right: "20%", height: "140px", width: "140px"}}
 					circleSize={{height: "140px", width: "140px"}}
@@ -141,7 +140,17 @@ var Home = React.createClass({
           fontFamily: "Montserrat", fontSize: "14px" }}
 					likes={4}
 					downloads={5}
-					projectTitle={"projects/arcade emulator"}
+					projectTitle={"arcade emulator"}
+				/>
+
+        <HoverInfo url={this.state.projects[1]} circlePosition={{ position:"absolute",  top: "52%", right: "20%", height: "140px", width: "140px"}}
+					circleSize={{height: "140px", width: "140px"}}
+					hoverStyle={{position:"relative", right:"95%", top: "-80%", width:"140px", height:"90px", padding:"5px",
+          borderRadius:"3px 3px 0 3px", backgroundColor:"white",
+          fontFamily: "Montserrat", fontSize: "14px" }}
+					likes={4}
+					downloads={5}
+					projectTitle={"arcade emulator"}
 				/>
 
 				<Link className="image-cropper" style={{ height: "220px", width: "220px", top: "63%", right: "16px"}}
