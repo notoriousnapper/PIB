@@ -13,6 +13,11 @@ var prodUrl = 'https://still-forest-90731.herokuapp.com';
 
 var ImageboxComponent = React.createClass({
 	render: function(){
+		var buttonStyle={
+			width: "100px",
+			height: "50px",
+			padding: "10px 20px"
+		}
 		var bgStyle={
 			backgroundImage: "url(../public/img/pepper.png)",
 			backgroundSize: "300px 400px",
@@ -67,6 +72,21 @@ var exampleJSON = {
 }
 
 var ProjectSearchList = React.createClass({
+	getInitialState:function(){
+		return({
+			val:1
+		});
+	},
+	one: function(){
+		this.setState({
+			val:1
+		});
+	},
+	two: function(){
+		this.setState({
+			val:2
+		});
+	},
 	render: function(){
 		var containerStyle= { borderStyle: "none", margin: "0", padding: "0px 0px 0px 30px", width:"100%", display:"flex",
 		flexWrap:"wrap",
@@ -77,20 +97,58 @@ var ProjectSearchList = React.createClass({
 				console.log("Full filtered JSON");
 				console.log(JSON.stringify(projectListJSON, null,4));
 		/* Should only get first 9 from list based off http request when you have that up */
-		var projectSearchList= projectListJSON.map(function(projectJSON){
-				console.log("url from JSON is: ");
-				console.log(projectJSON.picUrl);
-			return  (
-				<ProjectListing
-				views={projectJSON.views}
-				id={projectJSON.id} url={ projectJSON.url }
-				name={ projectJSON.name} author={projectJSON.author}/>
-				);
-			});
+		var projectSearchList;
+		var temp = [];
+		var temp2;
+		if(this.state.val==1){
+			// for(var i = 0; i < 6; i++){
+			// 	var projectJSON = projectListJSON[i];
+			// 	temp2 = ( <ProjectListing
+			// 		views={projectJSON.views}
+			// 		id={projectJSON.id} url={ projectJSON.url }
+			// 		name={ projectJSON.name} author={projectJSON.author}/>
+			// 		);
+			// 	temp.push(projectJSON);
+			// }
+			// projectSearchList = temp;
+			projectSearchList= projectListJSON.map(function(projectJSON){
+					// console.log("url from JSON is: ");
+					// console.log(projectJSON.picUrl);
+				return  (
+					<ProjectListing
+					views={projectJSON.views}
+					id={projectJSON.id} url={ projectJSON.url }
+					name={ projectJSON.name} author={projectJSON.author}/>
+					);
+				});
+			// projectSearchList= projectSearchList.slice(0, projectSearchList-3);
+		}
+		if(this.state.val==2){
+			projectSearchList= projectListJSON.map(function(projectJSON){
+					// console.log("url from JSON is: ");
+					// console.log(projectJSON.picUrl);
+				return  (
+					<ProjectListing
+					views={projectJSON.views}
+					id={projectJSON.id} url={ projectJSON.url }
+					name={ projectJSON.name} author={projectJSON.author}/>
+					);
+				});
+
+				var temp = []
+				var len = projectSearchList.length;
+				temp.push(projectSearchList[len-1]);
+				temp.push(projectSearchList[len-2]);
+				projectSearchList = temp;
+		}
+
 
 		return(
 			<div style={containerStyle}>
 			{projectSearchList}
+
+			<button style={{width: "100px", height: "50px"}} onClick={this.one}> 1 </button>
+			<button style={{width: "100px", height: "50px"}} onClick={this.two}> 2 </button>
 
 			</div>);
 	}

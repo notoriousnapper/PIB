@@ -193,6 +193,20 @@ render: function(){
     }
     var team = res.substring(0, res.length-2);
 
+    // Video
+    var vidFrameStyle= {
+      width: "300px",
+      height: "300px",
+      margin: "0 auto",
+      marginTop:"20px"
+      // paddingTop:"20px"
+    }
+
+    var vidFrame;
+    if(this.state.data.vidUrl != null){
+      vidFrame = <iframe src={this.state.data.vidUrl} style={vidFrameStyle} />;
+    }
+
 return  (
   <div style={{backgroundColor:"#192930", height: "100%", marginTop:"20px", paddingLeft:"100px", paddingRight:"100px" }} >
   <div id="bg" style={{backgroundColor:"#E2E7E9"}}>
@@ -228,6 +242,12 @@ return  (
           <div id="rightChevron" style={{...chevronContainerStyle,...{float:"right"}}}>
           <FontAwesome style={chevronStyle} onClick={this.switchSlideRight} name="chevron-right" size="2x"/> </div>
            </div>
+
+       <div style={{display: "block", margin:"0 auto", marginTop: "20px", paddingTop: "20px", paddingLeft:"36px"}}  >
+          {vidFrame}
+          </div>
+
+
       </div>
 
       <div id="center" style={{flex:"1", width: "500px", paddingRight:"20px", paddingTop: "40px", paddingLeft:"40px",

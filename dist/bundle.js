@@ -27016,7 +27016,7 @@
 				React.createElement(
 					Link,
 					{ className: 'image-cropper', style: this.props.circleSize,
-						to: this.props.projectTitle },
+						to: "projects/" + this.props.projectTitle },
 					React.createElement('img', { src: this.props.url })
 				),
 				React.createElement(
@@ -27083,21 +27083,14 @@
 				flex: "2"
 			};
 
-			var linkStyle = {}
-			// textAlign:"center",
-			// color: "black",
-			// fontWeight: "bold",
-			// fontSize:"18px",
-			// paddingLeft: "50px"
-
-
-			// <Link className="image-cropper" style={{ height: "250px", width: "250px", top: "88px", right: "16px"}}
-			// 	to={"/projects/robotic arm"} >
-			// 	<img src={this.state.projects[0]}/>
-			// </Link>
-
-			// to={"/projects/arcadebox"} >
-			;return React.createElement(
+			var linkStyle = {
+				// textAlign:"center",
+				// color: "black",
+				// fontWeight: "bold",
+				// fontSize:"18px",
+				// paddingLeft: "50px"
+			};
+			return React.createElement(
 				'div',
 				{ style: bgStyle },
 				React.createElement(HoverInfo, { url: this.state.projects[0], circlePosition: { position: "absolute", top: "88px", right: "16px", height: "250px", width: "250px" },
@@ -41153,21 +41146,6 @@
 	          'Short Description'
 	        ),
 	        React.createElement('input', { name: 'about', style: { height: '30px' }, type: 'text', value: this.state.about, onChange: this.handleAboutChange }),
-	        React.createElement(
-	          'div',
-	          { style: labelStyle },
-	          'Instructions'
-	        ),
-	        Steps,
-	        React.createElement(
-	          'button',
-	          { onClick: this.addStep, onSubmit: function onSubmit() {
-	              console.log('Add Step');
-	            } },
-	          ' ',
-	          React.createElement('span', { className: 'glyphicon glyphicon-plus' }),
-	          '  '
-	        ),
 	        React.createElement('input', { name: 'mainurl', type: 'hidden', style: { height: '30px' }, value: this.props.mainurl }),
 	        React.createElement('input', { name: 'views', type: 'hidden', style: { height: '30px' }, value: 0 }),
 	        React.createElement('input', { name: 'likes', type: 'hidden', style: { height: '30px' }, value: 0 }),
@@ -48883,6 +48861,11 @@
 		displayName: 'ImageboxComponent',
 
 		render: function render() {
+			var buttonStyle = {
+				width: "100px",
+				height: "50px",
+				padding: "10px 20px"
+			};
 			var bgStyle = {
 				backgroundImage: "url(../public/img/pepper.png)",
 				backgroundSize: "300px 400px",
@@ -48949,6 +48932,21 @@
 	var ProjectSearchList = React.createClass({
 		displayName: 'ProjectSearchList',
 
+		getInitialState: function getInitialState() {
+			return {
+				val: 1
+			};
+		},
+		one: function one() {
+			this.setState({
+				val: 1
+			});
+		},
+		two: function two() {
+			this.setState({
+				val: 2
+			});
+		},
 		render: function render() {
 			var containerStyle = { borderStyle: "none", margin: "0", padding: "0px 0px 0px 30px", width: "100%", display: "flex",
 				flexWrap: "wrap",
@@ -48959,19 +48957,61 @@
 			console.log("Full filtered JSON");
 			console.log((0, _stringify2.default)(projectListJSON, null, 4));
 			/* Should only get first 9 from list based off http request when you have that up */
-			var projectSearchList = projectListJSON.map(function (projectJSON) {
-				console.log("url from JSON is: ");
-				console.log(projectJSON.picUrl);
-				return React.createElement(ProjectListing, {
-					views: projectJSON.views,
-					id: projectJSON.id, url: projectJSON.url,
-					name: projectJSON.name, author: projectJSON.author });
-			});
+			var projectSearchList;
+			var temp = [];
+			var temp2;
+			if (this.state.val == 1) {
+				// for(var i = 0; i < 6; i++){
+				// 	var projectJSON = projectListJSON[i];
+				// 	temp2 = ( <ProjectListing
+				// 		views={projectJSON.views}
+				// 		id={projectJSON.id} url={ projectJSON.url }
+				// 		name={ projectJSON.name} author={projectJSON.author}/>
+				// 		);
+				// 	temp.push(projectJSON);
+				// }
+				// projectSearchList = temp;
+				projectSearchList = projectListJSON.map(function (projectJSON) {
+					// console.log("url from JSON is: ");
+					// console.log(projectJSON.picUrl);
+					return React.createElement(ProjectListing, {
+						views: projectJSON.views,
+						id: projectJSON.id, url: projectJSON.url,
+						name: projectJSON.name, author: projectJSON.author });
+				});
+				// projectSearchList= projectSearchList.slice(0, projectSearchList-3);
+			}
+			if (this.state.val == 2) {
+				projectSearchList = projectListJSON.map(function (projectJSON) {
+					// console.log("url from JSON is: ");
+					// console.log(projectJSON.picUrl);
+					return React.createElement(ProjectListing, {
+						views: projectJSON.views,
+						id: projectJSON.id, url: projectJSON.url,
+						name: projectJSON.name, author: projectJSON.author });
+				});
+
+				var temp = [];
+				var len = projectSearchList.length;
+				temp.push(projectSearchList[len - 1]);
+				temp.push(projectSearchList[len - 2]);
+				projectSearchList = temp;
+			}
 
 			return React.createElement(
 				'div',
 				{ style: containerStyle },
-				projectSearchList
+				projectSearchList,
+				React.createElement(
+					'button',
+					{ style: { width: "100px", height: "50px" }, onClick: this.one },
+					' 1 '
+				),
+				React.createElement(
+					'button',
+					{ style: { width: "100px", height: "50px" }, onClick: this.two },
+					' 2 '
+				)
 			);
 		}
 	});
@@ -49633,6 +49673,20 @@
 	    }
 	    var team = res.substring(0, res.length - 2);
 
+	    // Video
+	    var vidFrameStyle = {
+	      width: "300px",
+	      height: "300px",
+	      margin: "0 auto",
+	      marginTop: "20px"
+	      // paddingTop:"20px"
+	    };
+
+	    var vidFrame;
+	    if (this.state.data.vidUrl != null) {
+	      vidFrame = React.createElement('iframe', { src: this.state.data.vidUrl, style: vidFrameStyle });
+	    }
+
 	    return React.createElement(
 	      'div',
 	      { style: { backgroundColor: "#192930", height: "100%", marginTop: "20px", paddingLeft: "100px", paddingRight: "100px" } },
@@ -49706,6 +49760,11 @@
 	                React.createElement(FontAwesome, { style: chevronStyle, onClick: this.switchSlideRight, name: 'chevron-right', size: '2x' }),
 	                ' '
 	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { style: { display: "block", margin: "0 auto", marginTop: "20px", paddingTop: "20px", paddingLeft: "36px" } },
+	              vidFrame
 	            )
 	          ),
 	          React.createElement(
@@ -50713,6 +50772,10 @@
 	      maxHeight: "400px !important",
 	      maxWidth: "400px !important"
 	    };
+	    var vidFrameStyle = {
+	      maxHeight: "400px !important",
+	      maxWidth: "400px !important"
+	    };
 
 	    // alert(JSON.stringify(this.state.data.materials, null, 4));
 	    var arr = this.state.data.links;
@@ -50783,6 +50846,12 @@
 	        }
 	      });
 	    }
+
+	    var vidFrame;
+	    // if(this.state.data.videoUrl != null){
+	    vidFrame = React.createElement('iframe', { style: vidFrameStyle, src: 'https://drive.google.com/file/d/0B1yIeWvoTmRPQzZhbXItQTA5Tjg/view?usp=sharing' });
+	    // }
+
 
 	    return React.createElement(
 	      'div',
@@ -50892,7 +50961,8 @@
 	        'div',
 	        { id: 'right', style: padding },
 	        ' '
-	      )
+	      ),
+	      vidFrame
 	    );
 	  }
 	});

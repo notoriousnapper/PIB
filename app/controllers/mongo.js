@@ -15,7 +15,10 @@ MongoClient.connect('mongodb://banesilencio:merecino_ch3rr3@ds019756.mlab.com:19
 	}
 })
 
-module.exports.set = (dbConnected) ? ()=>{} : function(app) {
+module.exports.set =
+// (
+	// dbConnected) ? ()=>{} :
+	function(app) {
    // copy your routes listed in your app.js directly into here
   app.get('/get', (req,res, next)=> {
   	db.collection('projects').find().toArray((err, result)=>{
@@ -123,7 +126,6 @@ app.get('/getviews', (req, res)=>{
 		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
 	});
 });
-
 
 /* Update Likes, downloads, etc. */
 app.put('/getone/:id/:type', (req,res)=>{

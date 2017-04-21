@@ -24,9 +24,7 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-
 // remove your routes and replace with this code
-
 // MongoDB Module in here
 
 // var router = express.Router();
@@ -69,6 +67,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Bring in index.js, mongo.js, etc.
 var controllers = require('./app/controllers');
 controllers.set(app);
 // Add headers  // Because CORS Middleware ain't treatin' me right.
@@ -78,22 +77,11 @@ const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var db;
 
-/* Configure Cloudinary Image Hosting */
-
-// cloudinary.uploader.upload("./public/img/test.jpg", function(result) {
-//   console.log(result)
-// });
-
-/* Configure MongoDB */
-
-// app.configure('development', function(){
-  // app.use(express.errorHandler());
-
-  cloudinary.config({
+cloudinary.config({
   	cloud_name: 'djmk9vktk',
   	api_key: '649235919964296',
   	api_secret: '04wF_PSoRxl86XunCSeTuMV6TeI'
-  });
+});
 // });
 // app.locals.api_key = cloudinary.config().api_key;
 // app.locals.cloud_name = cloudinary.config().cloud_name;
@@ -114,8 +102,6 @@ app.use(bodyParser.urlencoded({extended: true}))  // Necessary to handle HTTP re
 // app.use(bodyParser.json());
 
 
-
-
 // app.use('/api', router);
 // The urlencoded method within body-parser
 //tells body-parser to extract data from the <form> element and add them to the body property in the request object.
@@ -125,7 +111,6 @@ app.get('/user', function(req, res) {
 	  console.log("help");
     res.render('user.html');
 });
-
 
 
 // app.get('/get', (req,res, next)=> {

@@ -31,11 +31,9 @@ var HoverInfo = React.createClass({
              {onMouseOver: this.mouseOver, onMouseOut: this.mouseOut},
  						<div style={this.props.circlePosition}>
  							<Link className="image-cropper" style={this.props.circleSize}
- 						  	to={this.props.projectTitle} >
+ 						  	to={"projects/" + this.props.projectTitle} >
  								<img src={this.props.url}/>
  							</Link>
-
-
 	 							<div className="testhover" style={hoverStyleMain}>
 								  <div style={{padding: "10px 15px", color: "D83320 !important", fontSize: "14px !important"}}>
 										<img style={{display:"inline-block", width: "25px", height: "25px", marginRight: "3px"}} src="../public/img/hearts.png"/>
@@ -85,8 +83,6 @@ var Home = React.createClass({
 			  flexDirection: "column"
 		};
 
-
-
 		var buttonStyle={
 			padding:"20px",
             width:"170px",
@@ -115,13 +111,6 @@ var Home = React.createClass({
         		// fontSize:"18px",
         		// paddingLeft: "50px"
         	}
-
-				// <Link className="image-cropper" style={{ height: "250px", width: "250px", top: "88px", right: "16px"}}
-			  // 	to={"/projects/robotic arm"} >
-				// 	<img src={this.state.projects[0]}/>
-				// </Link>
-
-				// to={"/projects/arcadebox"} >
 		return(
 			<div style={bgStyle}>
 
@@ -171,7 +160,6 @@ var Home = React.createClass({
 				<Link className="image-cropper no-border" style={{ borderStyle: "none",height: "150px", width: "150px", top: "69%", left: "112px"}} to={""} >
 					<img src={this.state.profiles[2]}/>
 				</Link>
-
 
 				<div style={{height: "200px"}}></div>
 					<br/>

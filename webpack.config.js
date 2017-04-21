@@ -64,7 +64,6 @@ module.exports = {
             /* The regexp says, get all .js files and put it into one file */
             loaders: [
               {test: /\.js$|.jpe?g$|\.gif$|\.png/, exclude: /node_modules/, loader: "babel-loader"}
-
             ]
         },
         output: {

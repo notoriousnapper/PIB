@@ -198,19 +198,7 @@ addStep: function(){
         <div style={labelStyle}>{'Short Description'}</div>
         <input name='about'  style={{height: '30px'}}  type="text"   value={this.state.about} onChange={this.handleAboutChange}/>
 
-
-
-
-        <div style={labelStyle}>{'Instructions'}</div>
-        {Steps}
-        <button onClick={this.addStep} onSubmit={()=>{console.log('Add Step');}}> <span className={'glyphicon glyphicon-plus'}/>  </button>
-
-
-
-
-
-
-
+        
         <input name="mainurl" type="hidden" style={{height: '30px'}}  value={this.props.mainurl} />
         <input name="views" type="hidden" style={{height: '30px'}}  value={0} />
         <input name="likes" type="hidden" style={{height: '30px'}}  value={0} />

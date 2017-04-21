@@ -79,6 +79,10 @@ var Proj2 = React.createClass({
             maxHeight: "400px !important",
             maxWidth: "400px !important"
           }
+          var vidFrameStyle ={
+            maxHeight: "400px !important",
+            maxWidth: "400px !important"
+          }
 
 
           // alert(JSON.stringify(this.state.data.materials, null, 4));
@@ -132,6 +136,12 @@ var Proj2 = React.createClass({
           }
 
 
+          var vidFrame;
+          // if(this.state.data.videoUrl != null){
+            vidFrame = <iframe style={vidFrameStyle} src="https://drive.google.com/file/d/0B1yIeWvoTmRPQzZhbXItQTA5Tjg/view?usp=sharing" />
+          // }
+
+
           return(
         		<div style={{display: "flex",  width:"100%"}}>
               <div id="left" style={padding}> </div>
@@ -161,6 +171,8 @@ var Proj2 = React.createClass({
                 </div>
               </div>
               <div id="right" style={padding}> </div>
+
+              {vidFrame}
     				</div>
               )
                 }
