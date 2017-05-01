@@ -49525,7 +49525,7 @@
 	        field = 'views';break;
 	    }
 	    $.ajax({
-	      url: useUrl + '/getone/' + projectName + '/' + field,
+	      url: useUrl + '/project/' + projectName + '/' + field,
 	      dataType: 'json',
 	      method: 'PUT',
 	      cache: true,
@@ -49549,7 +49549,7 @@
 	  forceAjax: function forceAjax() {
 	    var name = this.props.params;
 	    $.ajax({
-	      url: useUrl + '/getone/' + name,
+	      url: useUrl + '/project/' + name,
 	      dataType: 'json',
 	      cache: true,
 	      success: function (res) {
@@ -50144,7 +50144,7 @@
 	    var name = this.props.params;
 	    console.log('query param is' + name);
 	    $.ajax({
-	      url: useUrl + '/getone/' + name,
+	      url: useUrl + '/project/' + name,
 	      dataType: 'json',
 	      cache: true,
 	      success: function (res) {
@@ -50167,7 +50167,7 @@
 	        field = 'views';break;
 	    }
 	    $.ajax({
-	      url: useUrl + '/getone/' + projectName + '/' + field,
+	      url: useUrl + '/project/' + projectName + '/' + field,
 	      dataType: 'json',
 	      method: 'PUT',
 	      cache: true,
@@ -50734,7 +50734,7 @@
 	    var name = this.props.params;
 	    console.log('query param is' + name);
 	    $.ajax({
-	      url: useUrl + '/getone/' + name,
+	      url: useUrl + '/project/' + name,
 	      dataType: 'json',
 	      cache: true,
 	      success: function (res) {

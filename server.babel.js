@@ -88,7 +88,7 @@ cloudinary.config({
 
 app.use('/', express.static('dist'));
 app.listen(process.env.PORT || 3000, function(){
-	console.log('Let\' begin the Pib Site!');
+	console.log('Let\'s begin the Pib Site!');
 });
 
 /* Handle CRUD ops here
@@ -112,81 +112,15 @@ app.get('/user', function(req, res) {
     res.render('user.html');
 });
 
-
-// app.get('/get', (req,res, next)=> {
-// 	db.collection('projects').find().toArray((err, result)=>{
-// 		if (err) return console.log(error);
-//
-// 		// Need better check.  Error occurred because projects db didn't exist at one point
-// 		if(result === '') console.log('No DB subset instantiated');
-// 		console.log("Getting Array!" + result);
-//
-// 		//renders index.ejs
-// 		console.log("What's up boi, it worked!");
-// 		res.end(JSON.stringify(result, null, 4)); // Ping back with response and data
-// 	})
-// });
-
-// var bodyParser = require('body-parser').json();
-app.get('/download',  function(req, res){
-  console.log("A file has been downloaded");
-  console.log(req.body);
-  var name = req.body.name;
-  if (name === "arcadebox") {
-    console.log("It's pepper!")
-  }
-
-  if(req.body.name!=null){
-  switch(name){
-    case 'arcadebox': console.log(name);
-    break;
-    case 'solartracker': console.log(name);
-    break;
-    case 'arcadebox': console.log(name);
-    break;
-  };
-}
-
-  console.log(req);
-
-  var file = __dirname + '/uploads/project.pdf';
-  res.download(file); // Set disposition and send it.
-});
-
 app.get('*.pdf', function(req, res){
   var pattern = /%20/g;
   var filename = req.originalUrl.replace(pattern , ""); // Rid of %20
   // Need regex, or only replaces first
   console.log("parse url" + filename);
-
-  // if(filename == "solartracker.pdf"){
-  //   filename = "solartracker.pdf";
-  // }
-  // else {
-  //   filename = req.originalUrl;
-  // }
   console.log(filename);
   var file = __dirname + '/uploads/' + filename;
   res.download(file); // Set disposition and send it.
 });
-// app.use(function (req, res, next) { // Supposed to deal with CORS
-
-//     // Website you wish to allow to connect
-//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
-
-//     // Request methods you wish to allow
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-//     // Request headers you wish to allow
-//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-//     // Set to true if you need the website to include cookies in the requests sent
-//     // to the API (e.g. in case you use sessions)
-//     res.setHeader('Access-Control-Allow-Credentials', true);
-
-//     // Pass to next layer of middleware
-//     next();
-// });
 
 //Cloudinary image upload     //http://dailyjs.com/2013/02/21/cloudinary/
 app.post('/upload', upload.single('image'), (req,res)=>{
@@ -277,8 +211,8 @@ app.post('/upload', upload.single('image'), (req,res)=>{
 });
 
 /* Updates views, likes, or downloads of certain project ONLY */
-//'/getone/:id/:type'   is full
-app.put('/getone/:id/:type', (req,res)=>{
+//'/project/:id/:type'   is full
+app.put('/project/:id/:type', (req,res)=>{
 	/* Updates specific project id with specific field (like, views, etc) */
 	var fields = ['views','likes', 'downloads'];
 	if (!fields.every(function(elem){req.params.type === elem})){

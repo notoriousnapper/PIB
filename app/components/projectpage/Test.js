@@ -83,7 +83,7 @@ updateField: function(type){
     case 2:  field = 'views'; break;
   }
    $.ajax({
-        url: useUrl + '/getone/' + projectName + '/' + field,
+        url: useUrl + '/project/' + projectName + '/' + field,
         dataType: 'json',
         method: 'PUT',
         cache: true,
@@ -107,7 +107,7 @@ updateViews: function(){
 forceAjax:function(){
   var name = this.props.params;
    $.ajax({
-        url: useUrl + '/getone/' + name,
+        url: useUrl + '/project/' + name,
         dataType: 'json',
         cache: true,
         success: function(res) {

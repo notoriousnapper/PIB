@@ -41,7 +41,7 @@ var Proj2 = React.createClass({
   var name = this.props.params;
   console.log('query param is' + name);
    $.ajax({
-        url: useUrl + '/getone/' + name,
+        url: useUrl + '/project/' + name,
         dataType: 'json',
         cache: true,
         success: function(res) {
