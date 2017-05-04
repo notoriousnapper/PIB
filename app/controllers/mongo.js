@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var configDB = require('../../app/config/database.js');
-mongoose.connect(configDB.url); // connect to our database
+// var configDB = require('../../app/config/database.js');
+// mongoose.connect(configDB.url); // connect to our database
 const MongoClient = require('mongodb').MongoClient;
 
 var db;
