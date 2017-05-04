@@ -27,6 +27,8 @@ var Profile = require('../components/userpage/Profile');
 var Footer = require('../components/custom/Footer');
 
 var Test = require('../components/projectpage/Test');
+var Admin = require('../components/adminpage/AdminMain');
+
 /* ReactRouter Routes urls to components */
 // var Home = (require'../components/Main');
 var reactRoutes = (
@@ -48,6 +50,7 @@ var reactRoutes = (
 			<Route path='/signup' component={SignUp}/>
 			<Route path='/profile' component={Profile}/>
 			<Route path='/test' component={Test}/>
+			<Route path='/admin' component={Admin}/>
 		</Route>
 	</Router>
 
