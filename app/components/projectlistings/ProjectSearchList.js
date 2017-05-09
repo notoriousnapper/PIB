@@ -77,14 +77,9 @@ var ProjectSearchList = React.createClass({
 			val:1
 		});
 	},
-	one: function(){
+	setListState: function(num){
 		this.setState({
-			val:1
-		});
-	},
-	two: function(){
-		this.setState({
-			val:2
+			val: num
 		});
 	},
 	render: function(){
