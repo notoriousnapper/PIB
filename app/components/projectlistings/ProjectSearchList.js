@@ -96,16 +96,16 @@ var ProjectSearchList = React.createClass({
 		var temp = [];
 		var temp2;
 		if(this.state.val==1){
-			// for(var i = 0; i < 6; i++){
-			// 	var projectJSON = projectListJSON[i];
-			// 	temp2 = ( <ProjectListing
-			// 		views={projectJSON.views}
-			// 		id={projectJSON.id} url={ projectJSON.url }
-			// 		name={ projectJSON.name} author={projectJSON.author}/>
-			// 		);
-			// 	temp.push(projectJSON);
-			// }
-			// projectSearchList = temp;
+			for(var i = 0; i < 6; i++){
+				var projectJSON = projectListJSON[i];
+				temp2 = ( <ProjectListing
+					views={projectJSON.views}
+					id={projectJSON.id} url={ projectJSON.url }
+					name={ projectJSON.name} author={projectJSON.author}/>
+					);
+				temp.push(projectJSON);
+			}
+			projectSearchList = temp;
 			projectSearchList= projectListJSON.map(function(projectJSON){
 					// console.log("url from JSON is: ");
 					// console.log(projectJSON.picUrl);
@@ -142,8 +142,8 @@ var ProjectSearchList = React.createClass({
 			<div style={containerStyle}>
 			{projectSearchList}
 
-			<button style={{width: "100px", height: "50px"}} onClick={this.one}> 1 </button>
-			<button style={{width: "100px", height: "50px"}} onClick={this.two}> 2 </button>
+			<button style={{width: "100px", height: "50px"}} onClick={this.setListState(1)}> 1 </button>
+			<button style={{width: "100px", height: "50px"}} onClick={this.setListState(2}> 2 </button>
 
 			</div>);
 	}
