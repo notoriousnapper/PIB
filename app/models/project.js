@@ -5,7 +5,7 @@ var projectSchema = new mongoose.Schema({
     about: String,
 
     url: String, // thumbnail project photo
-    partsImg: String,
+    // partsImg: String,
     carouselFiles: [],
    
     views: Number,
