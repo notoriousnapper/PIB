@@ -45,8 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(366);
-	__webpack_require__(367);
+	__webpack_require__(371);
+	__webpack_require__(372);
 	__webpack_require__(238);
 	__webpack_require__(361);
 	__webpack_require__(297);
@@ -61,13 +61,13 @@
 	__webpack_require__(357);
 	__webpack_require__(305);
 	__webpack_require__(356);
-	__webpack_require__(368);
+	__webpack_require__(373);
 	__webpack_require__(308);
 	__webpack_require__(362);
 	__webpack_require__(283);
 	__webpack_require__(345);
 	__webpack_require__(300);
-	__webpack_require__(369);
+	__webpack_require__(374);
 	__webpack_require__(301);
 	__webpack_require__(239);
 	__webpack_require__(298);
@@ -21524,6 +21524,9 @@
 	var Footer = __webpack_require__(239);
 
 	var Test = __webpack_require__(349);
+	var Admin = __webpack_require__(366);
+	var AdminDetails = __webpack_require__(370);
+
 	/* ReactRouter Routes urls to components */
 	// var Home = (require'../components/Main');
 	var reactRoutes = React.createElement(
@@ -21553,7 +21556,9 @@
 				React.createElement(Route, { path: '/login', component: Login }),
 				React.createElement(Route, { path: '/signup', component: SignUp }),
 				React.createElement(Route, { path: '/profile', component: Profile }),
-				React.createElement(Route, { path: '/test', component: Test })
+				React.createElement(Route, { path: '/test', component: Test }),
+				React.createElement(Route, { path: '/admin/:id', component: AdminDetails }),
+				React.createElement(Route, { path: '/admin', component: Admin })
 			)
 		),
 		React.createElement(Footer, null)
@@ -53561,6 +53566,635 @@
 
 /***/ },
 /* 366 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+
+	var ProjectPage = __webpack_require__(367);
+	var idornot = null;
+
+	var AdminNav = React.createClass({
+	  displayName: 'AdminNav',
+	  getInitialState: function getInitialState() {
+	    return {
+	      active_comp: 1
+	    };
+	  },
+
+	  handleClick: function handleClick(num) {
+	    this.setState({ active_comp: num });
+	  },
+	  renderPage: function renderPage() {
+	    if (this.state.active_comp == 1) {
+	      return React.createElement(ProjectPage, { id: idornot });
+	    }
+	    if (this.state.active_comp == 2) {
+	      var blabla = {
+	        width: "100px",
+	        height: "500px",
+	        'background-color': 'green'
+	      };
+	      return React.createElement(
+	        'div',
+	        { style: blabla },
+	        'Users'
+	      );
+	    }
+	  },
+	  render: function render() {
+	    var navbar = {
+	      width: "100%",
+	      height: "100%",
+	      backgroundColor: "white",
+	      zIndex: "3"
+	    };
+	    var navList = {
+	      position: "absolute",
+	      left: "20",
+	      top: "70px"
+	    };
+	    var bottomStyle = {
+	      fontFamily: 'lucida grande, Helvetica',
+	      fontSize: '20px',
+	      textAlign: "center",
+	      whiteSpace: "nowrap",
+	      lineHeight: "40px",
+	      color: "#164065",
+	      padding: "0 15px",
+	      border: "2px solid black",
+	      boxShadow: "5px 5px black",
+	      marginBottom: "5px"
+	    };
+	    return React.createElement(
+	      'div',
+	      { style: navbar },
+	      React.createElement(
+	        'div',
+	        { style: navList },
+	        React.createElement(
+	          'div',
+	          { style: bottomStyle, onClick: this.handleClick.bind(this, 1) },
+	          'Projects'
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: bottomStyle, onClick: this.handleClick.bind(this, 2) },
+	          'Users'
+	        ),
+	        React.createElement(
+	          'div',
+	          { style: bottomStyle },
+	          'Data'
+	        )
+	      ),
+	      this.renderPage()
+	    );
+	  }
+	});
+
+	var Projects = React.createClass({
+	  displayName: 'Projects',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      position: 1,
+	      data: []
+	    };
+	  },
+	  render: function render() {
+	    idornot = this.props.params.id;
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(AdminNav, null)
+	    );
+	  }
+	});
+
+	module.exports = Projects;
+
+/***/ },
+/* 367 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _defineProperty2 = __webpack_require__(241);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(3);
+	//var ProjectSearchList = require('../../components/projectlistings/ProjectSearchList');
+	//var ProjectListing = require('../../components/projectlistings/ProjectListing');
+	var SearchBar = __webpack_require__(346);
+	var Category = __webpack_require__(347);
+	var Test = __webpack_require__(349);
+	var Proj = __webpack_require__(352);
+	var Proj2 = __webpack_require__(357);
+
+	var Frame = __webpack_require__(298);
+	var Bar = __webpack_require__(299);
+	var Pad = __webpack_require__(348);
+
+	var http = __webpack_require__(309);
+	var $ = __webpack_require__(302);
+	var Q = __webpack_require__(358);
+
+	var devUrl = 'http://localhost:3000';
+	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	/* Use devUrl or prodUrl*/
+	var useUrl = prodUrl;
+
+	//For the admin project list substitue 'ProjectSearchList'
+	var ProjectSearchList = __webpack_require__(368);
+
+	var ProjectListing = __webpack_require__(369);
+
+	//For the admin project page substitute 'Test'
+	var ProjectDetails = __webpack_require__(370);
+
+	var Projects = React.createClass({
+	  displayName: 'Projects',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      clicks: 0,
+	      data: []
+	    };
+	  },
+	  getPopularProjects: function getPopularProjects() {
+	    $.ajax({
+	      url: useUrl + '/getpopular',
+	      dataType: 'json',
+	      cache: false,
+	      success: function (res) {
+	        this.setState({
+	          data: res
+	        });
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(prodUrl, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  getMostViewsProjects: function getMostViewsProjects() {
+	    $.ajax({
+	      url: useUrl + '/getviews',
+	      dataType: 'json',
+	      cache: false,
+	      success: function (res) {
+	        this.setState({
+	          data: res
+	        });
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(prodUrl, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  getQueryProjects: function getQueryProjects(query) {
+
+	    $.ajax({
+	      url: useUrl + '/get/' + query,
+	      dataType: 'json',
+	      cache: false,
+	      success: function (res) {
+	        this.setState({
+	          data: res,
+	          clicks: this.state.clicks + 1
+	        });
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(prodUrl, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  getAllProjects: function getAllProjects(evt) {
+	    $.ajax({
+	      url: useUrl + '/get',
+	      dataType: 'json',
+	      cache: false,
+	      success: function (res) {
+	        this.setState({
+	          data: res,
+	          clicks: this.state.clicks + 1
+	        });
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(useUrl, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    this.getAllProjects();
+	  },
+
+	  render: function render() {
+	    var params = this.props;
+	    var id = params.id;
+	    var containerStyle = { zIndex: "1000", paddingTop: "100px", paddingLeft: "200px", paddingRight: "100px", paddingBottom: "100px", display: "flex", flexDirection: "column", height: "100%",
+	      margin: "0 auto"
+	    };
+	    var projectListStyle = { flex: "5" };
+	    var paddingStyle = { height: "100px", flex: "1" };
+	    var buttonStyle = (0, _defineProperty3.default)({
+	      width: "60px",
+	      height: "60px",
+	      borderStyle: "none",
+	      display: "flex",
+	      backgroundColor: "#FAC129",
+	      paddingLeft: "12px",
+	      textAlign: "center"
+	    }, 'paddingLeft', "20px");
+
+	    return React.createElement(
+	      'div',
+	      { style: containerStyle },
+	      React.createElement(SearchBar, { onMagicClick: this.getQueryProjects }),
+	      React.createElement(
+	        Bar,
+	        null,
+	        React.createElement(Category, { popular: this.getPopularProjects, view: this.getMostViewsProjects })
+	      ),
+	      React.createElement(
+	        Frame,
+	        { style: { display: "inline-block" } },
+	        React.createElement(
+	          'div',
+	          { style: { display: "flex", flexDirection: "column",
+	              backgroundColor: "#F4F4F4"
+	            } },
+	          React.createElement(ProjectSearchList, { style: projectListStyle, projectListData: this.state.data, id: id }),
+	          React.createElement(
+	            'div',
+	            { style: { display: "flex", paddingTop: "30px" } },
+	            React.createElement(Pad, { hw: ['100px', '45%'] }),
+	            React.createElement(Pad, { hw: ['100px', '30%'] })
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Projects;
+
+/***/ },
+/* 368 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var ReactDOM = __webpack_require__(34);
+	var ProjectListing = __webpack_require__(369);
+
+	var devUrl = 'http://localhost:3000/get';
+	var devUrl2 = 'http://localhost:3000/get';
+	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+
+	var ImageboxComponent = React.createClass({
+	  displayName: 'ImageboxComponent',
+
+	  render: function render() {
+	    var buttonStyle = {
+	      width: "100px",
+	      height: "50px",
+	      padding: "10px 20px"
+	    };
+	    var bgStyle = {
+	      backgroundImage: "url(../public/img/pepper.png)",
+	      backgroundSize: "300px 400px",
+	      width: "300px",
+	      height: "400px"
+	    };
+	    var textStyle_Big = { fontSize: "23pt", color: "white" };
+	    var textStyle_Small = { fontSize: "15pt", color: "white" };
+	    return React.createElement(
+	      'div',
+	      { style: bgStyle },
+	      React.createElement(TextComponent, { style: textStyle_Big,
+	        message: 'Pepper' }),
+	      React.createElement(TextComponent, { style: textStyle_Small,
+	        message: 'by SoftBank' })
+	    );
+	  }
+	});
+
+	var TextComponent = React.createClass({
+	  displayName: 'TextComponent',
+
+	  render: function render() {
+	    var message = this.props.message;
+	    return React.createElement(
+	      'div',
+	      { style: this.props.style },
+	      message,
+	      ' '
+	    );
+	  }
+	});
+
+	/* Test Data */
+	var friends = ['Ean Platter', 'Murphy Randall', 'Merrick Christensen'];
+	var listContainer = React.createClass({
+	  displayName: 'listContainer',
+
+	  render: function render() {
+	    return;
+	    React.createElement(
+	      'div',
+	      null,
+	      'listContainer'
+	    );
+	  }
+	});
+	var exampleJSON = {
+	  "name": "Pepper",
+	  "author": "Raul Pegan",
+	  "likes": 3
+	};
+
+	var ProjectSearchList = React.createClass({
+	  displayName: 'ProjectSearchList',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      val: 1
+	    };
+	  },
+	  one: function one() {
+	    this.setState({
+	      val: 1
+	    });
+	  },
+	  two: function two() {
+	    this.setState({
+	      val: 2
+	    });
+	  },
+	  render: function render() {
+	    var containerStyle = { borderStyle: "none", margin: "0", padding: "0px 0px 0px 30px", width: "100%", display: "flex",
+	      flexWrap: "wrap",
+	      height: "800px"
+	    };
+
+	    var projectListJSON = this.props.projectListData; //Includes array of objects
+	    console.log("Full filtered JSON");
+	    // console.log(JSON.stringify(projectListJSON, null,4));
+	    /* Should only get first 9 from list based off http request when you have that up */
+	    var projectSearchList;
+	    var temp = [];
+	    var temp2;
+	    if (this.state.val == 1) {
+	      projectSearchList = projectListJSON.map(function (projectJSON) {
+	        return React.createElement(ProjectListing, {
+	          projectDetails: projectListJSON,
+	          views: projectJSON.views,
+	          id: projectJSON._id, url: projectJSON.url,
+	          name: projectJSON.name, author: projectJSON.author });
+	      });
+	    }
+	    if (this.state.val == 2) {
+	      projectSearchList = projectListJSON.map(function (projectJSON) {
+	        return React.createElement(ProjectListing, {
+	          projectDetails: projectListJSON,
+	          views: projectJSON.views,
+	          id: projectJSON._id, url: projectJSON.url,
+	          name: projectJSON.name, author: projectJSON.author });
+	      });
+
+	      var temp = [];
+	      var len = projectSearchList.length;
+	      temp.push(projectSearchList[len - 1]);
+	      temp.push(projectSearchList[len - 2]);
+	      projectSearchList = temp;
+	    }
+
+	    return React.createElement(
+	      'div',
+	      { style: containerStyle },
+	      projectSearchList,
+	      React.createElement(
+	        'button',
+	        { style: { width: "100px", height: "50px" }, onClick: this.one },
+	        ' 1 '
+	      ),
+	      React.createElement(
+	        'button',
+	        { style: { width: "100px", height: "50px" }, onClick: this.two },
+	        ' 2 '
+	      )
+	    );
+	  }
+	});
+
+	module.exports = ProjectSearchList;
+
+/***/ },
+/* 369 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/* ProjectListing
+	 * Given a project object, parses and returns
+	 *
+	 */
+
+	/* Load JSON for testing */
+	// var fs = require('fs');
+	// var obj = JSON.parse(fs.readFileSync('../data/projects.json', 'utf8'));
+	/* Hello */
+	var React = __webpack_require__(3);
+	var ReactDOM = __webpack_require__(34);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+	var ImageComponent = __webpack_require__(345);
+	var TextComponent = __webpack_require__(283);
+
+	var ProjectDetails = __webpack_require__(370);
+
+	var ProjectListing = React.createClass({
+	  displayName: 'ProjectListing',
+
+	  render: function render() {
+	    var infoBoxStyle = {
+	      maxWidth: "400px",
+	      width: "100%",
+	      minWidth: "100px",
+	      backgroundColor: "white",
+	      paddingLeft: "10px",
+	      paddingTop: "10px",
+	      paddingBottom: "10px"
+	    };
+	    var listingStyle = {
+	      borderRadius: "5px",
+	      borderWidth: "1px",
+	      borderStyle: "solid",
+	      borderColor: "#C7C7C7",
+	      width: "30%",
+	      margin: "1.6667%"
+	    };
+	    var imgStyle = {
+	      minHeight: "60px",
+	      height: "300px",
+	      width: "100%",
+	      maxWidth: "400px",
+	      minWidth: "100px"
+	    };
+
+	    var textStyle_Big = { fontFamily: "Ubuntu", fontSize: "14pt", color: "#2C2A25", textTranform: "capitalize" };
+	    var textStyle_Small = { fontFamily: "Ubuntu", fontSize: "9pt", color: "black", textDecoration: "none", textTransform: "capitalize" };
+	    var textStyle_View = { fontFamily: "Ubuntu", fontSize: "10pt", color: "#274D72", textDecoration: "none" };
+
+	    var id = 'filler';
+	    var name = 'fillername';
+	    var details = this.props.projectDetails;
+
+	    try {
+	      id = this.props.id;
+	      name = this.props.name;
+	    } catch (e) {
+	      console.error(e);
+	    }
+
+	    var nameArray = this.props.name.split(" ");
+	    var displayName = nameArray[0].charAt(0).toUpperCase() + nameArray[0].substr(1);
+	    for (var i = 1; i < nameArray.length; i++) {
+	      var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
+	    }
+
+	    /* Params data = this.props.name in Link */
+	    return React.createElement(
+	      'div',
+	      { style: listingStyle },
+	      React.createElement(
+	        Link,
+	        { to: '/admin/' + this.props.id, data: details },
+	        ' ',
+	        React.createElement(ImageComponent, { url: this.props.url, style: imgStyle }),
+	        ' '
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: infoBoxStyle },
+	        React.createElement(TextComponent, { style: textStyle_Big,
+	          message: displayName }),
+	        React.createElement(TextComponent, { style: textStyle_Small,
+	          message: 'by ' + this.props.author })
+	      )
+	    );
+	  }
+	});
+	// <div>
+	// <TextComponent style=  {textStyle_View}
+	// message={this.props.views + ' views'}/>
+	// </div>
+
+
+	module.exports = ProjectListing;
+
+/***/ },
+/* 370 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var $ = __webpack_require__(302);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+
+	var AdminProjectDetails = React.createClass({
+	  displayName: 'AdminProjectDetails',
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      clicks: 0,
+	      data: []
+	    };
+	  },
+	  getProjects: function getProjects(query) {
+	    console.log("id  " + query);
+	    $.ajax({
+	      url: '/projects/' + query,
+	      dataType: 'json',
+	      cache: false,
+	      success: function (res) {
+	        this.setState({
+	          data: res,
+	          clicks: this.state.clicks + 1
+	        });
+	      }.bind(this),
+	      error: function (xhr, status, err) {
+	        console.error(prodUrl, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
+	  render: function render() {
+	    var id = this.props.params.id;
+	    var containerStyle = {
+	      zIndex: "1000", paddingTop: "100px", paddingLeft: "200px", paddingRight: "100px", paddingBottom: "100px", display: "flex", flexDirection: "column", height: "100%", margin: "0 auto", backgroundColor: "white"
+	    };
+	    var blockStyle = {
+	      border: "2px solid black", display: "flex", padding: "10px 30px", paddingBottom: "60px"
+	    };
+	    var paddingStyle = {
+	      marginLeft: "50px", marginRight: "50px"
+	    };
+	    var buttonStyle = {
+	      border: "2px solid black", boxShadow: "3px 3px black", padding: "0 10px"
+	    };
+	    this.getProjects(id);
+	    return React.createElement(
+	      'div',
+	      { style: containerStyle },
+	      'Admin Project Details',
+	      React.createElement(
+	        'div',
+	        { style: blockStyle },
+	        React.createElement(
+	          Link,
+	          { to: '/admin', style: buttonStyle },
+	          'Back'
+	        ),
+	        React.createElement(
+	          'p',
+	          { style: paddingStyle },
+	          'Project Title'
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          'Project Owner'
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: blockStyle },
+	        'Main Pic'
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: blockStyle },
+	        'All Pics'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = AdminProjectDetails;
+
+/***/ },
+/* 371 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53598,7 +54232,7 @@
 	module.exports = TestAPI;
 
 /***/ },
-/* 367 */
+/* 372 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53695,7 +54329,7 @@
 	}
 
 /***/ },
-/* 368 */
+/* 373 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53752,7 +54386,7 @@
 	module.exports = StepAdd;
 
 /***/ },
-/* 369 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

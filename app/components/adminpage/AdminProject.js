@@ -1,6 +1,6 @@
 var React = require('react');
-var ProjectSearchList = require('../../components/projectlistings/ProjectSearchList');
-var ProjectListing = require('../../components/projectlistings/ProjectListing');
+//var ProjectSearchList = require('../../components/projectlistings/ProjectSearchList');
+//var ProjectListing = require('../../components/projectlistings/ProjectListing');
 var SearchBar = require('../../components/projectlistings/SearchBar');
 var Category = require('../../components/projectlistings/Category');
 var Test = require('../../components/projectpage/Test');
@@ -14,13 +14,21 @@ var Pad= require('../../components/Pad');
 var http = require('http');
 var $ = require('jquery');
 var Q = require('q');
-// var TestAPI = require('../../scripts/TestAPI');
+
 
 var devUrl = 'http://localhost:3000';
 var prodUrl = 'https://still-forest-90731.herokuapp.com';
 /* Use devUrl or prodUrl*/
 var useUrl = prodUrl;
 
+
+//For the admin project list substitue 'ProjectSearchList'
+var ProjectSearchList = require('./AdminProjectSearchList');
+
+var ProjectListing = require('./AdminProjectList');
+
+//For the admin project page substitute 'Test'
+var ProjectDetails = require('./AdminProjectDetails');
 
 var Projects = React.createClass({
   getInitialState: function() {
@@ -61,9 +69,6 @@ var Projects = React.createClass({
              });
   },
   getQueryProjects: function(query){
-    // Transformations to make query work
-    // var q = query.toLowerCase();
-    // alert(query + 'is query');
 
      $.ajax({
                 url: useUrl + '/get/' + query,
@@ -102,13 +107,13 @@ var Projects = React.createClass({
   },
 
   render: function() {
+    var params = this.props;
+    var id = params.id;
      var containerStyle = {zIndex:"1000", paddingTop: "100px", paddingLeft: "200px", paddingRight: "100px", paddingBottom: "100px", display: "flex", flexDirection: "column", height: "100%",
     margin: "0 auto"
     }
-     var projectListStyle = {flex: "5"
-     }
-    var paddingStyle = {height: "100px", flex: "1"
-    }
+     var projectListStyle = {flex: "5"}
+    var paddingStyle = {height: "100px", flex: "1"}
     var buttonStyle={
       width:"60px",
       height:"60px",
@@ -131,11 +136,10 @@ var Projects = React.createClass({
                             <div style={{display:"flex", flexDirection: "column",
                                backgroundColor: "#F4F4F4",
                           }}>
-                              <ProjectSearchList style={projectListStyle} projectListData={this.state.data}/>
+                              <ProjectSearchList style={projectListStyle} projectListData={this.state.data} id={id}/>
 
                               <div style={{display:"flex", paddingTop:"30px"}}>
                                 <Pad hw={['100px', '45%']}/>
-                                <button style={buttonStyle}> {1} </button>
                                 <Pad hw={['100px', '30%']}/>
                               </div>
                             </div>

@@ -28,6 +28,7 @@ var Footer = require('../components/custom/Footer');
 
 var Test = require('../components/projectpage/Test');
 var Admin = require('../components/adminpage/AdminMain');
+var AdminDetails = require('../components/adminpage/AdminProjectDetails');
 
 /* ReactRouter Routes urls to components */
 // var Home = (require'../components/Main');
@@ -50,7 +51,9 @@ var reactRoutes = (
 			<Route path='/signup' component={SignUp}/>
 			<Route path='/profile' component={Profile}/>
 			<Route path='/test' component={Test}/>
+			<Route path='/admin/:id' component={AdminDetails}/>
 			<Route path='/admin' component={Admin}/>
+
 		</Route>
 	</Router>
 
