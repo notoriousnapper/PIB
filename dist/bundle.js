@@ -48855,9 +48855,9 @@
 
 		render: function render() {
 			var buttonStyle = {
-				width: "100px",
-				height: "50px",
-				padding: "10px 20px"
+				width: "50px", height: "50px", marginRight: "20px",
+				fontWeight: "bold",
+				backgroundColor: "#FAC129"
 			};
 			var bgStyle = {
 				backgroundImage: "url(../public/img/pepper.png)",
@@ -48942,6 +48942,11 @@
 				flexWrap: "wrap",
 				height: "800px"
 			};
+			var buttonStyle = {
+				width: "50px", height: "50px", marginRight: "20px",
+				fontWeight: "bold",
+				backgroundColor: "#FAC129"
+			};
 
 			var projectListJSON = this.props.projectListData; //Includes array of objects
 			console.log("Full filtered JSON");
@@ -48990,14 +48995,14 @@
 					{ style: { margin: "0 auto" } },
 					React.createElement(
 						'button',
-						{ style: { width: "50px", height: "50px" }, onClick: function onClick() {
+						{ style: buttonStyle, onClick: function onClick() {
 								_this.setListState(1);
 							} },
 						' 1 '
 					),
 					React.createElement(
 						'button',
-						{ style: { width: "50px", height: "50px" }, onClick: function onClick() {
+						{ style: buttonStyle, onClick: function onClick() {
 								_this.setListState(2);
 							} },
 						' 2 '

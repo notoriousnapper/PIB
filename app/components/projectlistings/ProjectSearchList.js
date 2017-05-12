@@ -14,9 +14,9 @@ var prodUrl = 'https://still-forest-90731.herokuapp.com';
 var ImageboxComponent = React.createClass({
 	render: function(){
 		var buttonStyle={
-			width: "100px",
-			height: "50px",
-			padding: "10px 20px"
+			width: "50px", height: "50px", marginRight:"20px",
+			fontWeight: "bold",
+			backgroundColor: "#FAC129"
 		}
 		var bgStyle={
 			backgroundImage: "url(../public/img/pepper.png)",
@@ -87,6 +87,11 @@ var ProjectSearchList = React.createClass({
 		flexWrap:"wrap",
 		height: "800px"
 	};
+	var buttonStyle={
+		width: "50px", height: "50px", marginRight:"20px",
+		fontWeight: "bold",
+		backgroundColor: "#FAC129"
+	}
 
 		var projectListJSON = this.props.projectListData; //Includes array of objects
 				console.log("Full filtered JSON");
@@ -132,12 +137,13 @@ var ProjectSearchList = React.createClass({
 
 
 
+
 		return(
 			<div style={containerStyle}>
 			{projectSearchList}
 			<div style={{margin: "0 auto"}}>
-				<button style={{width: "50px", height: "50px"}} onClick={()=>{this.setListState(1);}}> 1 </button>
-				<button style={{width: "50px", height: "50px"}} onClick={()=>{this.setListState(2);}}> 2 </button>
+				<button style={buttonStyle} onClick={()=>{this.setListState(1);}}> 1 </button>
+				<button style={buttonStyle} onClick={()=>{this.setListState(2);}}> 2 </button>
 			</div>
 
 			</div>);
