@@ -141,7 +141,7 @@ var ProjectSearchList = React.createClass({
 		return(
 			<div style={containerStyle}>
 			{projectSearchList}
-			<div style={{margin: "0 auto"}}>
+			<div style={{margin: "0 auto", width: "100%", textAlign: "center", height: "400px"}}>
 				<button style={buttonStyle} onClick={()=>{this.setListState(1);}}> 1 </button>
 				<button style={buttonStyle} onClick={()=>{this.setListState(2);}}> 2 </button>
 			</div>

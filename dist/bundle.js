@@ -48992,7 +48992,7 @@
 				projectSearchList,
 				React.createElement(
 					'div',
-					{ style: { margin: "0 auto" } },
+					{ style: { margin: "0 auto", width: "100%", textAlign: "center", height: "400px" } },
 					React.createElement(
 						'button',
 						{ style: buttonStyle, onClick: function onClick() {
@@ -49056,6 +49056,7 @@
 				borderColor: "#C7C7C7",
 				width: "30%",
 				margin: "1.6667%"
+				// height: "500px"
 			};
 			var imgStyle = {
 				minHeight: "60px",
