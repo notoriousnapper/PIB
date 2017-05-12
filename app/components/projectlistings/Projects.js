@@ -155,7 +155,6 @@ var Projects = React.createClass({
 
                               <div style={{display:"flex", paddingTop:"30px"}}>
                                 <Pad hw={['100px', '45%']}/>
-                                <button style={buttonStyle}> {1} </button>
                                 <Pad hw={['100px', '30%']}/>
                               </div>
                             </div>

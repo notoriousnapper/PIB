@@ -53,7 +53,7 @@ console.log("pp is : " + JSON.stringify(passport,null,4));
 
 /* Only use this middleware for development, messes up React in production/
 deployment to Heroku */
- app.use(require('webpack-dev-middleware')(compiler, {
+ app.use(require('webpack-dev-middleware')(compiler,   {
    publicPath: config.output.publicPath,
    stats: {
      colors: true
@@ -174,15 +174,12 @@ app.post('/upload', upload.single('image'), (req,res)=>{
   		steps.push(item);
   		// steps.concat([item]); // steps.concat([{test:1}]); break;
   	}
-
-
 	}
 	/* No matter if single or multiple element, append to request body */
   	req.body['steps']= steps;
   	// delete req.body["title"];
   	// delete req.body["instructions"];
 	console.log('Parsed data returned is' + JSON.stringify(data,null,4));
-
   }
 //
 

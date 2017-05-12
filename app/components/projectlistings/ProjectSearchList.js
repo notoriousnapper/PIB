@@ -96,54 +96,49 @@ var ProjectSearchList = React.createClass({
 		var temp = [];
 		var temp2;
 		if(this.state.val==1){
-			for(var i = 0; i < 6; i++){
-				var projectJSON = projectListJSON[i];
-				temp2 = ( <ProjectListing
+			temp = [];
+			var i = 0;
+			projectSearchList= projectListJSON.map(function(projectJSON){
+					if(i<6){
+						i++;
+				return  (
+					<ProjectListing
 					views={projectJSON.views}
 					id={projectJSON.id} url={ projectJSON.url }
 					name={ projectJSON.name} author={projectJSON.author}/>
 					);
-				temp.push(projectJSON);
+					}
+				});
+						i++;
+		}
+		if(this.state.val==2)	{
+			var i = 0;
+			projectSearchList= projectListJSON.map(function(projectJSON){
+			console.log("Bugger\n\n\n\n");
+			console.log(i);
+					if(i>=6)	{
+						i++;
+			console.log("Bugger\n\n\n\n");
+				return  (
+					<ProjectListing
+					views={projectJSON.views}
+					id={projectJSON.id} url={ projectJSON.url }
+					name={ projectJSON.name} author={projectJSON.author}/>
+					);
+					}
+						i++;
+				});
 			}
-			projectSearchList = temp;
-			projectSearchList= projectListJSON.map(function(projectJSON){
-					// console.log("url from JSON is: ");
-					// console.log(projectJSON.picUrl);
-				return  (
-					<ProjectListing
-					views={projectJSON.views}
-					id={projectJSON.id} url={ projectJSON.url }
-					name={ projectJSON.name} author={projectJSON.author}/>
-					);
-				});
-			// projectSearchList= projectSearchList.slice(0, projectSearchList-3);
-		}
-		if(this.state.val==2){
-			projectSearchList= projectListJSON.map(function(projectJSON){
-					// console.log("url from JSON is: ");
-					// console.log(projectJSON.picUrl);
-				return  (
-					<ProjectListing
-					views={projectJSON.views}
-					id={projectJSON.id} url={ projectJSON.url }
-					name={ projectJSON.name} author={projectJSON.author}/>
-					);
-				});
 
-				var temp = []
-				var len = projectSearchList.length;
-				temp.push(projectSearchList[len-1]);
-				temp.push(projectSearchList[len-2]);
-				projectSearchList = temp;
-		}
 
 
 		return(
 			<div style={containerStyle}>
 			{projectSearchList}
-
-			<button style={{width: "100px", height: "50px"}} onClick={this.setListState(1)}> 1 </button>
-			<button style={{width: "100px", height: "50px"}} onClick={this.setListState(2}> 2 </button>
+			<div style={{margin: "0 auto"}}>
+				<button style={{width: "50px", height: "50px"}} onClick={()=>{this.setListState(1);}}> 1 </button>
+				<button style={{width: "50px", height: "50px"}} onClick={()=>{this.setListState(2);}}> 2 </button>
+			</div>
 
 			</div>);
 	}

@@ -48787,13 +48787,6 @@
 	              'div',
 	              { style: { display: "flex", paddingTop: "30px" } },
 	              React.createElement(Pad, { hw: ['100px', '45%'] }),
-	              React.createElement(
-	                'button',
-	                { style: buttonStyle },
-	                ' ',
-	                1,
-	                ' '
-	              ),
 	              React.createElement(Pad, { hw: ['100px', '30%'] })
 	            )
 	          )
@@ -48937,17 +48930,14 @@
 				val: 1
 			};
 		},
-		one: function one() {
+		setListState: function setListState(num) {
 			this.setState({
-				val: 1
-			});
-		},
-		two: function two() {
-			this.setState({
-				val: 2
+				val: num
 			});
 		},
 		render: function render() {
+			var _this = this;
+
 			var containerStyle = { borderStyle: "none", margin: "0", padding: "0px 0px 0px 30px", width: "100%", display: "flex",
 				flexWrap: "wrap",
 				height: "800px"
@@ -48961,41 +48951,34 @@
 			var temp = [];
 			var temp2;
 			if (this.state.val == 1) {
-				// for(var i = 0; i < 6; i++){
-				// 	var projectJSON = projectListJSON[i];
-				// 	temp2 = ( <ProjectListing
-				// 		views={projectJSON.views}
-				// 		id={projectJSON.id} url={ projectJSON.url }
-				// 		name={ projectJSON.name} author={projectJSON.author}/>
-				// 		);
-				// 	temp.push(projectJSON);
-				// }
-				// projectSearchList = temp;
+				temp = [];
+				var i = 0;
 				projectSearchList = projectListJSON.map(function (projectJSON) {
-					// console.log("url from JSON is: ");
-					// console.log(projectJSON.picUrl);
-					return React.createElement(ProjectListing, {
-						views: projectJSON.views,
-						id: projectJSON.id, url: projectJSON.url,
-						name: projectJSON.name, author: projectJSON.author });
+					if (i < 6) {
+						i++;
+						return React.createElement(ProjectListing, {
+							views: projectJSON.views,
+							id: projectJSON.id, url: projectJSON.url,
+							name: projectJSON.name, author: projectJSON.author });
+					}
 				});
-				// projectSearchList= projectSearchList.slice(0, projectSearchList-3);
+				i++;
 			}
 			if (this.state.val == 2) {
+				var i = 0;
 				projectSearchList = projectListJSON.map(function (projectJSON) {
-					// console.log("url from JSON is: ");
-					// console.log(projectJSON.picUrl);
-					return React.createElement(ProjectListing, {
-						views: projectJSON.views,
-						id: projectJSON.id, url: projectJSON.url,
-						name: projectJSON.name, author: projectJSON.author });
+					console.log("Bugger\n\n\n\n");
+					console.log(i);
+					if (i >= 6) {
+						i++;
+						console.log("Bugger\n\n\n\n");
+						return React.createElement(ProjectListing, {
+							views: projectJSON.views,
+							id: projectJSON.id, url: projectJSON.url,
+							name: projectJSON.name, author: projectJSON.author });
+					}
+					i++;
 				});
-
-				var temp = [];
-				var len = projectSearchList.length;
-				temp.push(projectSearchList[len - 1]);
-				temp.push(projectSearchList[len - 2]);
-				projectSearchList = temp;
 			}
 
 			return React.createElement(
@@ -49003,14 +48986,22 @@
 				{ style: containerStyle },
 				projectSearchList,
 				React.createElement(
-					'button',
-					{ style: { width: "100px", height: "50px" }, onClick: this.one },
-					' 1 '
-				),
-				React.createElement(
-					'button',
-					{ style: { width: "100px", height: "50px" }, onClick: this.two },
-					' 2 '
+					'div',
+					{ style: { margin: "0 auto" } },
+					React.createElement(
+						'button',
+						{ style: { width: "50px", height: "50px" }, onClick: function onClick() {
+								_this.setListState(1);
+							} },
+						' 1 '
+					),
+					React.createElement(
+						'button',
+						{ style: { width: "50px", height: "50px" }, onClick: function onClick() {
+								_this.setListState(2);
+							} },
+						' 2 '
+					)
 				)
 			);
 		}
