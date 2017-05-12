@@ -102,7 +102,7 @@
 /* 2 */
 /***/ function(module, exports) {
 
-	
+
 
 /***/ },
 /* 3 */
@@ -669,7 +669,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -798,7 +798,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 	'use strict';
 
@@ -1242,7 +1242,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -1351,7 +1351,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	function makeEmptyFunction(arg) {
@@ -1392,7 +1392,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -1423,7 +1423,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -1628,7 +1628,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -1673,7 +1673,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -2753,7 +2753,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -3190,7 +3190,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -3621,7 +3621,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -4460,7 +4460,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 	'use strict';
 
@@ -5719,7 +5719,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -6210,7 +6210,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -6292,7 +6292,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -6355,7 +6355,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -6529,7 +6529,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -7630,7 +7630,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -7754,7 +7754,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -7953,7 +7953,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -8046,7 +8046,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -8145,7 +8145,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -8174,7 +8174,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -8540,7 +8540,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -8582,7 +8582,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -8685,7 +8685,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -9018,7 +9018,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -12452,7 +12452,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 * @typechecks static-only
 	 */
 
@@ -13645,7 +13645,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -14613,7 +14613,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -15905,7 +15905,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -16042,7 +16042,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -16073,7 +16073,7 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
 	 * @typechecks
-	 * 
+	 *
 	 */
 
 	/*eslint-disable no-self-compare */
@@ -16305,7 +16305,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -16330,7 +16330,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -16574,7 +16574,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -16598,7 +16598,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -16643,7 +16643,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -16819,7 +16819,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -18963,7 +18963,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	var isTextNode = __webpack_require__(152);
@@ -19601,7 +19601,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -21055,7 +21055,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -24747,7 +24747,7 @@
 	 * nested.
 	 *
 	 *   import { Route, createRoutesFromReactChildren } from 'react-router'
-	 *   
+	 *
 	 *   const routes = createRoutesFromReactChildren(
 	 *     <Route component={App}>
 	 *       <Route path="home" component={Dashboard}/>
@@ -27308,7 +27308,7 @@
 	$export.B = 16;  // bind
 	$export.W = 32;  // wrap
 	$export.U = 64;  // safe
-	$export.R = 128; // real proto method for `library` 
+	$export.R = 128; // real proto method for `library`
 	module.exports = $export;
 
 /***/ },
@@ -28225,7 +28225,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -29492,7 +29492,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * 
+	 *
 	 */
 
 	'use strict';
@@ -41217,7 +41217,7 @@
 	        params.host = params.host.split(':')[0];
 	    }
 	    if (!params.port) params.port = params.protocol == 'https:' ? 443 : 80;
-	    
+
 	    var req = new Request(new xhrHttp, params);
 	    if (cb) req.on('response', cb);
 	    return req;
@@ -41650,23 +41650,23 @@
 	    self.writable = true;
 	    self.xhr = xhr;
 	    self.body = [];
-	    
+
 	    self.uri = (params.protocol || 'http:') + '//'
 	        + params.host
 	        + (params.port ? ':' + params.port : '')
 	        + (params.path || '/')
 	    ;
-	    
+
 	    if (typeof params.withCredentials === 'undefined') {
 	        params.withCredentials = true;
 	    }
 
 	    try { xhr.withCredentials = params.withCredentials }
 	    catch (e) {}
-	    
+
 	    if (params.responseType) try { xhr.responseType = params.responseType }
 	    catch (e) {}
-	    
+
 	    xhr.open(
 	        params.method || 'GET',
 	        self.uri,
@@ -41678,7 +41678,7 @@
 	    };
 
 	    self._headers = {};
-	    
+
 	    if (params.headers) {
 	        var keys = objectKeys(params.headers);
 	        for (var i = 0; i < keys.length; i++) {
@@ -41688,7 +41688,7 @@
 	            self.setHeader(key, value);
 	        }
 	    }
-	    
+
 	    if (params.auth) {
 	        //basic auth
 	        this.setHeader('Authorization', 'Basic ' + Base64.btoa(params.auth));
@@ -41698,7 +41698,7 @@
 	    res.on('close', function () {
 	        self.emit('close');
 	    });
-	    
+
 	    res.on('ready', function () {
 	        self.emit('response', res);
 	    });
@@ -41706,7 +41706,7 @@
 	    res.on('error', function (err) {
 	        self.emit('error', err);
 	    });
-	    
+
 	    xhr.onreadystatechange = function () {
 	        // Fix for IE9 bug
 	        // SCRIPT575: Could not complete the operation due to error c00c023f
@@ -41775,7 +41775,7 @@
 	        }
 	        var body = new(this.body[0].constructor)(len);
 	        var k = 0;
-	        
+
 	        for (var i = 0; i < this.body.length; i++) {
 	            var b = this.body[i];
 	            for (var j = 0; j < b.length; j++) {
@@ -45966,13 +45966,13 @@
 	    for (var i = 0; i < lines.length; i++) {
 	        var line = lines[i];
 	        if (line === '') continue;
-	        
+
 	        var m = line.match(/^([^:]+):\s*(.*)/);
 	        if (m) {
 	            var key = m[1].toLowerCase(), value = m[2];
-	            
+
 	            if (headers[key] !== undefined) {
-	            
+
 	                if (isArray(headers[key])) {
 	                    headers[key].push(value);
 	                }
@@ -46011,7 +46011,7 @@
 	        catch (err) {
 	            capable.status2 = false;
 	        }
-	        
+
 	        if (capable.status2) {
 	            this.emit('ready');
 	        }
@@ -46025,7 +46025,7 @@
 	            }
 	        }
 	        catch (err) {}
-	        
+
 	        try {
 	            this._emitData(res);
 	        }
@@ -46039,12 +46039,12 @@
 	            this.emit('ready');
 	        }
 	        this._emitData(res);
-	        
+
 	        if (res.error) {
 	            this.emit('error', this.getResponse(res));
 	        }
 	        else this.emit('end');
-	        
+
 	        this.emit('close');
 	    }
 	};
@@ -48649,7 +48649,7 @@
 	// var TestAPI = require('../../scripts/TestAPI');
 
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	/* Use devUrl or prodUrl*/
 	var useUrl = prodUrl;
 
@@ -48780,8 +48780,7 @@
 	          React.createElement(
 	            'div',
 	            { style: { display: "flex", flexDirection: "column",
-	                backgroundColor: "#F4F4F4"
-	              } },
+	                backgroundColor: "#F4F4F4", width: "100%" } },
 	            React.createElement(ProjectSearchList, { style: projectListStyle, projectListData: this.state.data }),
 	            React.createElement(
 	              'div',
@@ -48848,7 +48847,7 @@
 
 	var devUrl = 'http://localhost:3000/get';
 	var devUrl2 = 'http://localhost:3000/get';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 
 	var ImageboxComponent = React.createClass({
 		displayName: 'ImageboxComponent',
@@ -49452,7 +49451,7 @@
 	var Link = ReactRouter.Link;
 
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	var useUrl = prodUrl;
 
 	var documentStrings = ['Main Document', 'Schematic'];
@@ -50090,7 +50089,7 @@
 
 	var $ = __webpack_require__(302);
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	var useUrl = prodUrl;
 
 	var IntroData = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
@@ -50692,7 +50691,7 @@
 	var Carousel = __webpack_require__(300);
 
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	var useUrl = prodUrl;
 
 	var $ = __webpack_require__(302);
@@ -53153,7 +53152,7 @@
 
 	var $ = __webpack_require__(302);
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	var useUrl = prodUrl;
 
 	var Content = React.createClass({

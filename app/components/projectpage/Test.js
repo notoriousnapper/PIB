@@ -5,7 +5,7 @@ var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
 var devUrl ='http://localhost:3000';
-var prodUrl = 'https://still-forest-90731.herokuapp.com';
+var prodUrl = 'https://proj-box.herokuapp.com';
 var useUrl = prodUrl;
 
 var documentStrings = [

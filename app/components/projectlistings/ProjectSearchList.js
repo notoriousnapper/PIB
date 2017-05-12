@@ -9,7 +9,7 @@ var ProjectListing = require('../../components/projectlistings/ProjectListing');
 
 var devUrl = 'http://localhost:3000/get';
 var devUrl2 = 'http://localhost:3000/get';
-var prodUrl = 'https://still-forest-90731.herokuapp.com';
+var prodUrl = 'https://proj-box.herokuapp.com';
 
 var ImageboxComponent = React.createClass({
 	render: function(){
