@@ -152,7 +152,6 @@ var Projects = React.createClass({
 			                         backgroundColor: "#F4F4F4",
                           }}>
                               <ProjectSearchList style={projectListStyle} projectListData={this.state.data}/>
-
                               <div style={{display:"flex", paddingTop:"30px"}}>
                                 <Pad hw={['100px', '45%']}/>
                                 <Pad hw={['100px', '30%']}/>
