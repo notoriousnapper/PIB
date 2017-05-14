@@ -4,7 +4,7 @@ var projectSchema = new mongoose.Schema({
     name: String,
     about: String,
 
-    url: String, // thumbnail project photo
+    thumbnail_img: String, // thumbnail project photo
     // partsImg: String,
     carouselFiles: [],
    
@@ -17,13 +17,13 @@ var projectSchema = new mongoose.Schema({
     authorImg: String,
 
     // not displayed
-    materials: [],
-    text: String,
-    instructions: String,
-    skills: [],
-    links: [],
-    mainurl: String,
-    steps: []
+    // materials: [],
+    // text: String,
+    // instructions: String,
+    // skills: [],
+    // links: [],
+    // mainurl: String,
+    // steps: []
 
     /*comments: [
         {
