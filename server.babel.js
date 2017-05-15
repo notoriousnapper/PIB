@@ -67,6 +67,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(bodyParser.urlencoded({extended:true})); 
 // Bring in index.js, mongo.js, etc.
 var controllers = require('./app/controllers');
 controllers.set(app);
@@ -95,7 +96,7 @@ app.listen(process.env.PORT || 3000, function(){
  *
  * Uses body-parser middleware
  */
-app.use(bodyParser.urlencoded({extended: true}))  // Necessary to handle HTTP requests as they come in.
+// app.use(bodyParser.urlencoded({extended: true}))  // Necessary to handle HTTP requests as they come in.
 // app.use(bodyParser.urlencoded({ extended: false }));
 //
 // // parse application/json

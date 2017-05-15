@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 // var configDB = require('../../app/config/database.js');
 // mongoose.connect(configDB.url); // connect to our database
 var Project = require('../models/project.js');
-
 module.exports.set = function(app) 
 {
     // GET /projects
@@ -39,33 +38,33 @@ module.exports.set = function(app)
                 res.end(JSON.stringify(project.author, null, 4));
             }
         })
-    // });
-    // // POST /project
-    // app.post('/project', function(req,res){
-    //     console.log("LOOKING FOR? >>> " + req.body.name);
-    //     var newProject = new Project({
-    //         name: "this is project name",
-    //         about: req.body.about,
-    //         thumbnail_img: req.body.thumbnail_img,
-    //         carouseFiles: req.body.carouseFiles,
-    //         views: 0,
-    //         likes: 0,
-    //         downloads: 0,
-    //         author: req.body.author, //FOR NOW
-    //         team: req.body.team,
-    //         authorImg: req.body.authorImg  
-    //     });
-    //     Project.create(newProject, function(err, createdProject){
-    //         if (err){
-    //             console.log("Error creating new project");
-    //             // res.redirect('/#/');
-    //         }
-    //         else {
-    //             console.log(createdProject);
-    //             // res.redirect('/#/about');
-    //         }
+    });
+    // POST /project
+    app.post('/project', function(req,res){
+        console.log("LOOKING FOR? >>> " + req.body.name);
+        var newProject = new Project({
+            name: req.body.name,
+            about: req.body.about,
+            thumbnail_img: req.body.thumbnail_img,
+            carouseFiles: req.body.carouseFiles,
+            views: 0,
+            likes: 0,
+            downloads: 0,
+            author: req.body.author, //FOR NOW
+            team: req.body.team,
+            authorImg: req.body.authorImg  
+        });
+        Project.create(newProject, function(err, createdProject){
+            if (err){
+                console.log("Error creating new project");
+                // res.redirect('/#/');
+            }
+            else { // succesful insert = redirect to HOME
+                console.log(createdProject);
+                res.redirect('/');                
+            }
 
-    //     });
+        });
     });
     // GET /project/:tag/:title
     // PUT /project
