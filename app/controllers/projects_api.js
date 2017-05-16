@@ -58,6 +58,7 @@ module.exports.set = function(app)
             if (err){
                 console.log("Error creating new project");
                 // res.redirect('/#/');
+                res.send("ERROR CREATING NEW PROJECT");
             }
             else { // succesful insert = redirect to HOME
                 console.log(createdProject);
@@ -65,6 +66,27 @@ module.exports.set = function(app)
             }
 
         });
+    });
+    // PUT /project/:id
+    /* 
+        Must input's name as newdataProject inorder to use this route
+    */
+    app.put('/project/:id', function(req,res){
+        /*
+            req.params.id: id of project to be updated
+            newdataProject: name of <input> from HTMl (ASSUMPTION)
+        */
+        var newdataProject = req.body.newdataProject;
+        Project.findByIdAndUpdate(req.params.id, newdataProject, function(err, updatedProject){
+            if (err){
+                console.log("Error updating project " + newdataProject.name);
+                res.send("Error updating project " + newdataProject.name);
+            }
+            else {
+                console.log(updatedProject);
+                res.send(JSON.stringify(updatedProject,null,4));
+            }
+        });        
     });
     // GET /project/:tag/:title
     // PUT /project
