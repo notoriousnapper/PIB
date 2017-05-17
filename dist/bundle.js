@@ -45,8 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(366);
-	__webpack_require__(367);
+	__webpack_require__(422);
+	__webpack_require__(423);
 	__webpack_require__(238);
 	__webpack_require__(361);
 	__webpack_require__(297);
@@ -61,13 +61,13 @@
 	__webpack_require__(357);
 	__webpack_require__(305);
 	__webpack_require__(356);
-	__webpack_require__(368);
+	__webpack_require__(424);
 	__webpack_require__(308);
 	__webpack_require__(362);
 	__webpack_require__(283);
 	__webpack_require__(345);
 	__webpack_require__(300);
-	__webpack_require__(369);
+	__webpack_require__(425);
 	__webpack_require__(301);
 	__webpack_require__(239);
 	__webpack_require__(298);
@@ -21524,39 +21524,60 @@
 	var Footer = __webpack_require__(239);
 
 	var Test = __webpack_require__(349);
+	var AdminMain = __webpack_require__(366);
+	var AdminDetail = __webpack_require__(421);
 	/* ReactRouter Routes urls to components */
 	// var Home = (require'../components/Main');
+	var S = {
+		footerStyle: {
+			marginTop: "200px"
+		},
+		bodyStyle: {
+			marginBottom: "300px"
+		}
+	};
+
 	var reactRoutes = React.createElement(
 		'div',
 		null,
 		React.createElement(
-			Router,
-			{ history: hashHistory },
+			'div',
+			{ className: 'container-fluid', style: S.bodyStyle },
 			React.createElement(
-				Route,
-				{ path: '/', component: Main },
-				React.createElement(IndexRoute, { component: Home }),
-				React.createElement(Route, { path: '/home', component: Home }),
+				Router,
+				{ history: hashHistory },
 				React.createElement(
 					Route,
-					{ path: '/projects(/:id)', component: Projects },
-					React.createElement(Route, { name: 'input', path: '/input', component: Input })
-				),
-				React.createElement(
-					Route,
-					{ path: '/content(/:id)', component: Content },
-					React.createElement(Route, { name: 'input', path: '/input', component: Input })
-				),
-				React.createElement(Route, { path: '/about', component: About }),
-				React.createElement(Route, { path: '/apply', component: Apply }),
-				React.createElement(Route, { path: '/addproject', component: Add }),
-				React.createElement(Route, { path: '/login', component: Login }),
-				React.createElement(Route, { path: '/signup', component: SignUp }),
-				React.createElement(Route, { path: '/profile', component: Profile }),
-				React.createElement(Route, { path: '/test', component: Test })
+					{ path: '/', component: Main },
+					React.createElement(IndexRoute, { component: Home }),
+					React.createElement(Route, { path: '/home', component: Home }),
+					React.createElement(
+						Route,
+						{ path: '/projects(/:id)', component: Projects },
+						React.createElement(Route, { name: 'input', path: '/input', component: Input })
+					),
+					React.createElement(
+						Route,
+						{ path: '/content(/:id)', component: Content },
+						React.createElement(Route, { name: 'input', path: '/input', component: Input })
+					),
+					React.createElement(Route, { path: '/about', component: About }),
+					React.createElement(Route, { path: '/apply', component: Apply }),
+					React.createElement(Route, { path: '/addproject', component: Add }),
+					React.createElement(Route, { path: '/login', component: Login }),
+					React.createElement(Route, { path: '/signup', component: SignUp }),
+					React.createElement(Route, { path: '/profile', component: Profile }),
+					React.createElement(Route, { path: '/test', component: Test }),
+					React.createElement(Route, { path: '/admin/project/:id', component: AdminDetail }),
+					React.createElement(Route, { path: '/admin', component: AdminMain })
+				)
 			)
 		),
-		React.createElement(Footer, null)
+		React.createElement(
+			'div',
+			{ style: S.footerStyle },
+			React.createElement(Footer, null)
+		)
 	);
 	// Insert this in later
 	// <Route path='/contact' component={Contact}/>
@@ -53561,6 +53582,1823 @@
 
 /***/ },
 /* 366 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DATA_PAGE = exports.USER_PAGE = exports.PROJECTS_PAGE = undefined;
+
+	var _getPrototypeOf = __webpack_require__(367);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(372);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(373);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(374);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(409);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _AdminNavbar = __webpack_require__(417);
+
+	var _AdminNavbar2 = _interopRequireDefault(_AdminNavbar);
+
+	var _AdminProject = __webpack_require__(418);
+
+	var _AdminProject2 = _interopRequireDefault(_AdminProject);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var PROJECTS_PAGE = exports.PROJECTS_PAGE = 'Project_page',
+	    USER_PAGE = exports.USER_PAGE = 'User_page',
+	    DATA_PAGE = exports.DATA_PAGE = 'Data_page';
+
+	var S = {
+	    container_background: {
+	        backgroundColor: "white"
+	    }
+	};
+
+	var AdminMain = function (_Component) {
+	    (0, _inherits3.default)(AdminMain, _Component);
+
+	    //constructor are always get called with props
+	    function AdminMain(props) {
+	        (0, _classCallCheck3.default)(this, AdminMain);
+
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (AdminMain.__proto__ || (0, _getPrototypeOf2.default)(AdminMain)).call(this, props));
+
+	        _this.state = {
+	            selectedPage: PROJECTS_PAGE
+	        };
+	        return _this;
+	    }
+
+	    (0, _createClass3.default)(AdminMain, [{
+	        key: 'pageChange',
+	        value: function pageChange(page) {
+	            this.setState({
+	                selectedPage: page
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'container-fluid', style: S.container_background },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-md-2' },
+	                        _react2.default.createElement(_AdminNavbar2.default, { onPageChange: this.pageChange })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-md-10' },
+	                        _react2.default.createElement(_AdminProject2.default, null)
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	    return AdminMain;
+	}(_react.Component);
+
+	module.exports = AdminMain;
+
+/***/ },
+/* 367 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(368), __esModule: true };
+
+/***/ },
+/* 368 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(369);
+	module.exports = __webpack_require__(247).Object.getPrototypeOf;
+
+/***/ },
+/* 369 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.2.9 Object.getPrototypeOf(O)
+	var toObject        = __webpack_require__(282)
+	  , $getPrototypeOf = __webpack_require__(370);
+
+	__webpack_require__(371)('getPrototypeOf', function(){
+	  return function getPrototypeOf(it){
+	    return $getPrototypeOf(toObject(it));
+	  };
+	});
+
+/***/ },
+/* 370 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+	var has         = __webpack_require__(267)
+	  , toObject    = __webpack_require__(282)
+	  , IE_PROTO    = __webpack_require__(276)('IE_PROTO')
+	  , ObjectProto = Object.prototype;
+
+	module.exports = Object.getPrototypeOf || function(O){
+	  O = toObject(O);
+	  if(has(O, IE_PROTO))return O[IE_PROTO];
+	  if(typeof O.constructor == 'function' && O instanceof O.constructor){
+	    return O.constructor.prototype;
+	  } return O instanceof Object ? ObjectProto : null;
+	};
+
+/***/ },
+/* 371 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// most Object methods by ES6 should accept primitives
+	var $export = __webpack_require__(245)
+	  , core    = __webpack_require__(247)
+	  , fails   = __webpack_require__(256);
+	module.exports = function(KEY, exec){
+	  var fn  = (core.Object || {})[KEY] || Object[KEY]
+	    , exp = {};
+	  exp[KEY] = exec(fn);
+	  $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
+	};
+
+/***/ },
+/* 372 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	exports.default = function (instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	};
+
+/***/ },
+/* 373 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _defineProperty = __webpack_require__(242);
+
+	var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function () {
+	  function defineProperties(target, props) {
+	    for (var i = 0; i < props.length; i++) {
+	      var descriptor = props[i];
+	      descriptor.enumerable = descriptor.enumerable || false;
+	      descriptor.configurable = true;
+	      if ("value" in descriptor) descriptor.writable = true;
+	      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
+	    }
+	  }
+
+	  return function (Constructor, protoProps, staticProps) {
+	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	    if (staticProps) defineProperties(Constructor, staticProps);
+	    return Constructor;
+	  };
+	}();
+
+/***/ },
+/* 374 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _typeof2 = __webpack_require__(375);
+
+	var _typeof3 = _interopRequireDefault(_typeof2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (self, call) {
+	  if (!self) {
+	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	  }
+
+	  return call && ((typeof call === "undefined" ? "undefined" : (0, _typeof3.default)(call)) === "object" || typeof call === "function") ? call : self;
+	};
+
+/***/ },
+/* 375 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _iterator = __webpack_require__(376);
+
+	var _iterator2 = _interopRequireDefault(_iterator);
+
+	var _symbol = __webpack_require__(395);
+
+	var _symbol2 = _interopRequireDefault(_symbol);
+
+	var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default ? "symbol" : typeof obj; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.default) === "symbol" ? function (obj) {
+	  return typeof obj === "undefined" ? "undefined" : _typeof(obj);
+	} : function (obj) {
+	  return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
+	};
+
+/***/ },
+/* 376 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(377), __esModule: true };
+
+/***/ },
+/* 377 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(378);
+	__webpack_require__(390);
+	module.exports = __webpack_require__(394).f('iterator');
+
+/***/ },
+/* 378 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var $at  = __webpack_require__(379)(true);
+
+	// 21.1.3.27 String.prototype[@@iterator]()
+	__webpack_require__(380)(String, 'String', function(iterated){
+	  this._t = String(iterated); // target
+	  this._i = 0;                // next index
+	// 21.1.5.2.1 %StringIteratorPrototype%.next()
+	}, function(){
+	  var O     = this._t
+	    , index = this._i
+	    , point;
+	  if(index >= O.length)return {value: undefined, done: true};
+	  point = $at(O, index);
+	  this._i += point.length;
+	  return {value: point, done: false};
+	});
+
+/***/ },
+/* 379 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var toInteger = __webpack_require__(274)
+	  , defined   = __webpack_require__(271);
+	// true  -> String#at
+	// false -> String#codePointAt
+	module.exports = function(TO_STRING){
+	  return function(that, pos){
+	    var s = String(defined(that))
+	      , i = toInteger(pos)
+	      , l = s.length
+	      , a, b;
+	    if(i < 0 || i >= l)return TO_STRING ? '' : undefined;
+	    a = s.charCodeAt(i);
+	    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+	      ? TO_STRING ? s.charAt(i) : a
+	      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+	  };
+	};
+
+/***/ },
+/* 380 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var LIBRARY        = __webpack_require__(381)
+	  , $export        = __webpack_require__(245)
+	  , redefine       = __webpack_require__(382)
+	  , hide           = __webpack_require__(250)
+	  , has            = __webpack_require__(267)
+	  , Iterators      = __webpack_require__(383)
+	  , $iterCreate    = __webpack_require__(384)
+	  , setToStringTag = __webpack_require__(388)
+	  , getPrototypeOf = __webpack_require__(370)
+	  , ITERATOR       = __webpack_require__(389)('iterator')
+	  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
+	  , FF_ITERATOR    = '@@iterator'
+	  , KEYS           = 'keys'
+	  , VALUES         = 'values';
+
+	var returnThis = function(){ return this; };
+
+	module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED){
+	  $iterCreate(Constructor, NAME, next);
+	  var getMethod = function(kind){
+	    if(!BUGGY && kind in proto)return proto[kind];
+	    switch(kind){
+	      case KEYS: return function keys(){ return new Constructor(this, kind); };
+	      case VALUES: return function values(){ return new Constructor(this, kind); };
+	    } return function entries(){ return new Constructor(this, kind); };
+	  };
+	  var TAG        = NAME + ' Iterator'
+	    , DEF_VALUES = DEFAULT == VALUES
+	    , VALUES_BUG = false
+	    , proto      = Base.prototype
+	    , $native    = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT]
+	    , $default   = $native || getMethod(DEFAULT)
+	    , $entries   = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined
+	    , $anyNative = NAME == 'Array' ? proto.entries || $native : $native
+	    , methods, key, IteratorPrototype;
+	  // Fix native
+	  if($anyNative){
+	    IteratorPrototype = getPrototypeOf($anyNative.call(new Base));
+	    if(IteratorPrototype !== Object.prototype){
+	      // Set @@toStringTag to native iterators
+	      setToStringTag(IteratorPrototype, TAG, true);
+	      // fix for some old engines
+	      if(!LIBRARY && !has(IteratorPrototype, ITERATOR))hide(IteratorPrototype, ITERATOR, returnThis);
+	    }
+	  }
+	  // fix Array#{values, @@iterator}.name in V8 / FF
+	  if(DEF_VALUES && $native && $native.name !== VALUES){
+	    VALUES_BUG = true;
+	    $default = function values(){ return $native.call(this); };
+	  }
+	  // Define iterator
+	  if((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])){
+	    hide(proto, ITERATOR, $default);
+	  }
+	  // Plug for library
+	  Iterators[NAME] = $default;
+	  Iterators[TAG]  = returnThis;
+	  if(DEFAULT){
+	    methods = {
+	      values:  DEF_VALUES ? $default : getMethod(VALUES),
+	      keys:    IS_SET     ? $default : getMethod(KEYS),
+	      entries: $entries
+	    };
+	    if(FORCED)for(key in methods){
+	      if(!(key in proto))redefine(proto, key, methods[key]);
+	    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+	  }
+	  return methods;
+	};
+
+/***/ },
+/* 381 */
+/***/ function(module, exports) {
+
+	module.exports = true;
+
+/***/ },
+/* 382 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(250);
+
+/***/ },
+/* 383 */
+/***/ function(module, exports) {
+
+	module.exports = {};
+
+/***/ },
+/* 384 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var create         = __webpack_require__(385)
+	  , descriptor     = __webpack_require__(259)
+	  , setToStringTag = __webpack_require__(388)
+	  , IteratorPrototype = {};
+
+	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+	__webpack_require__(250)(IteratorPrototype, __webpack_require__(389)('iterator'), function(){ return this; });
+
+	module.exports = function(Constructor, NAME, next){
+	  Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
+	  setToStringTag(Constructor, NAME + ' Iterator');
+	};
+
+/***/ },
+/* 385 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+	var anObject    = __webpack_require__(252)
+	  , dPs         = __webpack_require__(386)
+	  , enumBugKeys = __webpack_require__(279)
+	  , IE_PROTO    = __webpack_require__(276)('IE_PROTO')
+	  , Empty       = function(){ /* empty */ }
+	  , PROTOTYPE   = 'prototype';
+
+	// Create object with fake `null` prototype: use iframe Object with cleared prototype
+	var createDict = function(){
+	  // Thrash, waste and sodomy: IE GC bug
+	  var iframe = __webpack_require__(257)('iframe')
+	    , i      = enumBugKeys.length
+	    , lt     = '<'
+	    , gt     = '>'
+	    , iframeDocument;
+	  iframe.style.display = 'none';
+	  __webpack_require__(387).appendChild(iframe);
+	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+	  // createDict = iframe.contentWindow.Object;
+	  // html.removeChild(iframe);
+	  iframeDocument = iframe.contentWindow.document;
+	  iframeDocument.open();
+	  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+	  iframeDocument.close();
+	  createDict = iframeDocument.F;
+	  while(i--)delete createDict[PROTOTYPE][enumBugKeys[i]];
+	  return createDict();
+	};
+
+	module.exports = Object.create || function create(O, Properties){
+	  var result;
+	  if(O !== null){
+	    Empty[PROTOTYPE] = anObject(O);
+	    result = new Empty;
+	    Empty[PROTOTYPE] = null;
+	    // add "__proto__" for Object.getPrototypeOf polyfill
+	    result[IE_PROTO] = O;
+	  } else result = createDict();
+	  return Properties === undefined ? result : dPs(result, Properties);
+	};
+
+
+/***/ },
+/* 386 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var dP       = __webpack_require__(251)
+	  , anObject = __webpack_require__(252)
+	  , getKeys  = __webpack_require__(265);
+
+	module.exports = __webpack_require__(255) ? Object.defineProperties : function defineProperties(O, Properties){
+	  anObject(O);
+	  var keys   = getKeys(Properties)
+	    , length = keys.length
+	    , i = 0
+	    , P;
+	  while(length > i)dP.f(O, P = keys[i++], Properties[P]);
+	  return O;
+	};
+
+/***/ },
+/* 387 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(246).document && document.documentElement;
+
+/***/ },
+/* 388 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var def = __webpack_require__(251).f
+	  , has = __webpack_require__(267)
+	  , TAG = __webpack_require__(389)('toStringTag');
+
+	module.exports = function(it, tag, stat){
+	  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
+	};
+
+/***/ },
+/* 389 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var store      = __webpack_require__(277)('wks')
+	  , uid        = __webpack_require__(278)
+	  , Symbol     = __webpack_require__(246).Symbol
+	  , USE_SYMBOL = typeof Symbol == 'function';
+
+	var $exports = module.exports = function(name){
+	  return store[name] || (store[name] =
+	    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
+	};
+
+	$exports.store = store;
+
+/***/ },
+/* 390 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(391);
+	var global        = __webpack_require__(246)
+	  , hide          = __webpack_require__(250)
+	  , Iterators     = __webpack_require__(383)
+	  , TO_STRING_TAG = __webpack_require__(389)('toStringTag');
+
+	for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++){
+	  var NAME       = collections[i]
+	    , Collection = global[NAME]
+	    , proto      = Collection && Collection.prototype;
+	  if(proto && !proto[TO_STRING_TAG])hide(proto, TO_STRING_TAG, NAME);
+	  Iterators[NAME] = Iterators.Array;
+	}
+
+/***/ },
+/* 391 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var addToUnscopables = __webpack_require__(392)
+	  , step             = __webpack_require__(393)
+	  , Iterators        = __webpack_require__(383)
+	  , toIObject        = __webpack_require__(268);
+
+	// 22.1.3.4 Array.prototype.entries()
+	// 22.1.3.13 Array.prototype.keys()
+	// 22.1.3.29 Array.prototype.values()
+	// 22.1.3.30 Array.prototype[@@iterator]()
+	module.exports = __webpack_require__(380)(Array, 'Array', function(iterated, kind){
+	  this._t = toIObject(iterated); // target
+	  this._i = 0;                   // next index
+	  this._k = kind;                // kind
+	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
+	}, function(){
+	  var O     = this._t
+	    , kind  = this._k
+	    , index = this._i++;
+	  if(!O || index >= O.length){
+	    this._t = undefined;
+	    return step(1);
+	  }
+	  if(kind == 'keys'  )return step(0, index);
+	  if(kind == 'values')return step(0, O[index]);
+	  return step(0, [index, O[index]]);
+	}, 'values');
+
+	// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
+	Iterators.Arguments = Iterators.Array;
+
+	addToUnscopables('keys');
+	addToUnscopables('values');
+	addToUnscopables('entries');
+
+/***/ },
+/* 392 */
+/***/ function(module, exports) {
+
+	module.exports = function(){ /* empty */ };
+
+/***/ },
+/* 393 */
+/***/ function(module, exports) {
+
+	module.exports = function(done, value){
+	  return {value: value, done: !!done};
+	};
+
+/***/ },
+/* 394 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports.f = __webpack_require__(389);
+
+/***/ },
+/* 395 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(396), __esModule: true };
+
+/***/ },
+/* 396 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(397);
+	__webpack_require__(406);
+	__webpack_require__(407);
+	__webpack_require__(408);
+	module.exports = __webpack_require__(247).Symbol;
+
+/***/ },
+/* 397 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	// ECMAScript 6 symbols shim
+	var global         = __webpack_require__(246)
+	  , has            = __webpack_require__(267)
+	  , DESCRIPTORS    = __webpack_require__(255)
+	  , $export        = __webpack_require__(245)
+	  , redefine       = __webpack_require__(382)
+	  , META           = __webpack_require__(398).KEY
+	  , $fails         = __webpack_require__(256)
+	  , shared         = __webpack_require__(277)
+	  , setToStringTag = __webpack_require__(388)
+	  , uid            = __webpack_require__(278)
+	  , wks            = __webpack_require__(389)
+	  , wksExt         = __webpack_require__(394)
+	  , wksDefine      = __webpack_require__(399)
+	  , keyOf          = __webpack_require__(400)
+	  , enumKeys       = __webpack_require__(401)
+	  , isArray        = __webpack_require__(402)
+	  , anObject       = __webpack_require__(252)
+	  , toIObject      = __webpack_require__(268)
+	  , toPrimitive    = __webpack_require__(258)
+	  , createDesc     = __webpack_require__(259)
+	  , _create        = __webpack_require__(385)
+	  , gOPNExt        = __webpack_require__(403)
+	  , $GOPD          = __webpack_require__(405)
+	  , $DP            = __webpack_require__(251)
+	  , $keys          = __webpack_require__(265)
+	  , gOPD           = $GOPD.f
+	  , dP             = $DP.f
+	  , gOPN           = gOPNExt.f
+	  , $Symbol        = global.Symbol
+	  , $JSON          = global.JSON
+	  , _stringify     = $JSON && $JSON.stringify
+	  , PROTOTYPE      = 'prototype'
+	  , HIDDEN         = wks('_hidden')
+	  , TO_PRIMITIVE   = wks('toPrimitive')
+	  , isEnum         = {}.propertyIsEnumerable
+	  , SymbolRegistry = shared('symbol-registry')
+	  , AllSymbols     = shared('symbols')
+	  , OPSymbols      = shared('op-symbols')
+	  , ObjectProto    = Object[PROTOTYPE]
+	  , USE_NATIVE     = typeof $Symbol == 'function'
+	  , QObject        = global.QObject;
+	// Don't use setters in Qt Script, https://github.com/zloirock/core-js/issues/173
+	var setter = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
+
+	// fallback for old Android, https://code.google.com/p/v8/issues/detail?id=687
+	var setSymbolDesc = DESCRIPTORS && $fails(function(){
+	  return _create(dP({}, 'a', {
+	    get: function(){ return dP(this, 'a', {value: 7}).a; }
+	  })).a != 7;
+	}) ? function(it, key, D){
+	  var protoDesc = gOPD(ObjectProto, key);
+	  if(protoDesc)delete ObjectProto[key];
+	  dP(it, key, D);
+	  if(protoDesc && it !== ObjectProto)dP(ObjectProto, key, protoDesc);
+	} : dP;
+
+	var wrap = function(tag){
+	  var sym = AllSymbols[tag] = _create($Symbol[PROTOTYPE]);
+	  sym._k = tag;
+	  return sym;
+	};
+
+	var isSymbol = USE_NATIVE && typeof $Symbol.iterator == 'symbol' ? function(it){
+	  return typeof it == 'symbol';
+	} : function(it){
+	  return it instanceof $Symbol;
+	};
+
+	var $defineProperty = function defineProperty(it, key, D){
+	  if(it === ObjectProto)$defineProperty(OPSymbols, key, D);
+	  anObject(it);
+	  key = toPrimitive(key, true);
+	  anObject(D);
+	  if(has(AllSymbols, key)){
+	    if(!D.enumerable){
+	      if(!has(it, HIDDEN))dP(it, HIDDEN, createDesc(1, {}));
+	      it[HIDDEN][key] = true;
+	    } else {
+	      if(has(it, HIDDEN) && it[HIDDEN][key])it[HIDDEN][key] = false;
+	      D = _create(D, {enumerable: createDesc(0, false)});
+	    } return setSymbolDesc(it, key, D);
+	  } return dP(it, key, D);
+	};
+	var $defineProperties = function defineProperties(it, P){
+	  anObject(it);
+	  var keys = enumKeys(P = toIObject(P))
+	    , i    = 0
+	    , l = keys.length
+	    , key;
+	  while(l > i)$defineProperty(it, key = keys[i++], P[key]);
+	  return it;
+	};
+	var $create = function create(it, P){
+	  return P === undefined ? _create(it) : $defineProperties(_create(it), P);
+	};
+	var $propertyIsEnumerable = function propertyIsEnumerable(key){
+	  var E = isEnum.call(this, key = toPrimitive(key, true));
+	  if(this === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return false;
+	  return E || !has(this, key) || !has(AllSymbols, key) || has(this, HIDDEN) && this[HIDDEN][key] ? E : true;
+	};
+	var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key){
+	  it  = toIObject(it);
+	  key = toPrimitive(key, true);
+	  if(it === ObjectProto && has(AllSymbols, key) && !has(OPSymbols, key))return;
+	  var D = gOPD(it, key);
+	  if(D && has(AllSymbols, key) && !(has(it, HIDDEN) && it[HIDDEN][key]))D.enumerable = true;
+	  return D;
+	};
+	var $getOwnPropertyNames = function getOwnPropertyNames(it){
+	  var names  = gOPN(toIObject(it))
+	    , result = []
+	    , i      = 0
+	    , key;
+	  while(names.length > i){
+	    if(!has(AllSymbols, key = names[i++]) && key != HIDDEN && key != META)result.push(key);
+	  } return result;
+	};
+	var $getOwnPropertySymbols = function getOwnPropertySymbols(it){
+	  var IS_OP  = it === ObjectProto
+	    , names  = gOPN(IS_OP ? OPSymbols : toIObject(it))
+	    , result = []
+	    , i      = 0
+	    , key;
+	  while(names.length > i){
+	    if(has(AllSymbols, key = names[i++]) && (IS_OP ? has(ObjectProto, key) : true))result.push(AllSymbols[key]);
+	  } return result;
+	};
+
+	// 19.4.1.1 Symbol([description])
+	if(!USE_NATIVE){
+	  $Symbol = function Symbol(){
+	    if(this instanceof $Symbol)throw TypeError('Symbol is not a constructor!');
+	    var tag = uid(arguments.length > 0 ? arguments[0] : undefined);
+	    var $set = function(value){
+	      if(this === ObjectProto)$set.call(OPSymbols, value);
+	      if(has(this, HIDDEN) && has(this[HIDDEN], tag))this[HIDDEN][tag] = false;
+	      setSymbolDesc(this, tag, createDesc(1, value));
+	    };
+	    if(DESCRIPTORS && setter)setSymbolDesc(ObjectProto, tag, {configurable: true, set: $set});
+	    return wrap(tag);
+	  };
+	  redefine($Symbol[PROTOTYPE], 'toString', function toString(){
+	    return this._k;
+	  });
+
+	  $GOPD.f = $getOwnPropertyDescriptor;
+	  $DP.f   = $defineProperty;
+	  __webpack_require__(404).f = gOPNExt.f = $getOwnPropertyNames;
+	  __webpack_require__(281).f  = $propertyIsEnumerable;
+	  __webpack_require__(280).f = $getOwnPropertySymbols;
+
+	  if(DESCRIPTORS && !__webpack_require__(381)){
+	    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
+	  }
+
+	  wksExt.f = function(name){
+	    return wrap(wks(name));
+	  }
+	}
+
+	$export($export.G + $export.W + $export.F * !USE_NATIVE, {Symbol: $Symbol});
+
+	for(var symbols = (
+	  // 19.4.2.2, 19.4.2.3, 19.4.2.4, 19.4.2.6, 19.4.2.8, 19.4.2.9, 19.4.2.10, 19.4.2.11, 19.4.2.12, 19.4.2.13, 19.4.2.14
+	  'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
+	).split(','), i = 0; symbols.length > i; )wks(symbols[i++]);
+
+	for(var symbols = $keys(wks.store), i = 0; symbols.length > i; )wksDefine(symbols[i++]);
+
+	$export($export.S + $export.F * !USE_NATIVE, 'Symbol', {
+	  // 19.4.2.1 Symbol.for(key)
+	  'for': function(key){
+	    return has(SymbolRegistry, key += '')
+	      ? SymbolRegistry[key]
+	      : SymbolRegistry[key] = $Symbol(key);
+	  },
+	  // 19.4.2.5 Symbol.keyFor(sym)
+	  keyFor: function keyFor(key){
+	    if(isSymbol(key))return keyOf(SymbolRegistry, key);
+	    throw TypeError(key + ' is not a symbol!');
+	  },
+	  useSetter: function(){ setter = true; },
+	  useSimple: function(){ setter = false; }
+	});
+
+	$export($export.S + $export.F * !USE_NATIVE, 'Object', {
+	  // 19.1.2.2 Object.create(O [, Properties])
+	  create: $create,
+	  // 19.1.2.4 Object.defineProperty(O, P, Attributes)
+	  defineProperty: $defineProperty,
+	  // 19.1.2.3 Object.defineProperties(O, Properties)
+	  defineProperties: $defineProperties,
+	  // 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+	  getOwnPropertyDescriptor: $getOwnPropertyDescriptor,
+	  // 19.1.2.7 Object.getOwnPropertyNames(O)
+	  getOwnPropertyNames: $getOwnPropertyNames,
+	  // 19.1.2.8 Object.getOwnPropertySymbols(O)
+	  getOwnPropertySymbols: $getOwnPropertySymbols
+	});
+
+	// 24.3.2 JSON.stringify(value [, replacer [, space]])
+	$JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function(){
+	  var S = $Symbol();
+	  // MS Edge converts symbol values to JSON as {}
+	  // WebKit converts symbol values to JSON as null
+	  // V8 throws on boxed symbols
+	  return _stringify([S]) != '[null]' || _stringify({a: S}) != '{}' || _stringify(Object(S)) != '{}';
+	})), 'JSON', {
+	  stringify: function stringify(it){
+	    if(it === undefined || isSymbol(it))return; // IE8 returns string on undefined
+	    var args = [it]
+	      , i    = 1
+	      , replacer, $replacer;
+	    while(arguments.length > i)args.push(arguments[i++]);
+	    replacer = args[1];
+	    if(typeof replacer == 'function')$replacer = replacer;
+	    if($replacer || !isArray(replacer))replacer = function(key, value){
+	      if($replacer)value = $replacer.call(this, key, value);
+	      if(!isSymbol(value))return value;
+	    };
+	    args[1] = replacer;
+	    return _stringify.apply($JSON, args);
+	  }
+	});
+
+	// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
+	$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(250)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+	// 19.4.3.5 Symbol.prototype[@@toStringTag]
+	setToStringTag($Symbol, 'Symbol');
+	// 20.2.1.9 Math[@@toStringTag]
+	setToStringTag(Math, 'Math', true);
+	// 24.3.3 JSON[@@toStringTag]
+	setToStringTag(global.JSON, 'JSON', true);
+
+/***/ },
+/* 398 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var META     = __webpack_require__(278)('meta')
+	  , isObject = __webpack_require__(253)
+	  , has      = __webpack_require__(267)
+	  , setDesc  = __webpack_require__(251).f
+	  , id       = 0;
+	var isExtensible = Object.isExtensible || function(){
+	  return true;
+	};
+	var FREEZE = !__webpack_require__(256)(function(){
+	  return isExtensible(Object.preventExtensions({}));
+	});
+	var setMeta = function(it){
+	  setDesc(it, META, {value: {
+	    i: 'O' + ++id, // object ID
+	    w: {}          // weak collections IDs
+	  }});
+	};
+	var fastKey = function(it, create){
+	  // return primitive with prefix
+	  if(!isObject(it))return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+	  if(!has(it, META)){
+	    // can't set metadata to uncaught frozen object
+	    if(!isExtensible(it))return 'F';
+	    // not necessary to add metadata
+	    if(!create)return 'E';
+	    // add missing metadata
+	    setMeta(it);
+	  // return object ID
+	  } return it[META].i;
+	};
+	var getWeak = function(it, create){
+	  if(!has(it, META)){
+	    // can't set metadata to uncaught frozen object
+	    if(!isExtensible(it))return true;
+	    // not necessary to add metadata
+	    if(!create)return false;
+	    // add missing metadata
+	    setMeta(it);
+	  // return hash weak collections IDs
+	  } return it[META].w;
+	};
+	// add metadata on freeze-family methods calling
+	var onFreeze = function(it){
+	  if(FREEZE && meta.NEED && isExtensible(it) && !has(it, META))setMeta(it);
+	  return it;
+	};
+	var meta = module.exports = {
+	  KEY:      META,
+	  NEED:     false,
+	  fastKey:  fastKey,
+	  getWeak:  getWeak,
+	  onFreeze: onFreeze
+	};
+
+/***/ },
+/* 399 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var global         = __webpack_require__(246)
+	  , core           = __webpack_require__(247)
+	  , LIBRARY        = __webpack_require__(381)
+	  , wksExt         = __webpack_require__(394)
+	  , defineProperty = __webpack_require__(251).f;
+	module.exports = function(name){
+	  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
+	  if(name.charAt(0) != '_' && !(name in $Symbol))defineProperty($Symbol, name, {value: wksExt.f(name)});
+	};
+
+/***/ },
+/* 400 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var getKeys   = __webpack_require__(265)
+	  , toIObject = __webpack_require__(268);
+	module.exports = function(object, el){
+	  var O      = toIObject(object)
+	    , keys   = getKeys(O)
+	    , length = keys.length
+	    , index  = 0
+	    , key;
+	  while(length > index)if(O[key = keys[index++]] === el)return key;
+	};
+
+/***/ },
+/* 401 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// all enumerable object keys, includes symbols
+	var getKeys = __webpack_require__(265)
+	  , gOPS    = __webpack_require__(280)
+	  , pIE     = __webpack_require__(281);
+	module.exports = function(it){
+	  var result     = getKeys(it)
+	    , getSymbols = gOPS.f;
+	  if(getSymbols){
+	    var symbols = getSymbols(it)
+	      , isEnum  = pIE.f
+	      , i       = 0
+	      , key;
+	    while(symbols.length > i)if(isEnum.call(it, key = symbols[i++]))result.push(key);
+	  } return result;
+	};
+
+/***/ },
+/* 402 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 7.2.2 IsArray(argument)
+	var cof = __webpack_require__(270);
+	module.exports = Array.isArray || function isArray(arg){
+	  return cof(arg) == 'Array';
+	};
+
+/***/ },
+/* 403 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
+	var toIObject = __webpack_require__(268)
+	  , gOPN      = __webpack_require__(404).f
+	  , toString  = {}.toString;
+
+	var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
+	  ? Object.getOwnPropertyNames(window) : [];
+
+	var getWindowNames = function(it){
+	  try {
+	    return gOPN(it);
+	  } catch(e){
+	    return windowNames.slice();
+	  }
+	};
+
+	module.exports.f = function getOwnPropertyNames(it){
+	  return windowNames && toString.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(toIObject(it));
+	};
+
+
+/***/ },
+/* 404 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
+	var $keys      = __webpack_require__(266)
+	  , hiddenKeys = __webpack_require__(279).concat('length', 'prototype');
+
+	exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
+	  return $keys(O, hiddenKeys);
+	};
+
+/***/ },
+/* 405 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var pIE            = __webpack_require__(281)
+	  , createDesc     = __webpack_require__(259)
+	  , toIObject      = __webpack_require__(268)
+	  , toPrimitive    = __webpack_require__(258)
+	  , has            = __webpack_require__(267)
+	  , IE8_DOM_DEFINE = __webpack_require__(254)
+	  , gOPD           = Object.getOwnPropertyDescriptor;
+
+	exports.f = __webpack_require__(255) ? gOPD : function getOwnPropertyDescriptor(O, P){
+	  O = toIObject(O);
+	  P = toPrimitive(P, true);
+	  if(IE8_DOM_DEFINE)try {
+	    return gOPD(O, P);
+	  } catch(e){ /* empty */ }
+	  if(has(O, P))return createDesc(!pIE.f.call(O, P), O[P]);
+	};
+
+/***/ },
+/* 406 */
+/***/ function(module, exports) {
+
+	
+
+/***/ },
+/* 407 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(399)('asyncIterator');
+
+/***/ },
+/* 408 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(399)('observable');
+
+/***/ },
+/* 409 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _setPrototypeOf = __webpack_require__(410);
+
+	var _setPrototypeOf2 = _interopRequireDefault(_setPrototypeOf);
+
+	var _create = __webpack_require__(414);
+
+	var _create2 = _interopRequireDefault(_create);
+
+	var _typeof2 = __webpack_require__(375);
+
+	var _typeof3 = _interopRequireDefault(_typeof2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (subClass, superClass) {
+	  if (typeof superClass !== "function" && superClass !== null) {
+	    throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : (0, _typeof3.default)(superClass)));
+	  }
+
+	  subClass.prototype = (0, _create2.default)(superClass && superClass.prototype, {
+	    constructor: {
+	      value: subClass,
+	      enumerable: false,
+	      writable: true,
+	      configurable: true
+	    }
+	  });
+	  if (superClass) _setPrototypeOf2.default ? (0, _setPrototypeOf2.default)(subClass, superClass) : subClass.__proto__ = superClass;
+	};
+
+/***/ },
+/* 410 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(411), __esModule: true };
+
+/***/ },
+/* 411 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(412);
+	module.exports = __webpack_require__(247).Object.setPrototypeOf;
+
+/***/ },
+/* 412 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.3.19 Object.setPrototypeOf(O, proto)
+	var $export = __webpack_require__(245);
+	$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(413).set});
+
+/***/ },
+/* 413 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Works with __proto__ only. Old v8 can't work with null proto objects.
+	/* eslint-disable no-proto */
+	var isObject = __webpack_require__(253)
+	  , anObject = __webpack_require__(252);
+	var check = function(O, proto){
+	  anObject(O);
+	  if(!isObject(proto) && proto !== null)throw TypeError(proto + ": can't set as prototype!");
+	};
+	module.exports = {
+	  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
+	    function(test, buggy, set){
+	      try {
+	        set = __webpack_require__(248)(Function.call, __webpack_require__(405).f(Object.prototype, '__proto__').set, 2);
+	        set(test, []);
+	        buggy = !(test instanceof Array);
+	      } catch(e){ buggy = true; }
+	      return function setPrototypeOf(O, proto){
+	        check(O, proto);
+	        if(buggy)O.__proto__ = proto;
+	        else set(O, proto);
+	        return O;
+	      };
+	    }({}, false) : undefined),
+	  check: check
+	};
+
+/***/ },
+/* 414 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(415), __esModule: true };
+
+/***/ },
+/* 415 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(416);
+	var $Object = __webpack_require__(247).Object;
+	module.exports = function create(P, D){
+	  return $Object.create(P, D);
+	};
+
+/***/ },
+/* 416 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $export = __webpack_require__(245)
+	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+	$export($export.S, 'Object', {create: __webpack_require__(385)});
+
+/***/ },
+/* 417 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var _getPrototypeOf = __webpack_require__(367);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(372);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(373);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(374);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(409);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var S = {
+	    navList: {
+	        marginLeft: "20px",
+	        marginTop: "70px"
+	    },
+	    buttonStyle: {
+	        fontFamily: 'lucida grande, Helvetica',
+	        fontSize: '20px',
+	        textAlign: "center",
+	        whiteSpace: "nowrap",
+	        lineHeight: "40px",
+	        color: "#164065",
+	        padding: "0 15px",
+	        border: "2px solid black",
+	        boxShadow: "5px 5px black",
+	        marginBottom: "5px",
+	        width: "200px",
+	        marginTop: "20px"
+	    }
+	};
+
+	var AdminNavbar = function (_React$Component) {
+	    (0, _inherits3.default)(AdminNavbar, _React$Component);
+
+	    //constructor are always get called with props
+	    function AdminNavbar(props) {
+	        (0, _classCallCheck3.default)(this, AdminNavbar);
+
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (AdminNavbar.__proto__ || (0, _getPrototypeOf2.default)(AdminNavbar)).call(this, props));
+
+	        _this.state = {};
+	        return _this;
+	    }
+
+	    (0, _createClass3.default)(AdminNavbar, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { style: S.navList },
+	                _react2.default.createElement(
+	                    "div",
+	                    { style: S.buttonStyle },
+	                    "Projects"
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { style: S.buttonStyle },
+	                    "Users"
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { style: S.buttonStyle },
+	                    "Data"
+	                )
+	            );
+	        }
+	    }]);
+	    return AdminNavbar;
+	}(_react2.default.Component);
+
+	module.exports = AdminNavbar;
+
+/***/ },
+/* 418 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _defineProperty2 = __webpack_require__(241);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(3);
+	//var ProjectSearchList = require('../../components/projectlistings/ProjectSearchList');
+	//var ProjectListing = require('../../components/projectlistings/ProjectListing');
+	var SearchBar = __webpack_require__(346);
+	var Category = __webpack_require__(347);
+	var Test = __webpack_require__(349);
+	var Proj = __webpack_require__(352);
+	var Proj2 = __webpack_require__(357);
+
+	var Frame = __webpack_require__(298);
+	var Bar = __webpack_require__(299);
+	var Pad = __webpack_require__(348);
+
+	var http = __webpack_require__(309);
+	var $ = __webpack_require__(302);
+	var Q = __webpack_require__(358);
+
+	var devUrl = 'http://localhost:3000';
+	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	/* Use devUrl or prodUrl*/
+	var useUrl = prodUrl;
+
+	//For the admin project list substitue 'ProjectSearchList'
+	var ProjectSearchList = __webpack_require__(419);
+
+	var ProjectListing = __webpack_require__(420);
+
+	//For the admin project page substitute 'Test'
+	var ProjectDetails = __webpack_require__(421);
+
+	var Projects = React.createClass({
+	    displayName: 'Projects',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            clicks: 0,
+	            data: []
+	        };
+	    },
+	    getPopularProjects: function getPopularProjects() {
+	        $.ajax({
+	            url: useUrl + '/getpopular',
+	            dataType: 'json',
+	            cache: false,
+	            success: function (res) {
+	                this.setState({
+	                    data: res
+	                });
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(prodUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+	    getMostViewsProjects: function getMostViewsProjects() {
+	        $.ajax({
+	            url: useUrl + '/getviews',
+	            dataType: 'json',
+	            cache: false,
+	            success: function (res) {
+	                this.setState({
+	                    data: res
+	                });
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(prodUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+	    getQueryProjects: function getQueryProjects(query) {
+
+	        $.ajax({
+	            url: useUrl + '/get/' + query,
+	            dataType: 'json',
+	            cache: false,
+	            success: function (res) {
+	                this.setState({
+	                    data: res,
+	                    clicks: this.state.clicks + 1
+	                });
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(prodUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+	    getAllProjects: function getAllProjects(evt) {
+	        $.ajax({
+	            url: useUrl + '/get',
+	            dataType: 'json',
+	            cache: false,
+	            success: function (res) {
+	                this.setState({
+	                    data: res,
+	                    clicks: this.state.clicks + 1
+	                });
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(useUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+	    componentDidMount: function componentDidMount() {
+	        this.getAllProjects();
+	    },
+
+	    render: function render() {
+	        var params = this.props;
+	        var id = params.id;
+	        var containerStyle = { zIndex: "1000", paddingTop: "100px", paddingLeft: "200px", paddingRight: "100px", paddingBottom: "100px", display: "flex", flexDirection: "column", height: "100%",
+	            margin: "0 auto"
+	        };
+	        var projectListStyle = { flex: "5" };
+	        var paddingStyle = { height: "100px", flex: "1" };
+	        var buttonStyle = (0, _defineProperty3.default)({
+	            width: "60px",
+	            height: "60px",
+	            borderStyle: "none",
+	            display: "flex",
+	            backgroundColor: "#FAC129",
+	            paddingLeft: "12px",
+	            textAlign: "center"
+	        }, 'paddingLeft', "20px");
+
+	        return React.createElement(
+	            'div',
+	            { style: containerStyle },
+	            React.createElement(SearchBar, { onMagicClick: this.getQueryProjects }),
+	            React.createElement(
+	                Bar,
+	                null,
+	                React.createElement(Category, { popular: this.getPopularProjects, view: this.getMostViewsProjects })
+	            ),
+	            React.createElement(
+	                Frame,
+	                { style: { display: "inline-block" } },
+	                React.createElement(
+	                    'div',
+	                    { style: { display: "flex", flexDirection: "column",
+	                            backgroundColor: "#F4F4F4"
+	                        } },
+	                    React.createElement(ProjectSearchList, { style: projectListStyle, projectListData: this.state.data, id: id }),
+	                    React.createElement(
+	                        'div',
+	                        { style: { display: "flex", paddingTop: "30px" } },
+	                        React.createElement(Pad, { hw: ['100px', '45%'] }),
+	                        React.createElement(Pad, { hw: ['100px', '30%'] })
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Projects;
+
+/***/ },
+/* 419 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var ReactDOM = __webpack_require__(34);
+	var ProjectListing = __webpack_require__(420);
+
+	var devUrl = 'http://localhost:3000/get';
+	var devUrl2 = 'http://localhost:3000/get';
+	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+
+	var ImageboxComponent = React.createClass({
+	    displayName: 'ImageboxComponent',
+
+	    render: function render() {
+	        var buttonStyle = {
+	            width: "100px",
+	            height: "50px",
+	            padding: "10px 20px"
+	        };
+	        var bgStyle = {
+	            backgroundImage: "url(../public/img/pepper.png)",
+	            backgroundSize: "300px 400px",
+	            width: "300px",
+	            height: "400px"
+	        };
+	        var textStyle_Big = { fontSize: "23pt", color: "white" };
+	        var textStyle_Small = { fontSize: "15pt", color: "white" };
+	        return React.createElement(
+	            'div',
+	            { style: bgStyle },
+	            React.createElement(TextComponent, { style: textStyle_Big,
+	                message: 'Pepper' }),
+	            React.createElement(TextComponent, { style: textStyle_Small,
+	                message: 'by SoftBank' })
+	        );
+	    }
+	});
+
+	var TextComponent = React.createClass({
+	    displayName: 'TextComponent',
+
+	    render: function render() {
+	        var message = this.props.message;
+	        return React.createElement(
+	            'div',
+	            { style: this.props.style },
+	            message,
+	            ' '
+	        );
+	    }
+	});
+
+	/* Test Data */
+	var friends = ['Ean Platter', 'Murphy Randall', 'Merrick Christensen'];
+	var listContainer = React.createClass({
+	    displayName: 'listContainer',
+
+	    render: function render() {
+	        return;
+	        React.createElement(
+	            'div',
+	            null,
+	            'listContainer'
+	        );
+	    }
+	});
+	var exampleJSON = {
+	    "name": "Pepper",
+	    "author": "Raul Pegan",
+	    "likes": 3
+	};
+
+	var ProjectSearchList = React.createClass({
+	    displayName: 'ProjectSearchList',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            val: 1
+	        };
+	    },
+	    one: function one() {
+	        this.setState({
+	            val: 1
+	        });
+	    },
+	    two: function two() {
+	        this.setState({
+	            val: 2
+	        });
+	    },
+	    render: function render() {
+	        var containerStyle = { borderStyle: "none", margin: "0", padding: "0px 0px 0px 30px", width: "100%", display: "flex",
+	            flexWrap: "wrap",
+	            height: "800px"
+	        };
+
+	        var projectListJSON = this.props.projectListData; //Includes array of objects
+	        console.log("Full filtered JSON");
+	        // console.log(JSON.stringify(projectListJSON, null,4));
+	        /* Should only get first 9 from list based off http request when you have that up */
+	        var projectSearchList;
+	        var temp = [];
+	        var temp2;
+	        if (this.state.val == 1) {
+	            projectSearchList = projectListJSON.map(function (projectJSON) {
+	                return React.createElement(ProjectListing, {
+	                    projectDetails: projectListJSON,
+	                    views: projectJSON.views,
+	                    id: projectJSON._id, url: projectJSON.url,
+	                    name: projectJSON.name, author: projectJSON.author });
+	            });
+	        }
+	        if (this.state.val == 2) {
+	            projectSearchList = projectListJSON.map(function (projectJSON) {
+	                return React.createElement(ProjectListing, {
+	                    projectDetails: projectListJSON,
+	                    views: projectJSON.views,
+	                    id: projectJSON._id, url: projectJSON.url,
+	                    name: projectJSON.name, author: projectJSON.author });
+	            });
+
+	            var temp = [];
+	            var len = projectSearchList.length;
+	            temp.push(projectSearchList[len - 1]);
+	            temp.push(projectSearchList[len - 2]);
+	            projectSearchList = temp;
+	        }
+
+	        return React.createElement(
+	            'div',
+	            { style: containerStyle },
+	            projectSearchList,
+	            React.createElement(
+	                'button',
+	                { style: { width: "100px", height: "50px" }, onClick: this.one },
+	                ' 1 '
+	            ),
+	            React.createElement(
+	                'button',
+	                { style: { width: "100px", height: "50px" }, onClick: this.two },
+	                ' 2 '
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ProjectSearchList;
+
+/***/ },
+/* 420 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/* ProjectListing
+	 * Given a project object, parses and returns
+	 *
+	 */
+
+	/* Load JSON for testing */
+	// var fs = require('fs');
+	// var obj = JSON.parse(fs.readFileSync('../data/projects.json', 'utf8'));
+	/* Hello */
+	var React = __webpack_require__(3);
+	var ReactDOM = __webpack_require__(34);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+	var ImageComponent = __webpack_require__(345);
+	var TextComponent = __webpack_require__(283);
+
+	var ProjectDetails = __webpack_require__(421);
+
+	var ProjectListing = React.createClass({
+	    displayName: 'ProjectListing',
+
+	    render: function render() {
+	        var infoBoxStyle = {
+	            maxWidth: "400px",
+	            width: "100%",
+	            minWidth: "100px",
+	            backgroundColor: "white",
+	            paddingLeft: "10px",
+	            paddingTop: "10px",
+	            paddingBottom: "10px"
+	        };
+	        var listingStyle = {
+	            borderRadius: "5px",
+	            borderWidth: "1px",
+	            borderStyle: "solid",
+	            borderColor: "#C7C7C7",
+	            width: "30%",
+	            margin: "1.6667%"
+	        };
+	        var imgStyle = {
+	            minHeight: "60px",
+	            height: "300px",
+	            width: "100%",
+	            maxWidth: "400px",
+	            minWidth: "100px"
+	        };
+
+	        var textStyle_Big = { fontFamily: "Ubuntu", fontSize: "14pt", color: "#2C2A25", textTranform: "capitalize" };
+	        var textStyle_Small = { fontFamily: "Ubuntu", fontSize: "9pt", color: "black", textDecoration: "none", textTransform: "capitalize" };
+	        var textStyle_View = { fontFamily: "Ubuntu", fontSize: "10pt", color: "#274D72", textDecoration: "none" };
+
+	        var id = 'filler';
+	        var name = 'fillername';
+	        var details = this.props.projectDetails;
+	        console.log("This is details");
+	        console.log(details);
+	        try {
+	            id = this.props.id;
+	            name = this.props.name;
+	        } catch (e) {
+	            console.error(e);
+	        }
+
+	        var nameArray = this.props.name.split(" ");
+	        var displayName = nameArray[0].charAt(0).toUpperCase() + nameArray[0].substr(1);
+	        for (var i = 1; i < nameArray.length; i++) {
+	            var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
+	        }
+
+	        /* Params data = this.props.name in Link */
+	        return React.createElement(
+	            'div',
+	            { style: listingStyle },
+	            React.createElement(
+	                Link,
+	                { to: '/admin/project/' + this.props.id },
+	                ' ',
+	                React.createElement(ImageComponent, { url: this.props.url, style: imgStyle }),
+	                ' '
+	            ),
+	            React.createElement(
+	                'div',
+	                { style: infoBoxStyle },
+	                React.createElement(TextComponent, { style: textStyle_Big,
+	                    message: displayName }),
+	                React.createElement(TextComponent, { style: textStyle_Small,
+	                    message: 'by ' + this.props.author })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ProjectListing;
+
+/***/ },
+/* 421 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var $ = __webpack_require__(302);
+	var ReactRouter = __webpack_require__(181);
+	var Link = ReactRouter.Link;
+	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var cloudinary = __webpack_require__(426);
+
+	var S = {
+	    containerStyle: {
+	        zIndex: "1000", paddingTop: "100px", paddingLeft: "200px", paddingRight: "100px", paddingBottom: "100px", display: "flex", flexDirection: "column", height: "100%", margin: "0 auto", backgroundColor: "white"
+	    },
+	    blockStyle: {
+	        border: "2px solid black", display: "flex", padding: "10px 30px", paddingBottom: "60px"
+	    },
+	    paddingStyle: {
+	        marginLeft: "50px", marginRight: "50px"
+	    },
+	    buttonStyle: {
+	        border: "2px solid black", boxShadow: "3px 3px black", padding: "0 10px"
+	    },
+	    get_file: {
+	        background: "#f9f9f9",
+	        border: "5px solid #88c",
+	        padding: "15px",
+	        borderRadius: "5px",
+	        margin: "10px",
+	        cursor: "pointer"
+	    },
+	    my_file: {
+	        display: "none"
+	    }
+	};
+
+	var AdminProjectDetails = React.createClass({
+	    displayName: 'AdminProjectDetails',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            clicks: 0,
+	            data: {}
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        this.getProjects(this.props.params.id);
+	    },
+
+	    getProjects: function getProjects(query) {
+	        console.log("id  " + query);
+	        $.ajax({
+	            url: '/project/' + query,
+	            dataType: 'json',
+	            cache: false,
+	            success: function (res) {
+	                this.setState({
+	                    data: res,
+	                    clicks: this.state.clicks + 1
+	                });
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(prodUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+	    uploadImage: function uploadImage() {
+	        console.log("Button clicked");
+	        // cloudinary.uploader.upload("my_picture.jpg", function(result) { console.log(result) });
+	        $('#my_file').click();
+	    },
+
+	    render: function render() {
+	        console.log(this.state.data);
+	        if (this.state.data) {
+	            return React.createElement(
+	                'div',
+	                { style: S.containerStyle },
+	                'Admin Project Details',
+	                React.createElement(
+	                    'div',
+	                    { style: S.blockStyle },
+	                    React.createElement(
+	                        Link,
+	                        { to: '/admin', style: S.buttonStyle },
+	                        'Back'
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        { style: S.paddingStyle },
+	                        'Project Title:',
+	                        React.createElement(
+	                            'span',
+	                            null,
+	                            data.name
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        'Project Author:',
+	                        React.createElement(
+	                            'span',
+	                            null,
+	                            data.author
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { style: S.blockStyle },
+	                    React.createElement(
+	                        'span',
+	                        { className: 'pull-right' },
+	                        'Main Pic'
+	                    ),
+	                    React.createElement('input', { style: S.get_file, type: 'button', value: 'Upload Image',
+	                        onClick: this.uploadImage }),
+	                    React.createElement('input', { type: 'file', id: 'my_file', style: S.my_file })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { style: S.blockStyle },
+	                    'All Pics'
+	                )
+	            );
+	        } else {
+	            return React.createElement('div', null);
+	        }
+	    }
+	});
+	module.exports = AdminProjectDetails;
+
+/***/ },
+/* 422 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53598,7 +55436,7 @@
 	module.exports = TestAPI;
 
 /***/ },
-/* 367 */
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53695,7 +55533,7 @@
 	}
 
 /***/ },
-/* 368 */
+/* 424 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53752,7 +55590,7 @@
 	module.exports = StepAdd;
 
 /***/ },
-/* 369 */
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53835,6 +55673,16857 @@
 	});
 
 	module.exports = LabelCarousel;
+
+/***/ },
+/* 426 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var _ = __webpack_require__(427),  cloudinary = module.exports;
+	exports.config = __webpack_require__(428);
+	exports.utils = __webpack_require__(429);
+	exports.uploader = __webpack_require__(445);
+	exports.api = __webpack_require__(449);
+	exports.PreloadedFile = __webpack_require__(450);
+
+	exports.url = function(public_id, options) {
+	  options = _.extend({}, options);
+	  return cloudinary.utils.url(public_id, options);
+	};
+
+	exports.image = function (source, options) {
+	  var responsive, html, current_class, classes;
+	  options = _.extend({}, options);
+	  source = cloudinary.utils.url(source, options);
+	  if ("html_width" in options) options["width"] = cloudinary.utils.option_consume(options, "html_width");
+	  if ("html_height" in options) options["height"] = cloudinary.utils.option_consume(options, "html_height");
+
+	  client_hints = cloudinary.utils.option_consume(options, "client_hints", cloudinary.config().client_hints);
+	  responsive = cloudinary.utils.option_consume(options, "responsive");
+	  hidpi = cloudinary.utils.option_consume(options, "hidpi");
+
+	  if ((responsive || hidpi) && !client_hints) {
+	    options["data-src"] = source;
+	    classes = [responsive ? "cld-responsive" : "cld-hidpi"];
+	    current_class = cloudinary.utils.option_consume(options, "class");
+	    if (current_class) classes.push(current_class);
+	    options["class"] = classes.join(" ");
+	    source = cloudinary.utils.option_consume(options, "responsive_placeholder", cloudinary.config().responsive_placeholder);
+	    if (source == "blank") {
+	      source = cloudinary.BLANK;
+	    }
+	  }
+	  html = "<img ";
+	  if (source) html += "src='" + source + "' ";
+	  html += cloudinary.utils.html_attrs(options) + "/>";
+	  return html;
+	};
+
+	/**
+	 * Creates an HTML video tag for the provided public_id
+	 * @param {String} public_id the resource public ID
+	 * @param {Object} [options] options for the resource and HTML tag
+	 * @param {(String|Array<String>)} [options.source_types] Specify which
+	 *        source type the tag should include. defaults to webm, mp4 and ogv.
+	 * @param {String} [options.source_transformation] specific transformations
+	 *        to use for a specific source type.
+	 * @param {(String|Object)} [options.poster] image URL or
+	 *        poster options that may include a <tt>public_id</tt> key and
+	 *        poster-specific transformations
+	 * @example <caption>Example of generating a video tag:</caption>
+	 * $.cloudinary.video("mymovie.mp4");
+	 * $.cloudinary.video("mymovie.mp4", {source_types: 'webm'});
+	 * $.cloudinary.video("mymovie.ogv", {poster: "myspecialplaceholder.jpg"});
+	 * $.cloudinary.video("mymovie.webm", {source_types: ['webm', 'mp4'], poster: {effect: 'sepia'}});
+	 * @return {string} HTML video tag
+	 */
+	exports.video = function (public_id, options) {
+	  var src, video_options, fallback, source_transformation, source_types, source, multi_source, html;
+	  options = _.extend({}, options);
+	  public_id = public_id.replace(/\.(mp4|ogv|webm)$/, '');
+	  source_types = cloudinary.utils.option_consume(options, 'source_types', []);
+	  source_transformation = cloudinary.utils.option_consume(options, 'source_transformation', {});
+	  fallback = cloudinary.utils.option_consume(options, 'fallback_content', '');
+
+	  if (source_types.length === 0) source_types = cloudinary.utils.DEFAULT_VIDEO_SOURCE_TYPES;
+	  video_options = _.cloneDeep(options);
+
+	  if (video_options.hasOwnProperty('poster')) {
+	    if (_.isPlainObject(video_options.poster)) {
+	      if (video_options.poster.hasOwnProperty('public_id')) {
+	        video_options.poster = cloudinary.utils.url(video_options.poster.public_id, video_options.poster);
+	      } else {
+	        video_options.poster = cloudinary.utils.url(public_id, _.extend({}, cloudinary.utils.DEFAULT_POSTER_OPTIONS, video_options.poster));
+	      }
+	    }
+	  } else {
+	    video_options.poster = cloudinary.utils.url(public_id, _.extend({}, cloudinary.utils.DEFAULT_POSTER_OPTIONS, options));
+	  }
+
+	  if (!video_options.poster) delete video_options.poster;
+
+	  html = '<video ';
+
+	  if (!video_options.hasOwnProperty('resource_type')) video_options.resource_type = 'video';
+	  multi_source = _.isArray(source_types) && source_types.length > 1;
+	  source = public_id;
+	  if (!multi_source) {
+	    source = source + '.' + cloudinary.utils.build_array(source_types)[0];
+	  }
+	  src = cloudinary.utils.url(source, video_options);
+	  if (!multi_source) video_options.src = src;
+	  if (video_options.hasOwnProperty("html_width")) video_options.width = cloudinary.utils.option_consume(video_options, 'html_width');
+	  if (video_options.hasOwnProperty("html_height")) video_options.height = cloudinary.utils.option_consume(video_options, 'html_height');
+	  html = html + cloudinary.utils.html_attrs(video_options) + '>';
+	  if (multi_source) {
+	    var source_type, transformation, video_type, mime_type;
+	    for (var i = 0; i < source_types.length; i++) {
+	      source_type = source_types[i];
+	      transformation = source_transformation[source_type] || {};
+	      src = cloudinary.utils.url(source + "." + source_type, _.extend({resource_type: 'video'}, _.cloneDeep(options), _.cloneDeep(transformation)));
+	      video_type = source_type === 'ogv' ? 'ogg' : source_type;
+	      mime_type = "video/" + video_type;
+	      html = html + '<source ' + cloudinary.utils.html_attrs({
+	        src: src,
+	        type: mime_type
+	      }) + '>';
+	    }
+	  }
+
+	  html = html + fallback;
+	  html = html + '</video>';
+	  return html;
+	};
+	exports.cloudinary_js_config = cloudinary.utils.cloudinary_js_config;
+
+	exports.CF_SHARED_CDN = cloudinary.utils.CF_SHARED_CDN;
+	exports.AKAMAI_SHARED_CDN = cloudinary.utils.AKAMAI_SHARED_CDN;
+	exports.SHARED_CDN = cloudinary.utils.SHARED_CDN;
+	exports.BLANK = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+	exports.v2 = __webpack_require__(451);
+
+
+/***/ },
+/* 427 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
+	 * @license
+	 * lodash 3.10.1 (Custom Build) <https://lodash.com/>
+	 * Build: `lodash modern -d -o ./index.js`
+	 * Copyright 2012-2015 The Dojo Foundation <http://dojofoundation.org/>
+	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 * Available under MIT license <https://lodash.com/license>
+	 */
+	;(function() {
+
+	  /** Used as a safe reference for `undefined` in pre-ES5 environments. */
+	  var undefined;
+
+	  /** Used as the semantic version number. */
+	  var VERSION = '3.10.1';
+
+	  /** Used to compose bitmasks for wrapper metadata. */
+	  var BIND_FLAG = 1,
+	      BIND_KEY_FLAG = 2,
+	      CURRY_BOUND_FLAG = 4,
+	      CURRY_FLAG = 8,
+	      CURRY_RIGHT_FLAG = 16,
+	      PARTIAL_FLAG = 32,
+	      PARTIAL_RIGHT_FLAG = 64,
+	      ARY_FLAG = 128,
+	      REARG_FLAG = 256;
+
+	  /** Used as default options for `_.trunc`. */
+	  var DEFAULT_TRUNC_LENGTH = 30,
+	      DEFAULT_TRUNC_OMISSION = '...';
+
+	  /** Used to detect when a function becomes hot. */
+	  var HOT_COUNT = 150,
+	      HOT_SPAN = 16;
+
+	  /** Used as the size to enable large array optimizations. */
+	  var LARGE_ARRAY_SIZE = 200;
+
+	  /** Used to indicate the type of lazy iteratees. */
+	  var LAZY_FILTER_FLAG = 1,
+	      LAZY_MAP_FLAG = 2;
+
+	  /** Used as the `TypeError` message for "Functions" methods. */
+	  var FUNC_ERROR_TEXT = 'Expected a function';
+
+	  /** Used as the internal argument placeholder. */
+	  var PLACEHOLDER = '__lodash_placeholder__';
+
+	  /** `Object#toString` result references. */
+	  var argsTag = '[object Arguments]',
+	      arrayTag = '[object Array]',
+	      boolTag = '[object Boolean]',
+	      dateTag = '[object Date]',
+	      errorTag = '[object Error]',
+	      funcTag = '[object Function]',
+	      mapTag = '[object Map]',
+	      numberTag = '[object Number]',
+	      objectTag = '[object Object]',
+	      regexpTag = '[object RegExp]',
+	      setTag = '[object Set]',
+	      stringTag = '[object String]',
+	      weakMapTag = '[object WeakMap]';
+
+	  var arrayBufferTag = '[object ArrayBuffer]',
+	      float32Tag = '[object Float32Array]',
+	      float64Tag = '[object Float64Array]',
+	      int8Tag = '[object Int8Array]',
+	      int16Tag = '[object Int16Array]',
+	      int32Tag = '[object Int32Array]',
+	      uint8Tag = '[object Uint8Array]',
+	      uint8ClampedTag = '[object Uint8ClampedArray]',
+	      uint16Tag = '[object Uint16Array]',
+	      uint32Tag = '[object Uint32Array]';
+
+	  /** Used to match empty string literals in compiled template source. */
+	  var reEmptyStringLeading = /\b__p \+= '';/g,
+	      reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
+	      reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
+
+	  /** Used to match HTML entities and HTML characters. */
+	  var reEscapedHtml = /&(?:amp|lt|gt|quot|#39|#96);/g,
+	      reUnescapedHtml = /[&<>"'`]/g,
+	      reHasEscapedHtml = RegExp(reEscapedHtml.source),
+	      reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
+
+	  /** Used to match template delimiters. */
+	  var reEscape = /<%-([\s\S]+?)%>/g,
+	      reEvaluate = /<%([\s\S]+?)%>/g,
+	      reInterpolate = /<%=([\s\S]+?)%>/g;
+
+	  /** Used to match property names within property paths. */
+	  var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\n\\]|\\.)*?\1)\]/,
+	      reIsPlainProp = /^\w*$/,
+	      rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\n\\]|\\.)*?)\2)\]/g;
+
+	  /**
+	   * Used to match `RegExp` [syntax characters](http://ecma-international.org/ecma-262/6.0/#sec-patterns)
+	   * and those outlined by [`EscapeRegExpPattern`](http://ecma-international.org/ecma-262/6.0/#sec-escaperegexppattern).
+	   */
+	  var reRegExpChars = /^[:!,]|[\\^$.*+?()[\]{}|\/]|(^[0-9a-fA-Fnrtuvx])|([\n\r\u2028\u2029])/g,
+	      reHasRegExpChars = RegExp(reRegExpChars.source);
+
+	  /** Used to match [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks). */
+	  var reComboMark = /[\u0300-\u036f\ufe20-\ufe23]/g;
+
+	  /** Used to match backslashes in property paths. */
+	  var reEscapeChar = /\\(\\)?/g;
+
+	  /** Used to match [ES template delimiters](http://ecma-international.org/ecma-262/6.0/#sec-template-literal-lexical-components). */
+	  var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
+
+	  /** Used to match `RegExp` flags from their coerced string values. */
+	  var reFlags = /\w*$/;
+
+	  /** Used to detect hexadecimal string values. */
+	  var reHasHexPrefix = /^0[xX]/;
+
+	  /** Used to detect host constructors (Safari > 5). */
+	  var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+	  /** Used to detect unsigned integer values. */
+	  var reIsUint = /^\d+$/;
+
+	  /** Used to match latin-1 supplementary letters (excluding mathematical operators). */
+	  var reLatin1 = /[\xc0-\xd6\xd8-\xde\xdf-\xf6\xf8-\xff]/g;
+
+	  /** Used to ensure capturing order of template delimiters. */
+	  var reNoMatch = /($^)/;
+
+	  /** Used to match unescaped characters in compiled string literals. */
+	  var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
+
+	  /** Used to match words to create compound words. */
+	  var reWords = (function() {
+	    var upper = '[A-Z\\xc0-\\xd6\\xd8-\\xde]',
+	        lower = '[a-z\\xdf-\\xf6\\xf8-\\xff]+';
+
+	    return RegExp(upper + '+(?=' + upper + lower + ')|' + upper + '?' + lower + '|' + upper + '+|[0-9]+', 'g');
+	  }());
+
+	  /** Used to assign default `context` object properties. */
+	  var contextProps = [
+	    'Array', 'ArrayBuffer', 'Date', 'Error', 'Float32Array', 'Float64Array',
+	    'Function', 'Int8Array', 'Int16Array', 'Int32Array', 'Math', 'Number',
+	    'Object', 'RegExp', 'Set', 'String', '_', 'clearTimeout', 'isFinite',
+	    'parseFloat', 'parseInt', 'setTimeout', 'TypeError', 'Uint8Array',
+	    'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'WeakMap'
+	  ];
+
+	  /** Used to make template sourceURLs easier to identify. */
+	  var templateCounter = -1;
+
+	  /** Used to identify `toStringTag` values of typed arrays. */
+	  var typedArrayTags = {};
+	  typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
+	  typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
+	  typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
+	  typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
+	  typedArrayTags[uint32Tag] = true;
+	  typedArrayTags[argsTag] = typedArrayTags[arrayTag] =
+	  typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
+	  typedArrayTags[dateTag] = typedArrayTags[errorTag] =
+	  typedArrayTags[funcTag] = typedArrayTags[mapTag] =
+	  typedArrayTags[numberTag] = typedArrayTags[objectTag] =
+	  typedArrayTags[regexpTag] = typedArrayTags[setTag] =
+	  typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+
+	  /** Used to identify `toStringTag` values supported by `_.clone`. */
+	  var cloneableTags = {};
+	  cloneableTags[argsTag] = cloneableTags[arrayTag] =
+	  cloneableTags[arrayBufferTag] = cloneableTags[boolTag] =
+	  cloneableTags[dateTag] = cloneableTags[float32Tag] =
+	  cloneableTags[float64Tag] = cloneableTags[int8Tag] =
+	  cloneableTags[int16Tag] = cloneableTags[int32Tag] =
+	  cloneableTags[numberTag] = cloneableTags[objectTag] =
+	  cloneableTags[regexpTag] = cloneableTags[stringTag] =
+	  cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] =
+	  cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+	  cloneableTags[errorTag] = cloneableTags[funcTag] =
+	  cloneableTags[mapTag] = cloneableTags[setTag] =
+	  cloneableTags[weakMapTag] = false;
+
+	  /** Used to map latin-1 supplementary letters to basic latin letters. */
+	  var deburredLetters = {
+	    '\xc0': 'A',  '\xc1': 'A', '\xc2': 'A', '\xc3': 'A', '\xc4': 'A', '\xc5': 'A',
+	    '\xe0': 'a',  '\xe1': 'a', '\xe2': 'a', '\xe3': 'a', '\xe4': 'a', '\xe5': 'a',
+	    '\xc7': 'C',  '\xe7': 'c',
+	    '\xd0': 'D',  '\xf0': 'd',
+	    '\xc8': 'E',  '\xc9': 'E', '\xca': 'E', '\xcb': 'E',
+	    '\xe8': 'e',  '\xe9': 'e', '\xea': 'e', '\xeb': 'e',
+	    '\xcC': 'I',  '\xcd': 'I', '\xce': 'I', '\xcf': 'I',
+	    '\xeC': 'i',  '\xed': 'i', '\xee': 'i', '\xef': 'i',
+	    '\xd1': 'N',  '\xf1': 'n',
+	    '\xd2': 'O',  '\xd3': 'O', '\xd4': 'O', '\xd5': 'O', '\xd6': 'O', '\xd8': 'O',
+	    '\xf2': 'o',  '\xf3': 'o', '\xf4': 'o', '\xf5': 'o', '\xf6': 'o', '\xf8': 'o',
+	    '\xd9': 'U',  '\xda': 'U', '\xdb': 'U', '\xdc': 'U',
+	    '\xf9': 'u',  '\xfa': 'u', '\xfb': 'u', '\xfc': 'u',
+	    '\xdd': 'Y',  '\xfd': 'y', '\xff': 'y',
+	    '\xc6': 'Ae', '\xe6': 'ae',
+	    '\xde': 'Th', '\xfe': 'th',
+	    '\xdf': 'ss'
+	  };
+
+	  /** Used to map characters to HTML entities. */
+	  var htmlEscapes = {
+	    '&': '&amp;',
+	    '<': '&lt;',
+	    '>': '&gt;',
+	    '"': '&quot;',
+	    "'": '&#39;',
+	    '`': '&#96;'
+	  };
+
+	  /** Used to map HTML entities to characters. */
+	  var htmlUnescapes = {
+	    '&amp;': '&',
+	    '&lt;': '<',
+	    '&gt;': '>',
+	    '&quot;': '"',
+	    '&#39;': "'",
+	    '&#96;': '`'
+	  };
+
+	  /** Used to determine if values are of the language type `Object`. */
+	  var objectTypes = {
+	    'function': true,
+	    'object': true
+	  };
+
+	  /** Used to escape characters for inclusion in compiled regexes. */
+	  var regexpEscapes = {
+	    '0': 'x30', '1': 'x31', '2': 'x32', '3': 'x33', '4': 'x34',
+	    '5': 'x35', '6': 'x36', '7': 'x37', '8': 'x38', '9': 'x39',
+	    'A': 'x41', 'B': 'x42', 'C': 'x43', 'D': 'x44', 'E': 'x45', 'F': 'x46',
+	    'a': 'x61', 'b': 'x62', 'c': 'x63', 'd': 'x64', 'e': 'x65', 'f': 'x66',
+	    'n': 'x6e', 'r': 'x72', 't': 'x74', 'u': 'x75', 'v': 'x76', 'x': 'x78'
+	  };
+
+	  /** Used to escape characters for inclusion in compiled string literals. */
+	  var stringEscapes = {
+	    '\\': '\\',
+	    "'": "'",
+	    '\n': 'n',
+	    '\r': 'r',
+	    '\u2028': 'u2028',
+	    '\u2029': 'u2029'
+	  };
+
+	  /** Detect free variable `exports`. */
+	  var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
+
+	  /** Detect free variable `module`. */
+	  var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
+
+	  /** Detect free variable `global` from Node.js. */
+	  var freeGlobal = freeExports && freeModule && typeof global == 'object' && global && global.Object && global;
+
+	  /** Detect free variable `self`. */
+	  var freeSelf = objectTypes[typeof self] && self && self.Object && self;
+
+	  /** Detect free variable `window`. */
+	  var freeWindow = objectTypes[typeof window] && window && window.Object && window;
+
+	  /** Detect the popular CommonJS extension `module.exports`. */
+	  var moduleExports = freeModule && freeModule.exports === freeExports && freeExports;
+
+	  /**
+	   * Used as a reference to the global object.
+	   *
+	   * The `this` value is used if it's the global object to avoid Greasemonkey's
+	   * restricted `window` object, otherwise the `window` object is used.
+	   */
+	  var root = freeGlobal || ((freeWindow !== (this && this.window)) && freeWindow) || freeSelf || this;
+
+	  /*--------------------------------------------------------------------------*/
+
+	  /**
+	   * The base implementation of `compareAscending` which compares values and
+	   * sorts them in ascending order without guaranteeing a stable sort.
+	   *
+	   * @private
+	   * @param {*} value The value to compare.
+	   * @param {*} other The other value to compare.
+	   * @returns {number} Returns the sort order indicator for `value`.
+	   */
+	  function baseCompareAscending(value, other) {
+	    if (value !== other) {
+	      var valIsNull = value === null,
+	          valIsUndef = value === undefined,
+	          valIsReflexive = value === value;
+
+	      var othIsNull = other === null,
+	          othIsUndef = other === undefined,
+	          othIsReflexive = other === other;
+
+	      if ((value > other && !othIsNull) || !valIsReflexive ||
+	          (valIsNull && !othIsUndef && othIsReflexive) ||
+	          (valIsUndef && othIsReflexive)) {
+	        return 1;
+	      }
+	      if ((value < other && !valIsNull) || !othIsReflexive ||
+	          (othIsNull && !valIsUndef && valIsReflexive) ||
+	          (othIsUndef && valIsReflexive)) {
+	        return -1;
+	      }
+	    }
+	    return 0;
+	  }
+
+	  /**
+	   * The base implementation of `_.findIndex` and `_.findLastIndex` without
+	   * support for callback shorthands and `this` binding.
+	   *
+	   * @private
+	   * @param {Array} array The array to search.
+	   * @param {Function} predicate The function invoked per iteration.
+	   * @param {boolean} [fromRight] Specify iterating from right to left.
+	   * @returns {number} Returns the index of the matched value, else `-1`.
+	   */
+	  function baseFindIndex(array, predicate, fromRight) {
+	    var length = array.length,
+	        index = fromRight ? length : -1;
+
+	    while ((fromRight ? index-- : ++index < length)) {
+	      if (predicate(array[index], index, array)) {
+	        return index;
+	      }
+	    }
+	    return -1;
+	  }
+
+	  /**
+	   * The base implementation of `_.indexOf` without support for binary searches.
+	   *
+	   * @private
+	   * @param {Array} array The array to search.
+	   * @param {*} value The value to search for.
+	   * @param {number} fromIndex The index to search from.
+	   * @returns {number} Returns the index of the matched value, else `-1`.
+	   */
+	  function baseIndexOf(array, value, fromIndex) {
+	    if (value !== value) {
+	      return indexOfNaN(array, fromIndex);
+	    }
+	    var index = fromIndex - 1,
+	        length = array.length;
+
+	    while (++index < length) {
+	      if (array[index] === value) {
+	        return index;
+	      }
+	    }
+	    return -1;
+	  }
+
+	  /**
+	   * The base implementation of `_.isFunction` without support for environments
+	   * with incorrect `typeof` results.
+	   *
+	   * @private
+	   * @param {*} value The value to check.
+	   * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	   */
+	  function baseIsFunction(value) {
+	    // Avoid a Chakra JIT bug in compatibility modes of IE 11.
+	    // See https://github.com/jashkenas/underscore/issues/1621 for more details.
+	    return typeof value == 'function' || false;
+	  }
+
+	  /**
+	   * Converts `value` to a string if it's not one. An empty string is returned
+	   * for `null` or `undefined` values.
+	   *
+	   * @private
+	   * @param {*} value The value to process.
+	   * @returns {string} Returns the string.
+	   */
+	  function baseToString(value) {
+	    return value == null ? '' : (value + '');
+	  }
+
+	  /**
+	   * Used by `_.trim` and `_.trimLeft` to get the index of the first character
+	   * of `string` that is not found in `chars`.
+	   *
+	   * @private
+	   * @param {string} string The string to inspect.
+	   * @param {string} chars The characters to find.
+	   * @returns {number} Returns the index of the first character not found in `chars`.
+	   */
+	  function charsLeftIndex(string, chars) {
+	    var index = -1,
+	        length = string.length;
+
+	    while (++index < length && chars.indexOf(string.charAt(index)) > -1) {}
+	    return index;
+	  }
+
+	  /**
+	   * Used by `_.trim` and `_.trimRight` to get the index of the last character
+	   * of `string` that is not found in `chars`.
+	   *
+	   * @private
+	   * @param {string} string The string to inspect.
+	   * @param {string} chars The characters to find.
+	   * @returns {number} Returns the index of the last character not found in `chars`.
+	   */
+	  function charsRightIndex(string, chars) {
+	    var index = string.length;
+
+	    while (index-- && chars.indexOf(string.charAt(index)) > -1) {}
+	    return index;
+	  }
+
+	  /**
+	   * Used by `_.sortBy` to compare transformed elements of a collection and stable
+	   * sort them in ascending order.
+	   *
+	   * @private
+	   * @param {Object} object The object to compare.
+	   * @param {Object} other The other object to compare.
+	   * @returns {number} Returns the sort order indicator for `object`.
+	   */
+	  function compareAscending(object, other) {
+	    return baseCompareAscending(object.criteria, other.criteria) || (object.index - other.index);
+	  }
+
+	  /**
+	   * Used by `_.sortByOrder` to compare multiple properties of a value to another
+	   * and stable sort them.
+	   *
+	   * If `orders` is unspecified, all valuess are sorted in ascending order. Otherwise,
+	   * a value is sorted in ascending order if its corresponding order is "asc", and
+	   * descending if "desc".
+	   *
+	   * @private
+	   * @param {Object} object The object to compare.
+	   * @param {Object} other The other object to compare.
+	   * @param {boolean[]} orders The order to sort by for each property.
+	   * @returns {number} Returns the sort order indicator for `object`.
+	   */
+	  function compareMultiple(object, other, orders) {
+	    var index = -1,
+	        objCriteria = object.criteria,
+	        othCriteria = other.criteria,
+	        length = objCriteria.length,
+	        ordersLength = orders.length;
+
+	    while (++index < length) {
+	      var result = baseCompareAscending(objCriteria[index], othCriteria[index]);
+	      if (result) {
+	        if (index >= ordersLength) {
+	          return result;
+	        }
+	        var order = orders[index];
+	        return result * ((order === 'asc' || order === true) ? 1 : -1);
+	      }
+	    }
+	    // Fixes an `Array#sort` bug in the JS engine embedded in Adobe applications
+	    // that causes it, under certain circumstances, to provide the same value for
+	    // `object` and `other`. See https://github.com/jashkenas/underscore/pull/1247
+	    // for more details.
+	    //
+	    // This also ensures a stable sort in V8 and other engines.
+	    // See https://code.google.com/p/v8/issues/detail?id=90 for more details.
+	    return object.index - other.index;
+	  }
+
+	  /**
+	   * Used by `_.deburr` to convert latin-1 supplementary letters to basic latin letters.
+	   *
+	   * @private
+	   * @param {string} letter The matched letter to deburr.
+	   * @returns {string} Returns the deburred letter.
+	   */
+	  function deburrLetter(letter) {
+	    return deburredLetters[letter];
+	  }
+
+	  /**
+	   * Used by `_.escape` to convert characters to HTML entities.
+	   *
+	   * @private
+	   * @param {string} chr The matched character to escape.
+	   * @returns {string} Returns the escaped character.
+	   */
+	  function escapeHtmlChar(chr) {
+	    return htmlEscapes[chr];
+	  }
+
+	  /**
+	   * Used by `_.escapeRegExp` to escape characters for inclusion in compiled regexes.
+	   *
+	   * @private
+	   * @param {string} chr The matched character to escape.
+	   * @param {string} leadingChar The capture group for a leading character.
+	   * @param {string} whitespaceChar The capture group for a whitespace character.
+	   * @returns {string} Returns the escaped character.
+	   */
+	  function escapeRegExpChar(chr, leadingChar, whitespaceChar) {
+	    if (leadingChar) {
+	      chr = regexpEscapes[chr];
+	    } else if (whitespaceChar) {
+	      chr = stringEscapes[chr];
+	    }
+	    return '\\' + chr;
+	  }
+
+	  /**
+	   * Used by `_.template` to escape characters for inclusion in compiled string literals.
+	   *
+	   * @private
+	   * @param {string} chr The matched character to escape.
+	   * @returns {string} Returns the escaped character.
+	   */
+	  function escapeStringChar(chr) {
+	    return '\\' + stringEscapes[chr];
+	  }
+
+	  /**
+	   * Gets the index at which the first occurrence of `NaN` is found in `array`.
+	   *
+	   * @private
+	   * @param {Array} array The array to search.
+	   * @param {number} fromIndex The index to search from.
+	   * @param {boolean} [fromRight] Specify iterating from right to left.
+	   * @returns {number} Returns the index of the matched `NaN`, else `-1`.
+	   */
+	  function indexOfNaN(array, fromIndex, fromRight) {
+	    var length = array.length,
+	        index = fromIndex + (fromRight ? 0 : -1);
+
+	    while ((fromRight ? index-- : ++index < length)) {
+	      var other = array[index];
+	      if (other !== other) {
+	        return index;
+	      }
+	    }
+	    return -1;
+	  }
+
+	  /**
+	   * Checks if `value` is object-like.
+	   *
+	   * @private
+	   * @param {*} value The value to check.
+	   * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+	   */
+	  function isObjectLike(value) {
+	    return !!value && typeof value == 'object';
+	  }
+
+	  /**
+	   * Used by `trimmedLeftIndex` and `trimmedRightIndex` to determine if a
+	   * character code is whitespace.
+	   *
+	   * @private
+	   * @param {number} charCode The character code to inspect.
+	   * @returns {boolean} Returns `true` if `charCode` is whitespace, else `false`.
+	   */
+	  function isSpace(charCode) {
+	    return ((charCode <= 160 && (charCode >= 9 && charCode <= 13) || charCode == 32 || charCode == 160) || charCode == 5760 || charCode == 6158 ||
+	      (charCode >= 8192 && (charCode <= 8202 || charCode == 8232 || charCode == 8233 || charCode == 8239 || charCode == 8287 || charCode == 12288 || charCode == 65279)));
+	  }
+
+	  /**
+	   * Replaces all `placeholder` elements in `array` with an internal placeholder
+	   * and returns an array of their indexes.
+	   *
+	   * @private
+	   * @param {Array} array The array to modify.
+	   * @param {*} placeholder The placeholder to replace.
+	   * @returns {Array} Returns the new array of placeholder indexes.
+	   */
+	  function replaceHolders(array, placeholder) {
+	    var index = -1,
+	        length = array.length,
+	        resIndex = -1,
+	        result = [];
+
+	    while (++index < length) {
+	      if (array[index] === placeholder) {
+	        array[index] = PLACEHOLDER;
+	        result[++resIndex] = index;
+	      }
+	    }
+	    return result;
+	  }
+
+	  /**
+	   * An implementation of `_.uniq` optimized for sorted arrays without support
+	   * for callback shorthands and `this` binding.
+	   *
+	   * @private
+	   * @param {Array} array The array to inspect.
+	   * @param {Function} [iteratee] The function invoked per iteration.
+	   * @returns {Array} Returns the new duplicate-value-free array.
+	   */
+	  function sortedUniq(array, iteratee) {
+	    var seen,
+	        index = -1,
+	        length = array.length,
+	        resIndex = -1,
+	        result = [];
+
+	    while (++index < length) {
+	      var value = array[index],
+	          computed = iteratee ? iteratee(value, index, array) : value;
+
+	      if (!index || seen !== computed) {
+	        seen = computed;
+	        result[++resIndex] = value;
+	      }
+	    }
+	    return result;
+	  }
+
+	  /**
+	   * Used by `_.trim` and `_.trimLeft` to get the index of the first non-whitespace
+	   * character of `string`.
+	   *
+	   * @private
+	   * @param {string} string The string to inspect.
+	   * @returns {number} Returns the index of the first non-whitespace character.
+	   */
+	  function trimmedLeftIndex(string) {
+	    var index = -1,
+	        length = string.length;
+
+	    while (++index < length && isSpace(string.charCodeAt(index))) {}
+	    return index;
+	  }
+
+	  /**
+	   * Used by `_.trim` and `_.trimRight` to get the index of the last non-whitespace
+	   * character of `string`.
+	   *
+	   * @private
+	   * @param {string} string The string to inspect.
+	   * @returns {number} Returns the index of the last non-whitespace character.
+	   */
+	  function trimmedRightIndex(string) {
+	    var index = string.length;
+
+	    while (index-- && isSpace(string.charCodeAt(index))) {}
+	    return index;
+	  }
+
+	  /**
+	   * Used by `_.unescape` to convert HTML entities to characters.
+	   *
+	   * @private
+	   * @param {string} chr The matched character to unescape.
+	   * @returns {string} Returns the unescaped character.
+	   */
+	  function unescapeHtmlChar(chr) {
+	    return htmlUnescapes[chr];
+	  }
+
+	  /*--------------------------------------------------------------------------*/
+
+	  /**
+	   * Create a new pristine `lodash` function using the given `context` object.
+	   *
+	   * @static
+	   * @memberOf _
+	   * @category Utility
+	   * @param {Object} [context=root] The context object.
+	   * @returns {Function} Returns a new `lodash` function.
+	   * @example
+	   *
+	   * _.mixin({ 'foo': _.constant('foo') });
+	   *
+	   * var lodash = _.runInContext();
+	   * lodash.mixin({ 'bar': lodash.constant('bar') });
+	   *
+	   * _.isFunction(_.foo);
+	   * // => true
+	   * _.isFunction(_.bar);
+	   * // => false
+	   *
+	   * lodash.isFunction(lodash.foo);
+	   * // => false
+	   * lodash.isFunction(lodash.bar);
+	   * // => true
+	   *
+	   * // using `context` to mock `Date#getTime` use in `_.now`
+	   * var mock = _.runInContext({
+	   *   'Date': function() {
+	   *     return { 'getTime': getTimeMock };
+	   *   }
+	   * });
+	   *
+	   * // or creating a suped-up `defer` in Node.js
+	   * var defer = _.runInContext({ 'setTimeout': setImmediate }).defer;
+	   */
+	  function runInContext(context) {
+	    // Avoid issues with some ES3 environments that attempt to use values, named
+	    // after built-in constructors like `Object`, for the creation of literals.
+	    // ES5 clears this up by stating that literals must use built-in constructors.
+	    // See https://es5.github.io/#x11.1.5 for more details.
+	    context = context ? _.defaults(root.Object(), context, _.pick(root, contextProps)) : root;
+
+	    /** Native constructor references. */
+	    var Array = context.Array,
+	        Date = context.Date,
+	        Error = context.Error,
+	        Function = context.Function,
+	        Math = context.Math,
+	        Number = context.Number,
+	        Object = context.Object,
+	        RegExp = context.RegExp,
+	        String = context.String,
+	        TypeError = context.TypeError;
+
+	    /** Used for native method references. */
+	    var arrayProto = Array.prototype,
+	        objectProto = Object.prototype,
+	        stringProto = String.prototype;
+
+	    /** Used to resolve the decompiled source of functions. */
+	    var fnToString = Function.prototype.toString;
+
+	    /** Used to check objects for own properties. */
+	    var hasOwnProperty = objectProto.hasOwnProperty;
+
+	    /** Used to generate unique IDs. */
+	    var idCounter = 0;
+
+	    /**
+	     * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	     * of values.
+	     */
+	    var objToString = objectProto.toString;
+
+	    /** Used to restore the original `_` reference in `_.noConflict`. */
+	    var oldDash = root._;
+
+	    /** Used to detect if a method is native. */
+	    var reIsNative = RegExp('^' +
+	      fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
+	      .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+	    );
+
+	    /** Native method references. */
+	    var ArrayBuffer = context.ArrayBuffer,
+	        clearTimeout = context.clearTimeout,
+	        parseFloat = context.parseFloat,
+	        pow = Math.pow,
+	        propertyIsEnumerable = objectProto.propertyIsEnumerable,
+	        Set = getNative(context, 'Set'),
+	        setTimeout = context.setTimeout,
+	        splice = arrayProto.splice,
+	        Uint8Array = context.Uint8Array,
+	        WeakMap = getNative(context, 'WeakMap');
+
+	    /* Native method references for those with the same name as other `lodash` methods. */
+	    var nativeCeil = Math.ceil,
+	        nativeCreate = getNative(Object, 'create'),
+	        nativeFloor = Math.floor,
+	        nativeIsArray = getNative(Array, 'isArray'),
+	        nativeIsFinite = context.isFinite,
+	        nativeKeys = getNative(Object, 'keys'),
+	        nativeMax = Math.max,
+	        nativeMin = Math.min,
+	        nativeNow = getNative(Date, 'now'),
+	        nativeParseInt = context.parseInt,
+	        nativeRandom = Math.random;
+
+	    /** Used as references for `-Infinity` and `Infinity`. */
+	    var NEGATIVE_INFINITY = Number.NEGATIVE_INFINITY,
+	        POSITIVE_INFINITY = Number.POSITIVE_INFINITY;
+
+	    /** Used as references for the maximum length and index of an array. */
+	    var MAX_ARRAY_LENGTH = 4294967295,
+	        MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1,
+	        HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
+
+	    /**
+	     * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
+	     * of an array-like value.
+	     */
+	    var MAX_SAFE_INTEGER = 9007199254740991;
+
+	    /** Used to store function metadata. */
+	    var metaMap = WeakMap && new WeakMap;
+
+	    /** Used to lookup unminified function names. */
+	    var realNames = {};
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Creates a `lodash` object which wraps `value` to enable implicit chaining.
+	     * Methods that operate on and return arrays, collections, and functions can
+	     * be chained together. Methods that retrieve a single value or may return a
+	     * primitive value will automatically end the chain returning the unwrapped
+	     * value. Explicit chaining may be enabled using `_.chain`. The execution of
+	     * chained methods is lazy, that is, execution is deferred until `_#value`
+	     * is implicitly or explicitly called.
+	     *
+	     * Lazy evaluation allows several methods to support shortcut fusion. Shortcut
+	     * fusion is an optimization strategy which merge iteratee calls; this can help
+	     * to avoid the creation of intermediate data structures and greatly reduce the
+	     * number of iteratee executions.
+	     *
+	     * Chaining is supported in custom builds as long as the `_#value` method is
+	     * directly or indirectly included in the build.
+	     *
+	     * In addition to lodash methods, wrappers have `Array` and `String` methods.
+	     *
+	     * The wrapper `Array` methods are:
+	     * `concat`, `join`, `pop`, `push`, `reverse`, `shift`, `slice`, `sort`,
+	     * `splice`, and `unshift`
+	     *
+	     * The wrapper `String` methods are:
+	     * `replace` and `split`
+	     *
+	     * The wrapper methods that support shortcut fusion are:
+	     * `compact`, `drop`, `dropRight`, `dropRightWhile`, `dropWhile`, `filter`,
+	     * `first`, `initial`, `last`, `map`, `pluck`, `reject`, `rest`, `reverse`,
+	     * `slice`, `take`, `takeRight`, `takeRightWhile`, `takeWhile`, `toArray`,
+	     * and `where`
+	     *
+	     * The chainable wrapper methods are:
+	     * `after`, `ary`, `assign`, `at`, `before`, `bind`, `bindAll`, `bindKey`,
+	     * `callback`, `chain`, `chunk`, `commit`, `compact`, `concat`, `constant`,
+	     * `countBy`, `create`, `curry`, `debounce`, `defaults`, `defaultsDeep`,
+	     * `defer`, `delay`, `difference`, `drop`, `dropRight`, `dropRightWhile`,
+	     * `dropWhile`, `fill`, `filter`, `flatten`, `flattenDeep`, `flow`, `flowRight`,
+	     * `forEach`, `forEachRight`, `forIn`, `forInRight`, `forOwn`, `forOwnRight`,
+	     * `functions`, `groupBy`, `indexBy`, `initial`, `intersection`, `invert`,
+	     * `invoke`, `keys`, `keysIn`, `map`, `mapKeys`, `mapValues`, `matches`,
+	     * `matchesProperty`, `memoize`, `merge`, `method`, `methodOf`, `mixin`,
+	     * `modArgs`, `negate`, `omit`, `once`, `pairs`, `partial`, `partialRight`,
+	     * `partition`, `pick`, `plant`, `pluck`, `property`, `propertyOf`, `pull`,
+	     * `pullAt`, `push`, `range`, `rearg`, `reject`, `remove`, `rest`, `restParam`,
+	     * `reverse`, `set`, `shuffle`, `slice`, `sort`, `sortBy`, `sortByAll`,
+	     * `sortByOrder`, `splice`, `spread`, `take`, `takeRight`, `takeRightWhile`,
+	     * `takeWhile`, `tap`, `throttle`, `thru`, `times`, `toArray`, `toPlainObject`,
+	     * `transform`, `union`, `uniq`, `unshift`, `unzip`, `unzipWith`, `values`,
+	     * `valuesIn`, `where`, `without`, `wrap`, `xor`, `zip`, `zipObject`, `zipWith`
+	     *
+	     * The wrapper methods that are **not** chainable by default are:
+	     * `add`, `attempt`, `camelCase`, `capitalize`, `ceil`, `clone`, `cloneDeep`,
+	     * `deburr`, `endsWith`, `escape`, `escapeRegExp`, `every`, `find`, `findIndex`,
+	     * `findKey`, `findLast`, `findLastIndex`, `findLastKey`, `findWhere`, `first`,
+	     * `floor`, `get`, `gt`, `gte`, `has`, `identity`, `includes`, `indexOf`,
+	     * `inRange`, `isArguments`, `isArray`, `isBoolean`, `isDate`, `isElement`,
+	     * `isEmpty`, `isEqual`, `isError`, `isFinite` `isFunction`, `isMatch`,
+	     * `isNative`, `isNaN`, `isNull`, `isNumber`, `isObject`, `isPlainObject`,
+	     * `isRegExp`, `isString`, `isUndefined`, `isTypedArray`, `join`, `kebabCase`,
+	     * `last`, `lastIndexOf`, `lt`, `lte`, `max`, `min`, `noConflict`, `noop`,
+	     * `now`, `pad`, `padLeft`, `padRight`, `parseInt`, `pop`, `random`, `reduce`,
+	     * `reduceRight`, `repeat`, `result`, `round`, `runInContext`, `shift`, `size`,
+	     * `snakeCase`, `some`, `sortedIndex`, `sortedLastIndex`, `startCase`,
+	     * `startsWith`, `sum`, `template`, `trim`, `trimLeft`, `trimRight`, `trunc`,
+	     * `unescape`, `uniqueId`, `value`, and `words`
+	     *
+	     * The wrapper method `sample` will return a wrapped value when `n` is provided,
+	     * otherwise an unwrapped value is returned.
+	     *
+	     * @name _
+	     * @constructor
+	     * @category Chain
+	     * @param {*} value The value to wrap in a `lodash` instance.
+	     * @returns {Object} Returns the new `lodash` wrapper instance.
+	     * @example
+	     *
+	     * var wrapped = _([1, 2, 3]);
+	     *
+	     * // returns an unwrapped value
+	     * wrapped.reduce(function(total, n) {
+	     *   return total + n;
+	     * });
+	     * // => 6
+	     *
+	     * // returns a wrapped value
+	     * var squares = wrapped.map(function(n) {
+	     *   return n * n;
+	     * });
+	     *
+	     * _.isArray(squares);
+	     * // => false
+	     *
+	     * _.isArray(squares.value());
+	     * // => true
+	     */
+	    function lodash(value) {
+	      if (isObjectLike(value) && !isArray(value) && !(value instanceof LazyWrapper)) {
+	        if (value instanceof LodashWrapper) {
+	          return value;
+	        }
+	        if (hasOwnProperty.call(value, '__chain__') && hasOwnProperty.call(value, '__wrapped__')) {
+	          return wrapperClone(value);
+	        }
+	      }
+	      return new LodashWrapper(value);
+	    }
+
+	    /**
+	     * The function whose prototype all chaining wrappers inherit from.
+	     *
+	     * @private
+	     */
+	    function baseLodash() {
+	      // No operation performed.
+	    }
+
+	    /**
+	     * The base constructor for creating `lodash` wrapper objects.
+	     *
+	     * @private
+	     * @param {*} value The value to wrap.
+	     * @param {boolean} [chainAll] Enable chaining for all wrapper methods.
+	     * @param {Array} [actions=[]] Actions to peform to resolve the unwrapped value.
+	     */
+	    function LodashWrapper(value, chainAll, actions) {
+	      this.__wrapped__ = value;
+	      this.__actions__ = actions || [];
+	      this.__chain__ = !!chainAll;
+	    }
+
+	    /**
+	     * An object environment feature flags.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @type Object
+	     */
+	    var support = lodash.support = {};
+
+	    /**
+	     * By default, the template delimiters used by lodash are like those in
+	     * embedded Ruby (ERB). Change the following template settings to use
+	     * alternative delimiters.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @type Object
+	     */
+	    lodash.templateSettings = {
+
+	      /**
+	       * Used to detect `data` property values to be HTML-escaped.
+	       *
+	       * @memberOf _.templateSettings
+	       * @type RegExp
+	       */
+	      'escape': reEscape,
+
+	      /**
+	       * Used to detect code to be evaluated.
+	       *
+	       * @memberOf _.templateSettings
+	       * @type RegExp
+	       */
+	      'evaluate': reEvaluate,
+
+	      /**
+	       * Used to detect `data` property values to inject.
+	       *
+	       * @memberOf _.templateSettings
+	       * @type RegExp
+	       */
+	      'interpolate': reInterpolate,
+
+	      /**
+	       * Used to reference the data object in the template text.
+	       *
+	       * @memberOf _.templateSettings
+	       * @type string
+	       */
+	      'variable': '',
+
+	      /**
+	       * Used to import variables into the compiled template.
+	       *
+	       * @memberOf _.templateSettings
+	       * @type Object
+	       */
+	      'imports': {
+
+	        /**
+	         * A reference to the `lodash` function.
+	         *
+	         * @memberOf _.templateSettings.imports
+	         * @type Function
+	         */
+	        '_': lodash
+	      }
+	    };
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Creates a lazy wrapper object which wraps `value` to enable lazy evaluation.
+	     *
+	     * @private
+	     * @param {*} value The value to wrap.
+	     */
+	    function LazyWrapper(value) {
+	      this.__wrapped__ = value;
+	      this.__actions__ = [];
+	      this.__dir__ = 1;
+	      this.__filtered__ = false;
+	      this.__iteratees__ = [];
+	      this.__takeCount__ = POSITIVE_INFINITY;
+	      this.__views__ = [];
+	    }
+
+	    /**
+	     * Creates a clone of the lazy wrapper object.
+	     *
+	     * @private
+	     * @name clone
+	     * @memberOf LazyWrapper
+	     * @returns {Object} Returns the cloned `LazyWrapper` object.
+	     */
+	    function lazyClone() {
+	      var result = new LazyWrapper(this.__wrapped__);
+	      result.__actions__ = arrayCopy(this.__actions__);
+	      result.__dir__ = this.__dir__;
+	      result.__filtered__ = this.__filtered__;
+	      result.__iteratees__ = arrayCopy(this.__iteratees__);
+	      result.__takeCount__ = this.__takeCount__;
+	      result.__views__ = arrayCopy(this.__views__);
+	      return result;
+	    }
+
+	    /**
+	     * Reverses the direction of lazy iteration.
+	     *
+	     * @private
+	     * @name reverse
+	     * @memberOf LazyWrapper
+	     * @returns {Object} Returns the new reversed `LazyWrapper` object.
+	     */
+	    function lazyReverse() {
+	      if (this.__filtered__) {
+	        var result = new LazyWrapper(this);
+	        result.__dir__ = -1;
+	        result.__filtered__ = true;
+	      } else {
+	        result = this.clone();
+	        result.__dir__ *= -1;
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Extracts the unwrapped value from its lazy wrapper.
+	     *
+	     * @private
+	     * @name value
+	     * @memberOf LazyWrapper
+	     * @returns {*} Returns the unwrapped value.
+	     */
+	    function lazyValue() {
+	      var array = this.__wrapped__.value(),
+	          dir = this.__dir__,
+	          isArr = isArray(array),
+	          isRight = dir < 0,
+	          arrLength = isArr ? array.length : 0,
+	          view = getView(0, arrLength, this.__views__),
+	          start = view.start,
+	          end = view.end,
+	          length = end - start,
+	          index = isRight ? end : (start - 1),
+	          iteratees = this.__iteratees__,
+	          iterLength = iteratees.length,
+	          resIndex = 0,
+	          takeCount = nativeMin(length, this.__takeCount__);
+
+	      if (!isArr || arrLength < LARGE_ARRAY_SIZE || (arrLength == length && takeCount == length)) {
+	        return baseWrapperValue((isRight && isArr) ? array.reverse() : array, this.__actions__);
+	      }
+	      var result = [];
+
+	      outer:
+	      while (length-- && resIndex < takeCount) {
+	        index += dir;
+
+	        var iterIndex = -1,
+	            value = array[index];
+
+	        while (++iterIndex < iterLength) {
+	          var data = iteratees[iterIndex],
+	              iteratee = data.iteratee,
+	              type = data.type,
+	              computed = iteratee(value);
+
+	          if (type == LAZY_MAP_FLAG) {
+	            value = computed;
+	          } else if (!computed) {
+	            if (type == LAZY_FILTER_FLAG) {
+	              continue outer;
+	            } else {
+	              break outer;
+	            }
+	          }
+	        }
+	        result[resIndex++] = value;
+	      }
+	      return result;
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Creates a cache object to store key/value pairs.
+	     *
+	     * @private
+	     * @static
+	     * @name Cache
+	     * @memberOf _.memoize
+	     */
+	    function MapCache() {
+	      this.__data__ = {};
+	    }
+
+	    /**
+	     * Removes `key` and its value from the cache.
+	     *
+	     * @private
+	     * @name delete
+	     * @memberOf _.memoize.Cache
+	     * @param {string} key The key of the value to remove.
+	     * @returns {boolean} Returns `true` if the entry was removed successfully, else `false`.
+	     */
+	    function mapDelete(key) {
+	      return this.has(key) && delete this.__data__[key];
+	    }
+
+	    /**
+	     * Gets the cached value for `key`.
+	     *
+	     * @private
+	     * @name get
+	     * @memberOf _.memoize.Cache
+	     * @param {string} key The key of the value to get.
+	     * @returns {*} Returns the cached value.
+	     */
+	    function mapGet(key) {
+	      return key == '__proto__' ? undefined : this.__data__[key];
+	    }
+
+	    /**
+	     * Checks if a cached value for `key` exists.
+	     *
+	     * @private
+	     * @name has
+	     * @memberOf _.memoize.Cache
+	     * @param {string} key The key of the entry to check.
+	     * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+	     */
+	    function mapHas(key) {
+	      return key != '__proto__' && hasOwnProperty.call(this.__data__, key);
+	    }
+
+	    /**
+	     * Sets `value` to `key` of the cache.
+	     *
+	     * @private
+	     * @name set
+	     * @memberOf _.memoize.Cache
+	     * @param {string} key The key of the value to cache.
+	     * @param {*} value The value to cache.
+	     * @returns {Object} Returns the cache object.
+	     */
+	    function mapSet(key, value) {
+	      if (key != '__proto__') {
+	        this.__data__[key] = value;
+	      }
+	      return this;
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     *
+	     * Creates a cache object to store unique values.
+	     *
+	     * @private
+	     * @param {Array} [values] The values to cache.
+	     */
+	    function SetCache(values) {
+	      var length = values ? values.length : 0;
+
+	      this.data = { 'hash': nativeCreate(null), 'set': new Set };
+	      while (length--) {
+	        this.push(values[length]);
+	      }
+	    }
+
+	    /**
+	     * Checks if `value` is in `cache` mimicking the return signature of
+	     * `_.indexOf` by returning `0` if the value is found, else `-1`.
+	     *
+	     * @private
+	     * @param {Object} cache The cache to search.
+	     * @param {*} value The value to search for.
+	     * @returns {number} Returns `0` if `value` is found, else `-1`.
+	     */
+	    function cacheIndexOf(cache, value) {
+	      var data = cache.data,
+	          result = (typeof value == 'string' || isObject(value)) ? data.set.has(value) : data.hash[value];
+
+	      return result ? 0 : -1;
+	    }
+
+	    /**
+	     * Adds `value` to the cache.
+	     *
+	     * @private
+	     * @name push
+	     * @memberOf SetCache
+	     * @param {*} value The value to cache.
+	     */
+	    function cachePush(value) {
+	      var data = this.data;
+	      if (typeof value == 'string' || isObject(value)) {
+	        data.set.add(value);
+	      } else {
+	        data.hash[value] = true;
+	      }
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Creates a new array joining `array` with `other`.
+	     *
+	     * @private
+	     * @param {Array} array The array to join.
+	     * @param {Array} other The other array to join.
+	     * @returns {Array} Returns the new concatenated array.
+	     */
+	    function arrayConcat(array, other) {
+	      var index = -1,
+	          length = array.length,
+	          othIndex = -1,
+	          othLength = other.length,
+	          result = Array(length + othLength);
+
+	      while (++index < length) {
+	        result[index] = array[index];
+	      }
+	      while (++othIndex < othLength) {
+	        result[index++] = other[othIndex];
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Copies the values of `source` to `array`.
+	     *
+	     * @private
+	     * @param {Array} source The array to copy values from.
+	     * @param {Array} [array=[]] The array to copy values to.
+	     * @returns {Array} Returns `array`.
+	     */
+	    function arrayCopy(source, array) {
+	      var index = -1,
+	          length = source.length;
+
+	      array || (array = Array(length));
+	      while (++index < length) {
+	        array[index] = source[index];
+	      }
+	      return array;
+	    }
+
+	    /**
+	     * A specialized version of `_.forEach` for arrays without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {Array} Returns `array`.
+	     */
+	    function arrayEach(array, iteratee) {
+	      var index = -1,
+	          length = array.length;
+
+	      while (++index < length) {
+	        if (iteratee(array[index], index, array) === false) {
+	          break;
+	        }
+	      }
+	      return array;
+	    }
+
+	    /**
+	     * A specialized version of `_.forEachRight` for arrays without support for
+	     * callback shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {Array} Returns `array`.
+	     */
+	    function arrayEachRight(array, iteratee) {
+	      var length = array.length;
+
+	      while (length--) {
+	        if (iteratee(array[length], length, array) === false) {
+	          break;
+	        }
+	      }
+	      return array;
+	    }
+
+	    /**
+	     * A specialized version of `_.every` for arrays without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} predicate The function invoked per iteration.
+	     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+	     *  else `false`.
+	     */
+	    function arrayEvery(array, predicate) {
+	      var index = -1,
+	          length = array.length;
+
+	      while (++index < length) {
+	        if (!predicate(array[index], index, array)) {
+	          return false;
+	        }
+	      }
+	      return true;
+	    }
+
+	    /**
+	     * A specialized version of `baseExtremum` for arrays which invokes `iteratee`
+	     * with one argument: (value).
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @param {Function} comparator The function used to compare values.
+	     * @param {*} exValue The initial extremum value.
+	     * @returns {*} Returns the extremum value.
+	     */
+	    function arrayExtremum(array, iteratee, comparator, exValue) {
+	      var index = -1,
+	          length = array.length,
+	          computed = exValue,
+	          result = computed;
+
+	      while (++index < length) {
+	        var value = array[index],
+	            current = +iteratee(value);
+
+	        if (comparator(current, computed)) {
+	          computed = current;
+	          result = value;
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * A specialized version of `_.filter` for arrays without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} predicate The function invoked per iteration.
+	     * @returns {Array} Returns the new filtered array.
+	     */
+	    function arrayFilter(array, predicate) {
+	      var index = -1,
+	          length = array.length,
+	          resIndex = -1,
+	          result = [];
+
+	      while (++index < length) {
+	        var value = array[index];
+	        if (predicate(value, index, array)) {
+	          result[++resIndex] = value;
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * A specialized version of `_.map` for arrays without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {Array} Returns the new mapped array.
+	     */
+	    function arrayMap(array, iteratee) {
+	      var index = -1,
+	          length = array.length,
+	          result = Array(length);
+
+	      while (++index < length) {
+	        result[index] = iteratee(array[index], index, array);
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Appends the elements of `values` to `array`.
+	     *
+	     * @private
+	     * @param {Array} array The array to modify.
+	     * @param {Array} values The values to append.
+	     * @returns {Array} Returns `array`.
+	     */
+	    function arrayPush(array, values) {
+	      var index = -1,
+	          length = values.length,
+	          offset = array.length;
+
+	      while (++index < length) {
+	        array[offset + index] = values[index];
+	      }
+	      return array;
+	    }
+
+	    /**
+	     * A specialized version of `_.reduce` for arrays without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @param {*} [accumulator] The initial value.
+	     * @param {boolean} [initFromArray] Specify using the first element of `array`
+	     *  as the initial value.
+	     * @returns {*} Returns the accumulated value.
+	     */
+	    function arrayReduce(array, iteratee, accumulator, initFromArray) {
+	      var index = -1,
+	          length = array.length;
+
+	      if (initFromArray && length) {
+	        accumulator = array[++index];
+	      }
+	      while (++index < length) {
+	        accumulator = iteratee(accumulator, array[index], index, array);
+	      }
+	      return accumulator;
+	    }
+
+	    /**
+	     * A specialized version of `_.reduceRight` for arrays without support for
+	     * callback shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @param {*} [accumulator] The initial value.
+	     * @param {boolean} [initFromArray] Specify using the last element of `array`
+	     *  as the initial value.
+	     * @returns {*} Returns the accumulated value.
+	     */
+	    function arrayReduceRight(array, iteratee, accumulator, initFromArray) {
+	      var length = array.length;
+	      if (initFromArray && length) {
+	        accumulator = array[--length];
+	      }
+	      while (length--) {
+	        accumulator = iteratee(accumulator, array[length], length, array);
+	      }
+	      return accumulator;
+	    }
+
+	    /**
+	     * A specialized version of `_.some` for arrays without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} predicate The function invoked per iteration.
+	     * @returns {boolean} Returns `true` if any element passes the predicate check,
+	     *  else `false`.
+	     */
+	    function arraySome(array, predicate) {
+	      var index = -1,
+	          length = array.length;
+
+	      while (++index < length) {
+	        if (predicate(array[index], index, array)) {
+	          return true;
+	        }
+	      }
+	      return false;
+	    }
+
+	    /**
+	     * A specialized version of `_.sum` for arrays without support for callback
+	     * shorthands and `this` binding..
+	     *
+	     * @private
+	     * @param {Array} array The array to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {number} Returns the sum.
+	     */
+	    function arraySum(array, iteratee) {
+	      var length = array.length,
+	          result = 0;
+
+	      while (length--) {
+	        result += +iteratee(array[length]) || 0;
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Used by `_.defaults` to customize its `_.assign` use.
+	     *
+	     * @private
+	     * @param {*} objectValue The destination object property value.
+	     * @param {*} sourceValue The source object property value.
+	     * @returns {*} Returns the value to assign to the destination object.
+	     */
+	    function assignDefaults(objectValue, sourceValue) {
+	      return objectValue === undefined ? sourceValue : objectValue;
+	    }
+
+	    /**
+	     * Used by `_.template` to customize its `_.assign` use.
+	     *
+	     * **Note:** This function is like `assignDefaults` except that it ignores
+	     * inherited property values when checking if a property is `undefined`.
+	     *
+	     * @private
+	     * @param {*} objectValue The destination object property value.
+	     * @param {*} sourceValue The source object property value.
+	     * @param {string} key The key associated with the object and source values.
+	     * @param {Object} object The destination object.
+	     * @returns {*} Returns the value to assign to the destination object.
+	     */
+	    function assignOwnDefaults(objectValue, sourceValue, key, object) {
+	      return (objectValue === undefined || !hasOwnProperty.call(object, key))
+	        ? sourceValue
+	        : objectValue;
+	    }
+
+	    /**
+	     * A specialized version of `_.assign` for customizing assigned values without
+	     * support for argument juggling, multiple sources, and `this` binding `customizer`
+	     * functions.
+	     *
+	     * @private
+	     * @param {Object} object The destination object.
+	     * @param {Object} source The source object.
+	     * @param {Function} customizer The function to customize assigned values.
+	     * @returns {Object} Returns `object`.
+	     */
+	    function assignWith(object, source, customizer) {
+	      var index = -1,
+	          props = keys(source),
+	          length = props.length;
+
+	      while (++index < length) {
+	        var key = props[index],
+	            value = object[key],
+	            result = customizer(value, source[key], key, object, source);
+
+	        if ((result === result ? (result !== value) : (value === value)) ||
+	            (value === undefined && !(key in object))) {
+	          object[key] = result;
+	        }
+	      }
+	      return object;
+	    }
+
+	    /**
+	     * The base implementation of `_.assign` without support for argument juggling,
+	     * multiple sources, and `customizer` functions.
+	     *
+	     * @private
+	     * @param {Object} object The destination object.
+	     * @param {Object} source The source object.
+	     * @returns {Object} Returns `object`.
+	     */
+	    function baseAssign(object, source) {
+	      return source == null
+	        ? object
+	        : baseCopy(source, keys(source), object);
+	    }
+
+	    /**
+	     * The base implementation of `_.at` without support for string collections
+	     * and individual key arguments.
+	     *
+	     * @private
+	     * @param {Array|Object} collection The collection to iterate over.
+	     * @param {number[]|string[]} props The property names or indexes of elements to pick.
+	     * @returns {Array} Returns the new array of picked elements.
+	     */
+	    function baseAt(collection, props) {
+	      var index = -1,
+	          isNil = collection == null,
+	          isArr = !isNil && isArrayLike(collection),
+	          length = isArr ? collection.length : 0,
+	          propsLength = props.length,
+	          result = Array(propsLength);
+
+	      while(++index < propsLength) {
+	        var key = props[index];
+	        if (isArr) {
+	          result[index] = isIndex(key, length) ? collection[key] : undefined;
+	        } else {
+	          result[index] = isNil ? undefined : collection[key];
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Copies properties of `source` to `object`.
+	     *
+	     * @private
+	     * @param {Object} source The object to copy properties from.
+	     * @param {Array} props The property names to copy.
+	     * @param {Object} [object={}] The object to copy properties to.
+	     * @returns {Object} Returns `object`.
+	     */
+	    function baseCopy(source, props, object) {
+	      object || (object = {});
+
+	      var index = -1,
+	          length = props.length;
+
+	      while (++index < length) {
+	        var key = props[index];
+	        object[key] = source[key];
+	      }
+	      return object;
+	    }
+
+	    /**
+	     * The base implementation of `_.callback` which supports specifying the
+	     * number of arguments to provide to `func`.
+	     *
+	     * @private
+	     * @param {*} [func=_.identity] The value to convert to a callback.
+	     * @param {*} [thisArg] The `this` binding of `func`.
+	     * @param {number} [argCount] The number of arguments to provide to `func`.
+	     * @returns {Function} Returns the callback.
+	     */
+	    function baseCallback(func, thisArg, argCount) {
+	      var type = typeof func;
+	      if (type == 'function') {
+	        return thisArg === undefined
+	          ? func
+	          : bindCallback(func, thisArg, argCount);
+	      }
+	      if (func == null) {
+	        return identity;
+	      }
+	      if (type == 'object') {
+	        return baseMatches(func);
+	      }
+	      return thisArg === undefined
+	        ? property(func)
+	        : baseMatchesProperty(func, thisArg);
+	    }
+
+	    /**
+	     * The base implementation of `_.clone` without support for argument juggling
+	     * and `this` binding `customizer` functions.
+	     *
+	     * @private
+	     * @param {*} value The value to clone.
+	     * @param {boolean} [isDeep] Specify a deep clone.
+	     * @param {Function} [customizer] The function to customize cloning values.
+	     * @param {string} [key] The key of `value`.
+	     * @param {Object} [object] The object `value` belongs to.
+	     * @param {Array} [stackA=[]] Tracks traversed source objects.
+	     * @param {Array} [stackB=[]] Associates clones with source counterparts.
+	     * @returns {*} Returns the cloned value.
+	     */
+	    function baseClone(value, isDeep, customizer, key, object, stackA, stackB) {
+	      var result;
+	      if (customizer) {
+	        result = object ? customizer(value, key, object) : customizer(value);
+	      }
+	      if (result !== undefined) {
+	        return result;
+	      }
+	      if (!isObject(value)) {
+	        return value;
+	      }
+	      var isArr = isArray(value);
+	      if (isArr) {
+	        result = initCloneArray(value);
+	        if (!isDeep) {
+	          return arrayCopy(value, result);
+	        }
+	      } else {
+	        var tag = objToString.call(value),
+	            isFunc = tag == funcTag;
+
+	        if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
+	          result = initCloneObject(isFunc ? {} : value);
+	          if (!isDeep) {
+	            return baseAssign(result, value);
+	          }
+	        } else {
+	          return cloneableTags[tag]
+	            ? initCloneByTag(value, tag, isDeep)
+	            : (object ? value : {});
+	        }
+	      }
+	      // Check for circular references and return its corresponding clone.
+	      stackA || (stackA = []);
+	      stackB || (stackB = []);
+
+	      var length = stackA.length;
+	      while (length--) {
+	        if (stackA[length] == value) {
+	          return stackB[length];
+	        }
+	      }
+	      // Add the source value to the stack of traversed objects and associate it with its clone.
+	      stackA.push(value);
+	      stackB.push(result);
+
+	      // Recursively populate clone (susceptible to call stack limits).
+	      (isArr ? arrayEach : baseForOwn)(value, function(subValue, key) {
+	        result[key] = baseClone(subValue, isDeep, customizer, key, value, stackA, stackB);
+	      });
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.create` without support for assigning
+	     * properties to the created object.
+	     *
+	     * @private
+	     * @param {Object} prototype The object to inherit from.
+	     * @returns {Object} Returns the new object.
+	     */
+	    var baseCreate = (function() {
+	      function object() {}
+	      return function(prototype) {
+	        if (isObject(prototype)) {
+	          object.prototype = prototype;
+	          var result = new object;
+	          object.prototype = undefined;
+	        }
+	        return result || {};
+	      };
+	    }());
+
+	    /**
+	     * The base implementation of `_.delay` and `_.defer` which accepts an index
+	     * of where to slice the arguments to provide to `func`.
+	     *
+	     * @private
+	     * @param {Function} func The function to delay.
+	     * @param {number} wait The number of milliseconds to delay invocation.
+	     * @param {Object} args The arguments provide to `func`.
+	     * @returns {number} Returns the timer id.
+	     */
+	    function baseDelay(func, wait, args) {
+	      if (typeof func != 'function') {
+	        throw new TypeError(FUNC_ERROR_TEXT);
+	      }
+	      return setTimeout(function() { func.apply(undefined, args); }, wait);
+	    }
+
+	    /**
+	     * The base implementation of `_.difference` which accepts a single array
+	     * of values to exclude.
+	     *
+	     * @private
+	     * @param {Array} array The array to inspect.
+	     * @param {Array} values The values to exclude.
+	     * @returns {Array} Returns the new array of filtered values.
+	     */
+	    function baseDifference(array, values) {
+	      var length = array ? array.length : 0,
+	          result = [];
+
+	      if (!length) {
+	        return result;
+	      }
+	      var index = -1,
+	          indexOf = getIndexOf(),
+	          isCommon = indexOf == baseIndexOf,
+	          cache = (isCommon && values.length >= LARGE_ARRAY_SIZE) ? createCache(values) : null,
+	          valuesLength = values.length;
+
+	      if (cache) {
+	        indexOf = cacheIndexOf;
+	        isCommon = false;
+	        values = cache;
+	      }
+	      outer:
+	      while (++index < length) {
+	        var value = array[index];
+
+	        if (isCommon && value === value) {
+	          var valuesIndex = valuesLength;
+	          while (valuesIndex--) {
+	            if (values[valuesIndex] === value) {
+	              continue outer;
+	            }
+	          }
+	          result.push(value);
+	        }
+	        else if (indexOf(values, value, 0) < 0) {
+	          result.push(value);
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.forEach` without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {Array|Object|string} Returns `collection`.
+	     */
+	    var baseEach = createBaseEach(baseForOwn);
+
+	    /**
+	     * The base implementation of `_.forEachRight` without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {Array|Object|string} Returns `collection`.
+	     */
+	    var baseEachRight = createBaseEach(baseForOwnRight, true);
+
+	    /**
+	     * The base implementation of `_.every` without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} predicate The function invoked per iteration.
+	     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+	     *  else `false`
+	     */
+	    function baseEvery(collection, predicate) {
+	      var result = true;
+	      baseEach(collection, function(value, index, collection) {
+	        result = !!predicate(value, index, collection);
+	        return result;
+	      });
+	      return result;
+	    }
+
+	    /**
+	     * Gets the extremum value of `collection` invoking `iteratee` for each value
+	     * in `collection` to generate the criterion by which the value is ranked.
+	     * The `iteratee` is invoked with three arguments: (value, index|key, collection).
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @param {Function} comparator The function used to compare values.
+	     * @param {*} exValue The initial extremum value.
+	     * @returns {*} Returns the extremum value.
+	     */
+	    function baseExtremum(collection, iteratee, comparator, exValue) {
+	      var computed = exValue,
+	          result = computed;
+
+	      baseEach(collection, function(value, index, collection) {
+	        var current = +iteratee(value, index, collection);
+	        if (comparator(current, computed) || (current === exValue && current === result)) {
+	          computed = current;
+	          result = value;
+	        }
+	      });
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.fill` without an iteratee call guard.
+	     *
+	     * @private
+	     * @param {Array} array The array to fill.
+	     * @param {*} value The value to fill `array` with.
+	     * @param {number} [start=0] The start position.
+	     * @param {number} [end=array.length] The end position.
+	     * @returns {Array} Returns `array`.
+	     */
+	    function baseFill(array, value, start, end) {
+	      var length = array.length;
+
+	      start = start == null ? 0 : (+start || 0);
+	      if (start < 0) {
+	        start = -start > length ? 0 : (length + start);
+	      }
+	      end = (end === undefined || end > length) ? length : (+end || 0);
+	      if (end < 0) {
+	        end += length;
+	      }
+	      length = start > end ? 0 : (end >>> 0);
+	      start >>>= 0;
+
+	      while (start < length) {
+	        array[start++] = value;
+	      }
+	      return array;
+	    }
+
+	    /**
+	     * The base implementation of `_.filter` without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} predicate The function invoked per iteration.
+	     * @returns {Array} Returns the new filtered array.
+	     */
+	    function baseFilter(collection, predicate) {
+	      var result = [];
+	      baseEach(collection, function(value, index, collection) {
+	        if (predicate(value, index, collection)) {
+	          result.push(value);
+	        }
+	      });
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.find`, `_.findLast`, `_.findKey`, and `_.findLastKey`,
+	     * without support for callback shorthands and `this` binding, which iterates
+	     * over `collection` using the provided `eachFunc`.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to search.
+	     * @param {Function} predicate The function invoked per iteration.
+	     * @param {Function} eachFunc The function to iterate over `collection`.
+	     * @param {boolean} [retKey] Specify returning the key of the found element
+	     *  instead of the element itself.
+	     * @returns {*} Returns the found element or its key, else `undefined`.
+	     */
+	    function baseFind(collection, predicate, eachFunc, retKey) {
+	      var result;
+	      eachFunc(collection, function(value, key, collection) {
+	        if (predicate(value, key, collection)) {
+	          result = retKey ? key : value;
+	          return false;
+	        }
+	      });
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.flatten` with added support for restricting
+	     * flattening and specifying the start index.
+	     *
+	     * @private
+	     * @param {Array} array The array to flatten.
+	     * @param {boolean} [isDeep] Specify a deep flatten.
+	     * @param {boolean} [isStrict] Restrict flattening to arrays-like objects.
+	     * @param {Array} [result=[]] The initial result value.
+	     * @returns {Array} Returns the new flattened array.
+	     */
+	    function baseFlatten(array, isDeep, isStrict, result) {
+	      result || (result = []);
+
+	      var index = -1,
+	          length = array.length;
+
+	      while (++index < length) {
+	        var value = array[index];
+	        if (isObjectLike(value) && isArrayLike(value) &&
+	            (isStrict || isArray(value) || isArguments(value))) {
+	          if (isDeep) {
+	            // Recursively flatten arrays (susceptible to call stack limits).
+	            baseFlatten(value, isDeep, isStrict, result);
+	          } else {
+	            arrayPush(result, value);
+	          }
+	        } else if (!isStrict) {
+	          result[result.length] = value;
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `baseForIn` and `baseForOwn` which iterates
+	     * over `object` properties returned by `keysFunc` invoking `iteratee` for
+	     * each property. Iteratee functions may exit iteration early by explicitly
+	     * returning `false`.
+	     *
+	     * @private
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @param {Function} keysFunc The function to get the keys of `object`.
+	     * @returns {Object} Returns `object`.
+	     */
+	    var baseFor = createBaseFor();
+
+	    /**
+	     * This function is like `baseFor` except that it iterates over properties
+	     * in the opposite order.
+	     *
+	     * @private
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @param {Function} keysFunc The function to get the keys of `object`.
+	     * @returns {Object} Returns `object`.
+	     */
+	    var baseForRight = createBaseFor(true);
+
+	    /**
+	     * The base implementation of `_.forIn` without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {Object} Returns `object`.
+	     */
+	    function baseForIn(object, iteratee) {
+	      return baseFor(object, iteratee, keysIn);
+	    }
+
+	    /**
+	     * The base implementation of `_.forOwn` without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {Object} Returns `object`.
+	     */
+	    function baseForOwn(object, iteratee) {
+	      return baseFor(object, iteratee, keys);
+	    }
+
+	    /**
+	     * The base implementation of `_.forOwnRight` without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {Object} Returns `object`.
+	     */
+	    function baseForOwnRight(object, iteratee) {
+	      return baseForRight(object, iteratee, keys);
+	    }
+
+	    /**
+	     * The base implementation of `_.functions` which creates an array of
+	     * `object` function property names filtered from those provided.
+	     *
+	     * @private
+	     * @param {Object} object The object to inspect.
+	     * @param {Array} props The property names to filter.
+	     * @returns {Array} Returns the new array of filtered property names.
+	     */
+	    function baseFunctions(object, props) {
+	      var index = -1,
+	          length = props.length,
+	          resIndex = -1,
+	          result = [];
+
+	      while (++index < length) {
+	        var key = props[index];
+	        if (isFunction(object[key])) {
+	          result[++resIndex] = key;
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `get` without support for string paths
+	     * and default values.
+	     *
+	     * @private
+	     * @param {Object} object The object to query.
+	     * @param {Array} path The path of the property to get.
+	     * @param {string} [pathKey] The key representation of path.
+	     * @returns {*} Returns the resolved value.
+	     */
+	    function baseGet(object, path, pathKey) {
+	      if (object == null) {
+	        return;
+	      }
+	      if (pathKey !== undefined && pathKey in toObject(object)) {
+	        path = [pathKey];
+	      }
+	      var index = 0,
+	          length = path.length;
+
+	      while (object != null && index < length) {
+	        object = object[path[index++]];
+	      }
+	      return (index && index == length) ? object : undefined;
+	    }
+
+	    /**
+	     * The base implementation of `_.isEqual` without support for `this` binding
+	     * `customizer` functions.
+	     *
+	     * @private
+	     * @param {*} value The value to compare.
+	     * @param {*} other The other value to compare.
+	     * @param {Function} [customizer] The function to customize comparing values.
+	     * @param {boolean} [isLoose] Specify performing partial comparisons.
+	     * @param {Array} [stackA] Tracks traversed `value` objects.
+	     * @param {Array} [stackB] Tracks traversed `other` objects.
+	     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+	     */
+	    function baseIsEqual(value, other, customizer, isLoose, stackA, stackB) {
+	      if (value === other) {
+	        return true;
+	      }
+	      if (value == null || other == null || (!isObject(value) && !isObjectLike(other))) {
+	        return value !== value && other !== other;
+	      }
+	      return baseIsEqualDeep(value, other, baseIsEqual, customizer, isLoose, stackA, stackB);
+	    }
+
+	    /**
+	     * A specialized version of `baseIsEqual` for arrays and objects which performs
+	     * deep comparisons and tracks traversed objects enabling objects with circular
+	     * references to be compared.
+	     *
+	     * @private
+	     * @param {Object} object The object to compare.
+	     * @param {Object} other The other object to compare.
+	     * @param {Function} equalFunc The function to determine equivalents of values.
+	     * @param {Function} [customizer] The function to customize comparing objects.
+	     * @param {boolean} [isLoose] Specify performing partial comparisons.
+	     * @param {Array} [stackA=[]] Tracks traversed `value` objects.
+	     * @param {Array} [stackB=[]] Tracks traversed `other` objects.
+	     * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+	     */
+	    function baseIsEqualDeep(object, other, equalFunc, customizer, isLoose, stackA, stackB) {
+	      var objIsArr = isArray(object),
+	          othIsArr = isArray(other),
+	          objTag = arrayTag,
+	          othTag = arrayTag;
+
+	      if (!objIsArr) {
+	        objTag = objToString.call(object);
+	        if (objTag == argsTag) {
+	          objTag = objectTag;
+	        } else if (objTag != objectTag) {
+	          objIsArr = isTypedArray(object);
+	        }
+	      }
+	      if (!othIsArr) {
+	        othTag = objToString.call(other);
+	        if (othTag == argsTag) {
+	          othTag = objectTag;
+	        } else if (othTag != objectTag) {
+	          othIsArr = isTypedArray(other);
+	        }
+	      }
+	      var objIsObj = objTag == objectTag,
+	          othIsObj = othTag == objectTag,
+	          isSameTag = objTag == othTag;
+
+	      if (isSameTag && !(objIsArr || objIsObj)) {
+	        return equalByTag(object, other, objTag);
+	      }
+	      if (!isLoose) {
+	        var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
+	            othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
+
+	        if (objIsWrapped || othIsWrapped) {
+	          return equalFunc(objIsWrapped ? object.value() : object, othIsWrapped ? other.value() : other, customizer, isLoose, stackA, stackB);
+	        }
+	      }
+	      if (!isSameTag) {
+	        return false;
+	      }
+	      // Assume cyclic values are equal.
+	      // For more information on detecting circular references see https://es5.github.io/#JO.
+	      stackA || (stackA = []);
+	      stackB || (stackB = []);
+
+	      var length = stackA.length;
+	      while (length--) {
+	        if (stackA[length] == object) {
+	          return stackB[length] == other;
+	        }
+	      }
+	      // Add `object` and `other` to the stack of traversed objects.
+	      stackA.push(object);
+	      stackB.push(other);
+
+	      var result = (objIsArr ? equalArrays : equalObjects)(object, other, equalFunc, customizer, isLoose, stackA, stackB);
+
+	      stackA.pop();
+	      stackB.pop();
+
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.isMatch` without support for callback
+	     * shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Object} object The object to inspect.
+	     * @param {Array} matchData The propery names, values, and compare flags to match.
+	     * @param {Function} [customizer] The function to customize comparing objects.
+	     * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+	     */
+	    function baseIsMatch(object, matchData, customizer) {
+	      var index = matchData.length,
+	          length = index,
+	          noCustomizer = !customizer;
+
+	      if (object == null) {
+	        return !length;
+	      }
+	      object = toObject(object);
+	      while (index--) {
+	        var data = matchData[index];
+	        if ((noCustomizer && data[2])
+	              ? data[1] !== object[data[0]]
+	              : !(data[0] in object)
+	            ) {
+	          return false;
+	        }
+	      }
+	      while (++index < length) {
+	        data = matchData[index];
+	        var key = data[0],
+	            objValue = object[key],
+	            srcValue = data[1];
+
+	        if (noCustomizer && data[2]) {
+	          if (objValue === undefined && !(key in object)) {
+	            return false;
+	          }
+	        } else {
+	          var result = customizer ? customizer(objValue, srcValue, key) : undefined;
+	          if (!(result === undefined ? baseIsEqual(srcValue, objValue, customizer, true) : result)) {
+	            return false;
+	          }
+	        }
+	      }
+	      return true;
+	    }
+
+	    /**
+	     * The base implementation of `_.map` without support for callback shorthands
+	     * and `this` binding.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {Array} Returns the new mapped array.
+	     */
+	    function baseMap(collection, iteratee) {
+	      var index = -1,
+	          result = isArrayLike(collection) ? Array(collection.length) : [];
+
+	      baseEach(collection, function(value, key, collection) {
+	        result[++index] = iteratee(value, key, collection);
+	      });
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.matches` which does not clone `source`.
+	     *
+	     * @private
+	     * @param {Object} source The object of property values to match.
+	     * @returns {Function} Returns the new function.
+	     */
+	    function baseMatches(source) {
+	      var matchData = getMatchData(source);
+	      if (matchData.length == 1 && matchData[0][2]) {
+	        var key = matchData[0][0],
+	            value = matchData[0][1];
+
+	        return function(object) {
+	          if (object == null) {
+	            return false;
+	          }
+	          return object[key] === value && (value !== undefined || (key in toObject(object)));
+	        };
+	      }
+	      return function(object) {
+	        return baseIsMatch(object, matchData);
+	      };
+	    }
+
+	    /**
+	     * The base implementation of `_.matchesProperty` which does not clone `srcValue`.
+	     *
+	     * @private
+	     * @param {string} path The path of the property to get.
+	     * @param {*} srcValue The value to compare.
+	     * @returns {Function} Returns the new function.
+	     */
+	    function baseMatchesProperty(path, srcValue) {
+	      var isArr = isArray(path),
+	          isCommon = isKey(path) && isStrictComparable(srcValue),
+	          pathKey = (path + '');
+
+	      path = toPath(path);
+	      return function(object) {
+	        if (object == null) {
+	          return false;
+	        }
+	        var key = pathKey;
+	        object = toObject(object);
+	        if ((isArr || !isCommon) && !(key in object)) {
+	          object = path.length == 1 ? object : baseGet(object, baseSlice(path, 0, -1));
+	          if (object == null) {
+	            return false;
+	          }
+	          key = last(path);
+	          object = toObject(object);
+	        }
+	        return object[key] === srcValue
+	          ? (srcValue !== undefined || (key in object))
+	          : baseIsEqual(srcValue, object[key], undefined, true);
+	      };
+	    }
+
+	    /**
+	     * The base implementation of `_.merge` without support for argument juggling,
+	     * multiple sources, and `this` binding `customizer` functions.
+	     *
+	     * @private
+	     * @param {Object} object The destination object.
+	     * @param {Object} source The source object.
+	     * @param {Function} [customizer] The function to customize merged values.
+	     * @param {Array} [stackA=[]] Tracks traversed source objects.
+	     * @param {Array} [stackB=[]] Associates values with source counterparts.
+	     * @returns {Object} Returns `object`.
+	     */
+	    function baseMerge(object, source, customizer, stackA, stackB) {
+	      if (!isObject(object)) {
+	        return object;
+	      }
+	      var isSrcArr = isArrayLike(source) && (isArray(source) || isTypedArray(source)),
+	          props = isSrcArr ? undefined : keys(source);
+
+	      arrayEach(props || source, function(srcValue, key) {
+	        if (props) {
+	          key = srcValue;
+	          srcValue = source[key];
+	        }
+	        if (isObjectLike(srcValue)) {
+	          stackA || (stackA = []);
+	          stackB || (stackB = []);
+	          baseMergeDeep(object, source, key, baseMerge, customizer, stackA, stackB);
+	        }
+	        else {
+	          var value = object[key],
+	              result = customizer ? customizer(value, srcValue, key, object, source) : undefined,
+	              isCommon = result === undefined;
+
+	          if (isCommon) {
+	            result = srcValue;
+	          }
+	          if ((result !== undefined || (isSrcArr && !(key in object))) &&
+	              (isCommon || (result === result ? (result !== value) : (value === value)))) {
+	            object[key] = result;
+	          }
+	        }
+	      });
+	      return object;
+	    }
+
+	    /**
+	     * A specialized version of `baseMerge` for arrays and objects which performs
+	     * deep merges and tracks traversed objects enabling objects with circular
+	     * references to be merged.
+	     *
+	     * @private
+	     * @param {Object} object The destination object.
+	     * @param {Object} source The source object.
+	     * @param {string} key The key of the value to merge.
+	     * @param {Function} mergeFunc The function to merge values.
+	     * @param {Function} [customizer] The function to customize merged values.
+	     * @param {Array} [stackA=[]] Tracks traversed source objects.
+	     * @param {Array} [stackB=[]] Associates values with source counterparts.
+	     * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+	     */
+	    function baseMergeDeep(object, source, key, mergeFunc, customizer, stackA, stackB) {
+	      var length = stackA.length,
+	          srcValue = source[key];
+
+	      while (length--) {
+	        if (stackA[length] == srcValue) {
+	          object[key] = stackB[length];
+	          return;
+	        }
+	      }
+	      var value = object[key],
+	          result = customizer ? customizer(value, srcValue, key, object, source) : undefined,
+	          isCommon = result === undefined;
+
+	      if (isCommon) {
+	        result = srcValue;
+	        if (isArrayLike(srcValue) && (isArray(srcValue) || isTypedArray(srcValue))) {
+	          result = isArray(value)
+	            ? value
+	            : (isArrayLike(value) ? arrayCopy(value) : []);
+	        }
+	        else if (isPlainObject(srcValue) || isArguments(srcValue)) {
+	          result = isArguments(value)
+	            ? toPlainObject(value)
+	            : (isPlainObject(value) ? value : {});
+	        }
+	        else {
+	          isCommon = false;
+	        }
+	      }
+	      // Add the source value to the stack of traversed objects and associate
+	      // it with its merged value.
+	      stackA.push(srcValue);
+	      stackB.push(result);
+
+	      if (isCommon) {
+	        // Recursively merge objects and arrays (susceptible to call stack limits).
+	        object[key] = mergeFunc(result, srcValue, customizer, stackA, stackB);
+	      } else if (result === result ? (result !== value) : (value === value)) {
+	        object[key] = result;
+	      }
+	    }
+
+	    /**
+	     * The base implementation of `_.property` without support for deep paths.
+	     *
+	     * @private
+	     * @param {string} key The key of the property to get.
+	     * @returns {Function} Returns the new function.
+	     */
+	    function baseProperty(key) {
+	      return function(object) {
+	        return object == null ? undefined : object[key];
+	      };
+	    }
+
+	    /**
+	     * A specialized version of `baseProperty` which supports deep paths.
+	     *
+	     * @private
+	     * @param {Array|string} path The path of the property to get.
+	     * @returns {Function} Returns the new function.
+	     */
+	    function basePropertyDeep(path) {
+	      var pathKey = (path + '');
+	      path = toPath(path);
+	      return function(object) {
+	        return baseGet(object, path, pathKey);
+	      };
+	    }
+
+	    /**
+	     * The base implementation of `_.pullAt` without support for individual
+	     * index arguments and capturing the removed elements.
+	     *
+	     * @private
+	     * @param {Array} array The array to modify.
+	     * @param {number[]} indexes The indexes of elements to remove.
+	     * @returns {Array} Returns `array`.
+	     */
+	    function basePullAt(array, indexes) {
+	      var length = array ? indexes.length : 0;
+	      while (length--) {
+	        var index = indexes[length];
+	        if (index != previous && isIndex(index)) {
+	          var previous = index;
+	          splice.call(array, index, 1);
+	        }
+	      }
+	      return array;
+	    }
+
+	    /**
+	     * The base implementation of `_.random` without support for argument juggling
+	     * and returning floating-point numbers.
+	     *
+	     * @private
+	     * @param {number} min The minimum possible value.
+	     * @param {number} max The maximum possible value.
+	     * @returns {number} Returns the random number.
+	     */
+	    function baseRandom(min, max) {
+	      return min + nativeFloor(nativeRandom() * (max - min + 1));
+	    }
+
+	    /**
+	     * The base implementation of `_.reduce` and `_.reduceRight` without support
+	     * for callback shorthands and `this` binding, which iterates over `collection`
+	     * using the provided `eachFunc`.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @param {*} accumulator The initial value.
+	     * @param {boolean} initFromCollection Specify using the first or last element
+	     *  of `collection` as the initial value.
+	     * @param {Function} eachFunc The function to iterate over `collection`.
+	     * @returns {*} Returns the accumulated value.
+	     */
+	    function baseReduce(collection, iteratee, accumulator, initFromCollection, eachFunc) {
+	      eachFunc(collection, function(value, index, collection) {
+	        accumulator = initFromCollection
+	          ? (initFromCollection = false, value)
+	          : iteratee(accumulator, value, index, collection);
+	      });
+	      return accumulator;
+	    }
+
+	    /**
+	     * The base implementation of `setData` without support for hot loop detection.
+	     *
+	     * @private
+	     * @param {Function} func The function to associate metadata with.
+	     * @param {*} data The metadata.
+	     * @returns {Function} Returns `func`.
+	     */
+	    var baseSetData = !metaMap ? identity : function(func, data) {
+	      metaMap.set(func, data);
+	      return func;
+	    };
+
+	    /**
+	     * The base implementation of `_.slice` without an iteratee call guard.
+	     *
+	     * @private
+	     * @param {Array} array The array to slice.
+	     * @param {number} [start=0] The start position.
+	     * @param {number} [end=array.length] The end position.
+	     * @returns {Array} Returns the slice of `array`.
+	     */
+	    function baseSlice(array, start, end) {
+	      var index = -1,
+	          length = array.length;
+
+	      start = start == null ? 0 : (+start || 0);
+	      if (start < 0) {
+	        start = -start > length ? 0 : (length + start);
+	      }
+	      end = (end === undefined || end > length) ? length : (+end || 0);
+	      if (end < 0) {
+	        end += length;
+	      }
+	      length = start > end ? 0 : ((end - start) >>> 0);
+	      start >>>= 0;
+
+	      var result = Array(length);
+	      while (++index < length) {
+	        result[index] = array[index + start];
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.some` without support for callback shorthands
+	     * and `this` binding.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} predicate The function invoked per iteration.
+	     * @returns {boolean} Returns `true` if any element passes the predicate check,
+	     *  else `false`.
+	     */
+	    function baseSome(collection, predicate) {
+	      var result;
+
+	      baseEach(collection, function(value, index, collection) {
+	        result = predicate(value, index, collection);
+	        return !result;
+	      });
+	      return !!result;
+	    }
+
+	    /**
+	     * The base implementation of `_.sortBy` which uses `comparer` to define
+	     * the sort order of `array` and replaces criteria objects with their
+	     * corresponding values.
+	     *
+	     * @private
+	     * @param {Array} array The array to sort.
+	     * @param {Function} comparer The function to define sort order.
+	     * @returns {Array} Returns `array`.
+	     */
+	    function baseSortBy(array, comparer) {
+	      var length = array.length;
+
+	      array.sort(comparer);
+	      while (length--) {
+	        array[length] = array[length].value;
+	      }
+	      return array;
+	    }
+
+	    /**
+	     * The base implementation of `_.sortByOrder` without param guards.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function[]|Object[]|string[]} iteratees The iteratees to sort by.
+	     * @param {boolean[]} orders The sort orders of `iteratees`.
+	     * @returns {Array} Returns the new sorted array.
+	     */
+	    function baseSortByOrder(collection, iteratees, orders) {
+	      var callback = getCallback(),
+	          index = -1;
+
+	      iteratees = arrayMap(iteratees, function(iteratee) { return callback(iteratee); });
+
+	      var result = baseMap(collection, function(value) {
+	        var criteria = arrayMap(iteratees, function(iteratee) { return iteratee(value); });
+	        return { 'criteria': criteria, 'index': ++index, 'value': value };
+	      });
+
+	      return baseSortBy(result, function(object, other) {
+	        return compareMultiple(object, other, orders);
+	      });
+	    }
+
+	    /**
+	     * The base implementation of `_.sum` without support for callback shorthands
+	     * and `this` binding.
+	     *
+	     * @private
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @returns {number} Returns the sum.
+	     */
+	    function baseSum(collection, iteratee) {
+	      var result = 0;
+	      baseEach(collection, function(value, index, collection) {
+	        result += +iteratee(value, index, collection) || 0;
+	      });
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.uniq` without support for callback shorthands
+	     * and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to inspect.
+	     * @param {Function} [iteratee] The function invoked per iteration.
+	     * @returns {Array} Returns the new duplicate-value-free array.
+	     */
+	    function baseUniq(array, iteratee) {
+	      var index = -1,
+	          indexOf = getIndexOf(),
+	          length = array.length,
+	          isCommon = indexOf == baseIndexOf,
+	          isLarge = isCommon && length >= LARGE_ARRAY_SIZE,
+	          seen = isLarge ? createCache() : null,
+	          result = [];
+
+	      if (seen) {
+	        indexOf = cacheIndexOf;
+	        isCommon = false;
+	      } else {
+	        isLarge = false;
+	        seen = iteratee ? [] : result;
+	      }
+	      outer:
+	      while (++index < length) {
+	        var value = array[index],
+	            computed = iteratee ? iteratee(value, index, array) : value;
+
+	        if (isCommon && value === value) {
+	          var seenIndex = seen.length;
+	          while (seenIndex--) {
+	            if (seen[seenIndex] === computed) {
+	              continue outer;
+	            }
+	          }
+	          if (iteratee) {
+	            seen.push(computed);
+	          }
+	          result.push(value);
+	        }
+	        else if (indexOf(seen, computed, 0) < 0) {
+	          if (iteratee || isLarge) {
+	            seen.push(computed);
+	          }
+	          result.push(value);
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.values` and `_.valuesIn` which creates an
+	     * array of `object` property values corresponding to the property names
+	     * of `props`.
+	     *
+	     * @private
+	     * @param {Object} object The object to query.
+	     * @param {Array} props The property names to get values for.
+	     * @returns {Object} Returns the array of property values.
+	     */
+	    function baseValues(object, props) {
+	      var index = -1,
+	          length = props.length,
+	          result = Array(length);
+
+	      while (++index < length) {
+	        result[index] = object[props[index]];
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * The base implementation of `_.dropRightWhile`, `_.dropWhile`, `_.takeRightWhile`,
+	     * and `_.takeWhile` without support for callback shorthands and `this` binding.
+	     *
+	     * @private
+	     * @param {Array} array The array to query.
+	     * @param {Function} predicate The function invoked per iteration.
+	     * @param {boolean} [isDrop] Specify dropping elements instead of taking them.
+	     * @param {boolean} [fromRight] Specify iterating from right to left.
+	     * @returns {Array} Returns the slice of `array`.
+	     */
+	    function baseWhile(array, predicate, isDrop, fromRight) {
+	      var length = array.length,
+	          index = fromRight ? length : -1;
+
+	      while ((fromRight ? index-- : ++index < length) && predicate(array[index], index, array)) {}
+	      return isDrop
+	        ? baseSlice(array, (fromRight ? 0 : index), (fromRight ? index + 1 : length))
+	        : baseSlice(array, (fromRight ? index + 1 : 0), (fromRight ? length : index));
+	    }
+
+	    /**
+	     * The base implementation of `wrapperValue` which returns the result of
+	     * performing a sequence of actions on the unwrapped `value`, where each
+	     * successive action is supplied the return value of the previous.
+	     *
+	     * @private
+	     * @param {*} value The unwrapped value.
+	     * @param {Array} actions Actions to peform to resolve the unwrapped value.
+	     * @returns {*} Returns the resolved value.
+	     */
+	    function baseWrapperValue(value, actions) {
+	      var result = value;
+	      if (result instanceof LazyWrapper) {
+	        result = result.value();
+	      }
+	      var index = -1,
+	          length = actions.length;
+
+	      while (++index < length) {
+	        var action = actions[index];
+	        result = action.func.apply(action.thisArg, arrayPush([result], action.args));
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Performs a binary search of `array` to determine the index at which `value`
+	     * should be inserted into `array` in order to maintain its sort order.
+	     *
+	     * @private
+	     * @param {Array} array The sorted array to inspect.
+	     * @param {*} value The value to evaluate.
+	     * @param {boolean} [retHighest] Specify returning the highest qualified index.
+	     * @returns {number} Returns the index at which `value` should be inserted
+	     *  into `array`.
+	     */
+	    function binaryIndex(array, value, retHighest) {
+	      var low = 0,
+	          high = array ? array.length : low;
+
+	      if (typeof value == 'number' && value === value && high <= HALF_MAX_ARRAY_LENGTH) {
+	        while (low < high) {
+	          var mid = (low + high) >>> 1,
+	              computed = array[mid];
+
+	          if ((retHighest ? (computed <= value) : (computed < value)) && computed !== null) {
+	            low = mid + 1;
+	          } else {
+	            high = mid;
+	          }
+	        }
+	        return high;
+	      }
+	      return binaryIndexBy(array, value, identity, retHighest);
+	    }
+
+	    /**
+	     * This function is like `binaryIndex` except that it invokes `iteratee` for
+	     * `value` and each element of `array` to compute their sort ranking. The
+	     * iteratee is invoked with one argument; (value).
+	     *
+	     * @private
+	     * @param {Array} array The sorted array to inspect.
+	     * @param {*} value The value to evaluate.
+	     * @param {Function} iteratee The function invoked per iteration.
+	     * @param {boolean} [retHighest] Specify returning the highest qualified index.
+	     * @returns {number} Returns the index at which `value` should be inserted
+	     *  into `array`.
+	     */
+	    function binaryIndexBy(array, value, iteratee, retHighest) {
+	      value = iteratee(value);
+
+	      var low = 0,
+	          high = array ? array.length : 0,
+	          valIsNaN = value !== value,
+	          valIsNull = value === null,
+	          valIsUndef = value === undefined;
+
+	      while (low < high) {
+	        var mid = nativeFloor((low + high) / 2),
+	            computed = iteratee(array[mid]),
+	            isDef = computed !== undefined,
+	            isReflexive = computed === computed;
+
+	        if (valIsNaN) {
+	          var setLow = isReflexive || retHighest;
+	        } else if (valIsNull) {
+	          setLow = isReflexive && isDef && (retHighest || computed != null);
+	        } else if (valIsUndef) {
+	          setLow = isReflexive && (retHighest || isDef);
+	        } else if (computed == null) {
+	          setLow = false;
+	        } else {
+	          setLow = retHighest ? (computed <= value) : (computed < value);
+	        }
+	        if (setLow) {
+	          low = mid + 1;
+	        } else {
+	          high = mid;
+	        }
+	      }
+	      return nativeMin(high, MAX_ARRAY_INDEX);
+	    }
+
+	    /**
+	     * A specialized version of `baseCallback` which only supports `this` binding
+	     * and specifying the number of arguments to provide to `func`.
+	     *
+	     * @private
+	     * @param {Function} func The function to bind.
+	     * @param {*} thisArg The `this` binding of `func`.
+	     * @param {number} [argCount] The number of arguments to provide to `func`.
+	     * @returns {Function} Returns the callback.
+	     */
+	    function bindCallback(func, thisArg, argCount) {
+	      if (typeof func != 'function') {
+	        return identity;
+	      }
+	      if (thisArg === undefined) {
+	        return func;
+	      }
+	      switch (argCount) {
+	        case 1: return function(value) {
+	          return func.call(thisArg, value);
+	        };
+	        case 3: return function(value, index, collection) {
+	          return func.call(thisArg, value, index, collection);
+	        };
+	        case 4: return function(accumulator, value, index, collection) {
+	          return func.call(thisArg, accumulator, value, index, collection);
+	        };
+	        case 5: return function(value, other, key, object, source) {
+	          return func.call(thisArg, value, other, key, object, source);
+	        };
+	      }
+	      return function() {
+	        return func.apply(thisArg, arguments);
+	      };
+	    }
+
+	    /**
+	     * Creates a clone of the given array buffer.
+	     *
+	     * @private
+	     * @param {ArrayBuffer} buffer The array buffer to clone.
+	     * @returns {ArrayBuffer} Returns the cloned array buffer.
+	     */
+	    function bufferClone(buffer) {
+	      var result = new ArrayBuffer(buffer.byteLength),
+	          view = new Uint8Array(result);
+
+	      view.set(new Uint8Array(buffer));
+	      return result;
+	    }
+
+	    /**
+	     * Creates an array that is the composition of partially applied arguments,
+	     * placeholders, and provided arguments into a single array of arguments.
+	     *
+	     * @private
+	     * @param {Array|Object} args The provided arguments.
+	     * @param {Array} partials The arguments to prepend to those provided.
+	     * @param {Array} holders The `partials` placeholder indexes.
+	     * @returns {Array} Returns the new array of composed arguments.
+	     */
+	    function composeArgs(args, partials, holders) {
+	      var holdersLength = holders.length,
+	          argsIndex = -1,
+	          argsLength = nativeMax(args.length - holdersLength, 0),
+	          leftIndex = -1,
+	          leftLength = partials.length,
+	          result = Array(leftLength + argsLength);
+
+	      while (++leftIndex < leftLength) {
+	        result[leftIndex] = partials[leftIndex];
+	      }
+	      while (++argsIndex < holdersLength) {
+	        result[holders[argsIndex]] = args[argsIndex];
+	      }
+	      while (argsLength--) {
+	        result[leftIndex++] = args[argsIndex++];
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * This function is like `composeArgs` except that the arguments composition
+	     * is tailored for `_.partialRight`.
+	     *
+	     * @private
+	     * @param {Array|Object} args The provided arguments.
+	     * @param {Array} partials The arguments to append to those provided.
+	     * @param {Array} holders The `partials` placeholder indexes.
+	     * @returns {Array} Returns the new array of composed arguments.
+	     */
+	    function composeArgsRight(args, partials, holders) {
+	      var holdersIndex = -1,
+	          holdersLength = holders.length,
+	          argsIndex = -1,
+	          argsLength = nativeMax(args.length - holdersLength, 0),
+	          rightIndex = -1,
+	          rightLength = partials.length,
+	          result = Array(argsLength + rightLength);
+
+	      while (++argsIndex < argsLength) {
+	        result[argsIndex] = args[argsIndex];
+	      }
+	      var offset = argsIndex;
+	      while (++rightIndex < rightLength) {
+	        result[offset + rightIndex] = partials[rightIndex];
+	      }
+	      while (++holdersIndex < holdersLength) {
+	        result[offset + holders[holdersIndex]] = args[argsIndex++];
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Creates a `_.countBy`, `_.groupBy`, `_.indexBy`, or `_.partition` function.
+	     *
+	     * @private
+	     * @param {Function} setter The function to set keys and values of the accumulator object.
+	     * @param {Function} [initializer] The function to initialize the accumulator object.
+	     * @returns {Function} Returns the new aggregator function.
+	     */
+	    function createAggregator(setter, initializer) {
+	      return function(collection, iteratee, thisArg) {
+	        var result = initializer ? initializer() : {};
+	        iteratee = getCallback(iteratee, thisArg, 3);
+
+	        if (isArray(collection)) {
+	          var index = -1,
+	              length = collection.length;
+
+	          while (++index < length) {
+	            var value = collection[index];
+	            setter(result, value, iteratee(value, index, collection), collection);
+	          }
+	        } else {
+	          baseEach(collection, function(value, key, collection) {
+	            setter(result, value, iteratee(value, key, collection), collection);
+	          });
+	        }
+	        return result;
+	      };
+	    }
+
+	    /**
+	     * Creates a `_.assign`, `_.defaults`, or `_.merge` function.
+	     *
+	     * @private
+	     * @param {Function} assigner The function to assign values.
+	     * @returns {Function} Returns the new assigner function.
+	     */
+	    function createAssigner(assigner) {
+	      return restParam(function(object, sources) {
+	        var index = -1,
+	            length = object == null ? 0 : sources.length,
+	            customizer = length > 2 ? sources[length - 2] : undefined,
+	            guard = length > 2 ? sources[2] : undefined,
+	            thisArg = length > 1 ? sources[length - 1] : undefined;
+
+	        if (typeof customizer == 'function') {
+	          customizer = bindCallback(customizer, thisArg, 5);
+	          length -= 2;
+	        } else {
+	          customizer = typeof thisArg == 'function' ? thisArg : undefined;
+	          length -= (customizer ? 1 : 0);
+	        }
+	        if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+	          customizer = length < 3 ? undefined : customizer;
+	          length = 1;
+	        }
+	        while (++index < length) {
+	          var source = sources[index];
+	          if (source) {
+	            assigner(object, source, customizer);
+	          }
+	        }
+	        return object;
+	      });
+	    }
+
+	    /**
+	     * Creates a `baseEach` or `baseEachRight` function.
+	     *
+	     * @private
+	     * @param {Function} eachFunc The function to iterate over a collection.
+	     * @param {boolean} [fromRight] Specify iterating from right to left.
+	     * @returns {Function} Returns the new base function.
+	     */
+	    function createBaseEach(eachFunc, fromRight) {
+	      return function(collection, iteratee) {
+	        var length = collection ? getLength(collection) : 0;
+	        if (!isLength(length)) {
+	          return eachFunc(collection, iteratee);
+	        }
+	        var index = fromRight ? length : -1,
+	            iterable = toObject(collection);
+
+	        while ((fromRight ? index-- : ++index < length)) {
+	          if (iteratee(iterable[index], index, iterable) === false) {
+	            break;
+	          }
+	        }
+	        return collection;
+	      };
+	    }
+
+	    /**
+	     * Creates a base function for `_.forIn` or `_.forInRight`.
+	     *
+	     * @private
+	     * @param {boolean} [fromRight] Specify iterating from right to left.
+	     * @returns {Function} Returns the new base function.
+	     */
+	    function createBaseFor(fromRight) {
+	      return function(object, iteratee, keysFunc) {
+	        var iterable = toObject(object),
+	            props = keysFunc(object),
+	            length = props.length,
+	            index = fromRight ? length : -1;
+
+	        while ((fromRight ? index-- : ++index < length)) {
+	          var key = props[index];
+	          if (iteratee(iterable[key], key, iterable) === false) {
+	            break;
+	          }
+	        }
+	        return object;
+	      };
+	    }
+
+	    /**
+	     * Creates a function that wraps `func` and invokes it with the `this`
+	     * binding of `thisArg`.
+	     *
+	     * @private
+	     * @param {Function} func The function to bind.
+	     * @param {*} [thisArg] The `this` binding of `func`.
+	     * @returns {Function} Returns the new bound function.
+	     */
+	    function createBindWrapper(func, thisArg) {
+	      var Ctor = createCtorWrapper(func);
+
+	      function wrapper() {
+	        var fn = (this && this !== root && this instanceof wrapper) ? Ctor : func;
+	        return fn.apply(thisArg, arguments);
+	      }
+	      return wrapper;
+	    }
+
+	    /**
+	     * Creates a `Set` cache object to optimize linear searches of large arrays.
+	     *
+	     * @private
+	     * @param {Array} [values] The values to cache.
+	     * @returns {null|Object} Returns the new cache object if `Set` is supported, else `null`.
+	     */
+	    function createCache(values) {
+	      return (nativeCreate && Set) ? new SetCache(values) : null;
+	    }
+
+	    /**
+	     * Creates a function that produces compound words out of the words in a
+	     * given string.
+	     *
+	     * @private
+	     * @param {Function} callback The function to combine each word.
+	     * @returns {Function} Returns the new compounder function.
+	     */
+	    function createCompounder(callback) {
+	      return function(string) {
+	        var index = -1,
+	            array = words(deburr(string)),
+	            length = array.length,
+	            result = '';
+
+	        while (++index < length) {
+	          result = callback(result, array[index], index);
+	        }
+	        return result;
+	      };
+	    }
+
+	    /**
+	     * Creates a function that produces an instance of `Ctor` regardless of
+	     * whether it was invoked as part of a `new` expression or by `call` or `apply`.
+	     *
+	     * @private
+	     * @param {Function} Ctor The constructor to wrap.
+	     * @returns {Function} Returns the new wrapped function.
+	     */
+	    function createCtorWrapper(Ctor) {
+	      return function() {
+	        // Use a `switch` statement to work with class constructors.
+	        // See http://ecma-international.org/ecma-262/6.0/#sec-ecmascript-function-objects-call-thisargument-argumentslist
+	        // for more details.
+	        var args = arguments;
+	        switch (args.length) {
+	          case 0: return new Ctor;
+	          case 1: return new Ctor(args[0]);
+	          case 2: return new Ctor(args[0], args[1]);
+	          case 3: return new Ctor(args[0], args[1], args[2]);
+	          case 4: return new Ctor(args[0], args[1], args[2], args[3]);
+	          case 5: return new Ctor(args[0], args[1], args[2], args[3], args[4]);
+	          case 6: return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+	          case 7: return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+	        }
+	        var thisBinding = baseCreate(Ctor.prototype),
+	            result = Ctor.apply(thisBinding, args);
+
+	        // Mimic the constructor's `return` behavior.
+	        // See https://es5.github.io/#x13.2.2 for more details.
+	        return isObject(result) ? result : thisBinding;
+	      };
+	    }
+
+	    /**
+	     * Creates a `_.curry` or `_.curryRight` function.
+	     *
+	     * @private
+	     * @param {boolean} flag The curry bit flag.
+	     * @returns {Function} Returns the new curry function.
+	     */
+	    function createCurry(flag) {
+	      function curryFunc(func, arity, guard) {
+	        if (guard && isIterateeCall(func, arity, guard)) {
+	          arity = undefined;
+	        }
+	        var result = createWrapper(func, flag, undefined, undefined, undefined, undefined, undefined, arity);
+	        result.placeholder = curryFunc.placeholder;
+	        return result;
+	      }
+	      return curryFunc;
+	    }
+
+	    /**
+	     * Creates a `_.defaults` or `_.defaultsDeep` function.
+	     *
+	     * @private
+	     * @param {Function} assigner The function to assign values.
+	     * @param {Function} customizer The function to customize assigned values.
+	     * @returns {Function} Returns the new defaults function.
+	     */
+	    function createDefaults(assigner, customizer) {
+	      return restParam(function(args) {
+	        var object = args[0];
+	        if (object == null) {
+	          return object;
+	        }
+	        args.push(customizer);
+	        return assigner.apply(undefined, args);
+	      });
+	    }
+
+	    /**
+	     * Creates a `_.max` or `_.min` function.
+	     *
+	     * @private
+	     * @param {Function} comparator The function used to compare values.
+	     * @param {*} exValue The initial extremum value.
+	     * @returns {Function} Returns the new extremum function.
+	     */
+	    function createExtremum(comparator, exValue) {
+	      return function(collection, iteratee, thisArg) {
+	        if (thisArg && isIterateeCall(collection, iteratee, thisArg)) {
+	          iteratee = undefined;
+	        }
+	        iteratee = getCallback(iteratee, thisArg, 3);
+	        if (iteratee.length == 1) {
+	          collection = isArray(collection) ? collection : toIterable(collection);
+	          var result = arrayExtremum(collection, iteratee, comparator, exValue);
+	          if (!(collection.length && result === exValue)) {
+	            return result;
+	          }
+	        }
+	        return baseExtremum(collection, iteratee, comparator, exValue);
+	      };
+	    }
+
+	    /**
+	     * Creates a `_.find` or `_.findLast` function.
+	     *
+	     * @private
+	     * @param {Function} eachFunc The function to iterate over a collection.
+	     * @param {boolean} [fromRight] Specify iterating from right to left.
+	     * @returns {Function} Returns the new find function.
+	     */
+	    function createFind(eachFunc, fromRight) {
+	      return function(collection, predicate, thisArg) {
+	        predicate = getCallback(predicate, thisArg, 3);
+	        if (isArray(collection)) {
+	          var index = baseFindIndex(collection, predicate, fromRight);
+	          return index > -1 ? collection[index] : undefined;
+	        }
+	        return baseFind(collection, predicate, eachFunc);
+	      };
+	    }
+
+	    /**
+	     * Creates a `_.findIndex` or `_.findLastIndex` function.
+	     *
+	     * @private
+	     * @param {boolean} [fromRight] Specify iterating from right to left.
+	     * @returns {Function} Returns the new find function.
+	     */
+	    function createFindIndex(fromRight) {
+	      return function(array, predicate, thisArg) {
+	        if (!(array && array.length)) {
+	          return -1;
+	        }
+	        predicate = getCallback(predicate, thisArg, 3);
+	        return baseFindIndex(array, predicate, fromRight);
+	      };
+	    }
+
+	    /**
+	     * Creates a `_.findKey` or `_.findLastKey` function.
+	     *
+	     * @private
+	     * @param {Function} objectFunc The function to iterate over an object.
+	     * @returns {Function} Returns the new find function.
+	     */
+	    function createFindKey(objectFunc) {
+	      return function(object, predicate, thisArg) {
+	        predicate = getCallback(predicate, thisArg, 3);
+	        return baseFind(object, predicate, objectFunc, true);
+	      };
+	    }
+
+	    /**
+	     * Creates a `_.flow` or `_.flowRight` function.
+	     *
+	     * @private
+	     * @param {boolean} [fromRight] Specify iterating from right to left.
+	     * @returns {Function} Returns the new flow function.
+	     */
+	    function createFlow(fromRight) {
+	      return function() {
+	        var wrapper,
+	            length = arguments.length,
+	            index = fromRight ? length : -1,
+	            leftIndex = 0,
+	            funcs = Array(length);
+
+	        while ((fromRight ? index-- : ++index < length)) {
+	          var func = funcs[leftIndex++] = arguments[index];
+	          if (typeof func != 'function') {
+	            throw new TypeError(FUNC_ERROR_TEXT);
+	          }
+	          if (!wrapper && LodashWrapper.prototype.thru && getFuncName(func) == 'wrapper') {
+	            wrapper = new LodashWrapper([], true);
+	          }
+	        }
+	        index = wrapper ? -1 : length;
+	        while (++index < length) {
+	          func = funcs[index];
+
+	          var funcName = getFuncName(func),
+	              data = funcName == 'wrapper' ? getData(func) : undefined;
+
+	          if (data && isLaziable(data[0]) && data[1] == (ARY_FLAG | CURRY_FLAG | PARTIAL_FLAG | REARG_FLAG) && !data[4].length && data[9] == 1) {
+	            wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
+	          } else {
+	            wrapper = (func.length == 1 && isLaziable(func)) ? wrapper[funcName]() : wrapper.thru(func);
+	          }
+	        }
+	        return function() {
+	          var args = arguments,
+	              value = args[0];
+
+	          if (wrapper && args.length == 1 && isArray(value) && value.length >= LARGE_ARRAY_SIZE) {
+	            return wrapper.plant(value).value();
+	          }
+	          var index = 0,
+	              result = length ? funcs[index].apply(this, args) : value;
+
+	          while (++index < length) {
+	            result = funcs[index].call(this, result);
+	          }
+	          return result;
+	        };
+	      };
+	    }
+
+	    /**
+	     * Creates a function for `_.forEach` or `_.forEachRight`.
+	     *
+	     * @private
+	     * @param {Function} arrayFunc The function to iterate over an array.
+	     * @param {Function} eachFunc The function to iterate over a collection.
+	     * @returns {Function} Returns the new each function.
+	     */
+	    function createForEach(arrayFunc, eachFunc) {
+	      return function(collection, iteratee, thisArg) {
+	        return (typeof iteratee == 'function' && thisArg === undefined && isArray(collection))
+	          ? arrayFunc(collection, iteratee)
+	          : eachFunc(collection, bindCallback(iteratee, thisArg, 3));
+	      };
+	    }
+
+	    /**
+	     * Creates a function for `_.forIn` or `_.forInRight`.
+	     *
+	     * @private
+	     * @param {Function} objectFunc The function to iterate over an object.
+	     * @returns {Function} Returns the new each function.
+	     */
+	    function createForIn(objectFunc) {
+	      return function(object, iteratee, thisArg) {
+	        if (typeof iteratee != 'function' || thisArg !== undefined) {
+	          iteratee = bindCallback(iteratee, thisArg, 3);
+	        }
+	        return objectFunc(object, iteratee, keysIn);
+	      };
+	    }
+
+	    /**
+	     * Creates a function for `_.forOwn` or `_.forOwnRight`.
+	     *
+	     * @private
+	     * @param {Function} objectFunc The function to iterate over an object.
+	     * @returns {Function} Returns the new each function.
+	     */
+	    function createForOwn(objectFunc) {
+	      return function(object, iteratee, thisArg) {
+	        if (typeof iteratee != 'function' || thisArg !== undefined) {
+	          iteratee = bindCallback(iteratee, thisArg, 3);
+	        }
+	        return objectFunc(object, iteratee);
+	      };
+	    }
+
+	    /**
+	     * Creates a function for `_.mapKeys` or `_.mapValues`.
+	     *
+	     * @private
+	     * @param {boolean} [isMapKeys] Specify mapping keys instead of values.
+	     * @returns {Function} Returns the new map function.
+	     */
+	    function createObjectMapper(isMapKeys) {
+	      return function(object, iteratee, thisArg) {
+	        var result = {};
+	        iteratee = getCallback(iteratee, thisArg, 3);
+
+	        baseForOwn(object, function(value, key, object) {
+	          var mapped = iteratee(value, key, object);
+	          key = isMapKeys ? mapped : key;
+	          value = isMapKeys ? value : mapped;
+	          result[key] = value;
+	        });
+	        return result;
+	      };
+	    }
+
+	    /**
+	     * Creates a function for `_.padLeft` or `_.padRight`.
+	     *
+	     * @private
+	     * @param {boolean} [fromRight] Specify padding from the right.
+	     * @returns {Function} Returns the new pad function.
+	     */
+	    function createPadDir(fromRight) {
+	      return function(string, length, chars) {
+	        string = baseToString(string);
+	        return (fromRight ? string : '') + createPadding(string, length, chars) + (fromRight ? '' : string);
+	      };
+	    }
+
+	    /**
+	     * Creates a `_.partial` or `_.partialRight` function.
+	     *
+	     * @private
+	     * @param {boolean} flag The partial bit flag.
+	     * @returns {Function} Returns the new partial function.
+	     */
+	    function createPartial(flag) {
+	      var partialFunc = restParam(function(func, partials) {
+	        var holders = replaceHolders(partials, partialFunc.placeholder);
+	        return createWrapper(func, flag, undefined, partials, holders);
+	      });
+	      return partialFunc;
+	    }
+
+	    /**
+	     * Creates a function for `_.reduce` or `_.reduceRight`.
+	     *
+	     * @private
+	     * @param {Function} arrayFunc The function to iterate over an array.
+	     * @param {Function} eachFunc The function to iterate over a collection.
+	     * @returns {Function} Returns the new each function.
+	     */
+	    function createReduce(arrayFunc, eachFunc) {
+	      return function(collection, iteratee, accumulator, thisArg) {
+	        var initFromArray = arguments.length < 3;
+	        return (typeof iteratee == 'function' && thisArg === undefined && isArray(collection))
+	          ? arrayFunc(collection, iteratee, accumulator, initFromArray)
+	          : baseReduce(collection, getCallback(iteratee, thisArg, 4), accumulator, initFromArray, eachFunc);
+	      };
+	    }
+
+	    /**
+	     * Creates a function that wraps `func` and invokes it with optional `this`
+	     * binding of, partial application, and currying.
+	     *
+	     * @private
+	     * @param {Function|string} func The function or method name to reference.
+	     * @param {number} bitmask The bitmask of flags. See `createWrapper` for more details.
+	     * @param {*} [thisArg] The `this` binding of `func`.
+	     * @param {Array} [partials] The arguments to prepend to those provided to the new function.
+	     * @param {Array} [holders] The `partials` placeholder indexes.
+	     * @param {Array} [partialsRight] The arguments to append to those provided to the new function.
+	     * @param {Array} [holdersRight] The `partialsRight` placeholder indexes.
+	     * @param {Array} [argPos] The argument positions of the new function.
+	     * @param {number} [ary] The arity cap of `func`.
+	     * @param {number} [arity] The arity of `func`.
+	     * @returns {Function} Returns the new wrapped function.
+	     */
+	    function createHybridWrapper(func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity) {
+	      var isAry = bitmask & ARY_FLAG,
+	          isBind = bitmask & BIND_FLAG,
+	          isBindKey = bitmask & BIND_KEY_FLAG,
+	          isCurry = bitmask & CURRY_FLAG,
+	          isCurryBound = bitmask & CURRY_BOUND_FLAG,
+	          isCurryRight = bitmask & CURRY_RIGHT_FLAG,
+	          Ctor = isBindKey ? undefined : createCtorWrapper(func);
+
+	      function wrapper() {
+	        // Avoid `arguments` object use disqualifying optimizations by
+	        // converting it to an array before providing it to other functions.
+	        var length = arguments.length,
+	            index = length,
+	            args = Array(length);
+
+	        while (index--) {
+	          args[index] = arguments[index];
+	        }
+	        if (partials) {
+	          args = composeArgs(args, partials, holders);
+	        }
+	        if (partialsRight) {
+	          args = composeArgsRight(args, partialsRight, holdersRight);
+	        }
+	        if (isCurry || isCurryRight) {
+	          var placeholder = wrapper.placeholder,
+	              argsHolders = replaceHolders(args, placeholder);
+
+	          length -= argsHolders.length;
+	          if (length < arity) {
+	            var newArgPos = argPos ? arrayCopy(argPos) : undefined,
+	                newArity = nativeMax(arity - length, 0),
+	                newsHolders = isCurry ? argsHolders : undefined,
+	                newHoldersRight = isCurry ? undefined : argsHolders,
+	                newPartials = isCurry ? args : undefined,
+	                newPartialsRight = isCurry ? undefined : args;
+
+	            bitmask |= (isCurry ? PARTIAL_FLAG : PARTIAL_RIGHT_FLAG);
+	            bitmask &= ~(isCurry ? PARTIAL_RIGHT_FLAG : PARTIAL_FLAG);
+
+	            if (!isCurryBound) {
+	              bitmask &= ~(BIND_FLAG | BIND_KEY_FLAG);
+	            }
+	            var newData = [func, bitmask, thisArg, newPartials, newsHolders, newPartialsRight, newHoldersRight, newArgPos, ary, newArity],
+	                result = createHybridWrapper.apply(undefined, newData);
+
+	            if (isLaziable(func)) {
+	              setData(result, newData);
+	            }
+	            result.placeholder = placeholder;
+	            return result;
+	          }
+	        }
+	        var thisBinding = isBind ? thisArg : this,
+	            fn = isBindKey ? thisBinding[func] : func;
+
+	        if (argPos) {
+	          args = reorder(args, argPos);
+	        }
+	        if (isAry && ary < args.length) {
+	          args.length = ary;
+	        }
+	        if (this && this !== root && this instanceof wrapper) {
+	          fn = Ctor || createCtorWrapper(func);
+	        }
+	        return fn.apply(thisBinding, args);
+	      }
+	      return wrapper;
+	    }
+
+	    /**
+	     * Creates the padding required for `string` based on the given `length`.
+	     * The `chars` string is truncated if the number of characters exceeds `length`.
+	     *
+	     * @private
+	     * @param {string} string The string to create padding for.
+	     * @param {number} [length=0] The padding length.
+	     * @param {string} [chars=' '] The string used as padding.
+	     * @returns {string} Returns the pad for `string`.
+	     */
+	    function createPadding(string, length, chars) {
+	      var strLength = string.length;
+	      length = +length;
+
+	      if (strLength >= length || !nativeIsFinite(length)) {
+	        return '';
+	      }
+	      var padLength = length - strLength;
+	      chars = chars == null ? ' ' : (chars + '');
+	      return repeat(chars, nativeCeil(padLength / chars.length)).slice(0, padLength);
+	    }
+
+	    /**
+	     * Creates a function that wraps `func` and invokes it with the optional `this`
+	     * binding of `thisArg` and the `partials` prepended to those provided to
+	     * the wrapper.
+	     *
+	     * @private
+	     * @param {Function} func The function to partially apply arguments to.
+	     * @param {number} bitmask The bitmask of flags. See `createWrapper` for more details.
+	     * @param {*} thisArg The `this` binding of `func`.
+	     * @param {Array} partials The arguments to prepend to those provided to the new function.
+	     * @returns {Function} Returns the new bound function.
+	     */
+	    function createPartialWrapper(func, bitmask, thisArg, partials) {
+	      var isBind = bitmask & BIND_FLAG,
+	          Ctor = createCtorWrapper(func);
+
+	      function wrapper() {
+	        // Avoid `arguments` object use disqualifying optimizations by
+	        // converting it to an array before providing it `func`.
+	        var argsIndex = -1,
+	            argsLength = arguments.length,
+	            leftIndex = -1,
+	            leftLength = partials.length,
+	            args = Array(leftLength + argsLength);
+
+	        while (++leftIndex < leftLength) {
+	          args[leftIndex] = partials[leftIndex];
+	        }
+	        while (argsLength--) {
+	          args[leftIndex++] = arguments[++argsIndex];
+	        }
+	        var fn = (this && this !== root && this instanceof wrapper) ? Ctor : func;
+	        return fn.apply(isBind ? thisArg : this, args);
+	      }
+	      return wrapper;
+	    }
+
+	    /**
+	     * Creates a `_.ceil`, `_.floor`, or `_.round` function.
+	     *
+	     * @private
+	     * @param {string} methodName The name of the `Math` method to use when rounding.
+	     * @returns {Function} Returns the new round function.
+	     */
+	    function createRound(methodName) {
+	      var func = Math[methodName];
+	      return function(number, precision) {
+	        precision = precision === undefined ? 0 : (+precision || 0);
+	        if (precision) {
+	          precision = pow(10, precision);
+	          return func(number * precision) / precision;
+	        }
+	        return func(number);
+	      };
+	    }
+
+	    /**
+	     * Creates a `_.sortedIndex` or `_.sortedLastIndex` function.
+	     *
+	     * @private
+	     * @param {boolean} [retHighest] Specify returning the highest qualified index.
+	     * @returns {Function} Returns the new index function.
+	     */
+	    function createSortedIndex(retHighest) {
+	      return function(array, value, iteratee, thisArg) {
+	        var callback = getCallback(iteratee);
+	        return (iteratee == null && callback === baseCallback)
+	          ? binaryIndex(array, value, retHighest)
+	          : binaryIndexBy(array, value, callback(iteratee, thisArg, 1), retHighest);
+	      };
+	    }
+
+	    /**
+	     * Creates a function that either curries or invokes `func` with optional
+	     * `this` binding and partially applied arguments.
+	     *
+	     * @private
+	     * @param {Function|string} func The function or method name to reference.
+	     * @param {number} bitmask The bitmask of flags.
+	     *  The bitmask may be composed of the following flags:
+	     *     1 - `_.bind`
+	     *     2 - `_.bindKey`
+	     *     4 - `_.curry` or `_.curryRight` of a bound function
+	     *     8 - `_.curry`
+	     *    16 - `_.curryRight`
+	     *    32 - `_.partial`
+	     *    64 - `_.partialRight`
+	     *   128 - `_.rearg`
+	     *   256 - `_.ary`
+	     * @param {*} [thisArg] The `this` binding of `func`.
+	     * @param {Array} [partials] The arguments to be partially applied.
+	     * @param {Array} [holders] The `partials` placeholder indexes.
+	     * @param {Array} [argPos] The argument positions of the new function.
+	     * @param {number} [ary] The arity cap of `func`.
+	     * @param {number} [arity] The arity of `func`.
+	     * @returns {Function} Returns the new wrapped function.
+	     */
+	    function createWrapper(func, bitmask, thisArg, partials, holders, argPos, ary, arity) {
+	      var isBindKey = bitmask & BIND_KEY_FLAG;
+	      if (!isBindKey && typeof func != 'function') {
+	        throw new TypeError(FUNC_ERROR_TEXT);
+	      }
+	      var length = partials ? partials.length : 0;
+	      if (!length) {
+	        bitmask &= ~(PARTIAL_FLAG | PARTIAL_RIGHT_FLAG);
+	        partials = holders = undefined;
+	      }
+	      length -= (holders ? holders.length : 0);
+	      if (bitmask & PARTIAL_RIGHT_FLAG) {
+	        var partialsRight = partials,
+	            holdersRight = holders;
+
+	        partials = holders = undefined;
+	      }
+	      var data = isBindKey ? undefined : getData(func),
+	          newData = [func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity];
+
+	      if (data) {
+	        mergeData(newData, data);
+	        bitmask = newData[1];
+	        arity = newData[9];
+	      }
+	      newData[9] = arity == null
+	        ? (isBindKey ? 0 : func.length)
+	        : (nativeMax(arity - length, 0) || 0);
+
+	      if (bitmask == BIND_FLAG) {
+	        var result = createBindWrapper(newData[0], newData[2]);
+	      } else if ((bitmask == PARTIAL_FLAG || bitmask == (BIND_FLAG | PARTIAL_FLAG)) && !newData[4].length) {
+	        result = createPartialWrapper.apply(undefined, newData);
+	      } else {
+	        result = createHybridWrapper.apply(undefined, newData);
+	      }
+	      var setter = data ? baseSetData : setData;
+	      return setter(result, newData);
+	    }
+
+	    /**
+	     * A specialized version of `baseIsEqualDeep` for arrays with support for
+	     * partial deep comparisons.
+	     *
+	     * @private
+	     * @param {Array} array The array to compare.
+	     * @param {Array} other The other array to compare.
+	     * @param {Function} equalFunc The function to determine equivalents of values.
+	     * @param {Function} [customizer] The function to customize comparing arrays.
+	     * @param {boolean} [isLoose] Specify performing partial comparisons.
+	     * @param {Array} [stackA] Tracks traversed `value` objects.
+	     * @param {Array} [stackB] Tracks traversed `other` objects.
+	     * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+	     */
+	    function equalArrays(array, other, equalFunc, customizer, isLoose, stackA, stackB) {
+	      var index = -1,
+	          arrLength = array.length,
+	          othLength = other.length;
+
+	      if (arrLength != othLength && !(isLoose && othLength > arrLength)) {
+	        return false;
+	      }
+	      // Ignore non-index properties.
+	      while (++index < arrLength) {
+	        var arrValue = array[index],
+	            othValue = other[index],
+	            result = customizer ? customizer(isLoose ? othValue : arrValue, isLoose ? arrValue : othValue, index) : undefined;
+
+	        if (result !== undefined) {
+	          if (result) {
+	            continue;
+	          }
+	          return false;
+	        }
+	        // Recursively compare arrays (susceptible to call stack limits).
+	        if (isLoose) {
+	          if (!arraySome(other, function(othValue) {
+	                return arrValue === othValue || equalFunc(arrValue, othValue, customizer, isLoose, stackA, stackB);
+	              })) {
+	            return false;
+	          }
+	        } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, customizer, isLoose, stackA, stackB))) {
+	          return false;
+	        }
+	      }
+	      return true;
+	    }
+
+	    /**
+	     * A specialized version of `baseIsEqualDeep` for comparing objects of
+	     * the same `toStringTag`.
+	     *
+	     * **Note:** This function only supports comparing values with tags of
+	     * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+	     *
+	     * @private
+	     * @param {Object} object The object to compare.
+	     * @param {Object} other The other object to compare.
+	     * @param {string} tag The `toStringTag` of the objects to compare.
+	     * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+	     */
+	    function equalByTag(object, other, tag) {
+	      switch (tag) {
+	        case boolTag:
+	        case dateTag:
+	          // Coerce dates and booleans to numbers, dates to milliseconds and booleans
+	          // to `1` or `0` treating invalid dates coerced to `NaN` as not equal.
+	          return +object == +other;
+
+	        case errorTag:
+	          return object.name == other.name && object.message == other.message;
+
+	        case numberTag:
+	          // Treat `NaN` vs. `NaN` as equal.
+	          return (object != +object)
+	            ? other != +other
+	            : object == +other;
+
+	        case regexpTag:
+	        case stringTag:
+	          // Coerce regexes to strings and treat strings primitives and string
+	          // objects as equal. See https://es5.github.io/#x15.10.6.4 for more details.
+	          return object == (other + '');
+	      }
+	      return false;
+	    }
+
+	    /**
+	     * A specialized version of `baseIsEqualDeep` for objects with support for
+	     * partial deep comparisons.
+	     *
+	     * @private
+	     * @param {Object} object The object to compare.
+	     * @param {Object} other The other object to compare.
+	     * @param {Function} equalFunc The function to determine equivalents of values.
+	     * @param {Function} [customizer] The function to customize comparing values.
+	     * @param {boolean} [isLoose] Specify performing partial comparisons.
+	     * @param {Array} [stackA] Tracks traversed `value` objects.
+	     * @param {Array} [stackB] Tracks traversed `other` objects.
+	     * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+	     */
+	    function equalObjects(object, other, equalFunc, customizer, isLoose, stackA, stackB) {
+	      var objProps = keys(object),
+	          objLength = objProps.length,
+	          othProps = keys(other),
+	          othLength = othProps.length;
+
+	      if (objLength != othLength && !isLoose) {
+	        return false;
+	      }
+	      var index = objLength;
+	      while (index--) {
+	        var key = objProps[index];
+	        if (!(isLoose ? key in other : hasOwnProperty.call(other, key))) {
+	          return false;
+	        }
+	      }
+	      var skipCtor = isLoose;
+	      while (++index < objLength) {
+	        key = objProps[index];
+	        var objValue = object[key],
+	            othValue = other[key],
+	            result = customizer ? customizer(isLoose ? othValue : objValue, isLoose? objValue : othValue, key) : undefined;
+
+	        // Recursively compare objects (susceptible to call stack limits).
+	        if (!(result === undefined ? equalFunc(objValue, othValue, customizer, isLoose, stackA, stackB) : result)) {
+	          return false;
+	        }
+	        skipCtor || (skipCtor = key == 'constructor');
+	      }
+	      if (!skipCtor) {
+	        var objCtor = object.constructor,
+	            othCtor = other.constructor;
+
+	        // Non `Object` object instances with different constructors are not equal.
+	        if (objCtor != othCtor &&
+	            ('constructor' in object && 'constructor' in other) &&
+	            !(typeof objCtor == 'function' && objCtor instanceof objCtor &&
+	              typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+	          return false;
+	        }
+	      }
+	      return true;
+	    }
+
+	    /**
+	     * Gets the appropriate "callback" function. If the `_.callback` method is
+	     * customized this function returns the custom method, otherwise it returns
+	     * the `baseCallback` function. If arguments are provided the chosen function
+	     * is invoked with them and its result is returned.
+	     *
+	     * @private
+	     * @returns {Function} Returns the chosen function or its result.
+	     */
+	    function getCallback(func, thisArg, argCount) {
+	      var result = lodash.callback || callback;
+	      result = result === callback ? baseCallback : result;
+	      return argCount ? result(func, thisArg, argCount) : result;
+	    }
+
+	    /**
+	     * Gets metadata for `func`.
+	     *
+	     * @private
+	     * @param {Function} func The function to query.
+	     * @returns {*} Returns the metadata for `func`.
+	     */
+	    var getData = !metaMap ? noop : function(func) {
+	      return metaMap.get(func);
+	    };
+
+	    /**
+	     * Gets the name of `func`.
+	     *
+	     * @private
+	     * @param {Function} func The function to query.
+	     * @returns {string} Returns the function name.
+	     */
+	    function getFuncName(func) {
+	      var result = func.name,
+	          array = realNames[result],
+	          length = array ? array.length : 0;
+
+	      while (length--) {
+	        var data = array[length],
+	            otherFunc = data.func;
+	        if (otherFunc == null || otherFunc == func) {
+	          return data.name;
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Gets the appropriate "indexOf" function. If the `_.indexOf` method is
+	     * customized this function returns the custom method, otherwise it returns
+	     * the `baseIndexOf` function. If arguments are provided the chosen function
+	     * is invoked with them and its result is returned.
+	     *
+	     * @private
+	     * @returns {Function|number} Returns the chosen function or its result.
+	     */
+	    function getIndexOf(collection, target, fromIndex) {
+	      var result = lodash.indexOf || indexOf;
+	      result = result === indexOf ? baseIndexOf : result;
+	      return collection ? result(collection, target, fromIndex) : result;
+	    }
+
+	    /**
+	     * Gets the "length" property value of `object`.
+	     *
+	     * **Note:** This function is used to avoid a [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792)
+	     * that affects Safari on at least iOS 8.1-8.3 ARM64.
+	     *
+	     * @private
+	     * @param {Object} object The object to query.
+	     * @returns {*} Returns the "length" value.
+	     */
+	    var getLength = baseProperty('length');
+
+	    /**
+	     * Gets the propery names, values, and compare flags of `object`.
+	     *
+	     * @private
+	     * @param {Object} object The object to query.
+	     * @returns {Array} Returns the match data of `object`.
+	     */
+	    function getMatchData(object) {
+	      var result = pairs(object),
+	          length = result.length;
+
+	      while (length--) {
+	        result[length][2] = isStrictComparable(result[length][1]);
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Gets the native function at `key` of `object`.
+	     *
+	     * @private
+	     * @param {Object} object The object to query.
+	     * @param {string} key The key of the method to get.
+	     * @returns {*} Returns the function if it's native, else `undefined`.
+	     */
+	    function getNative(object, key) {
+	      var value = object == null ? undefined : object[key];
+	      return isNative(value) ? value : undefined;
+	    }
+
+	    /**
+	     * Gets the view, applying any `transforms` to the `start` and `end` positions.
+	     *
+	     * @private
+	     * @param {number} start The start of the view.
+	     * @param {number} end The end of the view.
+	     * @param {Array} transforms The transformations to apply to the view.
+	     * @returns {Object} Returns an object containing the `start` and `end`
+	     *  positions of the view.
+	     */
+	    function getView(start, end, transforms) {
+	      var index = -1,
+	          length = transforms.length;
+
+	      while (++index < length) {
+	        var data = transforms[index],
+	            size = data.size;
+
+	        switch (data.type) {
+	          case 'drop':      start += size; break;
+	          case 'dropRight': end -= size; break;
+	          case 'take':      end = nativeMin(end, start + size); break;
+	          case 'takeRight': start = nativeMax(start, end - size); break;
+	        }
+	      }
+	      return { 'start': start, 'end': end };
+	    }
+
+	    /**
+	     * Initializes an array clone.
+	     *
+	     * @private
+	     * @param {Array} array The array to clone.
+	     * @returns {Array} Returns the initialized clone.
+	     */
+	    function initCloneArray(array) {
+	      var length = array.length,
+	          result = new array.constructor(length);
+
+	      // Add array properties assigned by `RegExp#exec`.
+	      if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
+	        result.index = array.index;
+	        result.input = array.input;
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Initializes an object clone.
+	     *
+	     * @private
+	     * @param {Object} object The object to clone.
+	     * @returns {Object} Returns the initialized clone.
+	     */
+	    function initCloneObject(object) {
+	      var Ctor = object.constructor;
+	      if (!(typeof Ctor == 'function' && Ctor instanceof Ctor)) {
+	        Ctor = Object;
+	      }
+	      return new Ctor;
+	    }
+
+	    /**
+	     * Initializes an object clone based on its `toStringTag`.
+	     *
+	     * **Note:** This function only supports cloning values with tags of
+	     * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+	     *
+	     * @private
+	     * @param {Object} object The object to clone.
+	     * @param {string} tag The `toStringTag` of the object to clone.
+	     * @param {boolean} [isDeep] Specify a deep clone.
+	     * @returns {Object} Returns the initialized clone.
+	     */
+	    function initCloneByTag(object, tag, isDeep) {
+	      var Ctor = object.constructor;
+	      switch (tag) {
+	        case arrayBufferTag:
+	          return bufferClone(object);
+
+	        case boolTag:
+	        case dateTag:
+	          return new Ctor(+object);
+
+	        case float32Tag: case float64Tag:
+	        case int8Tag: case int16Tag: case int32Tag:
+	        case uint8Tag: case uint8ClampedTag: case uint16Tag: case uint32Tag:
+	          var buffer = object.buffer;
+	          return new Ctor(isDeep ? bufferClone(buffer) : buffer, object.byteOffset, object.length);
+
+	        case numberTag:
+	        case stringTag:
+	          return new Ctor(object);
+
+	        case regexpTag:
+	          var result = new Ctor(object.source, reFlags.exec(object));
+	          result.lastIndex = object.lastIndex;
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Invokes the method at `path` on `object`.
+	     *
+	     * @private
+	     * @param {Object} object The object to query.
+	     * @param {Array|string} path The path of the method to invoke.
+	     * @param {Array} args The arguments to invoke the method with.
+	     * @returns {*} Returns the result of the invoked method.
+	     */
+	    function invokePath(object, path, args) {
+	      if (object != null && !isKey(path, object)) {
+	        path = toPath(path);
+	        object = path.length == 1 ? object : baseGet(object, baseSlice(path, 0, -1));
+	        path = last(path);
+	      }
+	      var func = object == null ? object : object[path];
+	      return func == null ? undefined : func.apply(object, args);
+	    }
+
+	    /**
+	     * Checks if `value` is array-like.
+	     *
+	     * @private
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+	     */
+	    function isArrayLike(value) {
+	      return value != null && isLength(getLength(value));
+	    }
+
+	    /**
+	     * Checks if `value` is a valid array-like index.
+	     *
+	     * @private
+	     * @param {*} value The value to check.
+	     * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+	     * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+	     */
+	    function isIndex(value, length) {
+	      value = (typeof value == 'number' || reIsUint.test(value)) ? +value : -1;
+	      length = length == null ? MAX_SAFE_INTEGER : length;
+	      return value > -1 && value % 1 == 0 && value < length;
+	    }
+
+	    /**
+	     * Checks if the provided arguments are from an iteratee call.
+	     *
+	     * @private
+	     * @param {*} value The potential iteratee value argument.
+	     * @param {*} index The potential iteratee index or key argument.
+	     * @param {*} object The potential iteratee object argument.
+	     * @returns {boolean} Returns `true` if the arguments are from an iteratee call, else `false`.
+	     */
+	    function isIterateeCall(value, index, object) {
+	      if (!isObject(object)) {
+	        return false;
+	      }
+	      var type = typeof index;
+	      if (type == 'number'
+	          ? (isArrayLike(object) && isIndex(index, object.length))
+	          : (type == 'string' && index in object)) {
+	        var other = object[index];
+	        return value === value ? (value === other) : (other !== other);
+	      }
+	      return false;
+	    }
+
+	    /**
+	     * Checks if `value` is a property name and not a property path.
+	     *
+	     * @private
+	     * @param {*} value The value to check.
+	     * @param {Object} [object] The object to query keys on.
+	     * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+	     */
+	    function isKey(value, object) {
+	      var type = typeof value;
+	      if ((type == 'string' && reIsPlainProp.test(value)) || type == 'number') {
+	        return true;
+	      }
+	      if (isArray(value)) {
+	        return false;
+	      }
+	      var result = !reIsDeepProp.test(value);
+	      return result || (object != null && value in toObject(object));
+	    }
+
+	    /**
+	     * Checks if `func` has a lazy counterpart.
+	     *
+	     * @private
+	     * @param {Function} func The function to check.
+	     * @returns {boolean} Returns `true` if `func` has a lazy counterpart, else `false`.
+	     */
+	    function isLaziable(func) {
+	      var funcName = getFuncName(func);
+	      if (!(funcName in LazyWrapper.prototype)) {
+	        return false;
+	      }
+	      var other = lodash[funcName];
+	      if (func === other) {
+	        return true;
+	      }
+	      var data = getData(other);
+	      return !!data && func === data[0];
+	    }
+
+	    /**
+	     * Checks if `value` is a valid array-like length.
+	     *
+	     * **Note:** This function is based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
+	     *
+	     * @private
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+	     */
+	    function isLength(value) {
+	      return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+	    }
+
+	    /**
+	     * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+	     *
+	     * @private
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` if suitable for strict
+	     *  equality comparisons, else `false`.
+	     */
+	    function isStrictComparable(value) {
+	      return value === value && !isObject(value);
+	    }
+
+	    /**
+	     * Merges the function metadata of `source` into `data`.
+	     *
+	     * Merging metadata reduces the number of wrappers required to invoke a function.
+	     * This is possible because methods like `_.bind`, `_.curry`, and `_.partial`
+	     * may be applied regardless of execution order. Methods like `_.ary` and `_.rearg`
+	     * augment function arguments, making the order in which they are executed important,
+	     * preventing the merging of metadata. However, we make an exception for a safe
+	     * common case where curried functions have `_.ary` and or `_.rearg` applied.
+	     *
+	     * @private
+	     * @param {Array} data The destination metadata.
+	     * @param {Array} source The source metadata.
+	     * @returns {Array} Returns `data`.
+	     */
+	    function mergeData(data, source) {
+	      var bitmask = data[1],
+	          srcBitmask = source[1],
+	          newBitmask = bitmask | srcBitmask,
+	          isCommon = newBitmask < ARY_FLAG;
+
+	      var isCombo =
+	        (srcBitmask == ARY_FLAG && bitmask == CURRY_FLAG) ||
+	        (srcBitmask == ARY_FLAG && bitmask == REARG_FLAG && data[7].length <= source[8]) ||
+	        (srcBitmask == (ARY_FLAG | REARG_FLAG) && bitmask == CURRY_FLAG);
+
+	      // Exit early if metadata can't be merged.
+	      if (!(isCommon || isCombo)) {
+	        return data;
+	      }
+	      // Use source `thisArg` if available.
+	      if (srcBitmask & BIND_FLAG) {
+	        data[2] = source[2];
+	        // Set when currying a bound function.
+	        newBitmask |= (bitmask & BIND_FLAG) ? 0 : CURRY_BOUND_FLAG;
+	      }
+	      // Compose partial arguments.
+	      var value = source[3];
+	      if (value) {
+	        var partials = data[3];
+	        data[3] = partials ? composeArgs(partials, value, source[4]) : arrayCopy(value);
+	        data[4] = partials ? replaceHolders(data[3], PLACEHOLDER) : arrayCopy(source[4]);
+	      }
+	      // Compose partial right arguments.
+	      value = source[5];
+	      if (value) {
+	        partials = data[5];
+	        data[5] = partials ? composeArgsRight(partials, value, source[6]) : arrayCopy(value);
+	        data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : arrayCopy(source[6]);
+	      }
+	      // Use source `argPos` if available.
+	      value = source[7];
+	      if (value) {
+	        data[7] = arrayCopy(value);
+	      }
+	      // Use source `ary` if it's smaller.
+	      if (srcBitmask & ARY_FLAG) {
+	        data[8] = data[8] == null ? source[8] : nativeMin(data[8], source[8]);
+	      }
+	      // Use source `arity` if one is not provided.
+	      if (data[9] == null) {
+	        data[9] = source[9];
+	      }
+	      // Use source `func` and merge bitmasks.
+	      data[0] = source[0];
+	      data[1] = newBitmask;
+
+	      return data;
+	    }
+
+	    /**
+	     * Used by `_.defaultsDeep` to customize its `_.merge` use.
+	     *
+	     * @private
+	     * @param {*} objectValue The destination object property value.
+	     * @param {*} sourceValue The source object property value.
+	     * @returns {*} Returns the value to assign to the destination object.
+	     */
+	    function mergeDefaults(objectValue, sourceValue) {
+	      return objectValue === undefined ? sourceValue : merge(objectValue, sourceValue, mergeDefaults);
+	    }
+
+	    /**
+	     * A specialized version of `_.pick` which picks `object` properties specified
+	     * by `props`.
+	     *
+	     * @private
+	     * @param {Object} object The source object.
+	     * @param {string[]} props The property names to pick.
+	     * @returns {Object} Returns the new object.
+	     */
+	    function pickByArray(object, props) {
+	      object = toObject(object);
+
+	      var index = -1,
+	          length = props.length,
+	          result = {};
+
+	      while (++index < length) {
+	        var key = props[index];
+	        if (key in object) {
+	          result[key] = object[key];
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * A specialized version of `_.pick` which picks `object` properties `predicate`
+	     * returns truthy for.
+	     *
+	     * @private
+	     * @param {Object} object The source object.
+	     * @param {Function} predicate The function invoked per iteration.
+	     * @returns {Object} Returns the new object.
+	     */
+	    function pickByCallback(object, predicate) {
+	      var result = {};
+	      baseForIn(object, function(value, key, object) {
+	        if (predicate(value, key, object)) {
+	          result[key] = value;
+	        }
+	      });
+	      return result;
+	    }
+
+	    /**
+	     * Reorder `array` according to the specified indexes where the element at
+	     * the first index is assigned as the first element, the element at
+	     * the second index is assigned as the second element, and so on.
+	     *
+	     * @private
+	     * @param {Array} array The array to reorder.
+	     * @param {Array} indexes The arranged array indexes.
+	     * @returns {Array} Returns `array`.
+	     */
+	    function reorder(array, indexes) {
+	      var arrLength = array.length,
+	          length = nativeMin(indexes.length, arrLength),
+	          oldArray = arrayCopy(array);
+
+	      while (length--) {
+	        var index = indexes[length];
+	        array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined;
+	      }
+	      return array;
+	    }
+
+	    /**
+	     * Sets metadata for `func`.
+	     *
+	     * **Note:** If this function becomes hot, i.e. is invoked a lot in a short
+	     * period of time, it will trip its breaker and transition to an identity function
+	     * to avoid garbage collection pauses in V8. See [V8 issue 2070](https://code.google.com/p/v8/issues/detail?id=2070)
+	     * for more details.
+	     *
+	     * @private
+	     * @param {Function} func The function to associate metadata with.
+	     * @param {*} data The metadata.
+	     * @returns {Function} Returns `func`.
+	     */
+	    var setData = (function() {
+	      var count = 0,
+	          lastCalled = 0;
+
+	      return function(key, value) {
+	        var stamp = now(),
+	            remaining = HOT_SPAN - (stamp - lastCalled);
+
+	        lastCalled = stamp;
+	        if (remaining > 0) {
+	          if (++count >= HOT_COUNT) {
+	            return key;
+	          }
+	        } else {
+	          count = 0;
+	        }
+	        return baseSetData(key, value);
+	      };
+	    }());
+
+	    /**
+	     * A fallback implementation of `Object.keys` which creates an array of the
+	     * own enumerable property names of `object`.
+	     *
+	     * @private
+	     * @param {Object} object The object to query.
+	     * @returns {Array} Returns the array of property names.
+	     */
+	    function shimKeys(object) {
+	      var props = keysIn(object),
+	          propsLength = props.length,
+	          length = propsLength && object.length;
+
+	      var allowIndexes = !!length && isLength(length) &&
+	        (isArray(object) || isArguments(object));
+
+	      var index = -1,
+	          result = [];
+
+	      while (++index < propsLength) {
+	        var key = props[index];
+	        if ((allowIndexes && isIndex(key, length)) || hasOwnProperty.call(object, key)) {
+	          result.push(key);
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Converts `value` to an array-like object if it's not one.
+	     *
+	     * @private
+	     * @param {*} value The value to process.
+	     * @returns {Array|Object} Returns the array-like object.
+	     */
+	    function toIterable(value) {
+	      if (value == null) {
+	        return [];
+	      }
+	      if (!isArrayLike(value)) {
+	        return values(value);
+	      }
+	      return isObject(value) ? value : Object(value);
+	    }
+
+	    /**
+	     * Converts `value` to an object if it's not one.
+	     *
+	     * @private
+	     * @param {*} value The value to process.
+	     * @returns {Object} Returns the object.
+	     */
+	    function toObject(value) {
+	      return isObject(value) ? value : Object(value);
+	    }
+
+	    /**
+	     * Converts `value` to property path array if it's not one.
+	     *
+	     * @private
+	     * @param {*} value The value to process.
+	     * @returns {Array} Returns the property path array.
+	     */
+	    function toPath(value) {
+	      if (isArray(value)) {
+	        return value;
+	      }
+	      var result = [];
+	      baseToString(value).replace(rePropName, function(match, number, quote, string) {
+	        result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
+	      });
+	      return result;
+	    }
+
+	    /**
+	     * Creates a clone of `wrapper`.
+	     *
+	     * @private
+	     * @param {Object} wrapper The wrapper to clone.
+	     * @returns {Object} Returns the cloned wrapper.
+	     */
+	    function wrapperClone(wrapper) {
+	      return wrapper instanceof LazyWrapper
+	        ? wrapper.clone()
+	        : new LodashWrapper(wrapper.__wrapped__, wrapper.__chain__, arrayCopy(wrapper.__actions__));
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Creates an array of elements split into groups the length of `size`.
+	     * If `collection` can't be split evenly, the final chunk will be the remaining
+	     * elements.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to process.
+	     * @param {number} [size=1] The length of each chunk.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Array} Returns the new array containing chunks.
+	     * @example
+	     *
+	     * _.chunk(['a', 'b', 'c', 'd'], 2);
+	     * // => [['a', 'b'], ['c', 'd']]
+	     *
+	     * _.chunk(['a', 'b', 'c', 'd'], 3);
+	     * // => [['a', 'b', 'c'], ['d']]
+	     */
+	    function chunk(array, size, guard) {
+	      if (guard ? isIterateeCall(array, size, guard) : size == null) {
+	        size = 1;
+	      } else {
+	        size = nativeMax(nativeFloor(size) || 1, 1);
+	      }
+	      var index = 0,
+	          length = array ? array.length : 0,
+	          resIndex = -1,
+	          result = Array(nativeCeil(length / size));
+
+	      while (index < length) {
+	        result[++resIndex] = baseSlice(array, index, (index += size));
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Creates an array with all falsey values removed. The values `false`, `null`,
+	     * `0`, `""`, `undefined`, and `NaN` are falsey.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to compact.
+	     * @returns {Array} Returns the new array of filtered values.
+	     * @example
+	     *
+	     * _.compact([0, 1, false, 2, '', 3]);
+	     * // => [1, 2, 3]
+	     */
+	    function compact(array) {
+	      var index = -1,
+	          length = array ? array.length : 0,
+	          resIndex = -1,
+	          result = [];
+
+	      while (++index < length) {
+	        var value = array[index];
+	        if (value) {
+	          result[++resIndex] = value;
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Creates an array of unique `array` values not included in the other
+	     * provided arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+	     * for equality comparisons.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to inspect.
+	     * @param {...Array} [values] The arrays of values to exclude.
+	     * @returns {Array} Returns the new array of filtered values.
+	     * @example
+	     *
+	     * _.difference([1, 2, 3], [4, 2]);
+	     * // => [1, 3]
+	     */
+	    var difference = restParam(function(array, values) {
+	      return (isObjectLike(array) && isArrayLike(array))
+	        ? baseDifference(array, baseFlatten(values, false, true))
+	        : [];
+	    });
+
+	    /**
+	     * Creates a slice of `array` with `n` elements dropped from the beginning.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @param {number} [n=1] The number of elements to drop.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.drop([1, 2, 3]);
+	     * // => [2, 3]
+	     *
+	     * _.drop([1, 2, 3], 2);
+	     * // => [3]
+	     *
+	     * _.drop([1, 2, 3], 5);
+	     * // => []
+	     *
+	     * _.drop([1, 2, 3], 0);
+	     * // => [1, 2, 3]
+	     */
+	    function drop(array, n, guard) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return [];
+	      }
+	      if (guard ? isIterateeCall(array, n, guard) : n == null) {
+	        n = 1;
+	      }
+	      return baseSlice(array, n < 0 ? 0 : n);
+	    }
+
+	    /**
+	     * Creates a slice of `array` with `n` elements dropped from the end.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @param {number} [n=1] The number of elements to drop.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.dropRight([1, 2, 3]);
+	     * // => [1, 2]
+	     *
+	     * _.dropRight([1, 2, 3], 2);
+	     * // => [1]
+	     *
+	     * _.dropRight([1, 2, 3], 5);
+	     * // => []
+	     *
+	     * _.dropRight([1, 2, 3], 0);
+	     * // => [1, 2, 3]
+	     */
+	    function dropRight(array, n, guard) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return [];
+	      }
+	      if (guard ? isIterateeCall(array, n, guard) : n == null) {
+	        n = 1;
+	      }
+	      n = length - (+n || 0);
+	      return baseSlice(array, 0, n < 0 ? 0 : n);
+	    }
+
+	    /**
+	     * Creates a slice of `array` excluding elements dropped from the end.
+	     * Elements are dropped until `predicate` returns falsey. The predicate is
+	     * bound to `thisArg` and invoked with three arguments: (value, index, array).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that match the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.dropRightWhile([1, 2, 3], function(n) {
+	     *   return n > 1;
+	     * });
+	     * // => [1]
+	     *
+	     * var users = [
+	     *   { 'user': 'barney',  'active': true },
+	     *   { 'user': 'fred',    'active': false },
+	     *   { 'user': 'pebbles', 'active': false }
+	     * ];
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.pluck(_.dropRightWhile(users, { 'user': 'pebbles', 'active': false }), 'user');
+	     * // => ['barney', 'fred']
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.pluck(_.dropRightWhile(users, 'active', false), 'user');
+	     * // => ['barney']
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.pluck(_.dropRightWhile(users, 'active'), 'user');
+	     * // => ['barney', 'fred', 'pebbles']
+	     */
+	    function dropRightWhile(array, predicate, thisArg) {
+	      return (array && array.length)
+	        ? baseWhile(array, getCallback(predicate, thisArg, 3), true, true)
+	        : [];
+	    }
+
+	    /**
+	     * Creates a slice of `array` excluding elements dropped from the beginning.
+	     * Elements are dropped until `predicate` returns falsey. The predicate is
+	     * bound to `thisArg` and invoked with three arguments: (value, index, array).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.dropWhile([1, 2, 3], function(n) {
+	     *   return n < 3;
+	     * });
+	     * // => [3]
+	     *
+	     * var users = [
+	     *   { 'user': 'barney',  'active': false },
+	     *   { 'user': 'fred',    'active': false },
+	     *   { 'user': 'pebbles', 'active': true }
+	     * ];
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.pluck(_.dropWhile(users, { 'user': 'barney', 'active': false }), 'user');
+	     * // => ['fred', 'pebbles']
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.pluck(_.dropWhile(users, 'active', false), 'user');
+	     * // => ['pebbles']
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.pluck(_.dropWhile(users, 'active'), 'user');
+	     * // => ['barney', 'fred', 'pebbles']
+	     */
+	    function dropWhile(array, predicate, thisArg) {
+	      return (array && array.length)
+	        ? baseWhile(array, getCallback(predicate, thisArg, 3), true)
+	        : [];
+	    }
+
+	    /**
+	     * Fills elements of `array` with `value` from `start` up to, but not
+	     * including, `end`.
+	     *
+	     * **Note:** This method mutates `array`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to fill.
+	     * @param {*} value The value to fill `array` with.
+	     * @param {number} [start=0] The start position.
+	     * @param {number} [end=array.length] The end position.
+	     * @returns {Array} Returns `array`.
+	     * @example
+	     *
+	     * var array = [1, 2, 3];
+	     *
+	     * _.fill(array, 'a');
+	     * console.log(array);
+	     * // => ['a', 'a', 'a']
+	     *
+	     * _.fill(Array(3), 2);
+	     * // => [2, 2, 2]
+	     *
+	     * _.fill([4, 6, 8], '*', 1, 2);
+	     * // => [4, '*', 8]
+	     */
+	    function fill(array, value, start, end) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return [];
+	      }
+	      if (start && typeof start != 'number' && isIterateeCall(array, value, start)) {
+	        start = 0;
+	        end = length;
+	      }
+	      return baseFill(array, value, start, end);
+	    }
+
+	    /**
+	     * This method is like `_.find` except that it returns the index of the first
+	     * element `predicate` returns truthy for instead of the element itself.
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to search.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {number} Returns the index of the found element, else `-1`.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney',  'active': false },
+	     *   { 'user': 'fred',    'active': false },
+	     *   { 'user': 'pebbles', 'active': true }
+	     * ];
+	     *
+	     * _.findIndex(users, function(chr) {
+	     *   return chr.user == 'barney';
+	     * });
+	     * // => 0
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.findIndex(users, { 'user': 'fred', 'active': false });
+	     * // => 1
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.findIndex(users, 'active', false);
+	     * // => 0
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.findIndex(users, 'active');
+	     * // => 2
+	     */
+	    var findIndex = createFindIndex();
+
+	    /**
+	     * This method is like `_.findIndex` except that it iterates over elements
+	     * of `collection` from right to left.
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to search.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {number} Returns the index of the found element, else `-1`.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney',  'active': true },
+	     *   { 'user': 'fred',    'active': false },
+	     *   { 'user': 'pebbles', 'active': false }
+	     * ];
+	     *
+	     * _.findLastIndex(users, function(chr) {
+	     *   return chr.user == 'pebbles';
+	     * });
+	     * // => 2
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.findLastIndex(users, { 'user': 'barney', 'active': true });
+	     * // => 0
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.findLastIndex(users, 'active', false);
+	     * // => 2
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.findLastIndex(users, 'active');
+	     * // => 0
+	     */
+	    var findLastIndex = createFindIndex(true);
+
+	    /**
+	     * Gets the first element of `array`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias head
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @returns {*} Returns the first element of `array`.
+	     * @example
+	     *
+	     * _.first([1, 2, 3]);
+	     * // => 1
+	     *
+	     * _.first([]);
+	     * // => undefined
+	     */
+	    function first(array) {
+	      return array ? array[0] : undefined;
+	    }
+
+	    /**
+	     * Flattens a nested array. If `isDeep` is `true` the array is recursively
+	     * flattened, otherwise it is only flattened a single level.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to flatten.
+	     * @param {boolean} [isDeep] Specify a deep flatten.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Array} Returns the new flattened array.
+	     * @example
+	     *
+	     * _.flatten([1, [2, 3, [4]]]);
+	     * // => [1, 2, 3, [4]]
+	     *
+	     * // using `isDeep`
+	     * _.flatten([1, [2, 3, [4]]], true);
+	     * // => [1, 2, 3, 4]
+	     */
+	    function flatten(array, isDeep, guard) {
+	      var length = array ? array.length : 0;
+	      if (guard && isIterateeCall(array, isDeep, guard)) {
+	        isDeep = false;
+	      }
+	      return length ? baseFlatten(array, isDeep) : [];
+	    }
+
+	    /**
+	     * Recursively flattens a nested array.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to recursively flatten.
+	     * @returns {Array} Returns the new flattened array.
+	     * @example
+	     *
+	     * _.flattenDeep([1, [2, 3, [4]]]);
+	     * // => [1, 2, 3, 4]
+	     */
+	    function flattenDeep(array) {
+	      var length = array ? array.length : 0;
+	      return length ? baseFlatten(array, true) : [];
+	    }
+
+	    /**
+	     * Gets the index at which the first occurrence of `value` is found in `array`
+	     * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+	     * for equality comparisons. If `fromIndex` is negative, it is used as the offset
+	     * from the end of `array`. If `array` is sorted providing `true` for `fromIndex`
+	     * performs a faster binary search.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to search.
+	     * @param {*} value The value to search for.
+	     * @param {boolean|number} [fromIndex=0] The index to search from or `true`
+	     *  to perform a binary search on a sorted array.
+	     * @returns {number} Returns the index of the matched value, else `-1`.
+	     * @example
+	     *
+	     * _.indexOf([1, 2, 1, 2], 2);
+	     * // => 1
+	     *
+	     * // using `fromIndex`
+	     * _.indexOf([1, 2, 1, 2], 2, 2);
+	     * // => 3
+	     *
+	     * // performing a binary search
+	     * _.indexOf([1, 1, 2, 2], 2, true);
+	     * // => 2
+	     */
+	    function indexOf(array, value, fromIndex) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return -1;
+	      }
+	      if (typeof fromIndex == 'number') {
+	        fromIndex = fromIndex < 0 ? nativeMax(length + fromIndex, 0) : fromIndex;
+	      } else if (fromIndex) {
+	        var index = binaryIndex(array, value);
+	        if (index < length &&
+	            (value === value ? (value === array[index]) : (array[index] !== array[index]))) {
+	          return index;
+	        }
+	        return -1;
+	      }
+	      return baseIndexOf(array, value, fromIndex || 0);
+	    }
+
+	    /**
+	     * Gets all but the last element of `array`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.initial([1, 2, 3]);
+	     * // => [1, 2]
+	     */
+	    function initial(array) {
+	      return dropRight(array, 1);
+	    }
+
+	    /**
+	     * Creates an array of unique values that are included in all of the provided
+	     * arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+	     * for equality comparisons.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {...Array} [arrays] The arrays to inspect.
+	     * @returns {Array} Returns the new array of shared values.
+	     * @example
+	     * _.intersection([1, 2], [4, 2], [2, 1]);
+	     * // => [2]
+	     */
+	    var intersection = restParam(function(arrays) {
+	      var othLength = arrays.length,
+	          othIndex = othLength,
+	          caches = Array(length),
+	          indexOf = getIndexOf(),
+	          isCommon = indexOf == baseIndexOf,
+	          result = [];
+
+	      while (othIndex--) {
+	        var value = arrays[othIndex] = isArrayLike(value = arrays[othIndex]) ? value : [];
+	        caches[othIndex] = (isCommon && value.length >= 120) ? createCache(othIndex && value) : null;
+	      }
+	      var array = arrays[0],
+	          index = -1,
+	          length = array ? array.length : 0,
+	          seen = caches[0];
+
+	      outer:
+	      while (++index < length) {
+	        value = array[index];
+	        if ((seen ? cacheIndexOf(seen, value) : indexOf(result, value, 0)) < 0) {
+	          var othIndex = othLength;
+	          while (--othIndex) {
+	            var cache = caches[othIndex];
+	            if ((cache ? cacheIndexOf(cache, value) : indexOf(arrays[othIndex], value, 0)) < 0) {
+	              continue outer;
+	            }
+	          }
+	          if (seen) {
+	            seen.push(value);
+	          }
+	          result.push(value);
+	        }
+	      }
+	      return result;
+	    });
+
+	    /**
+	     * Gets the last element of `array`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @returns {*} Returns the last element of `array`.
+	     * @example
+	     *
+	     * _.last([1, 2, 3]);
+	     * // => 3
+	     */
+	    function last(array) {
+	      var length = array ? array.length : 0;
+	      return length ? array[length - 1] : undefined;
+	    }
+
+	    /**
+	     * This method is like `_.indexOf` except that it iterates over elements of
+	     * `array` from right to left.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to search.
+	     * @param {*} value The value to search for.
+	     * @param {boolean|number} [fromIndex=array.length-1] The index to search from
+	     *  or `true` to perform a binary search on a sorted array.
+	     * @returns {number} Returns the index of the matched value, else `-1`.
+	     * @example
+	     *
+	     * _.lastIndexOf([1, 2, 1, 2], 2);
+	     * // => 3
+	     *
+	     * // using `fromIndex`
+	     * _.lastIndexOf([1, 2, 1, 2], 2, 2);
+	     * // => 1
+	     *
+	     * // performing a binary search
+	     * _.lastIndexOf([1, 1, 2, 2], 2, true);
+	     * // => 3
+	     */
+	    function lastIndexOf(array, value, fromIndex) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return -1;
+	      }
+	      var index = length;
+	      if (typeof fromIndex == 'number') {
+	        index = (fromIndex < 0 ? nativeMax(length + fromIndex, 0) : nativeMin(fromIndex || 0, length - 1)) + 1;
+	      } else if (fromIndex) {
+	        index = binaryIndex(array, value, true) - 1;
+	        var other = array[index];
+	        if (value === value ? (value === other) : (other !== other)) {
+	          return index;
+	        }
+	        return -1;
+	      }
+	      if (value !== value) {
+	        return indexOfNaN(array, index, true);
+	      }
+	      while (index--) {
+	        if (array[index] === value) {
+	          return index;
+	        }
+	      }
+	      return -1;
+	    }
+
+	    /**
+	     * Removes all provided values from `array` using
+	     * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+	     * for equality comparisons.
+	     *
+	     * **Note:** Unlike `_.without`, this method mutates `array`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to modify.
+	     * @param {...*} [values] The values to remove.
+	     * @returns {Array} Returns `array`.
+	     * @example
+	     *
+	     * var array = [1, 2, 3, 1, 2, 3];
+	     *
+	     * _.pull(array, 2, 3);
+	     * console.log(array);
+	     * // => [1, 1]
+	     */
+	    function pull() {
+	      var args = arguments,
+	          array = args[0];
+
+	      if (!(array && array.length)) {
+	        return array;
+	      }
+	      var index = 0,
+	          indexOf = getIndexOf(),
+	          length = args.length;
+
+	      while (++index < length) {
+	        var fromIndex = 0,
+	            value = args[index];
+
+	        while ((fromIndex = indexOf(array, value, fromIndex)) > -1) {
+	          splice.call(array, fromIndex, 1);
+	        }
+	      }
+	      return array;
+	    }
+
+	    /**
+	     * Removes elements from `array` corresponding to the given indexes and returns
+	     * an array of the removed elements. Indexes may be specified as an array of
+	     * indexes or as individual arguments.
+	     *
+	     * **Note:** Unlike `_.at`, this method mutates `array`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to modify.
+	     * @param {...(number|number[])} [indexes] The indexes of elements to remove,
+	     *  specified as individual indexes or arrays of indexes.
+	     * @returns {Array} Returns the new array of removed elements.
+	     * @example
+	     *
+	     * var array = [5, 10, 15, 20];
+	     * var evens = _.pullAt(array, 1, 3);
+	     *
+	     * console.log(array);
+	     * // => [5, 15]
+	     *
+	     * console.log(evens);
+	     * // => [10, 20]
+	     */
+	    var pullAt = restParam(function(array, indexes) {
+	      indexes = baseFlatten(indexes);
+
+	      var result = baseAt(array, indexes);
+	      basePullAt(array, indexes.sort(baseCompareAscending));
+	      return result;
+	    });
+
+	    /**
+	     * Removes all elements from `array` that `predicate` returns truthy for
+	     * and returns an array of the removed elements. The predicate is bound to
+	     * `thisArg` and invoked with three arguments: (value, index, array).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * **Note:** Unlike `_.filter`, this method mutates `array`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to modify.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Array} Returns the new array of removed elements.
+	     * @example
+	     *
+	     * var array = [1, 2, 3, 4];
+	     * var evens = _.remove(array, function(n) {
+	     *   return n % 2 == 0;
+	     * });
+	     *
+	     * console.log(array);
+	     * // => [1, 3]
+	     *
+	     * console.log(evens);
+	     * // => [2, 4]
+	     */
+	    function remove(array, predicate, thisArg) {
+	      var result = [];
+	      if (!(array && array.length)) {
+	        return result;
+	      }
+	      var index = -1,
+	          indexes = [],
+	          length = array.length;
+
+	      predicate = getCallback(predicate, thisArg, 3);
+	      while (++index < length) {
+	        var value = array[index];
+	        if (predicate(value, index, array)) {
+	          result.push(value);
+	          indexes.push(index);
+	        }
+	      }
+	      basePullAt(array, indexes);
+	      return result;
+	    }
+
+	    /**
+	     * Gets all but the first element of `array`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias tail
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.rest([1, 2, 3]);
+	     * // => [2, 3]
+	     */
+	    function rest(array) {
+	      return drop(array, 1);
+	    }
+
+	    /**
+	     * Creates a slice of `array` from `start` up to, but not including, `end`.
+	     *
+	     * **Note:** This method is used instead of `Array#slice` to support node
+	     * lists in IE < 9 and to ensure dense arrays are returned.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to slice.
+	     * @param {number} [start=0] The start position.
+	     * @param {number} [end=array.length] The end position.
+	     * @returns {Array} Returns the slice of `array`.
+	     */
+	    function slice(array, start, end) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return [];
+	      }
+	      if (end && typeof end != 'number' && isIterateeCall(array, start, end)) {
+	        start = 0;
+	        end = length;
+	      }
+	      return baseSlice(array, start, end);
+	    }
+
+	    /**
+	     * Uses a binary search to determine the lowest index at which `value` should
+	     * be inserted into `array` in order to maintain its sort order. If an iteratee
+	     * function is provided it is invoked for `value` and each element of `array`
+	     * to compute their sort ranking. The iteratee is bound to `thisArg` and
+	     * invoked with one argument; (value).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The sorted array to inspect.
+	     * @param {*} value The value to evaluate.
+	     * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {number} Returns the index at which `value` should be inserted
+	     *  into `array`.
+	     * @example
+	     *
+	     * _.sortedIndex([30, 50], 40);
+	     * // => 1
+	     *
+	     * _.sortedIndex([4, 4, 5, 5], 5);
+	     * // => 2
+	     *
+	     * var dict = { 'data': { 'thirty': 30, 'forty': 40, 'fifty': 50 } };
+	     *
+	     * // using an iteratee function
+	     * _.sortedIndex(['thirty', 'fifty'], 'forty', function(word) {
+	     *   return this.data[word];
+	     * }, dict);
+	     * // => 1
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.sortedIndex([{ 'x': 30 }, { 'x': 50 }], { 'x': 40 }, 'x');
+	     * // => 1
+	     */
+	    var sortedIndex = createSortedIndex();
+
+	    /**
+	     * This method is like `_.sortedIndex` except that it returns the highest
+	     * index at which `value` should be inserted into `array` in order to
+	     * maintain its sort order.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The sorted array to inspect.
+	     * @param {*} value The value to evaluate.
+	     * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {number} Returns the index at which `value` should be inserted
+	     *  into `array`.
+	     * @example
+	     *
+	     * _.sortedLastIndex([4, 4, 5, 5], 5);
+	     * // => 4
+	     */
+	    var sortedLastIndex = createSortedIndex(true);
+
+	    /**
+	     * Creates a slice of `array` with `n` elements taken from the beginning.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @param {number} [n=1] The number of elements to take.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.take([1, 2, 3]);
+	     * // => [1]
+	     *
+	     * _.take([1, 2, 3], 2);
+	     * // => [1, 2]
+	     *
+	     * _.take([1, 2, 3], 5);
+	     * // => [1, 2, 3]
+	     *
+	     * _.take([1, 2, 3], 0);
+	     * // => []
+	     */
+	    function take(array, n, guard) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return [];
+	      }
+	      if (guard ? isIterateeCall(array, n, guard) : n == null) {
+	        n = 1;
+	      }
+	      return baseSlice(array, 0, n < 0 ? 0 : n);
+	    }
+
+	    /**
+	     * Creates a slice of `array` with `n` elements taken from the end.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @param {number} [n=1] The number of elements to take.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.takeRight([1, 2, 3]);
+	     * // => [3]
+	     *
+	     * _.takeRight([1, 2, 3], 2);
+	     * // => [2, 3]
+	     *
+	     * _.takeRight([1, 2, 3], 5);
+	     * // => [1, 2, 3]
+	     *
+	     * _.takeRight([1, 2, 3], 0);
+	     * // => []
+	     */
+	    function takeRight(array, n, guard) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return [];
+	      }
+	      if (guard ? isIterateeCall(array, n, guard) : n == null) {
+	        n = 1;
+	      }
+	      n = length - (+n || 0);
+	      return baseSlice(array, n < 0 ? 0 : n);
+	    }
+
+	    /**
+	     * Creates a slice of `array` with elements taken from the end. Elements are
+	     * taken until `predicate` returns falsey. The predicate is bound to `thisArg`
+	     * and invoked with three arguments: (value, index, array).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.takeRightWhile([1, 2, 3], function(n) {
+	     *   return n > 1;
+	     * });
+	     * // => [2, 3]
+	     *
+	     * var users = [
+	     *   { 'user': 'barney',  'active': true },
+	     *   { 'user': 'fred',    'active': false },
+	     *   { 'user': 'pebbles', 'active': false }
+	     * ];
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.pluck(_.takeRightWhile(users, { 'user': 'pebbles', 'active': false }), 'user');
+	     * // => ['pebbles']
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.pluck(_.takeRightWhile(users, 'active', false), 'user');
+	     * // => ['fred', 'pebbles']
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.pluck(_.takeRightWhile(users, 'active'), 'user');
+	     * // => []
+	     */
+	    function takeRightWhile(array, predicate, thisArg) {
+	      return (array && array.length)
+	        ? baseWhile(array, getCallback(predicate, thisArg, 3), false, true)
+	        : [];
+	    }
+
+	    /**
+	     * Creates a slice of `array` with elements taken from the beginning. Elements
+	     * are taken until `predicate` returns falsey. The predicate is bound to
+	     * `thisArg` and invoked with three arguments: (value, index, array).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to query.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Array} Returns the slice of `array`.
+	     * @example
+	     *
+	     * _.takeWhile([1, 2, 3], function(n) {
+	     *   return n < 3;
+	     * });
+	     * // => [1, 2]
+	     *
+	     * var users = [
+	     *   { 'user': 'barney',  'active': false },
+	     *   { 'user': 'fred',    'active': false},
+	     *   { 'user': 'pebbles', 'active': true }
+	     * ];
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.pluck(_.takeWhile(users, { 'user': 'barney', 'active': false }), 'user');
+	     * // => ['barney']
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.pluck(_.takeWhile(users, 'active', false), 'user');
+	     * // => ['barney', 'fred']
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.pluck(_.takeWhile(users, 'active'), 'user');
+	     * // => []
+	     */
+	    function takeWhile(array, predicate, thisArg) {
+	      return (array && array.length)
+	        ? baseWhile(array, getCallback(predicate, thisArg, 3))
+	        : [];
+	    }
+
+	    /**
+	     * Creates an array of unique values, in order, from all of the provided arrays
+	     * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+	     * for equality comparisons.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {...Array} [arrays] The arrays to inspect.
+	     * @returns {Array} Returns the new array of combined values.
+	     * @example
+	     *
+	     * _.union([1, 2], [4, 2], [2, 1]);
+	     * // => [1, 2, 4]
+	     */
+	    var union = restParam(function(arrays) {
+	      return baseUniq(baseFlatten(arrays, false, true));
+	    });
+
+	    /**
+	     * Creates a duplicate-free version of an array, using
+	     * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+	     * for equality comparisons, in which only the first occurence of each element
+	     * is kept. Providing `true` for `isSorted` performs a faster search algorithm
+	     * for sorted arrays. If an iteratee function is provided it is invoked for
+	     * each element in the array to generate the criterion by which uniqueness
+	     * is computed. The `iteratee` is bound to `thisArg` and invoked with three
+	     * arguments: (value, index, array).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias unique
+	     * @category Array
+	     * @param {Array} array The array to inspect.
+	     * @param {boolean} [isSorted] Specify the array is sorted.
+	     * @param {Function|Object|string} [iteratee] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Array} Returns the new duplicate-value-free array.
+	     * @example
+	     *
+	     * _.uniq([2, 1, 2]);
+	     * // => [2, 1]
+	     *
+	     * // using `isSorted`
+	     * _.uniq([1, 1, 2], true);
+	     * // => [1, 2]
+	     *
+	     * // using an iteratee function
+	     * _.uniq([1, 2.5, 1.5, 2], function(n) {
+	     *   return this.floor(n);
+	     * }, Math);
+	     * // => [1, 2.5]
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.uniq([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+	     * // => [{ 'x': 1 }, { 'x': 2 }]
+	     */
+	    function uniq(array, isSorted, iteratee, thisArg) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return [];
+	      }
+	      if (isSorted != null && typeof isSorted != 'boolean') {
+	        thisArg = iteratee;
+	        iteratee = isIterateeCall(array, isSorted, thisArg) ? undefined : isSorted;
+	        isSorted = false;
+	      }
+	      var callback = getCallback();
+	      if (!(iteratee == null && callback === baseCallback)) {
+	        iteratee = callback(iteratee, thisArg, 3);
+	      }
+	      return (isSorted && getIndexOf() == baseIndexOf)
+	        ? sortedUniq(array, iteratee)
+	        : baseUniq(array, iteratee);
+	    }
+
+	    /**
+	     * This method is like `_.zip` except that it accepts an array of grouped
+	     * elements and creates an array regrouping the elements to their pre-zip
+	     * configuration.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array of grouped elements to process.
+	     * @returns {Array} Returns the new array of regrouped elements.
+	     * @example
+	     *
+	     * var zipped = _.zip(['fred', 'barney'], [30, 40], [true, false]);
+	     * // => [['fred', 30, true], ['barney', 40, false]]
+	     *
+	     * _.unzip(zipped);
+	     * // => [['fred', 'barney'], [30, 40], [true, false]]
+	     */
+	    function unzip(array) {
+	      if (!(array && array.length)) {
+	        return [];
+	      }
+	      var index = -1,
+	          length = 0;
+
+	      array = arrayFilter(array, function(group) {
+	        if (isArrayLike(group)) {
+	          length = nativeMax(group.length, length);
+	          return true;
+	        }
+	      });
+	      var result = Array(length);
+	      while (++index < length) {
+	        result[index] = arrayMap(array, baseProperty(index));
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * This method is like `_.unzip` except that it accepts an iteratee to specify
+	     * how regrouped values should be combined. The `iteratee` is bound to `thisArg`
+	     * and invoked with four arguments: (accumulator, value, index, group).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array of grouped elements to process.
+	     * @param {Function} [iteratee] The function to combine regrouped values.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Array} Returns the new array of regrouped elements.
+	     * @example
+	     *
+	     * var zipped = _.zip([1, 2], [10, 20], [100, 200]);
+	     * // => [[1, 10, 100], [2, 20, 200]]
+	     *
+	     * _.unzipWith(zipped, _.add);
+	     * // => [3, 30, 300]
+	     */
+	    function unzipWith(array, iteratee, thisArg) {
+	      var length = array ? array.length : 0;
+	      if (!length) {
+	        return [];
+	      }
+	      var result = unzip(array);
+	      if (iteratee == null) {
+	        return result;
+	      }
+	      iteratee = bindCallback(iteratee, thisArg, 4);
+	      return arrayMap(result, function(group) {
+	        return arrayReduce(group, iteratee, undefined, true);
+	      });
+	    }
+
+	    /**
+	     * Creates an array excluding all provided values using
+	     * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+	     * for equality comparisons.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {Array} array The array to filter.
+	     * @param {...*} [values] The values to exclude.
+	     * @returns {Array} Returns the new array of filtered values.
+	     * @example
+	     *
+	     * _.without([1, 2, 1, 3], 1, 2);
+	     * // => [3]
+	     */
+	    var without = restParam(function(array, values) {
+	      return isArrayLike(array)
+	        ? baseDifference(array, values)
+	        : [];
+	    });
+
+	    /**
+	     * Creates an array of unique values that is the [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
+	     * of the provided arrays.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {...Array} [arrays] The arrays to inspect.
+	     * @returns {Array} Returns the new array of values.
+	     * @example
+	     *
+	     * _.xor([1, 2], [4, 2]);
+	     * // => [1, 4]
+	     */
+	    function xor() {
+	      var index = -1,
+	          length = arguments.length;
+
+	      while (++index < length) {
+	        var array = arguments[index];
+	        if (isArrayLike(array)) {
+	          var result = result
+	            ? arrayPush(baseDifference(result, array), baseDifference(array, result))
+	            : array;
+	        }
+	      }
+	      return result ? baseUniq(result) : [];
+	    }
+
+	    /**
+	     * Creates an array of grouped elements, the first of which contains the first
+	     * elements of the given arrays, the second of which contains the second elements
+	     * of the given arrays, and so on.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {...Array} [arrays] The arrays to process.
+	     * @returns {Array} Returns the new array of grouped elements.
+	     * @example
+	     *
+	     * _.zip(['fred', 'barney'], [30, 40], [true, false]);
+	     * // => [['fred', 30, true], ['barney', 40, false]]
+	     */
+	    var zip = restParam(unzip);
+
+	    /**
+	     * The inverse of `_.pairs`; this method returns an object composed from arrays
+	     * of property names and values. Provide either a single two dimensional array,
+	     * e.g. `[[key1, value1], [key2, value2]]` or two arrays, one of property names
+	     * and one of corresponding values.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias object
+	     * @category Array
+	     * @param {Array} props The property names.
+	     * @param {Array} [values=[]] The property values.
+	     * @returns {Object} Returns the new object.
+	     * @example
+	     *
+	     * _.zipObject([['fred', 30], ['barney', 40]]);
+	     * // => { 'fred': 30, 'barney': 40 }
+	     *
+	     * _.zipObject(['fred', 'barney'], [30, 40]);
+	     * // => { 'fred': 30, 'barney': 40 }
+	     */
+	    function zipObject(props, values) {
+	      var index = -1,
+	          length = props ? props.length : 0,
+	          result = {};
+
+	      if (length && !values && !isArray(props[0])) {
+	        values = [];
+	      }
+	      while (++index < length) {
+	        var key = props[index];
+	        if (values) {
+	          result[key] = values[index];
+	        } else if (key) {
+	          result[key[0]] = key[1];
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * This method is like `_.zip` except that it accepts an iteratee to specify
+	     * how grouped values should be combined. The `iteratee` is bound to `thisArg`
+	     * and invoked with four arguments: (accumulator, value, index, group).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Array
+	     * @param {...Array} [arrays] The arrays to process.
+	     * @param {Function} [iteratee] The function to combine grouped values.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Array} Returns the new array of grouped elements.
+	     * @example
+	     *
+	     * _.zipWith([1, 2], [10, 20], [100, 200], _.add);
+	     * // => [111, 222]
+	     */
+	    var zipWith = restParam(function(arrays) {
+	      var length = arrays.length,
+	          iteratee = length > 2 ? arrays[length - 2] : undefined,
+	          thisArg = length > 1 ? arrays[length - 1] : undefined;
+
+	      if (length > 2 && typeof iteratee == 'function') {
+	        length -= 2;
+	      } else {
+	        iteratee = (length > 1 && typeof thisArg == 'function') ? (--length, thisArg) : undefined;
+	        thisArg = undefined;
+	      }
+	      arrays.length = length;
+	      return unzipWith(arrays, iteratee, thisArg);
+	    });
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Creates a `lodash` object that wraps `value` with explicit method
+	     * chaining enabled.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Chain
+	     * @param {*} value The value to wrap.
+	     * @returns {Object} Returns the new `lodash` wrapper instance.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney',  'age': 36 },
+	     *   { 'user': 'fred',    'age': 40 },
+	     *   { 'user': 'pebbles', 'age': 1 }
+	     * ];
+	     *
+	     * var youngest = _.chain(users)
+	     *   .sortBy('age')
+	     *   .map(function(chr) {
+	     *     return chr.user + ' is ' + chr.age;
+	     *   })
+	     *   .first()
+	     *   .value();
+	     * // => 'pebbles is 1'
+	     */
+	    function chain(value) {
+	      var result = lodash(value);
+	      result.__chain__ = true;
+	      return result;
+	    }
+
+	    /**
+	     * This method invokes `interceptor` and returns `value`. The interceptor is
+	     * bound to `thisArg` and invoked with one argument; (value). The purpose of
+	     * this method is to "tap into" a method chain in order to perform operations
+	     * on intermediate results within the chain.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Chain
+	     * @param {*} value The value to provide to `interceptor`.
+	     * @param {Function} interceptor The function to invoke.
+	     * @param {*} [thisArg] The `this` binding of `interceptor`.
+	     * @returns {*} Returns `value`.
+	     * @example
+	     *
+	     * _([1, 2, 3])
+	     *  .tap(function(array) {
+	     *    array.pop();
+	     *  })
+	     *  .reverse()
+	     *  .value();
+	     * // => [2, 1]
+	     */
+	    function tap(value, interceptor, thisArg) {
+	      interceptor.call(thisArg, value);
+	      return value;
+	    }
+
+	    /**
+	     * This method is like `_.tap` except that it returns the result of `interceptor`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Chain
+	     * @param {*} value The value to provide to `interceptor`.
+	     * @param {Function} interceptor The function to invoke.
+	     * @param {*} [thisArg] The `this` binding of `interceptor`.
+	     * @returns {*} Returns the result of `interceptor`.
+	     * @example
+	     *
+	     * _('  abc  ')
+	     *  .chain()
+	     *  .trim()
+	     *  .thru(function(value) {
+	     *    return [value];
+	     *  })
+	     *  .value();
+	     * // => ['abc']
+	     */
+	    function thru(value, interceptor, thisArg) {
+	      return interceptor.call(thisArg, value);
+	    }
+
+	    /**
+	     * Enables explicit method chaining on the wrapper object.
+	     *
+	     * @name chain
+	     * @memberOf _
+	     * @category Chain
+	     * @returns {Object} Returns the new `lodash` wrapper instance.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36 },
+	     *   { 'user': 'fred',   'age': 40 }
+	     * ];
+	     *
+	     * // without explicit chaining
+	     * _(users).first();
+	     * // => { 'user': 'barney', 'age': 36 }
+	     *
+	     * // with explicit chaining
+	     * _(users).chain()
+	     *   .first()
+	     *   .pick('user')
+	     *   .value();
+	     * // => { 'user': 'barney' }
+	     */
+	    function wrapperChain() {
+	      return chain(this);
+	    }
+
+	    /**
+	     * Executes the chained sequence and returns the wrapped result.
+	     *
+	     * @name commit
+	     * @memberOf _
+	     * @category Chain
+	     * @returns {Object} Returns the new `lodash` wrapper instance.
+	     * @example
+	     *
+	     * var array = [1, 2];
+	     * var wrapped = _(array).push(3);
+	     *
+	     * console.log(array);
+	     * // => [1, 2]
+	     *
+	     * wrapped = wrapped.commit();
+	     * console.log(array);
+	     * // => [1, 2, 3]
+	     *
+	     * wrapped.last();
+	     * // => 3
+	     *
+	     * console.log(array);
+	     * // => [1, 2, 3]
+	     */
+	    function wrapperCommit() {
+	      return new LodashWrapper(this.value(), this.__chain__);
+	    }
+
+	    /**
+	     * Creates a new array joining a wrapped array with any additional arrays
+	     * and/or values.
+	     *
+	     * @name concat
+	     * @memberOf _
+	     * @category Chain
+	     * @param {...*} [values] The values to concatenate.
+	     * @returns {Array} Returns the new concatenated array.
+	     * @example
+	     *
+	     * var array = [1];
+	     * var wrapped = _(array).concat(2, [3], [[4]]);
+	     *
+	     * console.log(wrapped.value());
+	     * // => [1, 2, 3, [4]]
+	     *
+	     * console.log(array);
+	     * // => [1]
+	     */
+	    var wrapperConcat = restParam(function(values) {
+	      values = baseFlatten(values);
+	      return this.thru(function(array) {
+	        return arrayConcat(isArray(array) ? array : [toObject(array)], values);
+	      });
+	    });
+
+	    /**
+	     * Creates a clone of the chained sequence planting `value` as the wrapped value.
+	     *
+	     * @name plant
+	     * @memberOf _
+	     * @category Chain
+	     * @returns {Object} Returns the new `lodash` wrapper instance.
+	     * @example
+	     *
+	     * var array = [1, 2];
+	     * var wrapped = _(array).map(function(value) {
+	     *   return Math.pow(value, 2);
+	     * });
+	     *
+	     * var other = [3, 4];
+	     * var otherWrapped = wrapped.plant(other);
+	     *
+	     * otherWrapped.value();
+	     * // => [9, 16]
+	     *
+	     * wrapped.value();
+	     * // => [1, 4]
+	     */
+	    function wrapperPlant(value) {
+	      var result,
+	          parent = this;
+
+	      while (parent instanceof baseLodash) {
+	        var clone = wrapperClone(parent);
+	        if (result) {
+	          previous.__wrapped__ = clone;
+	        } else {
+	          result = clone;
+	        }
+	        var previous = clone;
+	        parent = parent.__wrapped__;
+	      }
+	      previous.__wrapped__ = value;
+	      return result;
+	    }
+
+	    /**
+	     * Reverses the wrapped array so the first element becomes the last, the
+	     * second element becomes the second to last, and so on.
+	     *
+	     * **Note:** This method mutates the wrapped array.
+	     *
+	     * @name reverse
+	     * @memberOf _
+	     * @category Chain
+	     * @returns {Object} Returns the new reversed `lodash` wrapper instance.
+	     * @example
+	     *
+	     * var array = [1, 2, 3];
+	     *
+	     * _(array).reverse().value()
+	     * // => [3, 2, 1]
+	     *
+	     * console.log(array);
+	     * // => [3, 2, 1]
+	     */
+	    function wrapperReverse() {
+	      var value = this.__wrapped__;
+
+	      var interceptor = function(value) {
+	        return (wrapped && wrapped.__dir__ < 0) ? value : value.reverse();
+	      };
+	      if (value instanceof LazyWrapper) {
+	        var wrapped = value;
+	        if (this.__actions__.length) {
+	          wrapped = new LazyWrapper(this);
+	        }
+	        wrapped = wrapped.reverse();
+	        wrapped.__actions__.push({ 'func': thru, 'args': [interceptor], 'thisArg': undefined });
+	        return new LodashWrapper(wrapped, this.__chain__);
+	      }
+	      return this.thru(interceptor);
+	    }
+
+	    /**
+	     * Produces the result of coercing the unwrapped value to a string.
+	     *
+	     * @name toString
+	     * @memberOf _
+	     * @category Chain
+	     * @returns {string} Returns the coerced string value.
+	     * @example
+	     *
+	     * _([1, 2, 3]).toString();
+	     * // => '1,2,3'
+	     */
+	    function wrapperToString() {
+	      return (this.value() + '');
+	    }
+
+	    /**
+	     * Executes the chained sequence to extract the unwrapped value.
+	     *
+	     * @name value
+	     * @memberOf _
+	     * @alias run, toJSON, valueOf
+	     * @category Chain
+	     * @returns {*} Returns the resolved unwrapped value.
+	     * @example
+	     *
+	     * _([1, 2, 3]).value();
+	     * // => [1, 2, 3]
+	     */
+	    function wrapperValue() {
+	      return baseWrapperValue(this.__wrapped__, this.__actions__);
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Creates an array of elements corresponding to the given keys, or indexes,
+	     * of `collection`. Keys may be specified as individual arguments or as arrays
+	     * of keys.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {...(number|number[]|string|string[])} [props] The property names
+	     *  or indexes of elements to pick, specified individually or in arrays.
+	     * @returns {Array} Returns the new array of picked elements.
+	     * @example
+	     *
+	     * _.at(['a', 'b', 'c'], [0, 2]);
+	     * // => ['a', 'c']
+	     *
+	     * _.at(['barney', 'fred', 'pebbles'], 0, 2);
+	     * // => ['barney', 'pebbles']
+	     */
+	    var at = restParam(function(collection, props) {
+	      return baseAt(collection, baseFlatten(props));
+	    });
+
+	    /**
+	     * Creates an object composed of keys generated from the results of running
+	     * each element of `collection` through `iteratee`. The corresponding value
+	     * of each key is the number of times the key was returned by `iteratee`.
+	     * The `iteratee` is bound to `thisArg` and invoked with three arguments:
+	     * (value, index|key, collection).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Object} Returns the composed aggregate object.
+	     * @example
+	     *
+	     * _.countBy([4.3, 6.1, 6.4], function(n) {
+	     *   return Math.floor(n);
+	     * });
+	     * // => { '4': 1, '6': 2 }
+	     *
+	     * _.countBy([4.3, 6.1, 6.4], function(n) {
+	     *   return this.floor(n);
+	     * }, Math);
+	     * // => { '4': 1, '6': 2 }
+	     *
+	     * _.countBy(['one', 'two', 'three'], 'length');
+	     * // => { '3': 2, '5': 1 }
+	     */
+	    var countBy = createAggregator(function(result, value, key) {
+	      hasOwnProperty.call(result, key) ? ++result[key] : (result[key] = 1);
+	    });
+
+	    /**
+	     * Checks if `predicate` returns truthy for **all** elements of `collection`.
+	     * The predicate is bound to `thisArg` and invoked with three arguments:
+	     * (value, index|key, collection).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias all
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+	     *  else `false`.
+	     * @example
+	     *
+	     * _.every([true, 1, null, 'yes'], Boolean);
+	     * // => false
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'active': false },
+	     *   { 'user': 'fred',   'active': false }
+	     * ];
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.every(users, { 'user': 'barney', 'active': false });
+	     * // => false
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.every(users, 'active', false);
+	     * // => true
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.every(users, 'active');
+	     * // => false
+	     */
+	    function every(collection, predicate, thisArg) {
+	      var func = isArray(collection) ? arrayEvery : baseEvery;
+	      if (thisArg && isIterateeCall(collection, predicate, thisArg)) {
+	        predicate = undefined;
+	      }
+	      if (typeof predicate != 'function' || thisArg !== undefined) {
+	        predicate = getCallback(predicate, thisArg, 3);
+	      }
+	      return func(collection, predicate);
+	    }
+
+	    /**
+	     * Iterates over elements of `collection`, returning an array of all elements
+	     * `predicate` returns truthy for. The predicate is bound to `thisArg` and
+	     * invoked with three arguments: (value, index|key, collection).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias select
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Array} Returns the new filtered array.
+	     * @example
+	     *
+	     * _.filter([4, 5, 6], function(n) {
+	     *   return n % 2 == 0;
+	     * });
+	     * // => [4, 6]
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36, 'active': true },
+	     *   { 'user': 'fred',   'age': 40, 'active': false }
+	     * ];
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.pluck(_.filter(users, { 'age': 36, 'active': true }), 'user');
+	     * // => ['barney']
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.pluck(_.filter(users, 'active', false), 'user');
+	     * // => ['fred']
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.pluck(_.filter(users, 'active'), 'user');
+	     * // => ['barney']
+	     */
+	    function filter(collection, predicate, thisArg) {
+	      var func = isArray(collection) ? arrayFilter : baseFilter;
+	      predicate = getCallback(predicate, thisArg, 3);
+	      return func(collection, predicate);
+	    }
+
+	    /**
+	     * Iterates over elements of `collection`, returning the first element
+	     * `predicate` returns truthy for. The predicate is bound to `thisArg` and
+	     * invoked with three arguments: (value, index|key, collection).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias detect
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to search.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {*} Returns the matched element, else `undefined`.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney',  'age': 36, 'active': true },
+	     *   { 'user': 'fred',    'age': 40, 'active': false },
+	     *   { 'user': 'pebbles', 'age': 1,  'active': true }
+	     * ];
+	     *
+	     * _.result(_.find(users, function(chr) {
+	     *   return chr.age < 40;
+	     * }), 'user');
+	     * // => 'barney'
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.result(_.find(users, { 'age': 1, 'active': true }), 'user');
+	     * // => 'pebbles'
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.result(_.find(users, 'active', false), 'user');
+	     * // => 'fred'
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.result(_.find(users, 'active'), 'user');
+	     * // => 'barney'
+	     */
+	    var find = createFind(baseEach);
+
+	    /**
+	     * This method is like `_.find` except that it iterates over elements of
+	     * `collection` from right to left.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to search.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {*} Returns the matched element, else `undefined`.
+	     * @example
+	     *
+	     * _.findLast([1, 2, 3, 4], function(n) {
+	     *   return n % 2 == 1;
+	     * });
+	     * // => 3
+	     */
+	    var findLast = createFind(baseEachRight, true);
+
+	    /**
+	     * Performs a deep comparison between each element in `collection` and the
+	     * source object, returning the first element that has equivalent property
+	     * values.
+	     *
+	     * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+	     * numbers, `Object` objects, regexes, and strings. Objects are compared by
+	     * their own, not inherited, enumerable properties. For comparing a single
+	     * own or inherited property value see `_.matchesProperty`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to search.
+	     * @param {Object} source The object of property values to match.
+	     * @returns {*} Returns the matched element, else `undefined`.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36, 'active': true },
+	     *   { 'user': 'fred',   'age': 40, 'active': false }
+	     * ];
+	     *
+	     * _.result(_.findWhere(users, { 'age': 36, 'active': true }), 'user');
+	     * // => 'barney'
+	     *
+	     * _.result(_.findWhere(users, { 'age': 40, 'active': false }), 'user');
+	     * // => 'fred'
+	     */
+	    function findWhere(collection, source) {
+	      return find(collection, baseMatches(source));
+	    }
+
+	    /**
+	     * Iterates over elements of `collection` invoking `iteratee` for each element.
+	     * The `iteratee` is bound to `thisArg` and invoked with three arguments:
+	     * (value, index|key, collection). Iteratee functions may exit iteration early
+	     * by explicitly returning `false`.
+	     *
+	     * **Note:** As with other "Collections" methods, objects with a "length" property
+	     * are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
+	     * may be used for object iteration.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias each
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Array|Object|string} Returns `collection`.
+	     * @example
+	     *
+	     * _([1, 2]).forEach(function(n) {
+	     *   console.log(n);
+	     * }).value();
+	     * // => logs each value from left to right and returns the array
+	     *
+	     * _.forEach({ 'a': 1, 'b': 2 }, function(n, key) {
+	     *   console.log(n, key);
+	     * });
+	     * // => logs each value-key pair and returns the object (iteration order is not guaranteed)
+	     */
+	    var forEach = createForEach(arrayEach, baseEach);
+
+	    /**
+	     * This method is like `_.forEach` except that it iterates over elements of
+	     * `collection` from right to left.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias eachRight
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Array|Object|string} Returns `collection`.
+	     * @example
+	     *
+	     * _([1, 2]).forEachRight(function(n) {
+	     *   console.log(n);
+	     * }).value();
+	     * // => logs each value from right to left and returns the array
+	     */
+	    var forEachRight = createForEach(arrayEachRight, baseEachRight);
+
+	    /**
+	     * Creates an object composed of keys generated from the results of running
+	     * each element of `collection` through `iteratee`. The corresponding value
+	     * of each key is an array of the elements responsible for generating the key.
+	     * The `iteratee` is bound to `thisArg` and invoked with three arguments:
+	     * (value, index|key, collection).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Object} Returns the composed aggregate object.
+	     * @example
+	     *
+	     * _.groupBy([4.2, 6.1, 6.4], function(n) {
+	     *   return Math.floor(n);
+	     * });
+	     * // => { '4': [4.2], '6': [6.1, 6.4] }
+	     *
+	     * _.groupBy([4.2, 6.1, 6.4], function(n) {
+	     *   return this.floor(n);
+	     * }, Math);
+	     * // => { '4': [4.2], '6': [6.1, 6.4] }
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.groupBy(['one', 'two', 'three'], 'length');
+	     * // => { '3': ['one', 'two'], '5': ['three'] }
+	     */
+	    var groupBy = createAggregator(function(result, value, key) {
+	      if (hasOwnProperty.call(result, key)) {
+	        result[key].push(value);
+	      } else {
+	        result[key] = [value];
+	      }
+	    });
+
+	    /**
+	     * Checks if `value` is in `collection` using
+	     * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+	     * for equality comparisons. If `fromIndex` is negative, it is used as the offset
+	     * from the end of `collection`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias contains, include
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to search.
+	     * @param {*} target The value to search for.
+	     * @param {number} [fromIndex=0] The index to search from.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.reduce`.
+	     * @returns {boolean} Returns `true` if a matching element is found, else `false`.
+	     * @example
+	     *
+	     * _.includes([1, 2, 3], 1);
+	     * // => true
+	     *
+	     * _.includes([1, 2, 3], 1, 2);
+	     * // => false
+	     *
+	     * _.includes({ 'user': 'fred', 'age': 40 }, 'fred');
+	     * // => true
+	     *
+	     * _.includes('pebbles', 'eb');
+	     * // => true
+	     */
+	    function includes(collection, target, fromIndex, guard) {
+	      var length = collection ? getLength(collection) : 0;
+	      if (!isLength(length)) {
+	        collection = values(collection);
+	        length = collection.length;
+	      }
+	      if (typeof fromIndex != 'number' || (guard && isIterateeCall(target, fromIndex, guard))) {
+	        fromIndex = 0;
+	      } else {
+	        fromIndex = fromIndex < 0 ? nativeMax(length + fromIndex, 0) : (fromIndex || 0);
+	      }
+	      return (typeof collection == 'string' || !isArray(collection) && isString(collection))
+	        ? (fromIndex <= length && collection.indexOf(target, fromIndex) > -1)
+	        : (!!length && getIndexOf(collection, target, fromIndex) > -1);
+	    }
+
+	    /**
+	     * Creates an object composed of keys generated from the results of running
+	     * each element of `collection` through `iteratee`. The corresponding value
+	     * of each key is the last element responsible for generating the key. The
+	     * iteratee function is bound to `thisArg` and invoked with three arguments:
+	     * (value, index|key, collection).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Object} Returns the composed aggregate object.
+	     * @example
+	     *
+	     * var keyData = [
+	     *   { 'dir': 'left', 'code': 97 },
+	     *   { 'dir': 'right', 'code': 100 }
+	     * ];
+	     *
+	     * _.indexBy(keyData, 'dir');
+	     * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+	     *
+	     * _.indexBy(keyData, function(object) {
+	     *   return String.fromCharCode(object.code);
+	     * });
+	     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+	     *
+	     * _.indexBy(keyData, function(object) {
+	     *   return this.fromCharCode(object.code);
+	     * }, String);
+	     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+	     */
+	    var indexBy = createAggregator(function(result, value, key) {
+	      result[key] = value;
+	    });
+
+	    /**
+	     * Invokes the method at `path` of each element in `collection`, returning
+	     * an array of the results of each invoked method. Any additional arguments
+	     * are provided to each invoked method. If `methodName` is a function it is
+	     * invoked for, and `this` bound to, each element in `collection`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Array|Function|string} path The path of the method to invoke or
+	     *  the function invoked per iteration.
+	     * @param {...*} [args] The arguments to invoke the method with.
+	     * @returns {Array} Returns the array of results.
+	     * @example
+	     *
+	     * _.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+	     * // => [[1, 5, 7], [1, 2, 3]]
+	     *
+	     * _.invoke([123, 456], String.prototype.split, '');
+	     * // => [['1', '2', '3'], ['4', '5', '6']]
+	     */
+	    var invoke = restParam(function(collection, path, args) {
+	      var index = -1,
+	          isFunc = typeof path == 'function',
+	          isProp = isKey(path),
+	          result = isArrayLike(collection) ? Array(collection.length) : [];
+
+	      baseEach(collection, function(value) {
+	        var func = isFunc ? path : ((isProp && value != null) ? value[path] : undefined);
+	        result[++index] = func ? func.apply(value, args) : invokePath(value, path, args);
+	      });
+	      return result;
+	    });
+
+	    /**
+	     * Creates an array of values by running each element in `collection` through
+	     * `iteratee`. The `iteratee` is bound to `thisArg` and invoked with three
+	     * arguments: (value, index|key, collection).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * Many lodash methods are guarded to work as iteratees for methods like
+	     * `_.every`, `_.filter`, `_.map`, `_.mapValues`, `_.reject`, and `_.some`.
+	     *
+	     * The guarded methods are:
+	     * `ary`, `callback`, `chunk`, `clone`, `create`, `curry`, `curryRight`,
+	     * `drop`, `dropRight`, `every`, `fill`, `flatten`, `invert`, `max`, `min`,
+	     * `parseInt`, `slice`, `sortBy`, `take`, `takeRight`, `template`, `trim`,
+	     * `trimLeft`, `trimRight`, `trunc`, `random`, `range`, `sample`, `some`,
+	     * `sum`, `uniq`, and `words`
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias collect
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Array} Returns the new mapped array.
+	     * @example
+	     *
+	     * function timesThree(n) {
+	     *   return n * 3;
+	     * }
+	     *
+	     * _.map([1, 2], timesThree);
+	     * // => [3, 6]
+	     *
+	     * _.map({ 'a': 1, 'b': 2 }, timesThree);
+	     * // => [3, 6] (iteration order is not guaranteed)
+	     *
+	     * var users = [
+	     *   { 'user': 'barney' },
+	     *   { 'user': 'fred' }
+	     * ];
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.map(users, 'user');
+	     * // => ['barney', 'fred']
+	     */
+	    function map(collection, iteratee, thisArg) {
+	      var func = isArray(collection) ? arrayMap : baseMap;
+	      iteratee = getCallback(iteratee, thisArg, 3);
+	      return func(collection, iteratee);
+	    }
+
+	    /**
+	     * Creates an array of elements split into two groups, the first of which
+	     * contains elements `predicate` returns truthy for, while the second of which
+	     * contains elements `predicate` returns falsey for. The predicate is bound
+	     * to `thisArg` and invoked with three arguments: (value, index|key, collection).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Array} Returns the array of grouped elements.
+	     * @example
+	     *
+	     * _.partition([1, 2, 3], function(n) {
+	     *   return n % 2;
+	     * });
+	     * // => [[1, 3], [2]]
+	     *
+	     * _.partition([1.2, 2.3, 3.4], function(n) {
+	     *   return this.floor(n) % 2;
+	     * }, Math);
+	     * // => [[1.2, 3.4], [2.3]]
+	     *
+	     * var users = [
+	     *   { 'user': 'barney',  'age': 36, 'active': false },
+	     *   { 'user': 'fred',    'age': 40, 'active': true },
+	     *   { 'user': 'pebbles', 'age': 1,  'active': false }
+	     * ];
+	     *
+	     * var mapper = function(array) {
+	     *   return _.pluck(array, 'user');
+	     * };
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.map(_.partition(users, { 'age': 1, 'active': false }), mapper);
+	     * // => [['pebbles'], ['barney', 'fred']]
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.map(_.partition(users, 'active', false), mapper);
+	     * // => [['barney', 'pebbles'], ['fred']]
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.map(_.partition(users, 'active'), mapper);
+	     * // => [['fred'], ['barney', 'pebbles']]
+	     */
+	    var partition = createAggregator(function(result, value, key) {
+	      result[key ? 0 : 1].push(value);
+	    }, function() { return [[], []]; });
+
+	    /**
+	     * Gets the property value of `path` from all elements in `collection`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Array|string} path The path of the property to pluck.
+	     * @returns {Array} Returns the property values.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36 },
+	     *   { 'user': 'fred',   'age': 40 }
+	     * ];
+	     *
+	     * _.pluck(users, 'user');
+	     * // => ['barney', 'fred']
+	     *
+	     * var userIndex = _.indexBy(users, 'user');
+	     * _.pluck(userIndex, 'age');
+	     * // => [36, 40] (iteration order is not guaranteed)
+	     */
+	    function pluck(collection, path) {
+	      return map(collection, property(path));
+	    }
+
+	    /**
+	     * Reduces `collection` to a value which is the accumulated result of running
+	     * each element in `collection` through `iteratee`, where each successive
+	     * invocation is supplied the return value of the previous. If `accumulator`
+	     * is not provided the first element of `collection` is used as the initial
+	     * value. The `iteratee` is bound to `thisArg` and invoked with four arguments:
+	     * (accumulator, value, index|key, collection).
+	     *
+	     * Many lodash methods are guarded to work as iteratees for methods like
+	     * `_.reduce`, `_.reduceRight`, and `_.transform`.
+	     *
+	     * The guarded methods are:
+	     * `assign`, `defaults`, `defaultsDeep`, `includes`, `merge`, `sortByAll`,
+	     * and `sortByOrder`
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias foldl, inject
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [accumulator] The initial value.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {*} Returns the accumulated value.
+	     * @example
+	     *
+	     * _.reduce([1, 2], function(total, n) {
+	     *   return total + n;
+	     * });
+	     * // => 3
+	     *
+	     * _.reduce({ 'a': 1, 'b': 2 }, function(result, n, key) {
+	     *   result[key] = n * 3;
+	     *   return result;
+	     * }, {});
+	     * // => { 'a': 3, 'b': 6 } (iteration order is not guaranteed)
+	     */
+	    var reduce = createReduce(arrayReduce, baseEach);
+
+	    /**
+	     * This method is like `_.reduce` except that it iterates over elements of
+	     * `collection` from right to left.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias foldr
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [accumulator] The initial value.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {*} Returns the accumulated value.
+	     * @example
+	     *
+	     * var array = [[0, 1], [2, 3], [4, 5]];
+	     *
+	     * _.reduceRight(array, function(flattened, other) {
+	     *   return flattened.concat(other);
+	     * }, []);
+	     * // => [4, 5, 2, 3, 0, 1]
+	     */
+	    var reduceRight = createReduce(arrayReduceRight, baseEachRight);
+
+	    /**
+	     * The opposite of `_.filter`; this method returns the elements of `collection`
+	     * that `predicate` does **not** return truthy for.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Array} Returns the new filtered array.
+	     * @example
+	     *
+	     * _.reject([1, 2, 3, 4], function(n) {
+	     *   return n % 2 == 0;
+	     * });
+	     * // => [1, 3]
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36, 'active': false },
+	     *   { 'user': 'fred',   'age': 40, 'active': true }
+	     * ];
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.pluck(_.reject(users, { 'age': 40, 'active': true }), 'user');
+	     * // => ['barney']
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.pluck(_.reject(users, 'active', false), 'user');
+	     * // => ['fred']
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.pluck(_.reject(users, 'active'), 'user');
+	     * // => ['barney']
+	     */
+	    function reject(collection, predicate, thisArg) {
+	      var func = isArray(collection) ? arrayFilter : baseFilter;
+	      predicate = getCallback(predicate, thisArg, 3);
+	      return func(collection, function(value, index, collection) {
+	        return !predicate(value, index, collection);
+	      });
+	    }
+
+	    /**
+	     * Gets a random element or `n` random elements from a collection.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to sample.
+	     * @param {number} [n] The number of elements to sample.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {*} Returns the random sample(s).
+	     * @example
+	     *
+	     * _.sample([1, 2, 3, 4]);
+	     * // => 2
+	     *
+	     * _.sample([1, 2, 3, 4], 2);
+	     * // => [3, 1]
+	     */
+	    function sample(collection, n, guard) {
+	      if (guard ? isIterateeCall(collection, n, guard) : n == null) {
+	        collection = toIterable(collection);
+	        var length = collection.length;
+	        return length > 0 ? collection[baseRandom(0, length - 1)] : undefined;
+	      }
+	      var index = -1,
+	          result = toArray(collection),
+	          length = result.length,
+	          lastIndex = length - 1;
+
+	      n = nativeMin(n < 0 ? 0 : (+n || 0), length);
+	      while (++index < n) {
+	        var rand = baseRandom(index, lastIndex),
+	            value = result[rand];
+
+	        result[rand] = result[index];
+	        result[index] = value;
+	      }
+	      result.length = n;
+	      return result;
+	    }
+
+	    /**
+	     * Creates an array of shuffled values, using a version of the
+	     * [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher-Yates_shuffle).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to shuffle.
+	     * @returns {Array} Returns the new shuffled array.
+	     * @example
+	     *
+	     * _.shuffle([1, 2, 3, 4]);
+	     * // => [4, 1, 3, 2]
+	     */
+	    function shuffle(collection) {
+	      return sample(collection, POSITIVE_INFINITY);
+	    }
+
+	    /**
+	     * Gets the size of `collection` by returning its length for array-like
+	     * values or the number of own enumerable properties for objects.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to inspect.
+	     * @returns {number} Returns the size of `collection`.
+	     * @example
+	     *
+	     * _.size([1, 2, 3]);
+	     * // => 3
+	     *
+	     * _.size({ 'a': 1, 'b': 2 });
+	     * // => 2
+	     *
+	     * _.size('pebbles');
+	     * // => 7
+	     */
+	    function size(collection) {
+	      var length = collection ? getLength(collection) : 0;
+	      return isLength(length) ? length : keys(collection).length;
+	    }
+
+	    /**
+	     * Checks if `predicate` returns truthy for **any** element of `collection`.
+	     * The function returns as soon as it finds a passing value and does not iterate
+	     * over the entire collection. The predicate is bound to `thisArg` and invoked
+	     * with three arguments: (value, index|key, collection).
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias any
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {boolean} Returns `true` if any element passes the predicate check,
+	     *  else `false`.
+	     * @example
+	     *
+	     * _.some([null, 0, 'yes', false], Boolean);
+	     * // => true
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'active': true },
+	     *   { 'user': 'fred',   'active': false }
+	     * ];
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.some(users, { 'user': 'barney', 'active': false });
+	     * // => false
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.some(users, 'active', false);
+	     * // => true
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.some(users, 'active');
+	     * // => true
+	     */
+	    function some(collection, predicate, thisArg) {
+	      var func = isArray(collection) ? arraySome : baseSome;
+	      if (thisArg && isIterateeCall(collection, predicate, thisArg)) {
+	        predicate = undefined;
+	      }
+	      if (typeof predicate != 'function' || thisArg !== undefined) {
+	        predicate = getCallback(predicate, thisArg, 3);
+	      }
+	      return func(collection, predicate);
+	    }
+
+	    /**
+	     * Creates an array of elements, sorted in ascending order by the results of
+	     * running each element in a collection through `iteratee`. This method performs
+	     * a stable sort, that is, it preserves the original sort order of equal elements.
+	     * The `iteratee` is bound to `thisArg` and invoked with three arguments:
+	     * (value, index|key, collection).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Array} Returns the new sorted array.
+	     * @example
+	     *
+	     * _.sortBy([1, 2, 3], function(n) {
+	     *   return Math.sin(n);
+	     * });
+	     * // => [3, 1, 2]
+	     *
+	     * _.sortBy([1, 2, 3], function(n) {
+	     *   return this.sin(n);
+	     * }, Math);
+	     * // => [3, 1, 2]
+	     *
+	     * var users = [
+	     *   { 'user': 'fred' },
+	     *   { 'user': 'pebbles' },
+	     *   { 'user': 'barney' }
+	     * ];
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.pluck(_.sortBy(users, 'user'), 'user');
+	     * // => ['barney', 'fred', 'pebbles']
+	     */
+	    function sortBy(collection, iteratee, thisArg) {
+	      if (collection == null) {
+	        return [];
+	      }
+	      if (thisArg && isIterateeCall(collection, iteratee, thisArg)) {
+	        iteratee = undefined;
+	      }
+	      var index = -1;
+	      iteratee = getCallback(iteratee, thisArg, 3);
+
+	      var result = baseMap(collection, function(value, key, collection) {
+	        return { 'criteria': iteratee(value, key, collection), 'index': ++index, 'value': value };
+	      });
+	      return baseSortBy(result, compareAscending);
+	    }
+
+	    /**
+	     * This method is like `_.sortBy` except that it can sort by multiple iteratees
+	     * or property names.
+	     *
+	     * If a property name is provided for an iteratee the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If an object is provided for an iteratee the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {...(Function|Function[]|Object|Object[]|string|string[])} iteratees
+	     *  The iteratees to sort by, specified as individual values or arrays of values.
+	     * @returns {Array} Returns the new sorted array.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'fred',   'age': 48 },
+	     *   { 'user': 'barney', 'age': 36 },
+	     *   { 'user': 'fred',   'age': 42 },
+	     *   { 'user': 'barney', 'age': 34 }
+	     * ];
+	     *
+	     * _.map(_.sortByAll(users, ['user', 'age']), _.values);
+	     * // => [['barney', 34], ['barney', 36], ['fred', 42], ['fred', 48]]
+	     *
+	     * _.map(_.sortByAll(users, 'user', function(chr) {
+	     *   return Math.floor(chr.age / 10);
+	     * }), _.values);
+	     * // => [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 42]]
+	     */
+	    var sortByAll = restParam(function(collection, iteratees) {
+	      if (collection == null) {
+	        return [];
+	      }
+	      var guard = iteratees[2];
+	      if (guard && isIterateeCall(iteratees[0], iteratees[1], guard)) {
+	        iteratees.length = 1;
+	      }
+	      return baseSortByOrder(collection, baseFlatten(iteratees), []);
+	    });
+
+	    /**
+	     * This method is like `_.sortByAll` except that it allows specifying the
+	     * sort orders of the iteratees to sort by. If `orders` is unspecified, all
+	     * values are sorted in ascending order. Otherwise, a value is sorted in
+	     * ascending order if its corresponding order is "asc", and descending if "desc".
+	     *
+	     * If a property name is provided for an iteratee the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If an object is provided for an iteratee the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function[]|Object[]|string[]} iteratees The iteratees to sort by.
+	     * @param {boolean[]} [orders] The sort orders of `iteratees`.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.reduce`.
+	     * @returns {Array} Returns the new sorted array.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'fred',   'age': 48 },
+	     *   { 'user': 'barney', 'age': 34 },
+	     *   { 'user': 'fred',   'age': 42 },
+	     *   { 'user': 'barney', 'age': 36 }
+	     * ];
+	     *
+	     * // sort by `user` in ascending order and by `age` in descending order
+	     * _.map(_.sortByOrder(users, ['user', 'age'], ['asc', 'desc']), _.values);
+	     * // => [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 42]]
+	     */
+	    function sortByOrder(collection, iteratees, orders, guard) {
+	      if (collection == null) {
+	        return [];
+	      }
+	      if (guard && isIterateeCall(iteratees, orders, guard)) {
+	        orders = undefined;
+	      }
+	      if (!isArray(iteratees)) {
+	        iteratees = iteratees == null ? [] : [iteratees];
+	      }
+	      if (!isArray(orders)) {
+	        orders = orders == null ? [] : [orders];
+	      }
+	      return baseSortByOrder(collection, iteratees, orders);
+	    }
+
+	    /**
+	     * Performs a deep comparison between each element in `collection` and the
+	     * source object, returning an array of all elements that have equivalent
+	     * property values.
+	     *
+	     * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+	     * numbers, `Object` objects, regexes, and strings. Objects are compared by
+	     * their own, not inherited, enumerable properties. For comparing a single
+	     * own or inherited property value see `_.matchesProperty`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Collection
+	     * @param {Array|Object|string} collection The collection to search.
+	     * @param {Object} source The object of property values to match.
+	     * @returns {Array} Returns the new filtered array.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36, 'active': false, 'pets': ['hoppy'] },
+	     *   { 'user': 'fred',   'age': 40, 'active': true, 'pets': ['baby puss', 'dino'] }
+	     * ];
+	     *
+	     * _.pluck(_.where(users, { 'age': 36, 'active': false }), 'user');
+	     * // => ['barney']
+	     *
+	     * _.pluck(_.where(users, { 'pets': ['dino'] }), 'user');
+	     * // => ['fred']
+	     */
+	    function where(collection, source) {
+	      return filter(collection, baseMatches(source));
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Gets the number of milliseconds that have elapsed since the Unix epoch
+	     * (1 January 1970 00:00:00 UTC).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Date
+	     * @example
+	     *
+	     * _.defer(function(stamp) {
+	     *   console.log(_.now() - stamp);
+	     * }, _.now());
+	     * // => logs the number of milliseconds it took for the deferred function to be invoked
+	     */
+	    var now = nativeNow || function() {
+	      return new Date().getTime();
+	    };
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * The opposite of `_.before`; this method creates a function that invokes
+	     * `func` once it is called `n` or more times.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {number} n The number of calls before `func` is invoked.
+	     * @param {Function} func The function to restrict.
+	     * @returns {Function} Returns the new restricted function.
+	     * @example
+	     *
+	     * var saves = ['profile', 'settings'];
+	     *
+	     * var done = _.after(saves.length, function() {
+	     *   console.log('done saving!');
+	     * });
+	     *
+	     * _.forEach(saves, function(type) {
+	     *   asyncSave({ 'type': type, 'complete': done });
+	     * });
+	     * // => logs 'done saving!' after the two async saves have completed
+	     */
+	    function after(n, func) {
+	      if (typeof func != 'function') {
+	        if (typeof n == 'function') {
+	          var temp = n;
+	          n = func;
+	          func = temp;
+	        } else {
+	          throw new TypeError(FUNC_ERROR_TEXT);
+	        }
+	      }
+	      n = nativeIsFinite(n = +n) ? n : 0;
+	      return function() {
+	        if (--n < 1) {
+	          return func.apply(this, arguments);
+	        }
+	      };
+	    }
+
+	    /**
+	     * Creates a function that accepts up to `n` arguments ignoring any
+	     * additional arguments.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to cap arguments for.
+	     * @param {number} [n=func.length] The arity cap.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * _.map(['6', '8', '10'], _.ary(parseInt, 1));
+	     * // => [6, 8, 10]
+	     */
+	    function ary(func, n, guard) {
+	      if (guard && isIterateeCall(func, n, guard)) {
+	        n = undefined;
+	      }
+	      n = (func && n == null) ? func.length : nativeMax(+n || 0, 0);
+	      return createWrapper(func, ARY_FLAG, undefined, undefined, undefined, undefined, n);
+	    }
+
+	    /**
+	     * Creates a function that invokes `func`, with the `this` binding and arguments
+	     * of the created function, while it is called less than `n` times. Subsequent
+	     * calls to the created function return the result of the last `func` invocation.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {number} n The number of calls at which `func` is no longer invoked.
+	     * @param {Function} func The function to restrict.
+	     * @returns {Function} Returns the new restricted function.
+	     * @example
+	     *
+	     * jQuery('#add').on('click', _.before(5, addContactToList));
+	     * // => allows adding up to 4 contacts to the list
+	     */
+	    function before(n, func) {
+	      var result;
+	      if (typeof func != 'function') {
+	        if (typeof n == 'function') {
+	          var temp = n;
+	          n = func;
+	          func = temp;
+	        } else {
+	          throw new TypeError(FUNC_ERROR_TEXT);
+	        }
+	      }
+	      return function() {
+	        if (--n > 0) {
+	          result = func.apply(this, arguments);
+	        }
+	        if (n <= 1) {
+	          func = undefined;
+	        }
+	        return result;
+	      };
+	    }
+
+	    /**
+	     * Creates a function that invokes `func` with the `this` binding of `thisArg`
+	     * and prepends any additional `_.bind` arguments to those provided to the
+	     * bound function.
+	     *
+	     * The `_.bind.placeholder` value, which defaults to `_` in monolithic builds,
+	     * may be used as a placeholder for partially applied arguments.
+	     *
+	     * **Note:** Unlike native `Function#bind` this method does not set the "length"
+	     * property of bound functions.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to bind.
+	     * @param {*} thisArg The `this` binding of `func`.
+	     * @param {...*} [partials] The arguments to be partially applied.
+	     * @returns {Function} Returns the new bound function.
+	     * @example
+	     *
+	     * var greet = function(greeting, punctuation) {
+	     *   return greeting + ' ' + this.user + punctuation;
+	     * };
+	     *
+	     * var object = { 'user': 'fred' };
+	     *
+	     * var bound = _.bind(greet, object, 'hi');
+	     * bound('!');
+	     * // => 'hi fred!'
+	     *
+	     * // using placeholders
+	     * var bound = _.bind(greet, object, _, '!');
+	     * bound('hi');
+	     * // => 'hi fred!'
+	     */
+	    var bind = restParam(function(func, thisArg, partials) {
+	      var bitmask = BIND_FLAG;
+	      if (partials.length) {
+	        var holders = replaceHolders(partials, bind.placeholder);
+	        bitmask |= PARTIAL_FLAG;
+	      }
+	      return createWrapper(func, bitmask, thisArg, partials, holders);
+	    });
+
+	    /**
+	     * Binds methods of an object to the object itself, overwriting the existing
+	     * method. Method names may be specified as individual arguments or as arrays
+	     * of method names. If no method names are provided all enumerable function
+	     * properties, own and inherited, of `object` are bound.
+	     *
+	     * **Note:** This method does not set the "length" property of bound functions.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Object} object The object to bind and assign the bound methods to.
+	     * @param {...(string|string[])} [methodNames] The object method names to bind,
+	     *  specified as individual method names or arrays of method names.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * var view = {
+	     *   'label': 'docs',
+	     *   'onClick': function() {
+	     *     console.log('clicked ' + this.label);
+	     *   }
+	     * };
+	     *
+	     * _.bindAll(view);
+	     * jQuery('#docs').on('click', view.onClick);
+	     * // => logs 'clicked docs' when the element is clicked
+	     */
+	    var bindAll = restParam(function(object, methodNames) {
+	      methodNames = methodNames.length ? baseFlatten(methodNames) : functions(object);
+
+	      var index = -1,
+	          length = methodNames.length;
+
+	      while (++index < length) {
+	        var key = methodNames[index];
+	        object[key] = createWrapper(object[key], BIND_FLAG, object);
+	      }
+	      return object;
+	    });
+
+	    /**
+	     * Creates a function that invokes the method at `object[key]` and prepends
+	     * any additional `_.bindKey` arguments to those provided to the bound function.
+	     *
+	     * This method differs from `_.bind` by allowing bound functions to reference
+	     * methods that may be redefined or don't yet exist.
+	     * See [Peter Michaux's article](http://peter.michaux.ca/articles/lazy-function-definition-pattern)
+	     * for more details.
+	     *
+	     * The `_.bindKey.placeholder` value, which defaults to `_` in monolithic
+	     * builds, may be used as a placeholder for partially applied arguments.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Object} object The object the method belongs to.
+	     * @param {string} key The key of the method.
+	     * @param {...*} [partials] The arguments to be partially applied.
+	     * @returns {Function} Returns the new bound function.
+	     * @example
+	     *
+	     * var object = {
+	     *   'user': 'fred',
+	     *   'greet': function(greeting, punctuation) {
+	     *     return greeting + ' ' + this.user + punctuation;
+	     *   }
+	     * };
+	     *
+	     * var bound = _.bindKey(object, 'greet', 'hi');
+	     * bound('!');
+	     * // => 'hi fred!'
+	     *
+	     * object.greet = function(greeting, punctuation) {
+	     *   return greeting + 'ya ' + this.user + punctuation;
+	     * };
+	     *
+	     * bound('!');
+	     * // => 'hiya fred!'
+	     *
+	     * // using placeholders
+	     * var bound = _.bindKey(object, 'greet', _, '!');
+	     * bound('hi');
+	     * // => 'hiya fred!'
+	     */
+	    var bindKey = restParam(function(object, key, partials) {
+	      var bitmask = BIND_FLAG | BIND_KEY_FLAG;
+	      if (partials.length) {
+	        var holders = replaceHolders(partials, bindKey.placeholder);
+	        bitmask |= PARTIAL_FLAG;
+	      }
+	      return createWrapper(key, bitmask, object, partials, holders);
+	    });
+
+	    /**
+	     * Creates a function that accepts one or more arguments of `func` that when
+	     * called either invokes `func` returning its result, if all `func` arguments
+	     * have been provided, or returns a function that accepts one or more of the
+	     * remaining `func` arguments, and so on. The arity of `func` may be specified
+	     * if `func.length` is not sufficient.
+	     *
+	     * The `_.curry.placeholder` value, which defaults to `_` in monolithic builds,
+	     * may be used as a placeholder for provided arguments.
+	     *
+	     * **Note:** This method does not set the "length" property of curried functions.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to curry.
+	     * @param {number} [arity=func.length] The arity of `func`.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Function} Returns the new curried function.
+	     * @example
+	     *
+	     * var abc = function(a, b, c) {
+	     *   return [a, b, c];
+	     * };
+	     *
+	     * var curried = _.curry(abc);
+	     *
+	     * curried(1)(2)(3);
+	     * // => [1, 2, 3]
+	     *
+	     * curried(1, 2)(3);
+	     * // => [1, 2, 3]
+	     *
+	     * curried(1, 2, 3);
+	     * // => [1, 2, 3]
+	     *
+	     * // using placeholders
+	     * curried(1)(_, 3)(2);
+	     * // => [1, 2, 3]
+	     */
+	    var curry = createCurry(CURRY_FLAG);
+
+	    /**
+	     * This method is like `_.curry` except that arguments are applied to `func`
+	     * in the manner of `_.partialRight` instead of `_.partial`.
+	     *
+	     * The `_.curryRight.placeholder` value, which defaults to `_` in monolithic
+	     * builds, may be used as a placeholder for provided arguments.
+	     *
+	     * **Note:** This method does not set the "length" property of curried functions.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to curry.
+	     * @param {number} [arity=func.length] The arity of `func`.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Function} Returns the new curried function.
+	     * @example
+	     *
+	     * var abc = function(a, b, c) {
+	     *   return [a, b, c];
+	     * };
+	     *
+	     * var curried = _.curryRight(abc);
+	     *
+	     * curried(3)(2)(1);
+	     * // => [1, 2, 3]
+	     *
+	     * curried(2, 3)(1);
+	     * // => [1, 2, 3]
+	     *
+	     * curried(1, 2, 3);
+	     * // => [1, 2, 3]
+	     *
+	     * // using placeholders
+	     * curried(3)(1, _)(2);
+	     * // => [1, 2, 3]
+	     */
+	    var curryRight = createCurry(CURRY_RIGHT_FLAG);
+
+	    /**
+	     * Creates a debounced function that delays invoking `func` until after `wait`
+	     * milliseconds have elapsed since the last time the debounced function was
+	     * invoked. The debounced function comes with a `cancel` method to cancel
+	     * delayed invocations. Provide an options object to indicate that `func`
+	     * should be invoked on the leading and/or trailing edge of the `wait` timeout.
+	     * Subsequent calls to the debounced function return the result of the last
+	     * `func` invocation.
+	     *
+	     * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked
+	     * on the trailing edge of the timeout only if the the debounced function is
+	     * invoked more than once during the `wait` timeout.
+	     *
+	     * See [David Corbacho's article](http://drupalmotion.com/article/debounce-and-throttle-visual-explanation)
+	     * for details over the differences between `_.debounce` and `_.throttle`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to debounce.
+	     * @param {number} [wait=0] The number of milliseconds to delay.
+	     * @param {Object} [options] The options object.
+	     * @param {boolean} [options.leading=false] Specify invoking on the leading
+	     *  edge of the timeout.
+	     * @param {number} [options.maxWait] The maximum time `func` is allowed to be
+	     *  delayed before it is invoked.
+	     * @param {boolean} [options.trailing=true] Specify invoking on the trailing
+	     *  edge of the timeout.
+	     * @returns {Function} Returns the new debounced function.
+	     * @example
+	     *
+	     * // avoid costly calculations while the window size is in flux
+	     * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+	     *
+	     * // invoke `sendMail` when the click event is fired, debouncing subsequent calls
+	     * jQuery('#postbox').on('click', _.debounce(sendMail, 300, {
+	     *   'leading': true,
+	     *   'trailing': false
+	     * }));
+	     *
+	     * // ensure `batchLog` is invoked once after 1 second of debounced calls
+	     * var source = new EventSource('/stream');
+	     * jQuery(source).on('message', _.debounce(batchLog, 250, {
+	     *   'maxWait': 1000
+	     * }));
+	     *
+	     * // cancel a debounced call
+	     * var todoChanges = _.debounce(batchLog, 1000);
+	     * Object.observe(models.todo, todoChanges);
+	     *
+	     * Object.observe(models, function(changes) {
+	     *   if (_.find(changes, { 'user': 'todo', 'type': 'delete'})) {
+	     *     todoChanges.cancel();
+	     *   }
+	     * }, ['delete']);
+	     *
+	     * // ...at some point `models.todo` is changed
+	     * models.todo.completed = true;
+	     *
+	     * // ...before 1 second has passed `models.todo` is deleted
+	     * // which cancels the debounced `todoChanges` call
+	     * delete models.todo;
+	     */
+	    function debounce(func, wait, options) {
+	      var args,
+	          maxTimeoutId,
+	          result,
+	          stamp,
+	          thisArg,
+	          timeoutId,
+	          trailingCall,
+	          lastCalled = 0,
+	          maxWait = false,
+	          trailing = true;
+
+	      if (typeof func != 'function') {
+	        throw new TypeError(FUNC_ERROR_TEXT);
+	      }
+	      wait = wait < 0 ? 0 : (+wait || 0);
+	      if (options === true) {
+	        var leading = true;
+	        trailing = false;
+	      } else if (isObject(options)) {
+	        leading = !!options.leading;
+	        maxWait = 'maxWait' in options && nativeMax(+options.maxWait || 0, wait);
+	        trailing = 'trailing' in options ? !!options.trailing : trailing;
+	      }
+
+	      function cancel() {
+	        if (timeoutId) {
+	          clearTimeout(timeoutId);
+	        }
+	        if (maxTimeoutId) {
+	          clearTimeout(maxTimeoutId);
+	        }
+	        lastCalled = 0;
+	        maxTimeoutId = timeoutId = trailingCall = undefined;
+	      }
+
+	      function complete(isCalled, id) {
+	        if (id) {
+	          clearTimeout(id);
+	        }
+	        maxTimeoutId = timeoutId = trailingCall = undefined;
+	        if (isCalled) {
+	          lastCalled = now();
+	          result = func.apply(thisArg, args);
+	          if (!timeoutId && !maxTimeoutId) {
+	            args = thisArg = undefined;
+	          }
+	        }
+	      }
+
+	      function delayed() {
+	        var remaining = wait - (now() - stamp);
+	        if (remaining <= 0 || remaining > wait) {
+	          complete(trailingCall, maxTimeoutId);
+	        } else {
+	          timeoutId = setTimeout(delayed, remaining);
+	        }
+	      }
+
+	      function maxDelayed() {
+	        complete(trailing, timeoutId);
+	      }
+
+	      function debounced() {
+	        args = arguments;
+	        stamp = now();
+	        thisArg = this;
+	        trailingCall = trailing && (timeoutId || !leading);
+
+	        if (maxWait === false) {
+	          var leadingCall = leading && !timeoutId;
+	        } else {
+	          if (!maxTimeoutId && !leading) {
+	            lastCalled = stamp;
+	          }
+	          var remaining = maxWait - (stamp - lastCalled),
+	              isCalled = remaining <= 0 || remaining > maxWait;
+
+	          if (isCalled) {
+	            if (maxTimeoutId) {
+	              maxTimeoutId = clearTimeout(maxTimeoutId);
+	            }
+	            lastCalled = stamp;
+	            result = func.apply(thisArg, args);
+	          }
+	          else if (!maxTimeoutId) {
+	            maxTimeoutId = setTimeout(maxDelayed, remaining);
+	          }
+	        }
+	        if (isCalled && timeoutId) {
+	          timeoutId = clearTimeout(timeoutId);
+	        }
+	        else if (!timeoutId && wait !== maxWait) {
+	          timeoutId = setTimeout(delayed, wait);
+	        }
+	        if (leadingCall) {
+	          isCalled = true;
+	          result = func.apply(thisArg, args);
+	        }
+	        if (isCalled && !timeoutId && !maxTimeoutId) {
+	          args = thisArg = undefined;
+	        }
+	        return result;
+	      }
+	      debounced.cancel = cancel;
+	      return debounced;
+	    }
+
+	    /**
+	     * Defers invoking the `func` until the current call stack has cleared. Any
+	     * additional arguments are provided to `func` when it is invoked.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to defer.
+	     * @param {...*} [args] The arguments to invoke the function with.
+	     * @returns {number} Returns the timer id.
+	     * @example
+	     *
+	     * _.defer(function(text) {
+	     *   console.log(text);
+	     * }, 'deferred');
+	     * // logs 'deferred' after one or more milliseconds
+	     */
+	    var defer = restParam(function(func, args) {
+	      return baseDelay(func, 1, args);
+	    });
+
+	    /**
+	     * Invokes `func` after `wait` milliseconds. Any additional arguments are
+	     * provided to `func` when it is invoked.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to delay.
+	     * @param {number} wait The number of milliseconds to delay invocation.
+	     * @param {...*} [args] The arguments to invoke the function with.
+	     * @returns {number} Returns the timer id.
+	     * @example
+	     *
+	     * _.delay(function(text) {
+	     *   console.log(text);
+	     * }, 1000, 'later');
+	     * // => logs 'later' after one second
+	     */
+	    var delay = restParam(function(func, wait, args) {
+	      return baseDelay(func, wait, args);
+	    });
+
+	    /**
+	     * Creates a function that returns the result of invoking the provided
+	     * functions with the `this` binding of the created function, where each
+	     * successive invocation is supplied the return value of the previous.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {...Function} [funcs] Functions to invoke.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * function square(n) {
+	     *   return n * n;
+	     * }
+	     *
+	     * var addSquare = _.flow(_.add, square);
+	     * addSquare(1, 2);
+	     * // => 9
+	     */
+	    var flow = createFlow();
+
+	    /**
+	     * This method is like `_.flow` except that it creates a function that
+	     * invokes the provided functions from right to left.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias backflow, compose
+	     * @category Function
+	     * @param {...Function} [funcs] Functions to invoke.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * function square(n) {
+	     *   return n * n;
+	     * }
+	     *
+	     * var addSquare = _.flowRight(square, _.add);
+	     * addSquare(1, 2);
+	     * // => 9
+	     */
+	    var flowRight = createFlow(true);
+
+	    /**
+	     * Creates a function that memoizes the result of `func`. If `resolver` is
+	     * provided it determines the cache key for storing the result based on the
+	     * arguments provided to the memoized function. By default, the first argument
+	     * provided to the memoized function is coerced to a string and used as the
+	     * cache key. The `func` is invoked with the `this` binding of the memoized
+	     * function.
+	     *
+	     * **Note:** The cache is exposed as the `cache` property on the memoized
+	     * function. Its creation may be customized by replacing the `_.memoize.Cache`
+	     * constructor with one whose instances implement the [`Map`](http://ecma-international.org/ecma-262/6.0/#sec-properties-of-the-map-prototype-object)
+	     * method interface of `get`, `has`, and `set`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to have its output memoized.
+	     * @param {Function} [resolver] The function to resolve the cache key.
+	     * @returns {Function} Returns the new memoizing function.
+	     * @example
+	     *
+	     * var upperCase = _.memoize(function(string) {
+	     *   return string.toUpperCase();
+	     * });
+	     *
+	     * upperCase('fred');
+	     * // => 'FRED'
+	     *
+	     * // modifying the result cache
+	     * upperCase.cache.set('fred', 'BARNEY');
+	     * upperCase('fred');
+	     * // => 'BARNEY'
+	     *
+	     * // replacing `_.memoize.Cache`
+	     * var object = { 'user': 'fred' };
+	     * var other = { 'user': 'barney' };
+	     * var identity = _.memoize(_.identity);
+	     *
+	     * identity(object);
+	     * // => { 'user': 'fred' }
+	     * identity(other);
+	     * // => { 'user': 'fred' }
+	     *
+	     * _.memoize.Cache = WeakMap;
+	     * var identity = _.memoize(_.identity);
+	     *
+	     * identity(object);
+	     * // => { 'user': 'fred' }
+	     * identity(other);
+	     * // => { 'user': 'barney' }
+	     */
+	    function memoize(func, resolver) {
+	      if (typeof func != 'function' || (resolver && typeof resolver != 'function')) {
+	        throw new TypeError(FUNC_ERROR_TEXT);
+	      }
+	      var memoized = function() {
+	        var args = arguments,
+	            key = resolver ? resolver.apply(this, args) : args[0],
+	            cache = memoized.cache;
+
+	        if (cache.has(key)) {
+	          return cache.get(key);
+	        }
+	        var result = func.apply(this, args);
+	        memoized.cache = cache.set(key, result);
+	        return result;
+	      };
+	      memoized.cache = new memoize.Cache;
+	      return memoized;
+	    }
+
+	    /**
+	     * Creates a function that runs each argument through a corresponding
+	     * transform function.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to wrap.
+	     * @param {...(Function|Function[])} [transforms] The functions to transform
+	     * arguments, specified as individual functions or arrays of functions.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * function doubled(n) {
+	     *   return n * 2;
+	     * }
+	     *
+	     * function square(n) {
+	     *   return n * n;
+	     * }
+	     *
+	     * var modded = _.modArgs(function(x, y) {
+	     *   return [x, y];
+	     * }, square, doubled);
+	     *
+	     * modded(1, 2);
+	     * // => [1, 4]
+	     *
+	     * modded(5, 10);
+	     * // => [25, 20]
+	     */
+	    var modArgs = restParam(function(func, transforms) {
+	      transforms = baseFlatten(transforms);
+	      if (typeof func != 'function' || !arrayEvery(transforms, baseIsFunction)) {
+	        throw new TypeError(FUNC_ERROR_TEXT);
+	      }
+	      var length = transforms.length;
+	      return restParam(function(args) {
+	        var index = nativeMin(args.length, length);
+	        while (index--) {
+	          args[index] = transforms[index](args[index]);
+	        }
+	        return func.apply(this, args);
+	      });
+	    });
+
+	    /**
+	     * Creates a function that negates the result of the predicate `func`. The
+	     * `func` predicate is invoked with the `this` binding and arguments of the
+	     * created function.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} predicate The predicate to negate.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * function isEven(n) {
+	     *   return n % 2 == 0;
+	     * }
+	     *
+	     * _.filter([1, 2, 3, 4, 5, 6], _.negate(isEven));
+	     * // => [1, 3, 5]
+	     */
+	    function negate(predicate) {
+	      if (typeof predicate != 'function') {
+	        throw new TypeError(FUNC_ERROR_TEXT);
+	      }
+	      return function() {
+	        return !predicate.apply(this, arguments);
+	      };
+	    }
+
+	    /**
+	     * Creates a function that is restricted to invoking `func` once. Repeat calls
+	     * to the function return the value of the first call. The `func` is invoked
+	     * with the `this` binding and arguments of the created function.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to restrict.
+	     * @returns {Function} Returns the new restricted function.
+	     * @example
+	     *
+	     * var initialize = _.once(createApplication);
+	     * initialize();
+	     * initialize();
+	     * // `initialize` invokes `createApplication` once
+	     */
+	    function once(func) {
+	      return before(2, func);
+	    }
+
+	    /**
+	     * Creates a function that invokes `func` with `partial` arguments prepended
+	     * to those provided to the new function. This method is like `_.bind` except
+	     * it does **not** alter the `this` binding.
+	     *
+	     * The `_.partial.placeholder` value, which defaults to `_` in monolithic
+	     * builds, may be used as a placeholder for partially applied arguments.
+	     *
+	     * **Note:** This method does not set the "length" property of partially
+	     * applied functions.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to partially apply arguments to.
+	     * @param {...*} [partials] The arguments to be partially applied.
+	     * @returns {Function} Returns the new partially applied function.
+	     * @example
+	     *
+	     * var greet = function(greeting, name) {
+	     *   return greeting + ' ' + name;
+	     * };
+	     *
+	     * var sayHelloTo = _.partial(greet, 'hello');
+	     * sayHelloTo('fred');
+	     * // => 'hello fred'
+	     *
+	     * // using placeholders
+	     * var greetFred = _.partial(greet, _, 'fred');
+	     * greetFred('hi');
+	     * // => 'hi fred'
+	     */
+	    var partial = createPartial(PARTIAL_FLAG);
+
+	    /**
+	     * This method is like `_.partial` except that partially applied arguments
+	     * are appended to those provided to the new function.
+	     *
+	     * The `_.partialRight.placeholder` value, which defaults to `_` in monolithic
+	     * builds, may be used as a placeholder for partially applied arguments.
+	     *
+	     * **Note:** This method does not set the "length" property of partially
+	     * applied functions.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to partially apply arguments to.
+	     * @param {...*} [partials] The arguments to be partially applied.
+	     * @returns {Function} Returns the new partially applied function.
+	     * @example
+	     *
+	     * var greet = function(greeting, name) {
+	     *   return greeting + ' ' + name;
+	     * };
+	     *
+	     * var greetFred = _.partialRight(greet, 'fred');
+	     * greetFred('hi');
+	     * // => 'hi fred'
+	     *
+	     * // using placeholders
+	     * var sayHelloTo = _.partialRight(greet, 'hello', _);
+	     * sayHelloTo('fred');
+	     * // => 'hello fred'
+	     */
+	    var partialRight = createPartial(PARTIAL_RIGHT_FLAG);
+
+	    /**
+	     * Creates a function that invokes `func` with arguments arranged according
+	     * to the specified indexes where the argument value at the first index is
+	     * provided as the first argument, the argument value at the second index is
+	     * provided as the second argument, and so on.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to rearrange arguments for.
+	     * @param {...(number|number[])} indexes The arranged argument indexes,
+	     *  specified as individual indexes or arrays of indexes.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var rearged = _.rearg(function(a, b, c) {
+	     *   return [a, b, c];
+	     * }, 2, 0, 1);
+	     *
+	     * rearged('b', 'c', 'a')
+	     * // => ['a', 'b', 'c']
+	     *
+	     * var map = _.rearg(_.map, [1, 0]);
+	     * map(function(n) {
+	     *   return n * 3;
+	     * }, [1, 2, 3]);
+	     * // => [3, 6, 9]
+	     */
+	    var rearg = restParam(function(func, indexes) {
+	      return createWrapper(func, REARG_FLAG, undefined, undefined, undefined, baseFlatten(indexes));
+	    });
+
+	    /**
+	     * Creates a function that invokes `func` with the `this` binding of the
+	     * created function and arguments from `start` and beyond provided as an array.
+	     *
+	     * **Note:** This method is based on the [rest parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to apply a rest parameter to.
+	     * @param {number} [start=func.length-1] The start position of the rest parameter.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var say = _.restParam(function(what, names) {
+	     *   return what + ' ' + _.initial(names).join(', ') +
+	     *     (_.size(names) > 1 ? ', & ' : '') + _.last(names);
+	     * });
+	     *
+	     * say('hello', 'fred', 'barney', 'pebbles');
+	     * // => 'hello fred, barney, & pebbles'
+	     */
+	    function restParam(func, start) {
+	      if (typeof func != 'function') {
+	        throw new TypeError(FUNC_ERROR_TEXT);
+	      }
+	      start = nativeMax(start === undefined ? (func.length - 1) : (+start || 0), 0);
+	      return function() {
+	        var args = arguments,
+	            index = -1,
+	            length = nativeMax(args.length - start, 0),
+	            rest = Array(length);
+
+	        while (++index < length) {
+	          rest[index] = args[start + index];
+	        }
+	        switch (start) {
+	          case 0: return func.call(this, rest);
+	          case 1: return func.call(this, args[0], rest);
+	          case 2: return func.call(this, args[0], args[1], rest);
+	        }
+	        var otherArgs = Array(start + 1);
+	        index = -1;
+	        while (++index < start) {
+	          otherArgs[index] = args[index];
+	        }
+	        otherArgs[start] = rest;
+	        return func.apply(this, otherArgs);
+	      };
+	    }
+
+	    /**
+	     * Creates a function that invokes `func` with the `this` binding of the created
+	     * function and an array of arguments much like [`Function#apply`](https://es5.github.io/#x15.3.4.3).
+	     *
+	     * **Note:** This method is based on the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to spread arguments over.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var say = _.spread(function(who, what) {
+	     *   return who + ' says ' + what;
+	     * });
+	     *
+	     * say(['fred', 'hello']);
+	     * // => 'fred says hello'
+	     *
+	     * // with a Promise
+	     * var numbers = Promise.all([
+	     *   Promise.resolve(40),
+	     *   Promise.resolve(36)
+	     * ]);
+	     *
+	     * numbers.then(_.spread(function(x, y) {
+	     *   return x + y;
+	     * }));
+	     * // => a Promise of 76
+	     */
+	    function spread(func) {
+	      if (typeof func != 'function') {
+	        throw new TypeError(FUNC_ERROR_TEXT);
+	      }
+	      return function(array) {
+	        return func.apply(this, array);
+	      };
+	    }
+
+	    /**
+	     * Creates a throttled function that only invokes `func` at most once per
+	     * every `wait` milliseconds. The throttled function comes with a `cancel`
+	     * method to cancel delayed invocations. Provide an options object to indicate
+	     * that `func` should be invoked on the leading and/or trailing edge of the
+	     * `wait` timeout. Subsequent calls to the throttled function return the
+	     * result of the last `func` call.
+	     *
+	     * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked
+	     * on the trailing edge of the timeout only if the the throttled function is
+	     * invoked more than once during the `wait` timeout.
+	     *
+	     * See [David Corbacho's article](http://drupalmotion.com/article/debounce-and-throttle-visual-explanation)
+	     * for details over the differences between `_.throttle` and `_.debounce`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {Function} func The function to throttle.
+	     * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+	     * @param {Object} [options] The options object.
+	     * @param {boolean} [options.leading=true] Specify invoking on the leading
+	     *  edge of the timeout.
+	     * @param {boolean} [options.trailing=true] Specify invoking on the trailing
+	     *  edge of the timeout.
+	     * @returns {Function} Returns the new throttled function.
+	     * @example
+	     *
+	     * // avoid excessively updating the position while scrolling
+	     * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+	     *
+	     * // invoke `renewToken` when the click event is fired, but not more than once every 5 minutes
+	     * jQuery('.interactive').on('click', _.throttle(renewToken, 300000, {
+	     *   'trailing': false
+	     * }));
+	     *
+	     * // cancel a trailing throttled call
+	     * jQuery(window).on('popstate', throttled.cancel);
+	     */
+	    function throttle(func, wait, options) {
+	      var leading = true,
+	          trailing = true;
+
+	      if (typeof func != 'function') {
+	        throw new TypeError(FUNC_ERROR_TEXT);
+	      }
+	      if (options === false) {
+	        leading = false;
+	      } else if (isObject(options)) {
+	        leading = 'leading' in options ? !!options.leading : leading;
+	        trailing = 'trailing' in options ? !!options.trailing : trailing;
+	      }
+	      return debounce(func, wait, { 'leading': leading, 'maxWait': +wait, 'trailing': trailing });
+	    }
+
+	    /**
+	     * Creates a function that provides `value` to the wrapper function as its
+	     * first argument. Any additional arguments provided to the function are
+	     * appended to those provided to the wrapper function. The wrapper is invoked
+	     * with the `this` binding of the created function.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Function
+	     * @param {*} value The value to wrap.
+	     * @param {Function} wrapper The wrapper function.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var p = _.wrap(_.escape, function(func, text) {
+	     *   return '<p>' + func(text) + '</p>';
+	     * });
+	     *
+	     * p('fred, barney, & pebbles');
+	     * // => '<p>fred, barney, &amp; pebbles</p>'
+	     */
+	    function wrap(value, wrapper) {
+	      wrapper = wrapper == null ? identity : wrapper;
+	      return createWrapper(wrapper, PARTIAL_FLAG, undefined, [value], []);
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Creates a clone of `value`. If `isDeep` is `true` nested objects are cloned,
+	     * otherwise they are assigned by reference. If `customizer` is provided it is
+	     * invoked to produce the cloned values. If `customizer` returns `undefined`
+	     * cloning is handled by the method instead. The `customizer` is bound to
+	     * `thisArg` and invoked with two argument; (value [, index|key, object]).
+	     *
+	     * **Note:** This method is loosely based on the
+	     * [structured clone algorithm](http://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm).
+	     * The enumerable properties of `arguments` objects and objects created by
+	     * constructors other than `Object` are cloned to plain `Object` objects. An
+	     * empty object is returned for uncloneable values such as functions, DOM nodes,
+	     * Maps, Sets, and WeakMaps.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to clone.
+	     * @param {boolean} [isDeep] Specify a deep clone.
+	     * @param {Function} [customizer] The function to customize cloning values.
+	     * @param {*} [thisArg] The `this` binding of `customizer`.
+	     * @returns {*} Returns the cloned value.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney' },
+	     *   { 'user': 'fred' }
+	     * ];
+	     *
+	     * var shallow = _.clone(users);
+	     * shallow[0] === users[0];
+	     * // => true
+	     *
+	     * var deep = _.clone(users, true);
+	     * deep[0] === users[0];
+	     * // => false
+	     *
+	     * // using a customizer callback
+	     * var el = _.clone(document.body, function(value) {
+	     *   if (_.isElement(value)) {
+	     *     return value.cloneNode(false);
+	     *   }
+	     * });
+	     *
+	     * el === document.body
+	     * // => false
+	     * el.nodeName
+	     * // => BODY
+	     * el.childNodes.length;
+	     * // => 0
+	     */
+	    function clone(value, isDeep, customizer, thisArg) {
+	      if (isDeep && typeof isDeep != 'boolean' && isIterateeCall(value, isDeep, customizer)) {
+	        isDeep = false;
+	      }
+	      else if (typeof isDeep == 'function') {
+	        thisArg = customizer;
+	        customizer = isDeep;
+	        isDeep = false;
+	      }
+	      return typeof customizer == 'function'
+	        ? baseClone(value, isDeep, bindCallback(customizer, thisArg, 1))
+	        : baseClone(value, isDeep);
+	    }
+
+	    /**
+	     * Creates a deep clone of `value`. If `customizer` is provided it is invoked
+	     * to produce the cloned values. If `customizer` returns `undefined` cloning
+	     * is handled by the method instead. The `customizer` is bound to `thisArg`
+	     * and invoked with two argument; (value [, index|key, object]).
+	     *
+	     * **Note:** This method is loosely based on the
+	     * [structured clone algorithm](http://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm).
+	     * The enumerable properties of `arguments` objects and objects created by
+	     * constructors other than `Object` are cloned to plain `Object` objects. An
+	     * empty object is returned for uncloneable values such as functions, DOM nodes,
+	     * Maps, Sets, and WeakMaps.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to deep clone.
+	     * @param {Function} [customizer] The function to customize cloning values.
+	     * @param {*} [thisArg] The `this` binding of `customizer`.
+	     * @returns {*} Returns the deep cloned value.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney' },
+	     *   { 'user': 'fred' }
+	     * ];
+	     *
+	     * var deep = _.cloneDeep(users);
+	     * deep[0] === users[0];
+	     * // => false
+	     *
+	     * // using a customizer callback
+	     * var el = _.cloneDeep(document.body, function(value) {
+	     *   if (_.isElement(value)) {
+	     *     return value.cloneNode(true);
+	     *   }
+	     * });
+	     *
+	     * el === document.body
+	     * // => false
+	     * el.nodeName
+	     * // => BODY
+	     * el.childNodes.length;
+	     * // => 20
+	     */
+	    function cloneDeep(value, customizer, thisArg) {
+	      return typeof customizer == 'function'
+	        ? baseClone(value, true, bindCallback(customizer, thisArg, 1))
+	        : baseClone(value, true);
+	    }
+
+	    /**
+	     * Checks if `value` is greater than `other`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to compare.
+	     * @param {*} other The other value to compare.
+	     * @returns {boolean} Returns `true` if `value` is greater than `other`, else `false`.
+	     * @example
+	     *
+	     * _.gt(3, 1);
+	     * // => true
+	     *
+	     * _.gt(3, 3);
+	     * // => false
+	     *
+	     * _.gt(1, 3);
+	     * // => false
+	     */
+	    function gt(value, other) {
+	      return value > other;
+	    }
+
+	    /**
+	     * Checks if `value` is greater than or equal to `other`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to compare.
+	     * @param {*} other The other value to compare.
+	     * @returns {boolean} Returns `true` if `value` is greater than or equal to `other`, else `false`.
+	     * @example
+	     *
+	     * _.gte(3, 1);
+	     * // => true
+	     *
+	     * _.gte(3, 3);
+	     * // => true
+	     *
+	     * _.gte(1, 3);
+	     * // => false
+	     */
+	    function gte(value, other) {
+	      return value >= other;
+	    }
+
+	    /**
+	     * Checks if `value` is classified as an `arguments` object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	     * @example
+	     *
+	     * _.isArguments(function() { return arguments; }());
+	     * // => true
+	     *
+	     * _.isArguments([1, 2, 3]);
+	     * // => false
+	     */
+	    function isArguments(value) {
+	      return isObjectLike(value) && isArrayLike(value) &&
+	        hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
+	    }
+
+	    /**
+	     * Checks if `value` is classified as an `Array` object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	     * @example
+	     *
+	     * _.isArray([1, 2, 3]);
+	     * // => true
+	     *
+	     * _.isArray(function() { return arguments; }());
+	     * // => false
+	     */
+	    var isArray = nativeIsArray || function(value) {
+	      return isObjectLike(value) && isLength(value.length) && objToString.call(value) == arrayTag;
+	    };
+
+	    /**
+	     * Checks if `value` is classified as a boolean primitive or object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	     * @example
+	     *
+	     * _.isBoolean(false);
+	     * // => true
+	     *
+	     * _.isBoolean(null);
+	     * // => false
+	     */
+	    function isBoolean(value) {
+	      return value === true || value === false || (isObjectLike(value) && objToString.call(value) == boolTag);
+	    }
+
+	    /**
+	     * Checks if `value` is classified as a `Date` object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	     * @example
+	     *
+	     * _.isDate(new Date);
+	     * // => true
+	     *
+	     * _.isDate('Mon April 23 2012');
+	     * // => false
+	     */
+	    function isDate(value) {
+	      return isObjectLike(value) && objToString.call(value) == dateTag;
+	    }
+
+	    /**
+	     * Checks if `value` is a DOM element.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is a DOM element, else `false`.
+	     * @example
+	     *
+	     * _.isElement(document.body);
+	     * // => true
+	     *
+	     * _.isElement('<body>');
+	     * // => false
+	     */
+	    function isElement(value) {
+	      return !!value && value.nodeType === 1 && isObjectLike(value) && !isPlainObject(value);
+	    }
+
+	    /**
+	     * Checks if `value` is empty. A value is considered empty unless it is an
+	     * `arguments` object, array, string, or jQuery-like collection with a length
+	     * greater than `0` or an object with own enumerable properties.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {Array|Object|string} value The value to inspect.
+	     * @returns {boolean} Returns `true` if `value` is empty, else `false`.
+	     * @example
+	     *
+	     * _.isEmpty(null);
+	     * // => true
+	     *
+	     * _.isEmpty(true);
+	     * // => true
+	     *
+	     * _.isEmpty(1);
+	     * // => true
+	     *
+	     * _.isEmpty([1, 2, 3]);
+	     * // => false
+	     *
+	     * _.isEmpty({ 'a': 1 });
+	     * // => false
+	     */
+	    function isEmpty(value) {
+	      if (value == null) {
+	        return true;
+	      }
+	      if (isArrayLike(value) && (isArray(value) || isString(value) || isArguments(value) ||
+	          (isObjectLike(value) && isFunction(value.splice)))) {
+	        return !value.length;
+	      }
+	      return !keys(value).length;
+	    }
+
+	    /**
+	     * Performs a deep comparison between two values to determine if they are
+	     * equivalent. If `customizer` is provided it is invoked to compare values.
+	     * If `customizer` returns `undefined` comparisons are handled by the method
+	     * instead. The `customizer` is bound to `thisArg` and invoked with three
+	     * arguments: (value, other [, index|key]).
+	     *
+	     * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+	     * numbers, `Object` objects, regexes, and strings. Objects are compared by
+	     * their own, not inherited, enumerable properties. Functions and DOM nodes
+	     * are **not** supported. Provide a customizer function to extend support
+	     * for comparing other values.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias eq
+	     * @category Lang
+	     * @param {*} value The value to compare.
+	     * @param {*} other The other value to compare.
+	     * @param {Function} [customizer] The function to customize value comparisons.
+	     * @param {*} [thisArg] The `this` binding of `customizer`.
+	     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+	     * @example
+	     *
+	     * var object = { 'user': 'fred' };
+	     * var other = { 'user': 'fred' };
+	     *
+	     * object == other;
+	     * // => false
+	     *
+	     * _.isEqual(object, other);
+	     * // => true
+	     *
+	     * // using a customizer callback
+	     * var array = ['hello', 'goodbye'];
+	     * var other = ['hi', 'goodbye'];
+	     *
+	     * _.isEqual(array, other, function(value, other) {
+	     *   if (_.every([value, other], RegExp.prototype.test, /^h(?:i|ello)$/)) {
+	     *     return true;
+	     *   }
+	     * });
+	     * // => true
+	     */
+	    function isEqual(value, other, customizer, thisArg) {
+	      customizer = typeof customizer == 'function' ? bindCallback(customizer, thisArg, 3) : undefined;
+	      var result = customizer ? customizer(value, other) : undefined;
+	      return  result === undefined ? baseIsEqual(value, other, customizer) : !!result;
+	    }
+
+	    /**
+	     * Checks if `value` is an `Error`, `EvalError`, `RangeError`, `ReferenceError`,
+	     * `SyntaxError`, `TypeError`, or `URIError` object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is an error object, else `false`.
+	     * @example
+	     *
+	     * _.isError(new Error);
+	     * // => true
+	     *
+	     * _.isError(Error);
+	     * // => false
+	     */
+	    function isError(value) {
+	      return isObjectLike(value) && typeof value.message == 'string' && objToString.call(value) == errorTag;
+	    }
+
+	    /**
+	     * Checks if `value` is a finite primitive number.
+	     *
+	     * **Note:** This method is based on [`Number.isFinite`](http://ecma-international.org/ecma-262/6.0/#sec-number.isfinite).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is a finite number, else `false`.
+	     * @example
+	     *
+	     * _.isFinite(10);
+	     * // => true
+	     *
+	     * _.isFinite('10');
+	     * // => false
+	     *
+	     * _.isFinite(true);
+	     * // => false
+	     *
+	     * _.isFinite(Object(10));
+	     * // => false
+	     *
+	     * _.isFinite(Infinity);
+	     * // => false
+	     */
+	    function isFinite(value) {
+	      return typeof value == 'number' && nativeIsFinite(value);
+	    }
+
+	    /**
+	     * Checks if `value` is classified as a `Function` object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	     * @example
+	     *
+	     * _.isFunction(_);
+	     * // => true
+	     *
+	     * _.isFunction(/abc/);
+	     * // => false
+	     */
+	    function isFunction(value) {
+	      // The use of `Object#toString` avoids issues with the `typeof` operator
+	      // in older versions of Chrome and Safari which return 'function' for regexes
+	      // and Safari 8 equivalents which return 'object' for typed array constructors.
+	      return isObject(value) && objToString.call(value) == funcTag;
+	    }
+
+	    /**
+	     * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+	     * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+	     * @example
+	     *
+	     * _.isObject({});
+	     * // => true
+	     *
+	     * _.isObject([1, 2, 3]);
+	     * // => true
+	     *
+	     * _.isObject(1);
+	     * // => false
+	     */
+	    function isObject(value) {
+	      // Avoid a V8 JIT bug in Chrome 19-20.
+	      // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
+	      var type = typeof value;
+	      return !!value && (type == 'object' || type == 'function');
+	    }
+
+	    /**
+	     * Performs a deep comparison between `object` and `source` to determine if
+	     * `object` contains equivalent property values. If `customizer` is provided
+	     * it is invoked to compare values. If `customizer` returns `undefined`
+	     * comparisons are handled by the method instead. The `customizer` is bound
+	     * to `thisArg` and invoked with three arguments: (value, other, index|key).
+	     *
+	     * **Note:** This method supports comparing properties of arrays, booleans,
+	     * `Date` objects, numbers, `Object` objects, regexes, and strings. Functions
+	     * and DOM nodes are **not** supported. Provide a customizer function to extend
+	     * support for comparing other values.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {Object} object The object to inspect.
+	     * @param {Object} source The object of property values to match.
+	     * @param {Function} [customizer] The function to customize value comparisons.
+	     * @param {*} [thisArg] The `this` binding of `customizer`.
+	     * @returns {boolean} Returns `true` if `object` is a match, else `false`.
+	     * @example
+	     *
+	     * var object = { 'user': 'fred', 'age': 40 };
+	     *
+	     * _.isMatch(object, { 'age': 40 });
+	     * // => true
+	     *
+	     * _.isMatch(object, { 'age': 36 });
+	     * // => false
+	     *
+	     * // using a customizer callback
+	     * var object = { 'greeting': 'hello' };
+	     * var source = { 'greeting': 'hi' };
+	     *
+	     * _.isMatch(object, source, function(value, other) {
+	     *   return _.every([value, other], RegExp.prototype.test, /^h(?:i|ello)$/) || undefined;
+	     * });
+	     * // => true
+	     */
+	    function isMatch(object, source, customizer, thisArg) {
+	      customizer = typeof customizer == 'function' ? bindCallback(customizer, thisArg, 3) : undefined;
+	      return baseIsMatch(object, getMatchData(source), customizer);
+	    }
+
+	    /**
+	     * Checks if `value` is `NaN`.
+	     *
+	     * **Note:** This method is not the same as [`isNaN`](https://es5.github.io/#x15.1.2.4)
+	     * which returns `true` for `undefined` and other non-numeric values.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
+	     * @example
+	     *
+	     * _.isNaN(NaN);
+	     * // => true
+	     *
+	     * _.isNaN(new Number(NaN));
+	     * // => true
+	     *
+	     * isNaN(undefined);
+	     * // => true
+	     *
+	     * _.isNaN(undefined);
+	     * // => false
+	     */
+	    function isNaN(value) {
+	      // An `NaN` primitive is the only value that is not equal to itself.
+	      // Perform the `toStringTag` check first to avoid errors with some host objects in IE.
+	      return isNumber(value) && value != +value;
+	    }
+
+	    /**
+	     * Checks if `value` is a native function.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
+	     * @example
+	     *
+	     * _.isNative(Array.prototype.push);
+	     * // => true
+	     *
+	     * _.isNative(_);
+	     * // => false
+	     */
+	    function isNative(value) {
+	      if (value == null) {
+	        return false;
+	      }
+	      if (isFunction(value)) {
+	        return reIsNative.test(fnToString.call(value));
+	      }
+	      return isObjectLike(value) && reIsHostCtor.test(value);
+	    }
+
+	    /**
+	     * Checks if `value` is `null`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
+	     * @example
+	     *
+	     * _.isNull(null);
+	     * // => true
+	     *
+	     * _.isNull(void 0);
+	     * // => false
+	     */
+	    function isNull(value) {
+	      return value === null;
+	    }
+
+	    /**
+	     * Checks if `value` is classified as a `Number` primitive or object.
+	     *
+	     * **Note:** To exclude `Infinity`, `-Infinity`, and `NaN`, which are classified
+	     * as numbers, use the `_.isFinite` method.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	     * @example
+	     *
+	     * _.isNumber(8.4);
+	     * // => true
+	     *
+	     * _.isNumber(NaN);
+	     * // => true
+	     *
+	     * _.isNumber('8.4');
+	     * // => false
+	     */
+	    function isNumber(value) {
+	      return typeof value == 'number' || (isObjectLike(value) && objToString.call(value) == numberTag);
+	    }
+
+	    /**
+	     * Checks if `value` is a plain object, that is, an object created by the
+	     * `Object` constructor or one with a `[[Prototype]]` of `null`.
+	     *
+	     * **Note:** This method assumes objects created by the `Object` constructor
+	     * have no inherited enumerable properties.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.a = 1;
+	     * }
+	     *
+	     * _.isPlainObject(new Foo);
+	     * // => false
+	     *
+	     * _.isPlainObject([1, 2, 3]);
+	     * // => false
+	     *
+	     * _.isPlainObject({ 'x': 0, 'y': 0 });
+	     * // => true
+	     *
+	     * _.isPlainObject(Object.create(null));
+	     * // => true
+	     */
+	    function isPlainObject(value) {
+	      var Ctor;
+
+	      // Exit early for non `Object` objects.
+	      if (!(isObjectLike(value) && objToString.call(value) == objectTag && !isArguments(value)) ||
+	          (!hasOwnProperty.call(value, 'constructor') && (Ctor = value.constructor, typeof Ctor == 'function' && !(Ctor instanceof Ctor)))) {
+	        return false;
+	      }
+	      // IE < 9 iterates inherited properties before own properties. If the first
+	      // iterated property is an object's own property then there are no inherited
+	      // enumerable properties.
+	      var result;
+	      // In most environments an object's own properties are iterated before
+	      // its inherited properties. If the last iterated property is an object's
+	      // own property then there are no inherited enumerable properties.
+	      baseForIn(value, function(subValue, key) {
+	        result = key;
+	      });
+	      return result === undefined || hasOwnProperty.call(value, result);
+	    }
+
+	    /**
+	     * Checks if `value` is classified as a `RegExp` object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	     * @example
+	     *
+	     * _.isRegExp(/abc/);
+	     * // => true
+	     *
+	     * _.isRegExp('/abc/');
+	     * // => false
+	     */
+	    function isRegExp(value) {
+	      return isObject(value) && objToString.call(value) == regexpTag;
+	    }
+
+	    /**
+	     * Checks if `value` is classified as a `String` primitive or object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	     * @example
+	     *
+	     * _.isString('abc');
+	     * // => true
+	     *
+	     * _.isString(1);
+	     * // => false
+	     */
+	    function isString(value) {
+	      return typeof value == 'string' || (isObjectLike(value) && objToString.call(value) == stringTag);
+	    }
+
+	    /**
+	     * Checks if `value` is classified as a typed array.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	     * @example
+	     *
+	     * _.isTypedArray(new Uint8Array);
+	     * // => true
+	     *
+	     * _.isTypedArray([]);
+	     * // => false
+	     */
+	    function isTypedArray(value) {
+	      return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[objToString.call(value)];
+	    }
+
+	    /**
+	     * Checks if `value` is `undefined`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to check.
+	     * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
+	     * @example
+	     *
+	     * _.isUndefined(void 0);
+	     * // => true
+	     *
+	     * _.isUndefined(null);
+	     * // => false
+	     */
+	    function isUndefined(value) {
+	      return value === undefined;
+	    }
+
+	    /**
+	     * Checks if `value` is less than `other`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to compare.
+	     * @param {*} other The other value to compare.
+	     * @returns {boolean} Returns `true` if `value` is less than `other`, else `false`.
+	     * @example
+	     *
+	     * _.lt(1, 3);
+	     * // => true
+	     *
+	     * _.lt(3, 3);
+	     * // => false
+	     *
+	     * _.lt(3, 1);
+	     * // => false
+	     */
+	    function lt(value, other) {
+	      return value < other;
+	    }
+
+	    /**
+	     * Checks if `value` is less than or equal to `other`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to compare.
+	     * @param {*} other The other value to compare.
+	     * @returns {boolean} Returns `true` if `value` is less than or equal to `other`, else `false`.
+	     * @example
+	     *
+	     * _.lte(1, 3);
+	     * // => true
+	     *
+	     * _.lte(3, 3);
+	     * // => true
+	     *
+	     * _.lte(3, 1);
+	     * // => false
+	     */
+	    function lte(value, other) {
+	      return value <= other;
+	    }
+
+	    /**
+	     * Converts `value` to an array.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to convert.
+	     * @returns {Array} Returns the converted array.
+	     * @example
+	     *
+	     * (function() {
+	     *   return _.toArray(arguments).slice(1);
+	     * }(1, 2, 3));
+	     * // => [2, 3]
+	     */
+	    function toArray(value) {
+	      var length = value ? getLength(value) : 0;
+	      if (!isLength(length)) {
+	        return values(value);
+	      }
+	      if (!length) {
+	        return [];
+	      }
+	      return arrayCopy(value);
+	    }
+
+	    /**
+	     * Converts `value` to a plain object flattening inherited enumerable
+	     * properties of `value` to own properties of the plain object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Lang
+	     * @param {*} value The value to convert.
+	     * @returns {Object} Returns the converted plain object.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.b = 2;
+	     * }
+	     *
+	     * Foo.prototype.c = 3;
+	     *
+	     * _.assign({ 'a': 1 }, new Foo);
+	     * // => { 'a': 1, 'b': 2 }
+	     *
+	     * _.assign({ 'a': 1 }, _.toPlainObject(new Foo));
+	     * // => { 'a': 1, 'b': 2, 'c': 3 }
+	     */
+	    function toPlainObject(value) {
+	      return baseCopy(value, keysIn(value));
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Recursively merges own enumerable properties of the source object(s), that
+	     * don't resolve to `undefined` into the destination object. Subsequent sources
+	     * overwrite property assignments of previous sources. If `customizer` is
+	     * provided it is invoked to produce the merged values of the destination and
+	     * source properties. If `customizer` returns `undefined` merging is handled
+	     * by the method instead. The `customizer` is bound to `thisArg` and invoked
+	     * with five arguments: (objectValue, sourceValue, key, object, source).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The destination object.
+	     * @param {...Object} [sources] The source objects.
+	     * @param {Function} [customizer] The function to customize assigned values.
+	     * @param {*} [thisArg] The `this` binding of `customizer`.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * var users = {
+	     *   'data': [{ 'user': 'barney' }, { 'user': 'fred' }]
+	     * };
+	     *
+	     * var ages = {
+	     *   'data': [{ 'age': 36 }, { 'age': 40 }]
+	     * };
+	     *
+	     * _.merge(users, ages);
+	     * // => { 'data': [{ 'user': 'barney', 'age': 36 }, { 'user': 'fred', 'age': 40 }] }
+	     *
+	     * // using a customizer callback
+	     * var object = {
+	     *   'fruits': ['apple'],
+	     *   'vegetables': ['beet']
+	     * };
+	     *
+	     * var other = {
+	     *   'fruits': ['banana'],
+	     *   'vegetables': ['carrot']
+	     * };
+	     *
+	     * _.merge(object, other, function(a, b) {
+	     *   if (_.isArray(a)) {
+	     *     return a.concat(b);
+	     *   }
+	     * });
+	     * // => { 'fruits': ['apple', 'banana'], 'vegetables': ['beet', 'carrot'] }
+	     */
+	    var merge = createAssigner(baseMerge);
+
+	    /**
+	     * Assigns own enumerable properties of source object(s) to the destination
+	     * object. Subsequent sources overwrite property assignments of previous sources.
+	     * If `customizer` is provided it is invoked to produce the assigned values.
+	     * The `customizer` is bound to `thisArg` and invoked with five arguments:
+	     * (objectValue, sourceValue, key, object, source).
+	     *
+	     * **Note:** This method mutates `object` and is based on
+	     * [`Object.assign`](http://ecma-international.org/ecma-262/6.0/#sec-object.assign).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias extend
+	     * @category Object
+	     * @param {Object} object The destination object.
+	     * @param {...Object} [sources] The source objects.
+	     * @param {Function} [customizer] The function to customize assigned values.
+	     * @param {*} [thisArg] The `this` binding of `customizer`.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * _.assign({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' });
+	     * // => { 'user': 'fred', 'age': 40 }
+	     *
+	     * // using a customizer callback
+	     * var defaults = _.partialRight(_.assign, function(value, other) {
+	     *   return _.isUndefined(value) ? other : value;
+	     * });
+	     *
+	     * defaults({ 'user': 'barney' }, { 'age': 36 }, { 'user': 'fred' });
+	     * // => { 'user': 'barney', 'age': 36 }
+	     */
+	    var assign = createAssigner(function(object, source, customizer) {
+	      return customizer
+	        ? assignWith(object, source, customizer)
+	        : baseAssign(object, source);
+	    });
+
+	    /**
+	     * Creates an object that inherits from the given `prototype` object. If a
+	     * `properties` object is provided its own enumerable properties are assigned
+	     * to the created object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} prototype The object to inherit from.
+	     * @param {Object} [properties] The properties to assign to the object.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Object} Returns the new object.
+	     * @example
+	     *
+	     * function Shape() {
+	     *   this.x = 0;
+	     *   this.y = 0;
+	     * }
+	     *
+	     * function Circle() {
+	     *   Shape.call(this);
+	     * }
+	     *
+	     * Circle.prototype = _.create(Shape.prototype, {
+	     *   'constructor': Circle
+	     * });
+	     *
+	     * var circle = new Circle;
+	     * circle instanceof Circle;
+	     * // => true
+	     *
+	     * circle instanceof Shape;
+	     * // => true
+	     */
+	    function create(prototype, properties, guard) {
+	      var result = baseCreate(prototype);
+	      if (guard && isIterateeCall(prototype, properties, guard)) {
+	        properties = undefined;
+	      }
+	      return properties ? baseAssign(result, properties) : result;
+	    }
+
+	    /**
+	     * Assigns own enumerable properties of source object(s) to the destination
+	     * object for all destination properties that resolve to `undefined`. Once a
+	     * property is set, additional values of the same property are ignored.
+	     *
+	     * **Note:** This method mutates `object`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The destination object.
+	     * @param {...Object} [sources] The source objects.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * _.defaults({ 'user': 'barney' }, { 'age': 36 }, { 'user': 'fred' });
+	     * // => { 'user': 'barney', 'age': 36 }
+	     */
+	    var defaults = createDefaults(assign, assignDefaults);
+
+	    /**
+	     * This method is like `_.defaults` except that it recursively assigns
+	     * default properties.
+	     *
+	     * **Note:** This method mutates `object`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The destination object.
+	     * @param {...Object} [sources] The source objects.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * _.defaultsDeep({ 'user': { 'name': 'barney' } }, { 'user': { 'name': 'fred', 'age': 36 } });
+	     * // => { 'user': { 'name': 'barney', 'age': 36 } }
+	     *
+	     */
+	    var defaultsDeep = createDefaults(merge, mergeDefaults);
+
+	    /**
+	     * This method is like `_.find` except that it returns the key of the first
+	     * element `predicate` returns truthy for instead of the element itself.
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to search.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {string|undefined} Returns the key of the matched element, else `undefined`.
+	     * @example
+	     *
+	     * var users = {
+	     *   'barney':  { 'age': 36, 'active': true },
+	     *   'fred':    { 'age': 40, 'active': false },
+	     *   'pebbles': { 'age': 1,  'active': true }
+	     * };
+	     *
+	     * _.findKey(users, function(chr) {
+	     *   return chr.age < 40;
+	     * });
+	     * // => 'barney' (iteration order is not guaranteed)
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.findKey(users, { 'age': 1, 'active': true });
+	     * // => 'pebbles'
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.findKey(users, 'active', false);
+	     * // => 'fred'
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.findKey(users, 'active');
+	     * // => 'barney'
+	     */
+	    var findKey = createFindKey(baseForOwn);
+
+	    /**
+	     * This method is like `_.findKey` except that it iterates over elements of
+	     * a collection in the opposite order.
+	     *
+	     * If a property name is provided for `predicate` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `predicate` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to search.
+	     * @param {Function|Object|string} [predicate=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {string|undefined} Returns the key of the matched element, else `undefined`.
+	     * @example
+	     *
+	     * var users = {
+	     *   'barney':  { 'age': 36, 'active': true },
+	     *   'fred':    { 'age': 40, 'active': false },
+	     *   'pebbles': { 'age': 1,  'active': true }
+	     * };
+	     *
+	     * _.findLastKey(users, function(chr) {
+	     *   return chr.age < 40;
+	     * });
+	     * // => returns `pebbles` assuming `_.findKey` returns `barney`
+	     *
+	     * // using the `_.matches` callback shorthand
+	     * _.findLastKey(users, { 'age': 36, 'active': true });
+	     * // => 'barney'
+	     *
+	     * // using the `_.matchesProperty` callback shorthand
+	     * _.findLastKey(users, 'active', false);
+	     * // => 'fred'
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.findLastKey(users, 'active');
+	     * // => 'pebbles'
+	     */
+	    var findLastKey = createFindKey(baseForOwnRight);
+
+	    /**
+	     * Iterates over own and inherited enumerable properties of an object invoking
+	     * `iteratee` for each property. The `iteratee` is bound to `thisArg` and invoked
+	     * with three arguments: (value, key, object). Iteratee functions may exit
+	     * iteration early by explicitly returning `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.a = 1;
+	     *   this.b = 2;
+	     * }
+	     *
+	     * Foo.prototype.c = 3;
+	     *
+	     * _.forIn(new Foo, function(value, key) {
+	     *   console.log(key);
+	     * });
+	     * // => logs 'a', 'b', and 'c' (iteration order is not guaranteed)
+	     */
+	    var forIn = createForIn(baseFor);
+
+	    /**
+	     * This method is like `_.forIn` except that it iterates over properties of
+	     * `object` in the opposite order.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.a = 1;
+	     *   this.b = 2;
+	     * }
+	     *
+	     * Foo.prototype.c = 3;
+	     *
+	     * _.forInRight(new Foo, function(value, key) {
+	     *   console.log(key);
+	     * });
+	     * // => logs 'c', 'b', and 'a' assuming `_.forIn ` logs 'a', 'b', and 'c'
+	     */
+	    var forInRight = createForIn(baseForRight);
+
+	    /**
+	     * Iterates over own enumerable properties of an object invoking `iteratee`
+	     * for each property. The `iteratee` is bound to `thisArg` and invoked with
+	     * three arguments: (value, key, object). Iteratee functions may exit iteration
+	     * early by explicitly returning `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.a = 1;
+	     *   this.b = 2;
+	     * }
+	     *
+	     * Foo.prototype.c = 3;
+	     *
+	     * _.forOwn(new Foo, function(value, key) {
+	     *   console.log(key);
+	     * });
+	     * // => logs 'a' and 'b' (iteration order is not guaranteed)
+	     */
+	    var forOwn = createForOwn(baseForOwn);
+
+	    /**
+	     * This method is like `_.forOwn` except that it iterates over properties of
+	     * `object` in the opposite order.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.a = 1;
+	     *   this.b = 2;
+	     * }
+	     *
+	     * Foo.prototype.c = 3;
+	     *
+	     * _.forOwnRight(new Foo, function(value, key) {
+	     *   console.log(key);
+	     * });
+	     * // => logs 'b' and 'a' assuming `_.forOwn` logs 'a' and 'b'
+	     */
+	    var forOwnRight = createForOwn(baseForOwnRight);
+
+	    /**
+	     * Creates an array of function property names from all enumerable properties,
+	     * own and inherited, of `object`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias methods
+	     * @category Object
+	     * @param {Object} object The object to inspect.
+	     * @returns {Array} Returns the new array of property names.
+	     * @example
+	     *
+	     * _.functions(_);
+	     * // => ['after', 'ary', 'assign', ...]
+	     */
+	    function functions(object) {
+	      return baseFunctions(object, keysIn(object));
+	    }
+
+	    /**
+	     * Gets the property value at `path` of `object`. If the resolved value is
+	     * `undefined` the `defaultValue` is used in its place.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to query.
+	     * @param {Array|string} path The path of the property to get.
+	     * @param {*} [defaultValue] The value returned if the resolved value is `undefined`.
+	     * @returns {*} Returns the resolved value.
+	     * @example
+	     *
+	     * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+	     *
+	     * _.get(object, 'a[0].b.c');
+	     * // => 3
+	     *
+	     * _.get(object, ['a', '0', 'b', 'c']);
+	     * // => 3
+	     *
+	     * _.get(object, 'a.b.c', 'default');
+	     * // => 'default'
+	     */
+	    function get(object, path, defaultValue) {
+	      var result = object == null ? undefined : baseGet(object, toPath(path), path + '');
+	      return result === undefined ? defaultValue : result;
+	    }
+
+	    /**
+	     * Checks if `path` is a direct property.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to query.
+	     * @param {Array|string} path The path to check.
+	     * @returns {boolean} Returns `true` if `path` is a direct property, else `false`.
+	     * @example
+	     *
+	     * var object = { 'a': { 'b': { 'c': 3 } } };
+	     *
+	     * _.has(object, 'a');
+	     * // => true
+	     *
+	     * _.has(object, 'a.b.c');
+	     * // => true
+	     *
+	     * _.has(object, ['a', 'b', 'c']);
+	     * // => true
+	     */
+	    function has(object, path) {
+	      if (object == null) {
+	        return false;
+	      }
+	      var result = hasOwnProperty.call(object, path);
+	      if (!result && !isKey(path)) {
+	        path = toPath(path);
+	        object = path.length == 1 ? object : baseGet(object, baseSlice(path, 0, -1));
+	        if (object == null) {
+	          return false;
+	        }
+	        path = last(path);
+	        result = hasOwnProperty.call(object, path);
+	      }
+	      return result || (isLength(object.length) && isIndex(path, object.length) &&
+	        (isArray(object) || isArguments(object)));
+	    }
+
+	    /**
+	     * Creates an object composed of the inverted keys and values of `object`.
+	     * If `object` contains duplicate values, subsequent values overwrite property
+	     * assignments of previous values unless `multiValue` is `true`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to invert.
+	     * @param {boolean} [multiValue] Allow multiple values per key.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Object} Returns the new inverted object.
+	     * @example
+	     *
+	     * var object = { 'a': 1, 'b': 2, 'c': 1 };
+	     *
+	     * _.invert(object);
+	     * // => { '1': 'c', '2': 'b' }
+	     *
+	     * // with `multiValue`
+	     * _.invert(object, true);
+	     * // => { '1': ['a', 'c'], '2': ['b'] }
+	     */
+	    function invert(object, multiValue, guard) {
+	      if (guard && isIterateeCall(object, multiValue, guard)) {
+	        multiValue = undefined;
+	      }
+	      var index = -1,
+	          props = keys(object),
+	          length = props.length,
+	          result = {};
+
+	      while (++index < length) {
+	        var key = props[index],
+	            value = object[key];
+
+	        if (multiValue) {
+	          if (hasOwnProperty.call(result, value)) {
+	            result[value].push(key);
+	          } else {
+	            result[value] = [key];
+	          }
+	        }
+	        else {
+	          result[value] = key;
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Creates an array of the own enumerable property names of `object`.
+	     *
+	     * **Note:** Non-object values are coerced to objects. See the
+	     * [ES spec](http://ecma-international.org/ecma-262/6.0/#sec-object.keys)
+	     * for more details.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to query.
+	     * @returns {Array} Returns the array of property names.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.a = 1;
+	     *   this.b = 2;
+	     * }
+	     *
+	     * Foo.prototype.c = 3;
+	     *
+	     * _.keys(new Foo);
+	     * // => ['a', 'b'] (iteration order is not guaranteed)
+	     *
+	     * _.keys('hi');
+	     * // => ['0', '1']
+	     */
+	    var keys = !nativeKeys ? shimKeys : function(object) {
+	      var Ctor = object == null ? undefined : object.constructor;
+	      if ((typeof Ctor == 'function' && Ctor.prototype === object) ||
+	          (typeof object != 'function' && isArrayLike(object))) {
+	        return shimKeys(object);
+	      }
+	      return isObject(object) ? nativeKeys(object) : [];
+	    };
+
+	    /**
+	     * Creates an array of the own and inherited enumerable property names of `object`.
+	     *
+	     * **Note:** Non-object values are coerced to objects.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to query.
+	     * @returns {Array} Returns the array of property names.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.a = 1;
+	     *   this.b = 2;
+	     * }
+	     *
+	     * Foo.prototype.c = 3;
+	     *
+	     * _.keysIn(new Foo);
+	     * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+	     */
+	    function keysIn(object) {
+	      if (object == null) {
+	        return [];
+	      }
+	      if (!isObject(object)) {
+	        object = Object(object);
+	      }
+	      var length = object.length;
+	      length = (length && isLength(length) &&
+	        (isArray(object) || isArguments(object)) && length) || 0;
+
+	      var Ctor = object.constructor,
+	          index = -1,
+	          isProto = typeof Ctor == 'function' && Ctor.prototype === object,
+	          result = Array(length),
+	          skipIndexes = length > 0;
+
+	      while (++index < length) {
+	        result[index] = (index + '');
+	      }
+	      for (var key in object) {
+	        if (!(skipIndexes && isIndex(key, length)) &&
+	            !(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
+	          result.push(key);
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * The opposite of `_.mapValues`; this method creates an object with the
+	     * same values as `object` and keys generated by running each own enumerable
+	     * property of `object` through `iteratee`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Object} Returns the new mapped object.
+	     * @example
+	     *
+	     * _.mapKeys({ 'a': 1, 'b': 2 }, function(value, key) {
+	     *   return key + value;
+	     * });
+	     * // => { 'a1': 1, 'b2': 2 }
+	     */
+	    var mapKeys = createObjectMapper(true);
+
+	    /**
+	     * Creates an object with the same keys as `object` and values generated by
+	     * running each own enumerable property of `object` through `iteratee`. The
+	     * iteratee function is bound to `thisArg` and invoked with three arguments:
+	     * (value, key, object).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to iterate over.
+	     * @param {Function|Object|string} [iteratee=_.identity] The function invoked
+	     *  per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Object} Returns the new mapped object.
+	     * @example
+	     *
+	     * _.mapValues({ 'a': 1, 'b': 2 }, function(n) {
+	     *   return n * 3;
+	     * });
+	     * // => { 'a': 3, 'b': 6 }
+	     *
+	     * var users = {
+	     *   'fred':    { 'user': 'fred',    'age': 40 },
+	     *   'pebbles': { 'user': 'pebbles', 'age': 1 }
+	     * };
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.mapValues(users, 'age');
+	     * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+	     */
+	    var mapValues = createObjectMapper();
+
+	    /**
+	     * The opposite of `_.pick`; this method creates an object composed of the
+	     * own and inherited enumerable properties of `object` that are not omitted.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The source object.
+	     * @param {Function|...(string|string[])} [predicate] The function invoked per
+	     *  iteration or property names to omit, specified as individual property
+	     *  names or arrays of property names.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Object} Returns the new object.
+	     * @example
+	     *
+	     * var object = { 'user': 'fred', 'age': 40 };
+	     *
+	     * _.omit(object, 'age');
+	     * // => { 'user': 'fred' }
+	     *
+	     * _.omit(object, _.isNumber);
+	     * // => { 'user': 'fred' }
+	     */
+	    var omit = restParam(function(object, props) {
+	      if (object == null) {
+	        return {};
+	      }
+	      if (typeof props[0] != 'function') {
+	        var props = arrayMap(baseFlatten(props), String);
+	        return pickByArray(object, baseDifference(keysIn(object), props));
+	      }
+	      var predicate = bindCallback(props[0], props[1], 3);
+	      return pickByCallback(object, function(value, key, object) {
+	        return !predicate(value, key, object);
+	      });
+	    });
+
+	    /**
+	     * Creates a two dimensional array of the key-value pairs for `object`,
+	     * e.g. `[[key1, value1], [key2, value2]]`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to query.
+	     * @returns {Array} Returns the new array of key-value pairs.
+	     * @example
+	     *
+	     * _.pairs({ 'barney': 36, 'fred': 40 });
+	     * // => [['barney', 36], ['fred', 40]] (iteration order is not guaranteed)
+	     */
+	    function pairs(object) {
+	      object = toObject(object);
+
+	      var index = -1,
+	          props = keys(object),
+	          length = props.length,
+	          result = Array(length);
+
+	      while (++index < length) {
+	        var key = props[index];
+	        result[index] = [key, object[key]];
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Creates an object composed of the picked `object` properties. Property
+	     * names may be specified as individual arguments or as arrays of property
+	     * names. If `predicate` is provided it is invoked for each property of `object`
+	     * picking the properties `predicate` returns truthy for. The predicate is
+	     * bound to `thisArg` and invoked with three arguments: (value, key, object).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The source object.
+	     * @param {Function|...(string|string[])} [predicate] The function invoked per
+	     *  iteration or property names to pick, specified as individual property
+	     *  names or arrays of property names.
+	     * @param {*} [thisArg] The `this` binding of `predicate`.
+	     * @returns {Object} Returns the new object.
+	     * @example
+	     *
+	     * var object = { 'user': 'fred', 'age': 40 };
+	     *
+	     * _.pick(object, 'user');
+	     * // => { 'user': 'fred' }
+	     *
+	     * _.pick(object, _.isString);
+	     * // => { 'user': 'fred' }
+	     */
+	    var pick = restParam(function(object, props) {
+	      if (object == null) {
+	        return {};
+	      }
+	      return typeof props[0] == 'function'
+	        ? pickByCallback(object, bindCallback(props[0], props[1], 3))
+	        : pickByArray(object, baseFlatten(props));
+	    });
+
+	    /**
+	     * This method is like `_.get` except that if the resolved value is a function
+	     * it is invoked with the `this` binding of its parent object and its result
+	     * is returned.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to query.
+	     * @param {Array|string} path The path of the property to resolve.
+	     * @param {*} [defaultValue] The value returned if the resolved value is `undefined`.
+	     * @returns {*} Returns the resolved value.
+	     * @example
+	     *
+	     * var object = { 'a': [{ 'b': { 'c1': 3, 'c2': _.constant(4) } }] };
+	     *
+	     * _.result(object, 'a[0].b.c1');
+	     * // => 3
+	     *
+	     * _.result(object, 'a[0].b.c2');
+	     * // => 4
+	     *
+	     * _.result(object, 'a.b.c', 'default');
+	     * // => 'default'
+	     *
+	     * _.result(object, 'a.b.c', _.constant('default'));
+	     * // => 'default'
+	     */
+	    function result(object, path, defaultValue) {
+	      var result = object == null ? undefined : object[path];
+	      if (result === undefined) {
+	        if (object != null && !isKey(path, object)) {
+	          path = toPath(path);
+	          object = path.length == 1 ? object : baseGet(object, baseSlice(path, 0, -1));
+	          result = object == null ? undefined : object[last(path)];
+	        }
+	        result = result === undefined ? defaultValue : result;
+	      }
+	      return isFunction(result) ? result.call(object) : result;
+	    }
+
+	    /**
+	     * Sets the property value of `path` on `object`. If a portion of `path`
+	     * does not exist it is created.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to augment.
+	     * @param {Array|string} path The path of the property to set.
+	     * @param {*} value The value to set.
+	     * @returns {Object} Returns `object`.
+	     * @example
+	     *
+	     * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+	     *
+	     * _.set(object, 'a[0].b.c', 4);
+	     * console.log(object.a[0].b.c);
+	     * // => 4
+	     *
+	     * _.set(object, 'x[0].y.z', 5);
+	     * console.log(object.x[0].y.z);
+	     * // => 5
+	     */
+	    function set(object, path, value) {
+	      if (object == null) {
+	        return object;
+	      }
+	      var pathKey = (path + '');
+	      path = (object[pathKey] != null || isKey(path, object)) ? [pathKey] : toPath(path);
+
+	      var index = -1,
+	          length = path.length,
+	          lastIndex = length - 1,
+	          nested = object;
+
+	      while (nested != null && ++index < length) {
+	        var key = path[index];
+	        if (isObject(nested)) {
+	          if (index == lastIndex) {
+	            nested[key] = value;
+	          } else if (nested[key] == null) {
+	            nested[key] = isIndex(path[index + 1]) ? [] : {};
+	          }
+	        }
+	        nested = nested[key];
+	      }
+	      return object;
+	    }
+
+	    /**
+	     * An alternative to `_.reduce`; this method transforms `object` to a new
+	     * `accumulator` object which is the result of running each of its own enumerable
+	     * properties through `iteratee`, with each invocation potentially mutating
+	     * the `accumulator` object. The `iteratee` is bound to `thisArg` and invoked
+	     * with four arguments: (accumulator, value, key, object). Iteratee functions
+	     * may exit iteration early by explicitly returning `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Array|Object} object The object to iterate over.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [accumulator] The custom accumulator value.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {*} Returns the accumulated value.
+	     * @example
+	     *
+	     * _.transform([2, 3, 4], function(result, n) {
+	     *   result.push(n *= n);
+	     *   return n % 2 == 0;
+	     * });
+	     * // => [4, 9]
+	     *
+	     * _.transform({ 'a': 1, 'b': 2 }, function(result, n, key) {
+	     *   result[key] = n * 3;
+	     * });
+	     * // => { 'a': 3, 'b': 6 }
+	     */
+	    function transform(object, iteratee, accumulator, thisArg) {
+	      var isArr = isArray(object) || isTypedArray(object);
+	      iteratee = getCallback(iteratee, thisArg, 4);
+
+	      if (accumulator == null) {
+	        if (isArr || isObject(object)) {
+	          var Ctor = object.constructor;
+	          if (isArr) {
+	            accumulator = isArray(object) ? new Ctor : [];
+	          } else {
+	            accumulator = baseCreate(isFunction(Ctor) ? Ctor.prototype : undefined);
+	          }
+	        } else {
+	          accumulator = {};
+	        }
+	      }
+	      (isArr ? arrayEach : baseForOwn)(object, function(value, index, object) {
+	        return iteratee(accumulator, value, index, object);
+	      });
+	      return accumulator;
+	    }
+
+	    /**
+	     * Creates an array of the own enumerable property values of `object`.
+	     *
+	     * **Note:** Non-object values are coerced to objects.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to query.
+	     * @returns {Array} Returns the array of property values.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.a = 1;
+	     *   this.b = 2;
+	     * }
+	     *
+	     * Foo.prototype.c = 3;
+	     *
+	     * _.values(new Foo);
+	     * // => [1, 2] (iteration order is not guaranteed)
+	     *
+	     * _.values('hi');
+	     * // => ['h', 'i']
+	     */
+	    function values(object) {
+	      return baseValues(object, keys(object));
+	    }
+
+	    /**
+	     * Creates an array of the own and inherited enumerable property values
+	     * of `object`.
+	     *
+	     * **Note:** Non-object values are coerced to objects.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Object
+	     * @param {Object} object The object to query.
+	     * @returns {Array} Returns the array of property values.
+	     * @example
+	     *
+	     * function Foo() {
+	     *   this.a = 1;
+	     *   this.b = 2;
+	     * }
+	     *
+	     * Foo.prototype.c = 3;
+	     *
+	     * _.valuesIn(new Foo);
+	     * // => [1, 2, 3] (iteration order is not guaranteed)
+	     */
+	    function valuesIn(object) {
+	      return baseValues(object, keysIn(object));
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Checks if `n` is between `start` and up to but not including, `end`. If
+	     * `end` is not specified it is set to `start` with `start` then set to `0`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Number
+	     * @param {number} n The number to check.
+	     * @param {number} [start=0] The start of the range.
+	     * @param {number} end The end of the range.
+	     * @returns {boolean} Returns `true` if `n` is in the range, else `false`.
+	     * @example
+	     *
+	     * _.inRange(3, 2, 4);
+	     * // => true
+	     *
+	     * _.inRange(4, 8);
+	     * // => true
+	     *
+	     * _.inRange(4, 2);
+	     * // => false
+	     *
+	     * _.inRange(2, 2);
+	     * // => false
+	     *
+	     * _.inRange(1.2, 2);
+	     * // => true
+	     *
+	     * _.inRange(5.2, 4);
+	     * // => false
+	     */
+	    function inRange(value, start, end) {
+	      start = +start || 0;
+	      if (end === undefined) {
+	        end = start;
+	        start = 0;
+	      } else {
+	        end = +end || 0;
+	      }
+	      return value >= nativeMin(start, end) && value < nativeMax(start, end);
+	    }
+
+	    /**
+	     * Produces a random number between `min` and `max` (inclusive). If only one
+	     * argument is provided a number between `0` and the given number is returned.
+	     * If `floating` is `true`, or either `min` or `max` are floats, a floating-point
+	     * number is returned instead of an integer.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Number
+	     * @param {number} [min=0] The minimum possible value.
+	     * @param {number} [max=1] The maximum possible value.
+	     * @param {boolean} [floating] Specify returning a floating-point number.
+	     * @returns {number} Returns the random number.
+	     * @example
+	     *
+	     * _.random(0, 5);
+	     * // => an integer between 0 and 5
+	     *
+	     * _.random(5);
+	     * // => also an integer between 0 and 5
+	     *
+	     * _.random(5, true);
+	     * // => a floating-point number between 0 and 5
+	     *
+	     * _.random(1.2, 5.2);
+	     * // => a floating-point number between 1.2 and 5.2
+	     */
+	    function random(min, max, floating) {
+	      if (floating && isIterateeCall(min, max, floating)) {
+	        max = floating = undefined;
+	      }
+	      var noMin = min == null,
+	          noMax = max == null;
+
+	      if (floating == null) {
+	        if (noMax && typeof min == 'boolean') {
+	          floating = min;
+	          min = 1;
+	        }
+	        else if (typeof max == 'boolean') {
+	          floating = max;
+	          noMax = true;
+	        }
+	      }
+	      if (noMin && noMax) {
+	        max = 1;
+	        noMax = false;
+	      }
+	      min = +min || 0;
+	      if (noMax) {
+	        max = min;
+	        min = 0;
+	      } else {
+	        max = +max || 0;
+	      }
+	      if (floating || min % 1 || max % 1) {
+	        var rand = nativeRandom();
+	        return nativeMin(min + (rand * (max - min + parseFloat('1e-' + ((rand + '').length - 1)))), max);
+	      }
+	      return baseRandom(min, max);
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Converts `string` to [camel case](https://en.wikipedia.org/wiki/CamelCase).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to convert.
+	     * @returns {string} Returns the camel cased string.
+	     * @example
+	     *
+	     * _.camelCase('Foo Bar');
+	     * // => 'fooBar'
+	     *
+	     * _.camelCase('--foo-bar');
+	     * // => 'fooBar'
+	     *
+	     * _.camelCase('__foo_bar__');
+	     * // => 'fooBar'
+	     */
+	    var camelCase = createCompounder(function(result, word, index) {
+	      word = word.toLowerCase();
+	      return result + (index ? (word.charAt(0).toUpperCase() + word.slice(1)) : word);
+	    });
+
+	    /**
+	     * Capitalizes the first character of `string`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to capitalize.
+	     * @returns {string} Returns the capitalized string.
+	     * @example
+	     *
+	     * _.capitalize('fred');
+	     * // => 'Fred'
+	     */
+	    function capitalize(string) {
+	      string = baseToString(string);
+	      return string && (string.charAt(0).toUpperCase() + string.slice(1));
+	    }
+
+	    /**
+	     * Deburrs `string` by converting [latin-1 supplementary letters](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)#Character_table)
+	     * to basic latin letters and removing [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to deburr.
+	     * @returns {string} Returns the deburred string.
+	     * @example
+	     *
+	     * _.deburr('déjà vu');
+	     * // => 'deja vu'
+	     */
+	    function deburr(string) {
+	      string = baseToString(string);
+	      return string && string.replace(reLatin1, deburrLetter).replace(reComboMark, '');
+	    }
+
+	    /**
+	     * Checks if `string` ends with the given target string.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to search.
+	     * @param {string} [target] The string to search for.
+	     * @param {number} [position=string.length] The position to search from.
+	     * @returns {boolean} Returns `true` if `string` ends with `target`, else `false`.
+	     * @example
+	     *
+	     * _.endsWith('abc', 'c');
+	     * // => true
+	     *
+	     * _.endsWith('abc', 'b');
+	     * // => false
+	     *
+	     * _.endsWith('abc', 'b', 2);
+	     * // => true
+	     */
+	    function endsWith(string, target, position) {
+	      string = baseToString(string);
+	      target = (target + '');
+
+	      var length = string.length;
+	      position = position === undefined
+	        ? length
+	        : nativeMin(position < 0 ? 0 : (+position || 0), length);
+
+	      position -= target.length;
+	      return position >= 0 && string.indexOf(target, position) == position;
+	    }
+
+	    /**
+	     * Converts the characters "&", "<", ">", '"', "'", and "\`", in `string` to
+	     * their corresponding HTML entities.
+	     *
+	     * **Note:** No other characters are escaped. To escape additional characters
+	     * use a third-party library like [_he_](https://mths.be/he).
+	     *
+	     * Though the ">" character is escaped for symmetry, characters like
+	     * ">" and "/" don't need escaping in HTML and have no special meaning
+	     * unless they're part of a tag or unquoted attribute value.
+	     * See [Mathias Bynens's article](https://mathiasbynens.be/notes/ambiguous-ampersands)
+	     * (under "semi-related fun fact") for more details.
+	     *
+	     * Backticks are escaped because in Internet Explorer < 9, they can break out
+	     * of attribute values or HTML comments. See [#59](https://html5sec.org/#59),
+	     * [#102](https://html5sec.org/#102), [#108](https://html5sec.org/#108), and
+	     * [#133](https://html5sec.org/#133) of the [HTML5 Security Cheatsheet](https://html5sec.org/)
+	     * for more details.
+	     *
+	     * When working with HTML you should always [quote attribute values](http://wonko.com/post/html-escaping)
+	     * to reduce XSS vectors.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to escape.
+	     * @returns {string} Returns the escaped string.
+	     * @example
+	     *
+	     * _.escape('fred, barney, & pebbles');
+	     * // => 'fred, barney, &amp; pebbles'
+	     */
+	    function escape(string) {
+	      // Reset `lastIndex` because in IE < 9 `String#replace` does not.
+	      string = baseToString(string);
+	      return (string && reHasUnescapedHtml.test(string))
+	        ? string.replace(reUnescapedHtml, escapeHtmlChar)
+	        : string;
+	    }
+
+	    /**
+	     * Escapes the `RegExp` special characters "\", "/", "^", "$", ".", "|", "?",
+	     * "*", "+", "(", ")", "[", "]", "{" and "}" in `string`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to escape.
+	     * @returns {string} Returns the escaped string.
+	     * @example
+	     *
+	     * _.escapeRegExp('[lodash](https://lodash.com/)');
+	     * // => '\[lodash\]\(https:\/\/lodash\.com\/\)'
+	     */
+	    function escapeRegExp(string) {
+	      string = baseToString(string);
+	      return (string && reHasRegExpChars.test(string))
+	        ? string.replace(reRegExpChars, escapeRegExpChar)
+	        : (string || '(?:)');
+	    }
+
+	    /**
+	     * Converts `string` to [kebab case](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to convert.
+	     * @returns {string} Returns the kebab cased string.
+	     * @example
+	     *
+	     * _.kebabCase('Foo Bar');
+	     * // => 'foo-bar'
+	     *
+	     * _.kebabCase('fooBar');
+	     * // => 'foo-bar'
+	     *
+	     * _.kebabCase('__foo_bar__');
+	     * // => 'foo-bar'
+	     */
+	    var kebabCase = createCompounder(function(result, word, index) {
+	      return result + (index ? '-' : '') + word.toLowerCase();
+	    });
+
+	    /**
+	     * Pads `string` on the left and right sides if it's shorter than `length`.
+	     * Padding characters are truncated if they can't be evenly divided by `length`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to pad.
+	     * @param {number} [length=0] The padding length.
+	     * @param {string} [chars=' '] The string used as padding.
+	     * @returns {string} Returns the padded string.
+	     * @example
+	     *
+	     * _.pad('abc', 8);
+	     * // => '  abc   '
+	     *
+	     * _.pad('abc', 8, '_-');
+	     * // => '_-abc_-_'
+	     *
+	     * _.pad('abc', 3);
+	     * // => 'abc'
+	     */
+	    function pad(string, length, chars) {
+	      string = baseToString(string);
+	      length = +length;
+
+	      var strLength = string.length;
+	      if (strLength >= length || !nativeIsFinite(length)) {
+	        return string;
+	      }
+	      var mid = (length - strLength) / 2,
+	          leftLength = nativeFloor(mid),
+	          rightLength = nativeCeil(mid);
+
+	      chars = createPadding('', rightLength, chars);
+	      return chars.slice(0, leftLength) + string + chars;
+	    }
+
+	    /**
+	     * Pads `string` on the left side if it's shorter than `length`. Padding
+	     * characters are truncated if they exceed `length`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to pad.
+	     * @param {number} [length=0] The padding length.
+	     * @param {string} [chars=' '] The string used as padding.
+	     * @returns {string} Returns the padded string.
+	     * @example
+	     *
+	     * _.padLeft('abc', 6);
+	     * // => '   abc'
+	     *
+	     * _.padLeft('abc', 6, '_-');
+	     * // => '_-_abc'
+	     *
+	     * _.padLeft('abc', 3);
+	     * // => 'abc'
+	     */
+	    var padLeft = createPadDir();
+
+	    /**
+	     * Pads `string` on the right side if it's shorter than `length`. Padding
+	     * characters are truncated if they exceed `length`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to pad.
+	     * @param {number} [length=0] The padding length.
+	     * @param {string} [chars=' '] The string used as padding.
+	     * @returns {string} Returns the padded string.
+	     * @example
+	     *
+	     * _.padRight('abc', 6);
+	     * // => 'abc   '
+	     *
+	     * _.padRight('abc', 6, '_-');
+	     * // => 'abc_-_'
+	     *
+	     * _.padRight('abc', 3);
+	     * // => 'abc'
+	     */
+	    var padRight = createPadDir(true);
+
+	    /**
+	     * Converts `string` to an integer of the specified radix. If `radix` is
+	     * `undefined` or `0`, a `radix` of `10` is used unless `value` is a hexadecimal,
+	     * in which case a `radix` of `16` is used.
+	     *
+	     * **Note:** This method aligns with the [ES5 implementation](https://es5.github.io/#E)
+	     * of `parseInt`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} string The string to convert.
+	     * @param {number} [radix] The radix to interpret `value` by.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {number} Returns the converted integer.
+	     * @example
+	     *
+	     * _.parseInt('08');
+	     * // => 8
+	     *
+	     * _.map(['6', '08', '10'], _.parseInt);
+	     * // => [6, 8, 10]
+	     */
+	    function parseInt(string, radix, guard) {
+	      // Firefox < 21 and Opera < 15 follow ES3 for `parseInt`.
+	      // Chrome fails to trim leading <BOM> whitespace characters.
+	      // See https://code.google.com/p/v8/issues/detail?id=3109 for more details.
+	      if (guard ? isIterateeCall(string, radix, guard) : radix == null) {
+	        radix = 0;
+	      } else if (radix) {
+	        radix = +radix;
+	      }
+	      string = trim(string);
+	      return nativeParseInt(string, radix || (reHasHexPrefix.test(string) ? 16 : 10));
+	    }
+
+	    /**
+	     * Repeats the given string `n` times.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to repeat.
+	     * @param {number} [n=0] The number of times to repeat the string.
+	     * @returns {string} Returns the repeated string.
+	     * @example
+	     *
+	     * _.repeat('*', 3);
+	     * // => '***'
+	     *
+	     * _.repeat('abc', 2);
+	     * // => 'abcabc'
+	     *
+	     * _.repeat('abc', 0);
+	     * // => ''
+	     */
+	    function repeat(string, n) {
+	      var result = '';
+	      string = baseToString(string);
+	      n = +n;
+	      if (n < 1 || !string || !nativeIsFinite(n)) {
+	        return result;
+	      }
+	      // Leverage the exponentiation by squaring algorithm for a faster repeat.
+	      // See https://en.wikipedia.org/wiki/Exponentiation_by_squaring for more details.
+	      do {
+	        if (n % 2) {
+	          result += string;
+	        }
+	        n = nativeFloor(n / 2);
+	        string += string;
+	      } while (n);
+
+	      return result;
+	    }
+
+	    /**
+	     * Converts `string` to [snake case](https://en.wikipedia.org/wiki/Snake_case).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to convert.
+	     * @returns {string} Returns the snake cased string.
+	     * @example
+	     *
+	     * _.snakeCase('Foo Bar');
+	     * // => 'foo_bar'
+	     *
+	     * _.snakeCase('fooBar');
+	     * // => 'foo_bar'
+	     *
+	     * _.snakeCase('--foo-bar');
+	     * // => 'foo_bar'
+	     */
+	    var snakeCase = createCompounder(function(result, word, index) {
+	      return result + (index ? '_' : '') + word.toLowerCase();
+	    });
+
+	    /**
+	     * Converts `string` to [start case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to convert.
+	     * @returns {string} Returns the start cased string.
+	     * @example
+	     *
+	     * _.startCase('--foo-bar');
+	     * // => 'Foo Bar'
+	     *
+	     * _.startCase('fooBar');
+	     * // => 'Foo Bar'
+	     *
+	     * _.startCase('__foo_bar__');
+	     * // => 'Foo Bar'
+	     */
+	    var startCase = createCompounder(function(result, word, index) {
+	      return result + (index ? ' ' : '') + (word.charAt(0).toUpperCase() + word.slice(1));
+	    });
+
+	    /**
+	     * Checks if `string` starts with the given target string.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to search.
+	     * @param {string} [target] The string to search for.
+	     * @param {number} [position=0] The position to search from.
+	     * @returns {boolean} Returns `true` if `string` starts with `target`, else `false`.
+	     * @example
+	     *
+	     * _.startsWith('abc', 'a');
+	     * // => true
+	     *
+	     * _.startsWith('abc', 'b');
+	     * // => false
+	     *
+	     * _.startsWith('abc', 'b', 1);
+	     * // => true
+	     */
+	    function startsWith(string, target, position) {
+	      string = baseToString(string);
+	      position = position == null
+	        ? 0
+	        : nativeMin(position < 0 ? 0 : (+position || 0), string.length);
+
+	      return string.lastIndexOf(target, position) == position;
+	    }
+
+	    /**
+	     * Creates a compiled template function that can interpolate data properties
+	     * in "interpolate" delimiters, HTML-escape interpolated data properties in
+	     * "escape" delimiters, and execute JavaScript in "evaluate" delimiters. Data
+	     * properties may be accessed as free variables in the template. If a setting
+	     * object is provided it takes precedence over `_.templateSettings` values.
+	     *
+	     * **Note:** In the development build `_.template` utilizes
+	     * [sourceURLs](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl)
+	     * for easier debugging.
+	     *
+	     * For more information on precompiling templates see
+	     * [lodash's custom builds documentation](https://lodash.com/custom-builds).
+	     *
+	     * For more information on Chrome extension sandboxes see
+	     * [Chrome's extensions documentation](https://developer.chrome.com/extensions/sandboxingEval).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The template string.
+	     * @param {Object} [options] The options object.
+	     * @param {RegExp} [options.escape] The HTML "escape" delimiter.
+	     * @param {RegExp} [options.evaluate] The "evaluate" delimiter.
+	     * @param {Object} [options.imports] An object to import into the template as free variables.
+	     * @param {RegExp} [options.interpolate] The "interpolate" delimiter.
+	     * @param {string} [options.sourceURL] The sourceURL of the template's compiled source.
+	     * @param {string} [options.variable] The data object variable name.
+	     * @param- {Object} [otherOptions] Enables the legacy `options` param signature.
+	     * @returns {Function} Returns the compiled template function.
+	     * @example
+	     *
+	     * // using the "interpolate" delimiter to create a compiled template
+	     * var compiled = _.template('hello <%= user %>!');
+	     * compiled({ 'user': 'fred' });
+	     * // => 'hello fred!'
+	     *
+	     * // using the HTML "escape" delimiter to escape data property values
+	     * var compiled = _.template('<b><%- value %></b>');
+	     * compiled({ 'value': '<script>' });
+	     * // => '<b>&lt;script&gt;</b>'
+	     *
+	     * // using the "evaluate" delimiter to execute JavaScript and generate HTML
+	     * var compiled = _.template('<% _.forEach(users, function(user) { %><li><%- user %></li><% }); %>');
+	     * compiled({ 'users': ['fred', 'barney'] });
+	     * // => '<li>fred</li><li>barney</li>'
+	     *
+	     * // using the internal `print` function in "evaluate" delimiters
+	     * var compiled = _.template('<% print("hello " + user); %>!');
+	     * compiled({ 'user': 'barney' });
+	     * // => 'hello barney!'
+	     *
+	     * // using the ES delimiter as an alternative to the default "interpolate" delimiter
+	     * var compiled = _.template('hello ${ user }!');
+	     * compiled({ 'user': 'pebbles' });
+	     * // => 'hello pebbles!'
+	     *
+	     * // using custom template delimiters
+	     * _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+	     * var compiled = _.template('hello {{ user }}!');
+	     * compiled({ 'user': 'mustache' });
+	     * // => 'hello mustache!'
+	     *
+	     * // using backslashes to treat delimiters as plain text
+	     * var compiled = _.template('<%= "\\<%- value %\\>" %>');
+	     * compiled({ 'value': 'ignored' });
+	     * // => '<%- value %>'
+	     *
+	     * // using the `imports` option to import `jQuery` as `jq`
+	     * var text = '<% jq.each(users, function(user) { %><li><%- user %></li><% }); %>';
+	     * var compiled = _.template(text, { 'imports': { 'jq': jQuery } });
+	     * compiled({ 'users': ['fred', 'barney'] });
+	     * // => '<li>fred</li><li>barney</li>'
+	     *
+	     * // using the `sourceURL` option to specify a custom sourceURL for the template
+	     * var compiled = _.template('hello <%= user %>!', { 'sourceURL': '/basic/greeting.jst' });
+	     * compiled(data);
+	     * // => find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector
+	     *
+	     * // using the `variable` option to ensure a with-statement isn't used in the compiled template
+	     * var compiled = _.template('hi <%= data.user %>!', { 'variable': 'data' });
+	     * compiled.source;
+	     * // => function(data) {
+	     * //   var __t, __p = '';
+	     * //   __p += 'hi ' + ((__t = ( data.user )) == null ? '' : __t) + '!';
+	     * //   return __p;
+	     * // }
+	     *
+	     * // using the `source` property to inline compiled templates for meaningful
+	     * // line numbers in error messages and a stack trace
+	     * fs.writeFileSync(path.join(cwd, 'jst.js'), '\
+	     *   var JST = {\
+	     *     "main": ' + _.template(mainText).source + '\
+	     *   };\
+	     * ');
+	     */
+	    function template(string, options, otherOptions) {
+	      // Based on John Resig's `tmpl` implementation (http://ejohn.org/blog/javascript-micro-templating/)
+	      // and Laura Doktorova's doT.js (https://github.com/olado/doT).
+	      var settings = lodash.templateSettings;
+
+	      if (otherOptions && isIterateeCall(string, options, otherOptions)) {
+	        options = otherOptions = undefined;
+	      }
+	      string = baseToString(string);
+	      options = assignWith(baseAssign({}, otherOptions || options), settings, assignOwnDefaults);
+
+	      var imports = assignWith(baseAssign({}, options.imports), settings.imports, assignOwnDefaults),
+	          importsKeys = keys(imports),
+	          importsValues = baseValues(imports, importsKeys);
+
+	      var isEscaping,
+	          isEvaluating,
+	          index = 0,
+	          interpolate = options.interpolate || reNoMatch,
+	          source = "__p += '";
+
+	      // Compile the regexp to match each delimiter.
+	      var reDelimiters = RegExp(
+	        (options.escape || reNoMatch).source + '|' +
+	        interpolate.source + '|' +
+	        (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + '|' +
+	        (options.evaluate || reNoMatch).source + '|$'
+	      , 'g');
+
+	      // Use a sourceURL for easier debugging.
+	      var sourceURL = '//# sourceURL=' +
+	        ('sourceURL' in options
+	          ? options.sourceURL
+	          : ('lodash.templateSources[' + (++templateCounter) + ']')
+	        ) + '\n';
+
+	      string.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
+	        interpolateValue || (interpolateValue = esTemplateValue);
+
+	        // Escape characters that can't be included in string literals.
+	        source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+
+	        // Replace delimiters with snippets.
+	        if (escapeValue) {
+	          isEscaping = true;
+	          source += "' +\n__e(" + escapeValue + ") +\n'";
+	        }
+	        if (evaluateValue) {
+	          isEvaluating = true;
+	          source += "';\n" + evaluateValue + ";\n__p += '";
+	        }
+	        if (interpolateValue) {
+	          source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+	        }
+	        index = offset + match.length;
+
+	        // The JS engine embedded in Adobe products requires returning the `match`
+	        // string in order to produce the correct `offset` value.
+	        return match;
+	      });
+
+	      source += "';\n";
+
+	      // If `variable` is not specified wrap a with-statement around the generated
+	      // code to add the data object to the top of the scope chain.
+	      var variable = options.variable;
+	      if (!variable) {
+	        source = 'with (obj) {\n' + source + '\n}\n';
+	      }
+	      // Cleanup code by stripping empty strings.
+	      source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
+	        .replace(reEmptyStringMiddle, '$1')
+	        .replace(reEmptyStringTrailing, '$1;');
+
+	      // Frame code as the function body.
+	      source = 'function(' + (variable || 'obj') + ') {\n' +
+	        (variable
+	          ? ''
+	          : 'obj || (obj = {});\n'
+	        ) +
+	        "var __t, __p = ''" +
+	        (isEscaping
+	           ? ', __e = _.escape'
+	           : ''
+	        ) +
+	        (isEvaluating
+	          ? ', __j = Array.prototype.join;\n' +
+	            "function print() { __p += __j.call(arguments, '') }\n"
+	          : ';\n'
+	        ) +
+	        source +
+	        'return __p\n}';
+
+	      var result = attempt(function() {
+	        return Function(importsKeys, sourceURL + 'return ' + source).apply(undefined, importsValues);
+	      });
+
+	      // Provide the compiled function's source by its `toString` method or
+	      // the `source` property as a convenience for inlining compiled templates.
+	      result.source = source;
+	      if (isError(result)) {
+	        throw result;
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Removes leading and trailing whitespace or specified characters from `string`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to trim.
+	     * @param {string} [chars=whitespace] The characters to trim.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {string} Returns the trimmed string.
+	     * @example
+	     *
+	     * _.trim('  abc  ');
+	     * // => 'abc'
+	     *
+	     * _.trim('-_-abc-_-', '_-');
+	     * // => 'abc'
+	     *
+	     * _.map(['  foo  ', '  bar  '], _.trim);
+	     * // => ['foo', 'bar']
+	     */
+	    function trim(string, chars, guard) {
+	      var value = string;
+	      string = baseToString(string);
+	      if (!string) {
+	        return string;
+	      }
+	      if (guard ? isIterateeCall(value, chars, guard) : chars == null) {
+	        return string.slice(trimmedLeftIndex(string), trimmedRightIndex(string) + 1);
+	      }
+	      chars = (chars + '');
+	      return string.slice(charsLeftIndex(string, chars), charsRightIndex(string, chars) + 1);
+	    }
+
+	    /**
+	     * Removes leading whitespace or specified characters from `string`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to trim.
+	     * @param {string} [chars=whitespace] The characters to trim.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {string} Returns the trimmed string.
+	     * @example
+	     *
+	     * _.trimLeft('  abc  ');
+	     * // => 'abc  '
+	     *
+	     * _.trimLeft('-_-abc-_-', '_-');
+	     * // => 'abc-_-'
+	     */
+	    function trimLeft(string, chars, guard) {
+	      var value = string;
+	      string = baseToString(string);
+	      if (!string) {
+	        return string;
+	      }
+	      if (guard ? isIterateeCall(value, chars, guard) : chars == null) {
+	        return string.slice(trimmedLeftIndex(string));
+	      }
+	      return string.slice(charsLeftIndex(string, (chars + '')));
+	    }
+
+	    /**
+	     * Removes trailing whitespace or specified characters from `string`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to trim.
+	     * @param {string} [chars=whitespace] The characters to trim.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {string} Returns the trimmed string.
+	     * @example
+	     *
+	     * _.trimRight('  abc  ');
+	     * // => '  abc'
+	     *
+	     * _.trimRight('-_-abc-_-', '_-');
+	     * // => '-_-abc'
+	     */
+	    function trimRight(string, chars, guard) {
+	      var value = string;
+	      string = baseToString(string);
+	      if (!string) {
+	        return string;
+	      }
+	      if (guard ? isIterateeCall(value, chars, guard) : chars == null) {
+	        return string.slice(0, trimmedRightIndex(string) + 1);
+	      }
+	      return string.slice(0, charsRightIndex(string, (chars + '')) + 1);
+	    }
+
+	    /**
+	     * Truncates `string` if it's longer than the given maximum string length.
+	     * The last characters of the truncated string are replaced with the omission
+	     * string which defaults to "...".
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to truncate.
+	     * @param {Object|number} [options] The options object or maximum string length.
+	     * @param {number} [options.length=30] The maximum string length.
+	     * @param {string} [options.omission='...'] The string to indicate text is omitted.
+	     * @param {RegExp|string} [options.separator] The separator pattern to truncate to.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {string} Returns the truncated string.
+	     * @example
+	     *
+	     * _.trunc('hi-diddly-ho there, neighborino');
+	     * // => 'hi-diddly-ho there, neighbo...'
+	     *
+	     * _.trunc('hi-diddly-ho there, neighborino', 24);
+	     * // => 'hi-diddly-ho there, n...'
+	     *
+	     * _.trunc('hi-diddly-ho there, neighborino', {
+	     *   'length': 24,
+	     *   'separator': ' '
+	     * });
+	     * // => 'hi-diddly-ho there,...'
+	     *
+	     * _.trunc('hi-diddly-ho there, neighborino', {
+	     *   'length': 24,
+	     *   'separator': /,? +/
+	     * });
+	     * // => 'hi-diddly-ho there...'
+	     *
+	     * _.trunc('hi-diddly-ho there, neighborino', {
+	     *   'omission': ' [...]'
+	     * });
+	     * // => 'hi-diddly-ho there, neig [...]'
+	     */
+	    function trunc(string, options, guard) {
+	      if (guard && isIterateeCall(string, options, guard)) {
+	        options = undefined;
+	      }
+	      var length = DEFAULT_TRUNC_LENGTH,
+	          omission = DEFAULT_TRUNC_OMISSION;
+
+	      if (options != null) {
+	        if (isObject(options)) {
+	          var separator = 'separator' in options ? options.separator : separator;
+	          length = 'length' in options ? (+options.length || 0) : length;
+	          omission = 'omission' in options ? baseToString(options.omission) : omission;
+	        } else {
+	          length = +options || 0;
+	        }
+	      }
+	      string = baseToString(string);
+	      if (length >= string.length) {
+	        return string;
+	      }
+	      var end = length - omission.length;
+	      if (end < 1) {
+	        return omission;
+	      }
+	      var result = string.slice(0, end);
+	      if (separator == null) {
+	        return result + omission;
+	      }
+	      if (isRegExp(separator)) {
+	        if (string.slice(end).search(separator)) {
+	          var match,
+	              newEnd,
+	              substring = string.slice(0, end);
+
+	          if (!separator.global) {
+	            separator = RegExp(separator.source, (reFlags.exec(separator) || '') + 'g');
+	          }
+	          separator.lastIndex = 0;
+	          while ((match = separator.exec(substring))) {
+	            newEnd = match.index;
+	          }
+	          result = result.slice(0, newEnd == null ? end : newEnd);
+	        }
+	      } else if (string.indexOf(separator, end) != end) {
+	        var index = result.lastIndexOf(separator);
+	        if (index > -1) {
+	          result = result.slice(0, index);
+	        }
+	      }
+	      return result + omission;
+	    }
+
+	    /**
+	     * The inverse of `_.escape`; this method converts the HTML entities
+	     * `&amp;`, `&lt;`, `&gt;`, `&quot;`, `&#39;`, and `&#96;` in `string` to their
+	     * corresponding characters.
+	     *
+	     * **Note:** No other HTML entities are unescaped. To unescape additional HTML
+	     * entities use a third-party library like [_he_](https://mths.be/he).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to unescape.
+	     * @returns {string} Returns the unescaped string.
+	     * @example
+	     *
+	     * _.unescape('fred, barney, &amp; pebbles');
+	     * // => 'fred, barney, & pebbles'
+	     */
+	    function unescape(string) {
+	      string = baseToString(string);
+	      return (string && reHasEscapedHtml.test(string))
+	        ? string.replace(reEscapedHtml, unescapeHtmlChar)
+	        : string;
+	    }
+
+	    /**
+	     * Splits `string` into an array of its words.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category String
+	     * @param {string} [string=''] The string to inspect.
+	     * @param {RegExp|string} [pattern] The pattern to match words.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Array} Returns the words of `string`.
+	     * @example
+	     *
+	     * _.words('fred, barney, & pebbles');
+	     * // => ['fred', 'barney', 'pebbles']
+	     *
+	     * _.words('fred, barney, & pebbles', /[^, ]+/g);
+	     * // => ['fred', 'barney', '&', 'pebbles']
+	     */
+	    function words(string, pattern, guard) {
+	      if (guard && isIterateeCall(string, pattern, guard)) {
+	        pattern = undefined;
+	      }
+	      string = baseToString(string);
+	      return string.match(pattern || reWords) || [];
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Attempts to invoke `func`, returning either the result or the caught error
+	     * object. Any additional arguments are provided to `func` when it is invoked.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {Function} func The function to attempt.
+	     * @returns {*} Returns the `func` result or error object.
+	     * @example
+	     *
+	     * // avoid throwing errors for invalid selectors
+	     * var elements = _.attempt(function(selector) {
+	     *   return document.querySelectorAll(selector);
+	     * }, '>_>');
+	     *
+	     * if (_.isError(elements)) {
+	     *   elements = [];
+	     * }
+	     */
+	    var attempt = restParam(function(func, args) {
+	      try {
+	        return func.apply(undefined, args);
+	      } catch(e) {
+	        return isError(e) ? e : new Error(e);
+	      }
+	    });
+
+	    /**
+	     * Creates a function that invokes `func` with the `this` binding of `thisArg`
+	     * and arguments of the created function. If `func` is a property name the
+	     * created callback returns the property value for a given element. If `func`
+	     * is an object the created callback returns `true` for elements that contain
+	     * the equivalent object properties, otherwise it returns `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @alias iteratee
+	     * @category Utility
+	     * @param {*} [func=_.identity] The value to convert to a callback.
+	     * @param {*} [thisArg] The `this` binding of `func`.
+	     * @param- {Object} [guard] Enables use as a callback for functions like `_.map`.
+	     * @returns {Function} Returns the callback.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36 },
+	     *   { 'user': 'fred',   'age': 40 }
+	     * ];
+	     *
+	     * // wrap to create custom callback shorthands
+	     * _.callback = _.wrap(_.callback, function(callback, func, thisArg) {
+	     *   var match = /^(.+?)__([gl]t)(.+)$/.exec(func);
+	     *   if (!match) {
+	     *     return callback(func, thisArg);
+	     *   }
+	     *   return function(object) {
+	     *     return match[2] == 'gt'
+	     *       ? object[match[1]] > match[3]
+	     *       : object[match[1]] < match[3];
+	     *   };
+	     * });
+	     *
+	     * _.filter(users, 'age__gt36');
+	     * // => [{ 'user': 'fred', 'age': 40 }]
+	     */
+	    function callback(func, thisArg, guard) {
+	      if (guard && isIterateeCall(func, thisArg, guard)) {
+	        thisArg = undefined;
+	      }
+	      return isObjectLike(func)
+	        ? matches(func)
+	        : baseCallback(func, thisArg);
+	    }
+
+	    /**
+	     * Creates a function that returns `value`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {*} value The value to return from the new function.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var object = { 'user': 'fred' };
+	     * var getter = _.constant(object);
+	     *
+	     * getter() === object;
+	     * // => true
+	     */
+	    function constant(value) {
+	      return function() {
+	        return value;
+	      };
+	    }
+
+	    /**
+	     * This method returns the first argument provided to it.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {*} value Any value.
+	     * @returns {*} Returns `value`.
+	     * @example
+	     *
+	     * var object = { 'user': 'fred' };
+	     *
+	     * _.identity(object) === object;
+	     * // => true
+	     */
+	    function identity(value) {
+	      return value;
+	    }
+
+	    /**
+	     * Creates a function that performs a deep comparison between a given object
+	     * and `source`, returning `true` if the given object has equivalent property
+	     * values, else `false`.
+	     *
+	     * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+	     * numbers, `Object` objects, regexes, and strings. Objects are compared by
+	     * their own, not inherited, enumerable properties. For comparing a single
+	     * own or inherited property value see `_.matchesProperty`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {Object} source The object of property values to match.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36, 'active': true },
+	     *   { 'user': 'fred',   'age': 40, 'active': false }
+	     * ];
+	     *
+	     * _.filter(users, _.matches({ 'age': 40, 'active': false }));
+	     * // => [{ 'user': 'fred', 'age': 40, 'active': false }]
+	     */
+	    function matches(source) {
+	      return baseMatches(baseClone(source, true));
+	    }
+
+	    /**
+	     * Creates a function that compares the property value of `path` on a given
+	     * object to `value`.
+	     *
+	     * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+	     * numbers, `Object` objects, regexes, and strings. Objects are compared by
+	     * their own, not inherited, enumerable properties.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {Array|string} path The path of the property to get.
+	     * @param {*} srcValue The value to match.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var users = [
+	     *   { 'user': 'barney' },
+	     *   { 'user': 'fred' }
+	     * ];
+	     *
+	     * _.find(users, _.matchesProperty('user', 'fred'));
+	     * // => { 'user': 'fred' }
+	     */
+	    function matchesProperty(path, srcValue) {
+	      return baseMatchesProperty(path, baseClone(srcValue, true));
+	    }
+
+	    /**
+	     * Creates a function that invokes the method at `path` on a given object.
+	     * Any additional arguments are provided to the invoked method.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {Array|string} path The path of the method to invoke.
+	     * @param {...*} [args] The arguments to invoke the method with.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var objects = [
+	     *   { 'a': { 'b': { 'c': _.constant(2) } } },
+	     *   { 'a': { 'b': { 'c': _.constant(1) } } }
+	     * ];
+	     *
+	     * _.map(objects, _.method('a.b.c'));
+	     * // => [2, 1]
+	     *
+	     * _.invoke(_.sortBy(objects, _.method(['a', 'b', 'c'])), 'a.b.c');
+	     * // => [1, 2]
+	     */
+	    var method = restParam(function(path, args) {
+	      return function(object) {
+	        return invokePath(object, path, args);
+	      };
+	    });
+
+	    /**
+	     * The opposite of `_.method`; this method creates a function that invokes
+	     * the method at a given path on `object`. Any additional arguments are
+	     * provided to the invoked method.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {Object} object The object to query.
+	     * @param {...*} [args] The arguments to invoke the method with.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var array = _.times(3, _.constant),
+	     *     object = { 'a': array, 'b': array, 'c': array };
+	     *
+	     * _.map(['a[2]', 'c[0]'], _.methodOf(object));
+	     * // => [2, 0]
+	     *
+	     * _.map([['a', '2'], ['c', '0']], _.methodOf(object));
+	     * // => [2, 0]
+	     */
+	    var methodOf = restParam(function(object, args) {
+	      return function(path) {
+	        return invokePath(object, path, args);
+	      };
+	    });
+
+	    /**
+	     * Adds all own enumerable function properties of a source object to the
+	     * destination object. If `object` is a function then methods are added to
+	     * its prototype as well.
+	     *
+	     * **Note:** Use `_.runInContext` to create a pristine `lodash` function to
+	     * avoid conflicts caused by modifying the original.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {Function|Object} [object=lodash] The destination object.
+	     * @param {Object} source The object of functions to add.
+	     * @param {Object} [options] The options object.
+	     * @param {boolean} [options.chain=true] Specify whether the functions added
+	     *  are chainable.
+	     * @returns {Function|Object} Returns `object`.
+	     * @example
+	     *
+	     * function vowels(string) {
+	     *   return _.filter(string, function(v) {
+	     *     return /[aeiou]/i.test(v);
+	     *   });
+	     * }
+	     *
+	     * _.mixin({ 'vowels': vowels });
+	     * _.vowels('fred');
+	     * // => ['e']
+	     *
+	     * _('fred').vowels().value();
+	     * // => ['e']
+	     *
+	     * _.mixin({ 'vowels': vowels }, { 'chain': false });
+	     * _('fred').vowels();
+	     * // => ['e']
+	     */
+	    function mixin(object, source, options) {
+	      if (options == null) {
+	        var isObj = isObject(source),
+	            props = isObj ? keys(source) : undefined,
+	            methodNames = (props && props.length) ? baseFunctions(source, props) : undefined;
+
+	        if (!(methodNames ? methodNames.length : isObj)) {
+	          methodNames = false;
+	          options = source;
+	          source = object;
+	          object = this;
+	        }
+	      }
+	      if (!methodNames) {
+	        methodNames = baseFunctions(source, keys(source));
+	      }
+	      var chain = true,
+	          index = -1,
+	          isFunc = isFunction(object),
+	          length = methodNames.length;
+
+	      if (options === false) {
+	        chain = false;
+	      } else if (isObject(options) && 'chain' in options) {
+	        chain = options.chain;
+	      }
+	      while (++index < length) {
+	        var methodName = methodNames[index],
+	            func = source[methodName];
+
+	        object[methodName] = func;
+	        if (isFunc) {
+	          object.prototype[methodName] = (function(func) {
+	            return function() {
+	              var chainAll = this.__chain__;
+	              if (chain || chainAll) {
+	                var result = object(this.__wrapped__),
+	                    actions = result.__actions__ = arrayCopy(this.__actions__);
+
+	                actions.push({ 'func': func, 'args': arguments, 'thisArg': object });
+	                result.__chain__ = chainAll;
+	                return result;
+	              }
+	              return func.apply(object, arrayPush([this.value()], arguments));
+	            };
+	          }(func));
+	        }
+	      }
+	      return object;
+	    }
+
+	    /**
+	     * Reverts the `_` variable to its previous value and returns a reference to
+	     * the `lodash` function.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @returns {Function} Returns the `lodash` function.
+	     * @example
+	     *
+	     * var lodash = _.noConflict();
+	     */
+	    function noConflict() {
+	      root._ = oldDash;
+	      return this;
+	    }
+
+	    /**
+	     * A no-operation function that returns `undefined` regardless of the
+	     * arguments it receives.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @example
+	     *
+	     * var object = { 'user': 'fred' };
+	     *
+	     * _.noop(object) === undefined;
+	     * // => true
+	     */
+	    function noop() {
+	      // No operation performed.
+	    }
+
+	    /**
+	     * Creates a function that returns the property value at `path` on a
+	     * given object.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {Array|string} path The path of the property to get.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var objects = [
+	     *   { 'a': { 'b': { 'c': 2 } } },
+	     *   { 'a': { 'b': { 'c': 1 } } }
+	     * ];
+	     *
+	     * _.map(objects, _.property('a.b.c'));
+	     * // => [2, 1]
+	     *
+	     * _.pluck(_.sortBy(objects, _.property(['a', 'b', 'c'])), 'a.b.c');
+	     * // => [1, 2]
+	     */
+	    function property(path) {
+	      return isKey(path) ? baseProperty(path) : basePropertyDeep(path);
+	    }
+
+	    /**
+	     * The opposite of `_.property`; this method creates a function that returns
+	     * the property value at a given path on `object`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {Object} object The object to query.
+	     * @returns {Function} Returns the new function.
+	     * @example
+	     *
+	     * var array = [0, 1, 2],
+	     *     object = { 'a': array, 'b': array, 'c': array };
+	     *
+	     * _.map(['a[2]', 'c[0]'], _.propertyOf(object));
+	     * // => [2, 0]
+	     *
+	     * _.map([['a', '2'], ['c', '0']], _.propertyOf(object));
+	     * // => [2, 0]
+	     */
+	    function propertyOf(object) {
+	      return function(path) {
+	        return baseGet(object, toPath(path), path + '');
+	      };
+	    }
+
+	    /**
+	     * Creates an array of numbers (positive and/or negative) progressing from
+	     * `start` up to, but not including, `end`. If `end` is not specified it is
+	     * set to `start` with `start` then set to `0`. If `end` is less than `start`
+	     * a zero-length range is created unless a negative `step` is specified.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {number} [start=0] The start of the range.
+	     * @param {number} end The end of the range.
+	     * @param {number} [step=1] The value to increment or decrement by.
+	     * @returns {Array} Returns the new array of numbers.
+	     * @example
+	     *
+	     * _.range(4);
+	     * // => [0, 1, 2, 3]
+	     *
+	     * _.range(1, 5);
+	     * // => [1, 2, 3, 4]
+	     *
+	     * _.range(0, 20, 5);
+	     * // => [0, 5, 10, 15]
+	     *
+	     * _.range(0, -4, -1);
+	     * // => [0, -1, -2, -3]
+	     *
+	     * _.range(1, 4, 0);
+	     * // => [1, 1, 1]
+	     *
+	     * _.range(0);
+	     * // => []
+	     */
+	    function range(start, end, step) {
+	      if (step && isIterateeCall(start, end, step)) {
+	        end = step = undefined;
+	      }
+	      start = +start || 0;
+	      step = step == null ? 1 : (+step || 0);
+
+	      if (end == null) {
+	        end = start;
+	        start = 0;
+	      } else {
+	        end = +end || 0;
+	      }
+	      // Use `Array(length)` so engines like Chakra and V8 avoid slower modes.
+	      // See https://youtu.be/XAqIpGU8ZZk#t=17m25s for more details.
+	      var index = -1,
+	          length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
+	          result = Array(length);
+
+	      while (++index < length) {
+	        result[index] = start;
+	        start += step;
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Invokes the iteratee function `n` times, returning an array of the results
+	     * of each invocation. The `iteratee` is bound to `thisArg` and invoked with
+	     * one argument; (index).
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {number} n The number of times to invoke `iteratee`.
+	     * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {Array} Returns the array of results.
+	     * @example
+	     *
+	     * var diceRolls = _.times(3, _.partial(_.random, 1, 6, false));
+	     * // => [3, 6, 4]
+	     *
+	     * _.times(3, function(n) {
+	     *   mage.castSpell(n);
+	     * });
+	     * // => invokes `mage.castSpell(n)` three times with `n` of `0`, `1`, and `2`
+	     *
+	     * _.times(3, function(n) {
+	     *   this.cast(n);
+	     * }, mage);
+	     * // => also invokes `mage.castSpell(n)` three times
+	     */
+	    function times(n, iteratee, thisArg) {
+	      n = nativeFloor(n);
+
+	      // Exit early to avoid a JSC JIT bug in Safari 8
+	      // where `Array(0)` is treated as `Array(1)`.
+	      if (n < 1 || !nativeIsFinite(n)) {
+	        return [];
+	      }
+	      var index = -1,
+	          result = Array(nativeMin(n, MAX_ARRAY_LENGTH));
+
+	      iteratee = bindCallback(iteratee, thisArg, 1);
+	      while (++index < n) {
+	        if (index < MAX_ARRAY_LENGTH) {
+	          result[index] = iteratee(index);
+	        } else {
+	          iteratee(index);
+	        }
+	      }
+	      return result;
+	    }
+
+	    /**
+	     * Generates a unique ID. If `prefix` is provided the ID is appended to it.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Utility
+	     * @param {string} [prefix] The value to prefix the ID with.
+	     * @returns {string} Returns the unique ID.
+	     * @example
+	     *
+	     * _.uniqueId('contact_');
+	     * // => 'contact_104'
+	     *
+	     * _.uniqueId();
+	     * // => '105'
+	     */
+	    function uniqueId(prefix) {
+	      var id = ++idCounter;
+	      return baseToString(prefix) + id;
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * Adds two numbers.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Math
+	     * @param {number} augend The first number to add.
+	     * @param {number} addend The second number to add.
+	     * @returns {number} Returns the sum.
+	     * @example
+	     *
+	     * _.add(6, 4);
+	     * // => 10
+	     */
+	    function add(augend, addend) {
+	      return (+augend || 0) + (+addend || 0);
+	    }
+
+	    /**
+	     * Calculates `n` rounded up to `precision`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Math
+	     * @param {number} n The number to round up.
+	     * @param {number} [precision=0] The precision to round up to.
+	     * @returns {number} Returns the rounded up number.
+	     * @example
+	     *
+	     * _.ceil(4.006);
+	     * // => 5
+	     *
+	     * _.ceil(6.004, 2);
+	     * // => 6.01
+	     *
+	     * _.ceil(6040, -2);
+	     * // => 6100
+	     */
+	    var ceil = createRound('ceil');
+
+	    /**
+	     * Calculates `n` rounded down to `precision`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Math
+	     * @param {number} n The number to round down.
+	     * @param {number} [precision=0] The precision to round down to.
+	     * @returns {number} Returns the rounded down number.
+	     * @example
+	     *
+	     * _.floor(4.006);
+	     * // => 4
+	     *
+	     * _.floor(0.046, 2);
+	     * // => 0.04
+	     *
+	     * _.floor(4060, -2);
+	     * // => 4000
+	     */
+	    var floor = createRound('floor');
+
+	    /**
+	     * Gets the maximum value of `collection`. If `collection` is empty or falsey
+	     * `-Infinity` is returned. If an iteratee function is provided it is invoked
+	     * for each value in `collection` to generate the criterion by which the value
+	     * is ranked. The `iteratee` is bound to `thisArg` and invoked with three
+	     * arguments: (value, index, collection).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Math
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [iteratee] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {*} Returns the maximum value.
+	     * @example
+	     *
+	     * _.max([4, 2, 8, 6]);
+	     * // => 8
+	     *
+	     * _.max([]);
+	     * // => -Infinity
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36 },
+	     *   { 'user': 'fred',   'age': 40 }
+	     * ];
+	     *
+	     * _.max(users, function(chr) {
+	     *   return chr.age;
+	     * });
+	     * // => { 'user': 'fred', 'age': 40 }
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.max(users, 'age');
+	     * // => { 'user': 'fred', 'age': 40 }
+	     */
+	    var max = createExtremum(gt, NEGATIVE_INFINITY);
+
+	    /**
+	     * Gets the minimum value of `collection`. If `collection` is empty or falsey
+	     * `Infinity` is returned. If an iteratee function is provided it is invoked
+	     * for each value in `collection` to generate the criterion by which the value
+	     * is ranked. The `iteratee` is bound to `thisArg` and invoked with three
+	     * arguments: (value, index, collection).
+	     *
+	     * If a property name is provided for `iteratee` the created `_.property`
+	     * style callback returns the property value of the given element.
+	     *
+	     * If a value is also provided for `thisArg` the created `_.matchesProperty`
+	     * style callback returns `true` for elements that have a matching property
+	     * value, else `false`.
+	     *
+	     * If an object is provided for `iteratee` the created `_.matches` style
+	     * callback returns `true` for elements that have the properties of the given
+	     * object, else `false`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Math
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [iteratee] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {*} Returns the minimum value.
+	     * @example
+	     *
+	     * _.min([4, 2, 8, 6]);
+	     * // => 2
+	     *
+	     * _.min([]);
+	     * // => Infinity
+	     *
+	     * var users = [
+	     *   { 'user': 'barney', 'age': 36 },
+	     *   { 'user': 'fred',   'age': 40 }
+	     * ];
+	     *
+	     * _.min(users, function(chr) {
+	     *   return chr.age;
+	     * });
+	     * // => { 'user': 'barney', 'age': 36 }
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.min(users, 'age');
+	     * // => { 'user': 'barney', 'age': 36 }
+	     */
+	    var min = createExtremum(lt, POSITIVE_INFINITY);
+
+	    /**
+	     * Calculates `n` rounded to `precision`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Math
+	     * @param {number} n The number to round.
+	     * @param {number} [precision=0] The precision to round to.
+	     * @returns {number} Returns the rounded number.
+	     * @example
+	     *
+	     * _.round(4.006);
+	     * // => 4
+	     *
+	     * _.round(4.006, 2);
+	     * // => 4.01
+	     *
+	     * _.round(4060, -2);
+	     * // => 4100
+	     */
+	    var round = createRound('round');
+
+	    /**
+	     * Gets the sum of the values in `collection`.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @category Math
+	     * @param {Array|Object|string} collection The collection to iterate over.
+	     * @param {Function|Object|string} [iteratee] The function invoked per iteration.
+	     * @param {*} [thisArg] The `this` binding of `iteratee`.
+	     * @returns {number} Returns the sum.
+	     * @example
+	     *
+	     * _.sum([4, 6]);
+	     * // => 10
+	     *
+	     * _.sum({ 'a': 4, 'b': 6 });
+	     * // => 10
+	     *
+	     * var objects = [
+	     *   { 'n': 4 },
+	     *   { 'n': 6 }
+	     * ];
+	     *
+	     * _.sum(objects, function(object) {
+	     *   return object.n;
+	     * });
+	     * // => 10
+	     *
+	     * // using the `_.property` callback shorthand
+	     * _.sum(objects, 'n');
+	     * // => 10
+	     */
+	    function sum(collection, iteratee, thisArg) {
+	      if (thisArg && isIterateeCall(collection, iteratee, thisArg)) {
+	        iteratee = undefined;
+	      }
+	      iteratee = getCallback(iteratee, thisArg, 3);
+	      return iteratee.length == 1
+	        ? arraySum(isArray(collection) ? collection : toIterable(collection), iteratee)
+	        : baseSum(collection, iteratee);
+	    }
+
+	    /*------------------------------------------------------------------------*/
+
+	    // Ensure wrappers are instances of `baseLodash`.
+	    lodash.prototype = baseLodash.prototype;
+
+	    LodashWrapper.prototype = baseCreate(baseLodash.prototype);
+	    LodashWrapper.prototype.constructor = LodashWrapper;
+
+	    LazyWrapper.prototype = baseCreate(baseLodash.prototype);
+	    LazyWrapper.prototype.constructor = LazyWrapper;
+
+	    // Add functions to the `Map` cache.
+	    MapCache.prototype['delete'] = mapDelete;
+	    MapCache.prototype.get = mapGet;
+	    MapCache.prototype.has = mapHas;
+	    MapCache.prototype.set = mapSet;
+
+	    // Add functions to the `Set` cache.
+	    SetCache.prototype.push = cachePush;
+
+	    // Assign cache to `_.memoize`.
+	    memoize.Cache = MapCache;
+
+	    // Add functions that return wrapped values when chaining.
+	    lodash.after = after;
+	    lodash.ary = ary;
+	    lodash.assign = assign;
+	    lodash.at = at;
+	    lodash.before = before;
+	    lodash.bind = bind;
+	    lodash.bindAll = bindAll;
+	    lodash.bindKey = bindKey;
+	    lodash.callback = callback;
+	    lodash.chain = chain;
+	    lodash.chunk = chunk;
+	    lodash.compact = compact;
+	    lodash.constant = constant;
+	    lodash.countBy = countBy;
+	    lodash.create = create;
+	    lodash.curry = curry;
+	    lodash.curryRight = curryRight;
+	    lodash.debounce = debounce;
+	    lodash.defaults = defaults;
+	    lodash.defaultsDeep = defaultsDeep;
+	    lodash.defer = defer;
+	    lodash.delay = delay;
+	    lodash.difference = difference;
+	    lodash.drop = drop;
+	    lodash.dropRight = dropRight;
+	    lodash.dropRightWhile = dropRightWhile;
+	    lodash.dropWhile = dropWhile;
+	    lodash.fill = fill;
+	    lodash.filter = filter;
+	    lodash.flatten = flatten;
+	    lodash.flattenDeep = flattenDeep;
+	    lodash.flow = flow;
+	    lodash.flowRight = flowRight;
+	    lodash.forEach = forEach;
+	    lodash.forEachRight = forEachRight;
+	    lodash.forIn = forIn;
+	    lodash.forInRight = forInRight;
+	    lodash.forOwn = forOwn;
+	    lodash.forOwnRight = forOwnRight;
+	    lodash.functions = functions;
+	    lodash.groupBy = groupBy;
+	    lodash.indexBy = indexBy;
+	    lodash.initial = initial;
+	    lodash.intersection = intersection;
+	    lodash.invert = invert;
+	    lodash.invoke = invoke;
+	    lodash.keys = keys;
+	    lodash.keysIn = keysIn;
+	    lodash.map = map;
+	    lodash.mapKeys = mapKeys;
+	    lodash.mapValues = mapValues;
+	    lodash.matches = matches;
+	    lodash.matchesProperty = matchesProperty;
+	    lodash.memoize = memoize;
+	    lodash.merge = merge;
+	    lodash.method = method;
+	    lodash.methodOf = methodOf;
+	    lodash.mixin = mixin;
+	    lodash.modArgs = modArgs;
+	    lodash.negate = negate;
+	    lodash.omit = omit;
+	    lodash.once = once;
+	    lodash.pairs = pairs;
+	    lodash.partial = partial;
+	    lodash.partialRight = partialRight;
+	    lodash.partition = partition;
+	    lodash.pick = pick;
+	    lodash.pluck = pluck;
+	    lodash.property = property;
+	    lodash.propertyOf = propertyOf;
+	    lodash.pull = pull;
+	    lodash.pullAt = pullAt;
+	    lodash.range = range;
+	    lodash.rearg = rearg;
+	    lodash.reject = reject;
+	    lodash.remove = remove;
+	    lodash.rest = rest;
+	    lodash.restParam = restParam;
+	    lodash.set = set;
+	    lodash.shuffle = shuffle;
+	    lodash.slice = slice;
+	    lodash.sortBy = sortBy;
+	    lodash.sortByAll = sortByAll;
+	    lodash.sortByOrder = sortByOrder;
+	    lodash.spread = spread;
+	    lodash.take = take;
+	    lodash.takeRight = takeRight;
+	    lodash.takeRightWhile = takeRightWhile;
+	    lodash.takeWhile = takeWhile;
+	    lodash.tap = tap;
+	    lodash.throttle = throttle;
+	    lodash.thru = thru;
+	    lodash.times = times;
+	    lodash.toArray = toArray;
+	    lodash.toPlainObject = toPlainObject;
+	    lodash.transform = transform;
+	    lodash.union = union;
+	    lodash.uniq = uniq;
+	    lodash.unzip = unzip;
+	    lodash.unzipWith = unzipWith;
+	    lodash.values = values;
+	    lodash.valuesIn = valuesIn;
+	    lodash.where = where;
+	    lodash.without = without;
+	    lodash.wrap = wrap;
+	    lodash.xor = xor;
+	    lodash.zip = zip;
+	    lodash.zipObject = zipObject;
+	    lodash.zipWith = zipWith;
+
+	    // Add aliases.
+	    lodash.backflow = flowRight;
+	    lodash.collect = map;
+	    lodash.compose = flowRight;
+	    lodash.each = forEach;
+	    lodash.eachRight = forEachRight;
+	    lodash.extend = assign;
+	    lodash.iteratee = callback;
+	    lodash.methods = functions;
+	    lodash.object = zipObject;
+	    lodash.select = filter;
+	    lodash.tail = rest;
+	    lodash.unique = uniq;
+
+	    // Add functions to `lodash.prototype`.
+	    mixin(lodash, lodash);
+
+	    /*------------------------------------------------------------------------*/
+
+	    // Add functions that return unwrapped values when chaining.
+	    lodash.add = add;
+	    lodash.attempt = attempt;
+	    lodash.camelCase = camelCase;
+	    lodash.capitalize = capitalize;
+	    lodash.ceil = ceil;
+	    lodash.clone = clone;
+	    lodash.cloneDeep = cloneDeep;
+	    lodash.deburr = deburr;
+	    lodash.endsWith = endsWith;
+	    lodash.escape = escape;
+	    lodash.escapeRegExp = escapeRegExp;
+	    lodash.every = every;
+	    lodash.find = find;
+	    lodash.findIndex = findIndex;
+	    lodash.findKey = findKey;
+	    lodash.findLast = findLast;
+	    lodash.findLastIndex = findLastIndex;
+	    lodash.findLastKey = findLastKey;
+	    lodash.findWhere = findWhere;
+	    lodash.first = first;
+	    lodash.floor = floor;
+	    lodash.get = get;
+	    lodash.gt = gt;
+	    lodash.gte = gte;
+	    lodash.has = has;
+	    lodash.identity = identity;
+	    lodash.includes = includes;
+	    lodash.indexOf = indexOf;
+	    lodash.inRange = inRange;
+	    lodash.isArguments = isArguments;
+	    lodash.isArray = isArray;
+	    lodash.isBoolean = isBoolean;
+	    lodash.isDate = isDate;
+	    lodash.isElement = isElement;
+	    lodash.isEmpty = isEmpty;
+	    lodash.isEqual = isEqual;
+	    lodash.isError = isError;
+	    lodash.isFinite = isFinite;
+	    lodash.isFunction = isFunction;
+	    lodash.isMatch = isMatch;
+	    lodash.isNaN = isNaN;
+	    lodash.isNative = isNative;
+	    lodash.isNull = isNull;
+	    lodash.isNumber = isNumber;
+	    lodash.isObject = isObject;
+	    lodash.isPlainObject = isPlainObject;
+	    lodash.isRegExp = isRegExp;
+	    lodash.isString = isString;
+	    lodash.isTypedArray = isTypedArray;
+	    lodash.isUndefined = isUndefined;
+	    lodash.kebabCase = kebabCase;
+	    lodash.last = last;
+	    lodash.lastIndexOf = lastIndexOf;
+	    lodash.lt = lt;
+	    lodash.lte = lte;
+	    lodash.max = max;
+	    lodash.min = min;
+	    lodash.noConflict = noConflict;
+	    lodash.noop = noop;
+	    lodash.now = now;
+	    lodash.pad = pad;
+	    lodash.padLeft = padLeft;
+	    lodash.padRight = padRight;
+	    lodash.parseInt = parseInt;
+	    lodash.random = random;
+	    lodash.reduce = reduce;
+	    lodash.reduceRight = reduceRight;
+	    lodash.repeat = repeat;
+	    lodash.result = result;
+	    lodash.round = round;
+	    lodash.runInContext = runInContext;
+	    lodash.size = size;
+	    lodash.snakeCase = snakeCase;
+	    lodash.some = some;
+	    lodash.sortedIndex = sortedIndex;
+	    lodash.sortedLastIndex = sortedLastIndex;
+	    lodash.startCase = startCase;
+	    lodash.startsWith = startsWith;
+	    lodash.sum = sum;
+	    lodash.template = template;
+	    lodash.trim = trim;
+	    lodash.trimLeft = trimLeft;
+	    lodash.trimRight = trimRight;
+	    lodash.trunc = trunc;
+	    lodash.unescape = unescape;
+	    lodash.uniqueId = uniqueId;
+	    lodash.words = words;
+
+	    // Add aliases.
+	    lodash.all = every;
+	    lodash.any = some;
+	    lodash.contains = includes;
+	    lodash.eq = isEqual;
+	    lodash.detect = find;
+	    lodash.foldl = reduce;
+	    lodash.foldr = reduceRight;
+	    lodash.head = first;
+	    lodash.include = includes;
+	    lodash.inject = reduce;
+
+	    mixin(lodash, (function() {
+	      var source = {};
+	      baseForOwn(lodash, function(func, methodName) {
+	        if (!lodash.prototype[methodName]) {
+	          source[methodName] = func;
+	        }
+	      });
+	      return source;
+	    }()), false);
+
+	    /*------------------------------------------------------------------------*/
+
+	    // Add functions capable of returning wrapped and unwrapped values when chaining.
+	    lodash.sample = sample;
+
+	    lodash.prototype.sample = function(n) {
+	      if (!this.__chain__ && n == null) {
+	        return sample(this.value());
+	      }
+	      return this.thru(function(value) {
+	        return sample(value, n);
+	      });
+	    };
+
+	    /*------------------------------------------------------------------------*/
+
+	    /**
+	     * The semantic version number.
+	     *
+	     * @static
+	     * @memberOf _
+	     * @type string
+	     */
+	    lodash.VERSION = VERSION;
+
+	    // Assign default placeholders.
+	    arrayEach(['bind', 'bindKey', 'curry', 'curryRight', 'partial', 'partialRight'], function(methodName) {
+	      lodash[methodName].placeholder = lodash;
+	    });
+
+	    // Add `LazyWrapper` methods for `_.drop` and `_.take` variants.
+	    arrayEach(['drop', 'take'], function(methodName, index) {
+	      LazyWrapper.prototype[methodName] = function(n) {
+	        var filtered = this.__filtered__;
+	        if (filtered && !index) {
+	          return new LazyWrapper(this);
+	        }
+	        n = n == null ? 1 : nativeMax(nativeFloor(n) || 0, 0);
+
+	        var result = this.clone();
+	        if (filtered) {
+	          result.__takeCount__ = nativeMin(result.__takeCount__, n);
+	        } else {
+	          result.__views__.push({ 'size': n, 'type': methodName + (result.__dir__ < 0 ? 'Right' : '') });
+	        }
+	        return result;
+	      };
+
+	      LazyWrapper.prototype[methodName + 'Right'] = function(n) {
+	        return this.reverse()[methodName](n).reverse();
+	      };
+	    });
+
+	    // Add `LazyWrapper` methods that accept an `iteratee` value.
+	    arrayEach(['filter', 'map', 'takeWhile'], function(methodName, index) {
+	      var type = index + 1,
+	          isFilter = type != LAZY_MAP_FLAG;
+
+	      LazyWrapper.prototype[methodName] = function(iteratee, thisArg) {
+	        var result = this.clone();
+	        result.__iteratees__.push({ 'iteratee': getCallback(iteratee, thisArg, 1), 'type': type });
+	        result.__filtered__ = result.__filtered__ || isFilter;
+	        return result;
+	      };
+	    });
+
+	    // Add `LazyWrapper` methods for `_.first` and `_.last`.
+	    arrayEach(['first', 'last'], function(methodName, index) {
+	      var takeName = 'take' + (index ? 'Right' : '');
+
+	      LazyWrapper.prototype[methodName] = function() {
+	        return this[takeName](1).value()[0];
+	      };
+	    });
+
+	    // Add `LazyWrapper` methods for `_.initial` and `_.rest`.
+	    arrayEach(['initial', 'rest'], function(methodName, index) {
+	      var dropName = 'drop' + (index ? '' : 'Right');
+
+	      LazyWrapper.prototype[methodName] = function() {
+	        return this.__filtered__ ? new LazyWrapper(this) : this[dropName](1);
+	      };
+	    });
+
+	    // Add `LazyWrapper` methods for `_.pluck` and `_.where`.
+	    arrayEach(['pluck', 'where'], function(methodName, index) {
+	      var operationName = index ? 'filter' : 'map',
+	          createCallback = index ? baseMatches : property;
+
+	      LazyWrapper.prototype[methodName] = function(value) {
+	        return this[operationName](createCallback(value));
+	      };
+	    });
+
+	    LazyWrapper.prototype.compact = function() {
+	      return this.filter(identity);
+	    };
+
+	    LazyWrapper.prototype.reject = function(predicate, thisArg) {
+	      predicate = getCallback(predicate, thisArg, 1);
+	      return this.filter(function(value) {
+	        return !predicate(value);
+	      });
+	    };
+
+	    LazyWrapper.prototype.slice = function(start, end) {
+	      start = start == null ? 0 : (+start || 0);
+
+	      var result = this;
+	      if (result.__filtered__ && (start > 0 || end < 0)) {
+	        return new LazyWrapper(result);
+	      }
+	      if (start < 0) {
+	        result = result.takeRight(-start);
+	      } else if (start) {
+	        result = result.drop(start);
+	      }
+	      if (end !== undefined) {
+	        end = (+end || 0);
+	        result = end < 0 ? result.dropRight(-end) : result.take(end - start);
+	      }
+	      return result;
+	    };
+
+	    LazyWrapper.prototype.takeRightWhile = function(predicate, thisArg) {
+	      return this.reverse().takeWhile(predicate, thisArg).reverse();
+	    };
+
+	    LazyWrapper.prototype.toArray = function() {
+	      return this.take(POSITIVE_INFINITY);
+	    };
+
+	    // Add `LazyWrapper` methods to `lodash.prototype`.
+	    baseForOwn(LazyWrapper.prototype, function(func, methodName) {
+	      var checkIteratee = /^(?:filter|map|reject)|While$/.test(methodName),
+	          retUnwrapped = /^(?:first|last)$/.test(methodName),
+	          lodashFunc = lodash[retUnwrapped ? ('take' + (methodName == 'last' ? 'Right' : '')) : methodName];
+
+	      if (!lodashFunc) {
+	        return;
+	      }
+	      lodash.prototype[methodName] = function() {
+	        var args = retUnwrapped ? [1] : arguments,
+	            chainAll = this.__chain__,
+	            value = this.__wrapped__,
+	            isHybrid = !!this.__actions__.length,
+	            isLazy = value instanceof LazyWrapper,
+	            iteratee = args[0],
+	            useLazy = isLazy || isArray(value);
+
+	        if (useLazy && checkIteratee && typeof iteratee == 'function' && iteratee.length != 1) {
+	          // Avoid lazy use if the iteratee has a "length" value other than `1`.
+	          isLazy = useLazy = false;
+	        }
+	        var interceptor = function(value) {
+	          return (retUnwrapped && chainAll)
+	            ? lodashFunc(value, 1)[0]
+	            : lodashFunc.apply(undefined, arrayPush([value], args));
+	        };
+
+	        var action = { 'func': thru, 'args': [interceptor], 'thisArg': undefined },
+	            onlyLazy = isLazy && !isHybrid;
+
+	        if (retUnwrapped && !chainAll) {
+	          if (onlyLazy) {
+	            value = value.clone();
+	            value.__actions__.push(action);
+	            return func.call(value);
+	          }
+	          return lodashFunc.call(undefined, this.value())[0];
+	        }
+	        if (!retUnwrapped && useLazy) {
+	          value = onlyLazy ? value : new LazyWrapper(this);
+	          var result = func.apply(value, args);
+	          result.__actions__.push(action);
+	          return new LodashWrapper(result, chainAll);
+	        }
+	        return this.thru(interceptor);
+	      };
+	    });
+
+	    // Add `Array` and `String` methods to `lodash.prototype`.
+	    arrayEach(['join', 'pop', 'push', 'replace', 'shift', 'sort', 'splice', 'split', 'unshift'], function(methodName) {
+	      var func = (/^(?:replace|split)$/.test(methodName) ? stringProto : arrayProto)[methodName],
+	          chainName = /^(?:push|sort|unshift)$/.test(methodName) ? 'tap' : 'thru',
+	          retUnwrapped = /^(?:join|pop|replace|shift)$/.test(methodName);
+
+	      lodash.prototype[methodName] = function() {
+	        var args = arguments;
+	        if (retUnwrapped && !this.__chain__) {
+	          return func.apply(this.value(), args);
+	        }
+	        return this[chainName](function(value) {
+	          return func.apply(value, args);
+	        });
+	      };
+	    });
+
+	    // Map minified function names to their real names.
+	    baseForOwn(LazyWrapper.prototype, function(func, methodName) {
+	      var lodashFunc = lodash[methodName];
+	      if (lodashFunc) {
+	        var key = lodashFunc.name,
+	            names = realNames[key] || (realNames[key] = []);
+
+	        names.push({ 'name': methodName, 'func': lodashFunc });
+	      }
+	    });
+
+	    realNames[createHybridWrapper(undefined, BIND_KEY_FLAG).name] = [{ 'name': 'wrapper', 'func': undefined }];
+
+	    // Add functions to the lazy wrapper.
+	    LazyWrapper.prototype.clone = lazyClone;
+	    LazyWrapper.prototype.reverse = lazyReverse;
+	    LazyWrapper.prototype.value = lazyValue;
+
+	    // Add chaining functions to the `lodash` wrapper.
+	    lodash.prototype.chain = wrapperChain;
+	    lodash.prototype.commit = wrapperCommit;
+	    lodash.prototype.concat = wrapperConcat;
+	    lodash.prototype.plant = wrapperPlant;
+	    lodash.prototype.reverse = wrapperReverse;
+	    lodash.prototype.toString = wrapperToString;
+	    lodash.prototype.run = lodash.prototype.toJSON = lodash.prototype.valueOf = lodash.prototype.value = wrapperValue;
+
+	    // Add function aliases to the `lodash` wrapper.
+	    lodash.prototype.collect = lodash.prototype.map;
+	    lodash.prototype.head = lodash.prototype.first;
+	    lodash.prototype.select = lodash.prototype.filter;
+	    lodash.prototype.tail = lodash.prototype.rest;
+
+	    return lodash;
+	  }
+
+	  /*--------------------------------------------------------------------------*/
+
+	  // Export lodash.
+	  var _ = runInContext();
+
+	  // Some AMD build optimizers like r.js check for condition patterns like the following:
+	  if (true) {
+	    // Expose lodash to the global object when an AMD loader is present to avoid
+	    // errors in cases where lodash is loaded by a script tag and not intended
+	    // as an AMD module. See http://requirejs.org/docs/errors.html#mismatch for
+	    // more details.
+	    root._ = _;
+
+	    // Define as an anonymous module so, through path mapping, it can be
+	    // referenced as the "underscore" module.
+	    !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+	      return _;
+	    }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  }
+	  // Check for `exports` after `define` in case a build optimizer adds an `exports` object.
+	  else if (freeExports && freeModule) {
+	    // Export for Node.js or RingoJS.
+	    if (moduleExports) {
+	      (freeModule.exports = _)._ = _;
+	    }
+	    // Export for Rhino with CommonJS support.
+	    else {
+	      freeExports._ = _;
+	    }
+	  }
+	  else {
+	    // Export for a browser or Rhino.
+	    root._ = _;
+	  }
+	}.call(this));
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(337)(module), (function() { return this; }())))
+
+/***/ },
+/* 428 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var _, cloudinary_config;
+
+	  _ = __webpack_require__(427);
+
+	  cloudinary_config = void 0;
+
+	  module.exports = function(new_config, new_value) {
+	    var cloudinary_url, k, ref, uri, v;
+	    if ((cloudinary_config == null) || new_config === true) {
+	      cloudinary_url = process.env.CLOUDINARY_URL;
+	      if (cloudinary_url != null) {
+	        uri = __webpack_require__(335).parse(cloudinary_url, true);
+	        cloudinary_config = {
+	          cloud_name: uri.host,
+	          api_key: uri.auth && uri.auth.split(":")[0],
+	          api_secret: uri.auth && uri.auth.split(":")[1],
+	          private_cdn: uri.pathname != null,
+	          secure_distribution: uri.pathname && uri.pathname.substring(1)
+	        };
+	        if (uri.query != null) {
+	          ref = uri.query;
+	          for (k in ref) {
+	            v = ref[k];
+	            cloudinary_config[k] = v;
+	          }
+	        }
+	      } else {
+	        cloudinary_config = {};
+	      }
+	    }
+	    if (!_.isUndefined(new_value)) {
+	      cloudinary_config[new_config] = new_value;
+	    } else if (_.isString(new_config)) {
+	      return cloudinary_config[new_config];
+	    } else if (_.isObject(new_config)) {
+	      _.extend(cloudinary_config, new_config);
+	    }
+	    return cloudinary_config;
+	  };
+
+	}).call(this);
+
+	//# sourceMappingURL=config.js.map
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 429 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var CLOUDINARY_JS_CONFIG_PARAMS, CONDITIONAL_OPERATORS, CONDITIONAL_PARAMETERS, DEFAULT_RESPONSIVE_WIDTH_TRANSFORMATION, LAYER_KEYWORD_PARAMS, _, build_custom_headers, build_eager, config, crc32, crypto, finalize_resource_type, finalize_source, hashToQuery, join_pair, norm_range_value, number_pattern, offset_any_pattern, offset_any_pattern_re, process_if, process_layer, process_video_params, querystring, smart_escape, split_range, textStyle, unsigned_url_prefix, utf8_encode, utils, v1_adapter, v1_result_adapter,
+	    slice = [].slice;
+
+	  _ = __webpack_require__(427);
+
+	  config = __webpack_require__(428);
+
+	  crypto = __webpack_require__(430);
+
+	  querystring = __webpack_require__(338);
+
+	  utils = exports;
+
+	  exports.CF_SHARED_CDN = "d3jpl91pxevbkh.cloudfront.net";
+
+	  exports.OLD_AKAMAI_SHARED_CDN = "cloudinary-a.akamaihd.net";
+
+	  exports.AKAMAI_SHARED_CDN = "res.cloudinary.com";
+
+	  exports.SHARED_CDN = exports.AKAMAI_SHARED_CDN;
+
+	  exports.VERSION = "1.4.1";
+
+	  exports.USER_AGENT = "CloudinaryNodeJS/" + exports.VERSION;
+
+	  exports.userPlatform = "";
+
+	  exports.getUserAgent = function() {
+	    if (_.isEmpty(utils.userPlatform)) {
+	      return "" + utils.USER_AGENT;
+	    } else {
+	      return utils.userPlatform + " " + utils.USER_AGENT;
+	    }
+	  };
+
+	  DEFAULT_RESPONSIVE_WIDTH_TRANSFORMATION = {
+	    width: "auto",
+	    crop: "limit"
+	  };
+
+	  exports.DEFAULT_POSTER_OPTIONS = {
+	    format: 'jpg',
+	    resource_type: 'video'
+	  };
+
+	  exports.DEFAULT_VIDEO_SOURCE_TYPES = ['webm', 'mp4', 'ogv'];
+
+	  CONDITIONAL_OPERATORS = {
+	    "=": 'eq',
+	    "!=": 'ne',
+	    "<": 'lt',
+	    ">": 'gt',
+	    "<=": 'lte',
+	    ">=": 'gte',
+	    "&&": 'and',
+	    "||": 'or'
+	  };
+
+	  CONDITIONAL_PARAMETERS = {
+	    "width": "w",
+	    "height": "h",
+	    "aspect_ratio": "ar",
+	    "aspectRatio": "ar",
+	    "page_count": "pc",
+	    "pageCount": "pc",
+	    "face_count": "fc",
+	    "faceCount": "fc"
+	  };
+
+	  LAYER_KEYWORD_PARAMS = {
+	    font_weight: "normal",
+	    font_style: "normal",
+	    text_decoration: "none",
+	    text_align: null,
+	    stroke: "none"
+	  };
+
+	  textStyle = function(layer) {
+	    var attr, attr_value, default_value, font_family, font_size, keywords, letter_spacing, line_spacing;
+	    font_family = layer["font_family"];
+	    font_size = layer["font_size"];
+	    keywords = [];
+	    for (attr in LAYER_KEYWORD_PARAMS) {
+	      default_value = LAYER_KEYWORD_PARAMS[attr];
+	      attr_value = layer[attr] || default_value;
+	      if (attr_value !== default_value) {
+	        keywords.push(attr_value);
+	      }
+	    }
+	    letter_spacing = layer["letter_spacing"];
+	    if (letter_spacing) {
+	      keywords.push("letter_spacing_" + letter_spacing);
+	    }
+	    line_spacing = layer["line_spacing"];
+	    if (line_spacing) {
+	      keywords.push("line_spacing_" + line_spacing);
+	    }
+	    if (font_size || font_family || !_.isEmpty(keywords)) {
+	      if (!font_family) {
+	        raise(CloudinaryException, "Must supply font_family for text in overlay/underlay");
+	      }
+	      if (!font_size) {
+	        raise(CloudinaryException, "Must supply font_size for text in overlay/underlay");
+	      }
+	      keywords.unshift(font_size);
+	      keywords.unshift(font_family);
+	      return _.compact(keywords).join("_");
+	    }
+	  };
+
+	  process_if = function(ifValue) {
+	    var replaceRE;
+	    if (ifValue) {
+	      replaceRE = new RegExp("(" + Object.keys(CONDITIONAL_PARAMETERS).join("|") + "|[=<>&|!]+)", "g");
+	      ifValue = ifValue.replace(replaceRE, function(match) {
+	        return CONDITIONAL_OPERATORS[match] || CONDITIONAL_PARAMETERS[match];
+	      });
+	      ifValue = ifValue.replace(/[ _]+/g, '_');
+	      return ifValue = "if_" + ifValue;
+	    }
+	  };
+
+	  process_layer = function(layer) {
+	    var components, format, public_id, resource_type, style, text, type;
+	    if (_.isPlainObject(layer)) {
+	      public_id = layer["public_id"];
+	      format = layer["format"];
+	      resource_type = layer["resource_type"] || "image";
+	      type = layer["type"] || "upload";
+	      text = layer["text"];
+	      style = null;
+	      components = [];
+	      if (!_.isEmpty(public_id)) {
+	        public_id = public_id.replace(new RegExp("/", 'g'), ":");
+	        if (format != null) {
+	          public_id = public_id + "." + format;
+	        }
+	      }
+	      if (_.isEmpty(text) && resource_type !== "text") {
+	        if (_.isEmpty(public_id)) {
+	          throw "Must supply public_id for resource_type layer_parameter";
+	        }
+	        if (resource_type === "subtitles") {
+	          style = textStyle(layer);
+	        }
+	      } else {
+	        resource_type = "text";
+	        type = null;
+	        style = textStyle(layer);
+	        if (!_.isEmpty(text)) {
+	          if (!(_.isEmpty(public_id) ^ _.isEmpty(style))) {
+	            throw "Must supply either style parameters or a public_id when providing text parameter in a text overlay/underlay";
+	          }
+	          text = smart_escape(text.replace(new RegExp("[,/]", 'g'), function(c) {
+	            return "%" + (c.charCodeAt(0).toString(16).toUpperCase());
+	          }));
+	        }
+	      }
+	      if (resource_type !== "image") {
+	        components.push(resource_type);
+	      }
+	      if (type !== "upload") {
+	        components.push(type);
+	      }
+	      components.push(style);
+	      components.push(public_id);
+	      components.push(text);
+	      layer = _.compact(components).join(":");
+	    }
+	    return layer;
+	  };
+
+	  exports.build_upload_params = function(options) {
+	    var params;
+	    params = {
+	      timestamp: exports.timestamp(),
+	      transformation: utils.generate_transformation_string(_.clone(options)),
+	      public_id: options.public_id,
+	      callback: options.callback,
+	      format: options.format,
+	      backup: utils.as_safe_bool(options.backup),
+	      faces: utils.as_safe_bool(options.faces),
+	      exif: utils.as_safe_bool(options.exif),
+	      image_metadata: utils.as_safe_bool(options.image_metadata),
+	      colors: utils.as_safe_bool(options.colors),
+	      type: options.type,
+	      eager: utils.build_eager(options.eager),
+	      use_filename: utils.as_safe_bool(options.use_filename),
+	      unique_filename: utils.as_safe_bool(options.unique_filename),
+	      discard_original_filename: utils.as_safe_bool(options.discard_original_filename),
+	      notification_url: options.notification_url,
+	      eager_notification_url: options.eager_notification_url,
+	      eager_async: utils.as_safe_bool(options.eager_async),
+	      invalidate: utils.as_safe_bool(options.invalidate),
+	      proxy: options.proxy,
+	      folder: options.folder,
+	      overwrite: utils.as_safe_bool(options.overwrite),
+	      allowed_formats: options.allowed_formats && utils.build_array(options.allowed_formats).join(","),
+	      moderation: options.moderation,
+	      phash: utils.as_safe_bool(options.phash),
+	      upload_preset: options.upload_preset,
+	      responsive_breakpoints: utils.generate_responsive_breakpoints_string(options["responsive_breakpoints"]),
+	      return_delete_token: utils.as_safe_bool(options.return_delete_token)
+	    };
+	    return utils.updateable_resource_params(options, params);
+	  };
+
+	  exports.timestamp = function() {
+	    return Math.floor(new Date().getTime() / 1000);
+	  };
+
+
+	  /**
+	   * Deletes `option_name` from `options` and return the value if present.
+	   * If `options` doesn't contain `option_name` the default value is returned.
+	   * @param {Object} options a collection
+	   * @param {String} option_name the name (key) of the desired value
+	   * @param [default_value] the value to return is option_name is missing
+	   */
+
+	  exports.option_consume = function(options, option_name, default_value) {
+	    var result;
+	    result = options[option_name];
+	    delete options[option_name];
+	    if (result != null) {
+	      return result;
+	    } else {
+	      return default_value;
+	    }
+	  };
+
+	  exports.build_array = function(arg) {
+	    if (arg == null) {
+	      return [];
+	    } else if (_.isArray(arg)) {
+	      return arg;
+	    } else {
+	      return [arg];
+	    }
+	  };
+
+	  exports.encode_double_array = function(array) {
+	    array = utils.build_array(array);
+	    if (array.length > 0 && _.isArray(array[0])) {
+	      return array.map(function(e) {
+	        return utils.build_array(e).join(",");
+	      }).join("|");
+	    } else {
+	      return array.join(",");
+	    }
+	  };
+
+	  exports.encode_key_value = function(arg) {
+	    var k, pairs, v;
+	    if (_.isObject(arg)) {
+	      pairs = (function() {
+	        var results;
+	        results = [];
+	        for (k in arg) {
+	          v = arg[k];
+	          results.push(k + "=" + v);
+	        }
+	        return results;
+	      })();
+	      return pairs.join("|");
+	    } else {
+	      return arg;
+	    }
+	  };
+
+	  exports.build_eager = function(transformations) {
+	    var transformation;
+	    return ((function() {
+	      var j, len, ref, results;
+	      ref = utils.build_array(transformations);
+	      results = [];
+	      for (j = 0, len = ref.length; j < len; j++) {
+	        transformation = ref[j];
+	        transformation = _.clone(transformation);
+	        results.push(_.filter([utils.generate_transformation_string(transformation), transformation.format], utils.present).join("/"));
+	      }
+	      return results;
+	    })()).join("|");
+	  };
+
+	  exports.build_custom_headers = function(headers) {
+	    var k, v;
+	    switch (false) {
+	      case !(headers == null):
+	        return void 0;
+	      case !_.isArray(headers):
+	        return headers.join("\n");
+	      case !_.isObject(headers):
+	        return [
+	          (function() {
+	            var results;
+	            results = [];
+	            for (k in headers) {
+	              v = headers[k];
+	              results.push(k + ": " + v);
+	            }
+	            return results;
+	          })()
+	        ].join("\n");
+	      default:
+	        return headers;
+	    }
+	  };
+
+	  exports.present = function(value) {
+	    return !_.isUndefined(value) && ("" + value).length > 0;
+	  };
+
+	  exports.generate_transformation_string = function(options) {
+	    var angle, background, base_transformation, base_transformations, border, color, crop, dpr, effect, flags, has_layer, height, ifValue, j, key, keys, len, named_transformation, no_html_sizes, overlay, param, params, range_value, raw_transformation, ref, ref1, ref2, ref3, ref4, ref5, responsive_width, responsive_width_transformation, result, short, simple_params, size, sortedParams, transformations, underlay, value, width;
+	    if (_.isArray(options)) {
+	      result = (function() {
+	        var j, len, results;
+	        results = [];
+	        for (j = 0, len = options.length; j < len; j++) {
+	          base_transformation = options[j];
+	          results.push(utils.generate_transformation_string(_.clone(base_transformation)));
+	        }
+	        return results;
+	      })();
+	      return result.join("/");
+	    }
+	    responsive_width = utils.option_consume(options, "responsive_width", config().responsive_width);
+	    width = options["width"];
+	    height = options["height"];
+	    size = utils.option_consume(options, "size");
+	    if (size) {
+	      ref1 = (ref = size.split("x"), width = ref[0], height = ref[1], ref), options["width"] = ref1[0], options["height"] = ref1[1];
+	    }
+	    has_layer = options.overlay || options.underlay;
+	    crop = utils.option_consume(options, "crop");
+	    angle = utils.build_array(utils.option_consume(options, "angle")).join(".");
+	    no_html_sizes = has_layer || utils.present(angle) || crop === "fit" || crop === "limit" || responsive_width;
+	    if (width && (width.toString().indexOf("auto") === 0 || no_html_sizes || parseFloat(width) < 1)) {
+	      delete options["width"];
+	    }
+	    if (height && (no_html_sizes || parseFloat(height) < 1)) {
+	      delete options["height"];
+	    }
+	    background = utils.option_consume(options, "background");
+	    background = background && background.replace(/^#/, "rgb:");
+	    color = utils.option_consume(options, "color");
+	    color = color && color.replace(/^#/, "rgb:");
+	    base_transformations = utils.build_array(utils.option_consume(options, "transformation", []));
+	    named_transformation = [];
+	    if (base_transformations.length !== 0 && _.filter(base_transformations, _.isObject).length > 0) {
+	      base_transformations = _.map(base_transformations, function(base_transformation) {
+	        if (_.isObject(base_transformation)) {
+	          return utils.generate_transformation_string(_.clone(base_transformation));
+	        } else {
+	          return utils.generate_transformation_string({
+	            transformation: base_transformation
+	          });
+	        }
+	      });
+	    } else {
+	      named_transformation = base_transformations.join(".");
+	      base_transformations = [];
+	    }
+	    effect = utils.option_consume(options, "effect");
+	    if (_.isArray(effect)) {
+	      effect = effect.join(":");
+	    } else if (_.isObject(effect)) {
+	      for (key in effect) {
+	        value = effect[key];
+	        effect = key + ":" + value;
+	      }
+	    }
+	    border = utils.option_consume(options, "border");
+	    if (_.isObject(border)) {
+	      border = ((ref2 = border.width) != null ? ref2 : 2) + "px_solid_" + (((ref3 = border.color) != null ? ref3 : "black").replace(/^#/, 'rgb:'));
+	    } else if (/^\d+$/.exec(border)) {
+	      options.border = border;
+	      border = void 0;
+	    }
+	    flags = utils.build_array(utils.option_consume(options, "flags")).join(".");
+	    dpr = utils.option_consume(options, "dpr", config().dpr);
+	    if (options["offset"] != null) {
+	      ref4 = split_range(utils.option_consume(options, "offset")), options["start_offset"] = ref4[0], options["end_offset"] = ref4[1];
+	    }
+	    overlay = process_layer(utils.option_consume(options, "overlay"));
+	    underlay = process_layer(utils.option_consume(options, "underlay"));
+	    ifValue = process_if(utils.option_consume(options, "if"));
+	    params = {
+	      a: angle,
+	      b: background,
+	      bo: border,
+	      c: crop,
+	      co: color,
+	      dpr: dpr,
+	      e: effect,
+	      fl: flags,
+	      h: height,
+	      l: overlay,
+	      t: named_transformation,
+	      u: underlay,
+	      w: width
+	    };
+	    simple_params = {
+	      aspect_ratio: "ar",
+	      audio_codec: "ac",
+	      audio_frequency: "af",
+	      bit_rate: 'br',
+	      color_space: "cs",
+	      default_image: "d",
+	      delay: "dl",
+	      density: "dn",
+	      duration: "du",
+	      end_offset: "eo",
+	      fetch_format: "f",
+	      gravity: "g",
+	      opacity: "o",
+	      page: "pg",
+	      prefix: "p",
+	      quality: "q",
+	      radius: "r",
+	      start_offset: "so",
+	      video_codec: "vc",
+	      video_sampling: "vs",
+	      x: "x",
+	      y: "y",
+	      zoom: "z"
+	    };
+	    for (param in simple_params) {
+	      short = simple_params[param];
+	      params[short] = utils.option_consume(options, param);
+	    }
+	    if (params["vc"] != null) {
+	      params["vc"] = process_video_params(params["vc"]);
+	    }
+	    ref5 = ["so", "eo", "du"];
+	    for (j = 0, len = ref5.length; j < len; j++) {
+	      range_value = ref5[j];
+	      if (range_value in params) {
+	        params[range_value] = norm_range_value(params[range_value]);
+	      }
+	    }
+	    sortedParams = [];
+	    keys = Object.keys(params);
+	    keys.sort();
+	    keys.forEach(function(key) {
+	      if (utils.present(params[key])) {
+	        sortedParams.push(key + '_' + params[key]);
+	      }
+	    });
+	    transformations = sortedParams.join(',');
+	    raw_transformation = utils.option_consume(options, 'raw_transformation');
+	    transformations = _.compact([ifValue, transformations, raw_transformation]).join(",");
+	    base_transformations.push(transformations);
+	    transformations = base_transformations;
+	    if (responsive_width) {
+	      responsive_width_transformation = config().responsive_width_transformation || DEFAULT_RESPONSIVE_WIDTH_TRANSFORMATION;
+	      transformations.push(utils.generate_transformation_string(_.clone(responsive_width_transformation)));
+	    }
+	    if ((width != null ? width.toString().indexOf("auto") : void 0) === 0 || responsive_width) {
+	      options.responsive = true;
+	    }
+	    if (dpr === "auto") {
+	      options.hidpi = true;
+	    }
+	    return _.filter(transformations, utils.present).join("/");
+	  };
+
+	  exports.updateable_resource_params = function(options, params) {
+	    if (params == null) {
+	      params = {};
+	    }
+	    if (options.tags != null) {
+	      params.tags = utils.build_array(options.tags).join(",");
+	    }
+	    if (options.context != null) {
+	      params.context = utils.encode_key_value(options.context);
+	    }
+	    if (options.face_coordinates != null) {
+	      params.face_coordinates = utils.encode_double_array(options.face_coordinates);
+	    }
+	    if (options.custom_coordinates != null) {
+	      params.custom_coordinates = utils.encode_double_array(options.custom_coordinates);
+	    }
+	    if (options.headers != null) {
+	      params.headers = utils.build_custom_headers(options.headers);
+	    }
+	    if (options.ocr != null) {
+	      params.ocr = options.ocr;
+	    }
+	    if (options.raw_convert != null) {
+	      params.raw_convert = options.raw_convert;
+	    }
+	    if (options.categorization != null) {
+	      params.categorization = options.categorization;
+	    }
+	    if (options.detection != null) {
+	      params.detection = options.detection;
+	    }
+	    if (options.similarity_search != null) {
+	      params.similarity_search = options.similarity_search;
+	    }
+	    if (options.auto_tagging != null) {
+	      params.auto_tagging = options.auto_tagging;
+	    }
+	    if (options.background_removal != null) {
+	      params.background_removal = options.background_removal;
+	    }
+	    return params;
+	  };
+
+	  exports.url = function(public_id, options) {
+	    var api_secret, cdn_subdomain, cloud_name, cname, format, original_source, prefix, preloaded, private_cdn, ref, ref1, resource_type, secure, secure_cdn_subdomain, secure_distribution, shasum, shorten, sign_url, signature, source_to_sign, ssl_detected, to_sign, transformation, type, url, url_suffix, use_root_path, version;
+	    if (options == null) {
+	      options = {};
+	    }
+	    type = utils.option_consume(options, "type", null);
+	    if (type === "fetch") {
+	      if (options.fetch_format == null) {
+	        options.fetch_format = utils.option_consume(options, "format");
+	      }
+	    }
+	    transformation = utils.generate_transformation_string(options);
+	    resource_type = utils.option_consume(options, "resource_type", "image");
+	    version = utils.option_consume(options, "version");
+	    format = utils.option_consume(options, "format");
+	    cloud_name = utils.option_consume(options, "cloud_name", config().cloud_name);
+	    if (!cloud_name) {
+	      throw "Unknown cloud_name";
+	    }
+	    private_cdn = utils.option_consume(options, "private_cdn", config().private_cdn);
+	    secure_distribution = utils.option_consume(options, "secure_distribution", config().secure_distribution);
+	    secure = utils.option_consume(options, "secure", null);
+	    ssl_detected = utils.option_consume(options, "ssl_detected", config().ssl_detected);
+	    if (secure === null) {
+	      secure = ssl_detected || config().secure;
+	    }
+	    cdn_subdomain = utils.option_consume(options, "cdn_subdomain", config().cdn_subdomain);
+	    secure_cdn_subdomain = utils.option_consume(options, "secure_cdn_subdomain", config().secure_cdn_subdomain);
+	    cname = utils.option_consume(options, "cname", config().cname);
+	    shorten = utils.option_consume(options, "shorten", config().shorten);
+	    sign_url = utils.option_consume(options, "sign_url", config().sign_url);
+	    api_secret = utils.option_consume(options, "api_secret", config().api_secret);
+	    url_suffix = utils.option_consume(options, "url_suffix");
+	    use_root_path = utils.option_consume(options, "use_root_path", config().use_root_path);
+	    preloaded = /^(image|raw)\/([a-z0-9_]+)\/v(\d+)\/([^#]+)$/.exec(public_id);
+	    if (preloaded) {
+	      resource_type = preloaded[1];
+	      type = preloaded[2];
+	      version = preloaded[3];
+	      public_id = preloaded[4];
+	    }
+	    if (url_suffix && !private_cdn) {
+	      throw 'URL Suffix only supported in private CDN';
+	    }
+	    original_source = public_id;
+	    if (public_id == null) {
+	      return original_source;
+	    }
+	    public_id = public_id.toString();
+	    if (type === null && public_id.match(/^https?:\//i)) {
+	      return original_source;
+	    }
+	    ref = finalize_resource_type(resource_type, type, url_suffix, use_root_path, shorten), resource_type = ref[0], type = ref[1];
+	    ref1 = finalize_source(public_id, format, url_suffix), public_id = ref1[0], source_to_sign = ref1[1];
+	    if (source_to_sign.indexOf("/") > 0 && !source_to_sign.match(/^v[0-9]+/) && !source_to_sign.match(/^https?:\//)) {
+	      if (version == null) {
+	        version = 1;
+	      }
+	    }
+	    if (version != null) {
+	      version = "v" + version;
+	    }
+	    transformation = transformation.replace(/([^:])\/\//g, '$1/');
+	    if (sign_url) {
+	      to_sign = [transformation, source_to_sign].filter(function(part) {
+	        return (part != null) && part !== '';
+	      }).join('/');
+	      shasum = crypto.createHash('sha1');
+	      shasum.update(utf8_encode(to_sign + api_secret));
+	      signature = shasum.digest('base64').replace(/\//g, '_').replace(/\+/g, '-').substring(0, 8);
+	      signature = "s--" + signature + "--";
+	    }
+	    prefix = unsigned_url_prefix(public_id, cloud_name, private_cdn, cdn_subdomain, secure_cdn_subdomain, cname, secure, secure_distribution);
+	    url = [prefix, resource_type, type, signature, transformation, version, public_id].filter(function(part) {
+	      return (part != null) && part !== '';
+	    }).join('/');
+	    return url;
+	  };
+
+	  exports.video_url = function(public_id, options) {
+	    options = _.extend({
+	      resource_type: 'video'
+	    }, options);
+	    return utils.url(public_id, options);
+	  };
+
+	  finalize_source = function(source, format, url_suffix) {
+	    var source_to_sign;
+	    source = source.replace(/([^:])\/\//g, '$1/');
+	    if (source.match(/^https?:\//i)) {
+	      source = smart_escape(source);
+	      source_to_sign = source;
+	    } else {
+	      source = smart_escape(decodeURIComponent(source));
+	      source_to_sign = source;
+	      if (!!url_suffix) {
+	        if (url_suffix.match(/[\.\/]/)) {
+	          throw new Error('url_suffix should not include . or /');
+	        }
+	        source = source + '/' + url_suffix;
+	      }
+	      if (format != null) {
+	        source = source + '.' + format;
+	        source_to_sign = source_to_sign + '.' + format;
+	      }
+	    }
+	    return [source, source_to_sign];
+	  };
+
+	  exports.video_thumbnail_url = function(public_id, options) {
+	    options = _.extend({}, exports.DEFAULT_POSTER_OPTIONS, options);
+	    return utils.url(public_id, options);
+	  };
+
+	  finalize_resource_type = function(resource_type, type, url_suffix, use_root_path, shorten) {
+	    if (type == null) {
+	      type = 'upload';
+	    }
+	    if (url_suffix != null) {
+	      if (resource_type === 'image' && type === 'upload') {
+	        resource_type = "images";
+	        type = null;
+	      } else if (resource_type === 'raw' && type === 'upload') {
+	        resource_type = 'files';
+	        type = null;
+	      } else {
+	        throw new Error("URL Suffix only supported for image/upload and raw/upload");
+	      }
+	    }
+	    if (use_root_path) {
+	      if ((resource_type === 'image' && type === 'upload') || (resource_type === 'images' && (type == null))) {
+	        resource_type = null;
+	        type = null;
+	      } else {
+	        throw new Error("Root path only supported for image/upload");
+	      }
+	    }
+	    if (shorten && resource_type === 'image' && type === 'upload') {
+	      resource_type = 'iu';
+	      type = null;
+	    }
+	    return [resource_type, type];
+	  };
+
+	  unsigned_url_prefix = function(source, cloud_name, private_cdn, cdn_subdomain, secure_cdn_subdomain, cname, secure, secure_distribution) {
+	    var cdn_part, host, prefix, shared_domain, subdomain, subdomain_part;
+	    if (cloud_name.indexOf("/") === 0) {
+	      return '/res' + cloud_name;
+	    }
+	    shared_domain = !private_cdn;
+	    if (secure) {
+	      if ((secure_distribution == null) || secure_distribution === exports.OLD_AKAMAI_SHARED_CDN) {
+	        secure_distribution = private_cdn ? cloud_name + "-res.cloudinary.com" : exports.SHARED_CDN;
+	      }
+	      if (shared_domain == null) {
+	        shared_domain = secure_distribution === exports.SHARED_CDN;
+	      }
+	      if ((secure_cdn_subdomain == null) && shared_domain) {
+	        secure_cdn_subdomain = cdn_subdomain;
+	      }
+	      if (secure_cdn_subdomain) {
+	        secure_distribution = secure_distribution.replace('res.cloudinary.com', 'res-' + ((crc32(source) % 5) + 1 + '.cloudinary.com'));
+	      }
+	      prefix = 'https://' + secure_distribution;
+	    } else if (cname) {
+	      subdomain = cdn_subdomain ? 'a' + ((crc32(source) % 5) + 1) + '.' : '';
+	      prefix = 'http://' + subdomain + cname;
+	    } else {
+	      cdn_part = private_cdn ? cloud_name + '-' : '';
+	      subdomain_part = cdn_subdomain ? '-' + ((crc32(source) % 5) + 1) : '';
+	      host = [cdn_part, 'res', subdomain_part, '.cloudinary.com'].join('');
+	      prefix = 'http://' + host;
+	    }
+	    if (shared_domain) {
+	      prefix += '/' + cloud_name;
+	    }
+	    return prefix;
+	  };
+
+	  smart_escape = function(string) {
+	    return encodeURIComponent(string).replace(/%3A/g, ":").replace(/%2F/g, "/");
+	  };
+
+	  utf8_encode = function(argString) {
+	    var c1, enc, end, n, start, string, stringl, utftext;
+	    if (argString == null) {
+	      return "";
+	    }
+	    string = argString + "";
+	    utftext = "";
+	    start = void 0;
+	    end = void 0;
+	    stringl = 0;
+	    start = end = 0;
+	    stringl = string.length;
+	    n = 0;
+	    while (n < stringl) {
+	      c1 = string.charCodeAt(n);
+	      enc = null;
+	      if (c1 < 128) {
+	        end++;
+	      } else if (c1 > 127 && c1 < 2048) {
+	        enc = String.fromCharCode((c1 >> 6) | 192, (c1 & 63) | 128);
+	      } else {
+	        enc = String.fromCharCode((c1 >> 12) | 224, ((c1 >> 6) & 63) | 128, (c1 & 63) | 128);
+	      }
+	      if (enc !== null) {
+	        if (end > start) {
+	          utftext += string.slice(start, end);
+	        }
+	        utftext += enc;
+	        start = end = n + 1;
+	      }
+	      n++;
+	    }
+	    if (end > start) {
+	      utftext += string.slice(start, stringl);
+	    }
+	    return utftext;
+	  };
+
+	  crc32 = function(str) {
+	    var crc, i, iTop, table, x, y;
+	    str = utf8_encode(str);
+	    table = "00000000 77073096 EE0E612C 990951BA 076DC419 706AF48F E963A535 9E6495A3 0EDB8832 79DCB8A4 E0D5E91E 97D2D988 09B64C2B 7EB17CBD E7B82D07 90BF1D91 1DB71064 6AB020F2 F3B97148 84BE41DE 1ADAD47D 6DDDE4EB F4D4B551 83D385C7 136C9856 646BA8C0 FD62F97A 8A65C9EC 14015C4F 63066CD9 FA0F3D63 8D080DF5 3B6E20C8 4C69105E D56041E4 A2677172 3C03E4D1 4B04D447 D20D85FD A50AB56B 35B5A8FA 42B2986C DBBBC9D6 ACBCF940 32D86CE3 45DF5C75 DCD60DCF ABD13D59 26D930AC 51DE003A C8D75180 BFD06116 21B4F4B5 56B3C423 CFBA9599 B8BDA50F 2802B89E 5F058808 C60CD9B2 B10BE924 2F6F7C87 58684C11 C1611DAB B6662D3D 76DC4190 01DB7106 98D220BC EFD5102A 71B18589 06B6B51F 9FBFE4A5 E8B8D433 7807C9A2 0F00F934 9609A88E E10E9818 7F6A0DBB 086D3D2D 91646C97 E6635C01 6B6B51F4 1C6C6162 856530D8 F262004E 6C0695ED 1B01A57B 8208F4C1 F50FC457 65B0D9C6 12B7E950 8BBEB8EA FCB9887C 62DD1DDF 15DA2D49 8CD37CF3 FBD44C65 4DB26158 3AB551CE A3BC0074 D4BB30E2 4ADFA541 3DD895D7 A4D1C46D D3D6F4FB 4369E96A 346ED9FC AD678846 DA60B8D0 44042D73 33031DE5 AA0A4C5F DD0D7CC9 5005713C 270241AA BE0B1010 C90C2086 5768B525 206F85B3 B966D409 CE61E49F 5EDEF90E 29D9C998 B0D09822 C7D7A8B4 59B33D17 2EB40D81 B7BD5C3B C0BA6CAD EDB88320 9ABFB3B6 03B6E20C 74B1D29A EAD54739 9DD277AF 04DB2615 73DC1683 E3630B12 94643B84 0D6D6A3E 7A6A5AA8 E40ECF0B 9309FF9D 0A00AE27 7D079EB1 F00F9344 8708A3D2 1E01F268 6906C2FE F762575D 806567CB 196C3671 6E6B06E7 FED41B76 89D32BE0 10DA7A5A 67DD4ACC F9B9DF6F 8EBEEFF9 17B7BE43 60B08ED5 D6D6A3E8 A1D1937E 38D8C2C4 4FDFF252 D1BB67F1 A6BC5767 3FB506DD 48B2364B D80D2BDA AF0A1B4C 36034AF6 41047A60 DF60EFC3 A867DF55 316E8EEF 4669BE79 CB61B38C BC66831A 256FD2A0 5268E236 CC0C7795 BB0B4703 220216B9 5505262F C5BA3BBE B2BD0B28 2BB45A92 5CB36A04 C2D7FFA7 B5D0CF31 2CD99E8B 5BDEAE1D 9B64C2B0 EC63F226 756AA39C 026D930A 9C0906A9 EB0E363F 72076785 05005713 95BF4A82 E2B87A14 7BB12BAE 0CB61B38 92D28E9B E5D5BE0D 7CDCEFB7 0BDBDF21 86D3D2D4 F1D4E242 68DDB3F8 1FDA836E 81BE16CD F6B9265B 6FB077E1 18B74777 88085AE6 FF0F6A70 66063BCA 11010B5C 8F659EFF F862AE69 616BFFD3 166CCF45 A00AE278 D70DD2EE 4E048354 3903B3C2 A7672661 D06016F7 4969474D 3E6E77DB AED16A4A D9D65ADC 40DF0B66 37D83BF0 A9BCAE53 DEBB9EC5 47B2CF7F 30B5FFE9 BDBDF21C CABAC28A 53B39330 24B4A3A6 BAD03605 CDD70693 54DE5729 23D967BF B3667A2E C4614AB8 5D681B02 2A6F2B94 B40BBE37 C30C8EA1 5A05DF1B 2D02EF8D";
+	    crc = 0;
+	    x = 0;
+	    y = 0;
+	    crc = crc ^ (-1);
+	    i = 0;
+	    iTop = str.length;
+	    while (i < iTop) {
+	      y = (crc ^ str.charCodeAt(i)) & 0xFF;
+	      x = "0x" + table.substr(y * 9, 8);
+	      crc = (crc >>> 8) ^ x;
+	      i++;
+	    }
+	    crc = crc ^ (-1);
+	    if (crc < 0) {
+	      crc += 4294967296;
+	    }
+	    return crc;
+	  };
+
+	  exports.api_url = function(action, options) {
+	    var cloud_name, cloudinary, ref, ref1, ref2, ref3, resource_type;
+	    if (action == null) {
+	      action = 'upload';
+	    }
+	    if (options == null) {
+	      options = {};
+	    }
+	    cloudinary = (ref = (ref1 = options["upload_prefix"]) != null ? ref1 : config().upload_prefix) != null ? ref : "https://api.cloudinary.com";
+	    cloud_name = (function() {
+	      var ref3;
+	      if ((ref2 = (ref3 = options["cloud_name"]) != null ? ref3 : config().cloud_name) != null) {
+	        return ref2;
+	      } else {
+	        throw "Must supply cloud_name";
+	      }
+	    })();
+	    resource_type = (ref3 = options["resource_type"]) != null ? ref3 : "image";
+	    return [cloudinary, "v1_1", cloud_name, resource_type, action].join("/");
+	  };
+
+	  exports.random_public_id = function() {
+	    return crypto.randomBytes(12).toString('base64').replace(/[^a-z0-9]/g, "");
+	  };
+
+	  exports.signed_preloaded_image = function(result) {
+	    return result.resource_type + "/upload/v" + result.version + "/" + (_.filter([result.public_id, result.format], utils.present).join(".")) + "#" + result.signature;
+	  };
+
+	  exports.api_sign_request = function(params_to_sign, api_secret) {
+	    var k, shasum, to_sign, v;
+	    to_sign = _.sortBy((function() {
+	      var results;
+	      results = [];
+	      for (k in params_to_sign) {
+	        v = params_to_sign[k];
+	        if (v != null) {
+	          results.push(k + "=" + (utils.build_array(v).join(",")));
+	        }
+	      }
+	      return results;
+	    })(), _.identity).join("&");
+	    shasum = crypto.createHash('sha1');
+	    shasum.update(utf8_encode(to_sign + api_secret));
+	    return shasum.digest('hex');
+	  };
+
+	  exports.clear_blank = function(hash) {
+	    var filtered_hash, k, v;
+	    filtered_hash = {};
+	    for (k in hash) {
+	      v = hash[k];
+	      if (exports.present(v)) {
+	        filtered_hash[k] = hash[k];
+	      }
+	    }
+	    return filtered_hash;
+	  };
+
+	  exports.merge = function(hash1, hash2) {
+	    var k, result, v;
+	    result = {};
+	    for (k in hash1) {
+	      v = hash1[k];
+	      result[k] = hash1[k];
+	    }
+	    for (k in hash2) {
+	      v = hash2[k];
+	      result[k] = hash2[k];
+	    }
+	    return result;
+	  };
+
+	  exports.sign_request = function(params, options) {
+	    var api_key, api_secret, ref, ref1;
+	    if (options == null) {
+	      options = {};
+	    }
+	    api_key = (function() {
+	      var ref1;
+	      if ((ref = (ref1 = options.api_key) != null ? ref1 : config().api_key) != null) {
+	        return ref;
+	      } else {
+	        throw "Must supply api_key";
+	      }
+	    })();
+	    api_secret = (function() {
+	      var ref2;
+	      if ((ref1 = (ref2 = options.api_secret) != null ? ref2 : config().api_secret) != null) {
+	        return ref1;
+	      } else {
+	        throw "Must supply api_secret";
+	      }
+	    })();
+	    params = exports.clear_blank(params);
+	    params.signature = exports.api_sign_request(params, api_secret);
+	    params.api_key = api_key;
+	    return params;
+	  };
+
+	  exports.webhook_signature = function(data, timestamp, options) {
+	    var api_secret, ref, shasum;
+	    if (options == null) {
+	      options = {};
+	    }
+	    if (!data) {
+	      throw "Must supply data";
+	    }
+	    if (!timestamp) {
+	      throw "Must supply timestamp";
+	    }
+	    api_secret = (function() {
+	      var ref1;
+	      if ((ref = (ref1 = options.api_secret) != null ? ref1 : config().api_secret) != null) {
+	        return ref;
+	      } else {
+	        throw "Must supply api_secret";
+	      }
+	    })();
+	    shasum = crypto.createHash('sha1');
+	    shasum.update(data + timestamp + api_secret);
+	    return shasum.digest('hex');
+	  };
+
+	  exports.process_request_params = function(params, options) {
+	    if ((options.unsigned != null) && options.unsigned) {
+	      params = exports.clear_blank(params);
+	      delete params["timestamp"];
+	    } else {
+	      params = exports.sign_request(params, options);
+	    }
+	    return params;
+	  };
+
+	  exports.private_download_url = function(public_id, format, options) {
+	    var params;
+	    if (options == null) {
+	      options = {};
+	    }
+	    params = exports.sign_request({
+	      timestamp: exports.timestamp(),
+	      public_id: public_id,
+	      format: format,
+	      type: options.type,
+	      attachment: options.attachment,
+	      expires_at: options.expires_at
+	    }, options);
+	    return exports.api_url("download", options) + "?" + querystring.stringify(params);
+	  };
+
+
+	  /**
+	   * Utility method that uses the deprecated ZIP download API.
+	   * @deprecated Replaced by {download_zip_url} that uses the more advanced and robust archive generation and download API
+	   */
+
+	  exports.zip_download_url = function(tag, options) {
+	    var params;
+	    if (options == null) {
+	      options = {};
+	    }
+	    params = exports.sign_request({
+	      timestamp: exports.timestamp(),
+	      tag: tag,
+	      transformation: utils.generate_transformation_string(options)
+	    }, options);
+	    return exports.api_url("download_tag.zip", options) + "?" + hashToQuery(params);
+	  };
+
+
+	  /**
+	   * Returns a URL that when invokes creates an archive and returns it.
+	   * @param options [Hash]
+	   * @option options [String|Symbol] :resource_type  The resource type of files to include in the archive. Must be one of :image | :video | :raw
+	   * @option options [String|Symbol] :type (:upload) The specific file type of resources: :upload|:private|:authenticated
+	   * @option options [String|Symbol|Array] :tags (nil) list of tags to include in the archive
+	   * @option options [String|Array<String>] :public_ids (nil) list of public_ids to include in the archive
+	   * @option options [String|Array<String>] :prefixes (nil) Optional list of prefixes of public IDs (e.g., folders).
+	   * @option options [String|Array<String>] :transformations Optional list of transformations.
+	   *   The derived images of the given transformations are included in the archive. Using the string representation of
+	   *   multiple chained transformations as we use for the 'eager' upload parameter.
+	   * @option options [String|Symbol] :mode (:create) return the generated archive file or to store it as a raw resource and
+	   *   return a JSON with URLs for accessing the archive. Possible values: :download, :create
+	   * @option options [String|Symbol] :target_format (:zip)
+	   * @option options [String] :target_public_id Optional public ID of the generated raw resource.
+	   *   Relevant only for the create mode. If not specified, random public ID is generated.
+	   * @option options [boolean] :flatten_folders (false) If true, flatten public IDs with folders to be in the root of the archive.
+	   *   Add numeric counter to the file name in case of a name conflict.
+	   * @option options [boolean] :flatten_transformations (false) If true, and multiple transformations are given,
+	   *   flatten the folder structure of derived images and store the transformation details on the file name instead.
+	   * @option options [boolean] :use_original_filename Use the original file name of included images (if available) instead of the public ID.
+	   * @option options [boolean] :async (false) If true, return immediately and perform the archive creation in the background.
+	   *   Relevant only for the create mode.
+	   * @option options [String] :notification_url Optional URL to send an HTTP post request (webhook) when the archive creation is completed.
+	   * @option options [String|Array<String] :target_tags Optional array. Allows assigning one or more tag to the generated archive file (for later housekeeping via the admin API).
+	   * @option options [String] :keep_derived (false) keep the derived images used for generating the archive
+	   * @return [String] archive url
+	   */
+
+	  exports.download_archive_url = function(options) {
+	    var cloudinary_params;
+	    if (options == null) {
+	      options = {};
+	    }
+	    cloudinary_params = exports.sign_request(exports.archive_params(_.merge(options, {
+	      mode: "download"
+	    })), options);
+	    return exports.api_url("generate_archive", options) + "?" + hashToQuery(cloudinary_params);
+	  };
+
+
+	  /**
+	   * Returns a URL that when invokes creates an zip archive and returns it.
+	   * @see download_archive_url
+	   */
+
+	  exports.download_zip_url = function(options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return exports.download_archive_url(_.merge(options, {
+	      target_format: "zip"
+	    }));
+	  };
+
+	  join_pair = function(key, value) {
+	    if (!value) {
+	      return void 0;
+	    } else if (value === true) {
+	      return key;
+	    } else {
+	      return key + "='" + value + "'";
+	    }
+	  };
+
+	  exports.html_attrs = function(attrs) {
+	    var pairs;
+	    pairs = _.filter(_.map(attrs, function(value, key) {
+	      return join_pair(key, value);
+	    }));
+	    pairs.sort();
+	    return pairs.join(" ");
+	  };
+
+	  CLOUDINARY_JS_CONFIG_PARAMS = ['api_key', 'cloud_name', 'private_cdn', 'secure_distribution', 'cdn_subdomain'];
+
+	  exports.cloudinary_js_config = function() {
+	    var j, len, param, params, value;
+	    params = {};
+	    for (j = 0, len = CLOUDINARY_JS_CONFIG_PARAMS.length; j < len; j++) {
+	      param = CLOUDINARY_JS_CONFIG_PARAMS[j];
+	      value = config()[param];
+	      if (value != null) {
+	        params[param] = value;
+	      }
+	    }
+	    return "<script type='text/javascript'>\n" + "$.cloudinary.config(" + JSON.stringify(params) + ");\n" + "</script>\n";
+	  };
+
+	  v1_result_adapter = function(callback) {
+	    if (callback != null) {
+	      return function(result) {
+	        if (result.error != null) {
+	          return callback(result.error);
+	        } else {
+	          return callback(void 0, result);
+	        }
+	      };
+	    } else {
+	      return null;
+	    }
+	  };
+
+	  v1_adapter = function(name, num_pass_args, v1) {
+	    return function() {
+	      var args, callback, options, pass_args;
+	      args = 1 <= arguments.length ? slice.call(arguments, 0) : [];
+	      pass_args = _.take(args, num_pass_args);
+	      options = args[num_pass_args];
+	      callback = args[num_pass_args + 1];
+	      if ((callback == null) && _.isFunction(options)) {
+	        callback = options;
+	        options = {};
+	      }
+	      callback = v1_result_adapter(callback);
+	      args = pass_args.concat([callback, options]);
+	      return v1[name].apply(this, args);
+	    };
+	  };
+
+	  exports.v1_adapters = function(exports, v1, mapping) {
+	    var name, num_pass_args, results;
+	    results = [];
+	    for (name in mapping) {
+	      num_pass_args = mapping[name];
+	      results.push(exports[name] = v1_adapter(name, num_pass_args, v1));
+	    }
+	    return results;
+	  };
+
+	  exports.as_safe_bool = function(value) {
+	    if (value == null) {
+	      return void 0;
+	    }
+	    if (value === true || value === 'true' || value === '1') {
+	      value = 1;
+	    }
+	    if (value === false || value === 'false' || value === '0') {
+	      value = 0;
+	    }
+	    return value;
+	  };
+
+	  number_pattern = "([0-9]*)\\.([0-9]+)|([0-9]+)";
+
+	  offset_any_pattern = "(" + number_pattern + ")([%pP])?";
+
+	  offset_any_pattern_re = RegExp("(" + offset_any_pattern + ")\\.\\.(" + offset_any_pattern + ")");
+
+	  split_range = function(range) {
+	    switch (range.constructor) {
+	      case String:
+	        if (offset_any_pattern_re = ~range) {
+	          return range.split("..");
+	        }
+	        break;
+	      case Array:
+	        return [_.first(range), _.last(range)];
+	      default:
+	        return [null, null];
+	    }
+	  };
+
+
+	  /**
+	   * Normalize an offset value
+	   * @param {String} value a decimal value which may have a 'p' or '%' postfix. E.g. '35%', '0.4p'
+	   * @return {Object|String} a normalized String of the input value if possible otherwise the value itself
+	   */
+
+	  norm_range_value = function(value) {
+	    var modifier, offset;
+	    offset = String(value).match(RegExp("^" + offset_any_pattern + "$"));
+	    if (offset) {
+	      modifier = offset[5] ? 'p' : '';
+	      value = "" + (offset[1] || offset[4]) + modifier;
+	    }
+	    return value;
+	  };
+
+
+	  /**
+	   * A video codec parameter can be either a String or a Hash.
+	   * @param {Object} param <code>vc_<codec>[ : <profile> : [<level>]]</code>
+	   *                       or <code>{ codec: 'h264', profile: 'basic', level: '3.1' }</code>
+	   * @return {String} <code><codec> : <profile> : [<level>]]</code> if a Hash was provided
+	   *                   or the param if a String was provided.
+	   *                   Returns null if param is not a Hash or String
+	   */
+
+	  process_video_params = function(param) {
+	    var video;
+	    switch (param.constructor) {
+	      case Object:
+	        video = "";
+	        if ('codec' in param) {
+	          video = param['codec'];
+	          if ('profile' in param) {
+	            video += ":" + param['profile'];
+	            if ('level' in param) {
+	              video += ":" + param['level'];
+	            }
+	          }
+	        }
+	        return video;
+	      case String:
+	        return param;
+	      default:
+	        return null;
+	    }
+	  };
+
+
+	  /**
+	   * Returns a Hash of parameters used to create an archive
+	   * @param [Hash] options
+	   * @private
+	   */
+
+	  exports.archive_params = function(options) {
+	    var ref;
+	    if (options == null) {
+	      options = {};
+	    }
+	    return {
+	      timestamp: (ref = options.timestamp) != null ? ref : exports.timestamp(),
+	      type: options.type,
+	      mode: options.mode,
+	      target_format: options.target_format,
+	      target_public_id: options.target_public_id,
+	      flatten_folders: exports.as_safe_bool(options.flatten_folders),
+	      flatten_transformations: exports.as_safe_bool(options.flatten_transformations),
+	      use_original_filename: exports.as_safe_bool(options.use_original_filename),
+	      async: exports.as_safe_bool(options.async),
+	      notification_url: options.notification_url,
+	      target_tags: options.target_tags && exports.build_array(options.target_tags),
+	      keep_derived: exports.as_safe_bool(options.keep_derived),
+	      tags: options.tags && exports.build_array(options.tags),
+	      public_ids: options.public_ids && exports.build_array(options.public_ids),
+	      prefixes: options.prefixes && exports.build_array(options.prefixes),
+	      transformations: build_eager(options.transformations)
+	    };
+	  };
+
+	  build_custom_headers = function(headers) {
+	    var a;
+	    return ((function() {
+	      var j, len, ref, results;
+	      ref = Array(headers);
+	      results = [];
+	      for (j = 0, len = ref.length; j < len; j++) {
+	        a = ref[j];
+	        if ((a != null ? a.join : void 0) != null) {
+	          results.push(a.join(": "));
+	        }
+	      }
+	      return results;
+	    })()).join("\n");
+	  };
+
+	  exports.build_explicit_api_params = function(public_id, options) {
+	    var opt;
+	    if (options == null) {
+	      options = {};
+	    }
+	    opt = [
+	      {
+	        callback: options.callback,
+	        custom_coordinates: options.custom_coordinates && utils.encode_double_array(options.custom_coordinates),
+	        eager: build_eager(options.eager),
+	        eager_async: utils.as_safe_bool(options.eager_async),
+	        eager_notification_url: options.eager_notification_url,
+	        face_coordinates: options.face_coordinates && utils.encode_double_array(options.face_coordinates),
+	        headers: build_custom_headers(options.headers),
+	        invalidate: utils.as_safe_bool(options.invalidate),
+	        public_id: public_id,
+	        responsive_breakpoints: utils.generate_responsive_breakpoints_string(options.responsive_breakpoints),
+	        tags: options.tags && utils.build_array(options.tags).join(","),
+	        timestamp: options.timestamp || exports.timestamp(),
+	        type: options.type
+	      }
+	    ];
+	    return opt;
+	  };
+
+	  exports.generate_responsive_breakpoints_string = function(breakpoints) {
+	    var breakpoint_settings, j, len, transformation;
+	    if (breakpoints == null) {
+	      return;
+	    }
+	    breakpoints = _.clone(breakpoints);
+	    if (!_.isArray(breakpoints)) {
+	      breakpoints = [breakpoints];
+	    }
+	    for (j = 0, len = breakpoints.length; j < len; j++) {
+	      breakpoint_settings = breakpoints[j];
+	      if (breakpoint_settings != null) {
+	        transformation = breakpoint_settings.transformation;
+	        delete breakpoint_settings.transformation;
+	        if (transformation) {
+	          breakpoint_settings.transformation = utils.generate_transformation_string(_.clone(transformation));
+	        }
+	      }
+	    }
+	    return JSON.stringify(breakpoints);
+	  };
+
+
+	  /**
+	   * @private
+	   */
+
+	  build_eager = function(eager) {
+	    var format, ret, transformation;
+	    if (eager == null) {
+	      return void 0;
+	    }
+	    ret = ((function() {
+	      var j, len, ref, results;
+	      ref = Array(eager);
+	      results = [];
+	      for (j = 0, len = ref.length; j < len; j++) {
+	        transformation = ref[j];
+	        transformation = _.clone(transformation);
+	        if (transformation.format != null) {
+	          format = transformation.format;
+	        }
+	        delete transformation.format;
+	        results.push(_.compact([utils.generate_transformation_string(transformation), format]).join("/"));
+	      }
+	      return results;
+	    })()).join("|");
+	    return ret;
+	  };
+
+	  hashToQuery = function(hash) {
+	    var key, v, value;
+	    return _.compact((function() {
+	      var results;
+	      results = [];
+	      for (key in hash) {
+	        value = hash[key];
+	        if (_.isArray(value)) {
+	          results.push(((function() {
+	            var j, len, results1;
+	            results1 = [];
+	            for (j = 0, len = value.length; j < len; j++) {
+	              v = value[j];
+	              if (!key.match(/\w+\[\]/)) {
+	                key = key + "[]";
+	              }
+	              results1.push((querystring.escape("" + key)) + "=" + (querystring.escape(v)));
+	            }
+	            return results1;
+	          })()).join("&"));
+	        } else {
+	          results.push((querystring.escape(key)) + "=" + (querystring.escape(value)));
+	        }
+	      }
+	      return results;
+	    })()).sort().join('&');
+	  };
+
+	}).call(this);
+
+	//# sourceMappingURL=utils.js.map
+
+
+/***/ },
+/* 430 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {var rng = __webpack_require__(431)
+
+	function error () {
+	  var m = [].slice.call(arguments).join(' ')
+	  throw new Error([
+	    m,
+	    'we accept pull requests',
+	    'http://github.com/dominictarr/crypto-browserify'
+	    ].join('\n'))
+	}
+
+	exports.createHash = __webpack_require__(433)
+
+	exports.createHmac = __webpack_require__(442)
+
+	exports.randomBytes = function(size, callback) {
+	  if (callback && callback.call) {
+	    try {
+	      callback.call(this, undefined, new Buffer(rng(size)))
+	    } catch (err) { callback(err) }
+	  } else {
+	    return new Buffer(rng(size))
+	  }
+	}
+
+	function each(a, f) {
+	  for(var i in a)
+	    f(a[i], i)
+	}
+
+	exports.getHashes = function () {
+	  return ['sha1', 'sha256', 'sha512', 'md5', 'rmd160']
+	}
+
+	var p = __webpack_require__(443)(exports)
+	exports.pbkdf2 = p.pbkdf2
+	exports.pbkdf2Sync = p.pbkdf2Sync
+
+
+	// the least I can do is make error messages for the rest of the node.js/crypto api.
+	each(['createCredentials'
+	, 'createCipher'
+	, 'createCipheriv'
+	, 'createDecipher'
+	, 'createDecipheriv'
+	, 'createSign'
+	, 'createVerify'
+	, 'createDiffieHellman'
+	], function (name) {
+	  exports[name] = function () {
+	    error('sorry,', name, 'is not implemented yet')
+	  }
+	})
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).Buffer))
+
+/***/ },
+/* 431 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global, Buffer) {(function() {
+	  var g = ('undefined' === typeof window ? global : window) || {}
+	  _crypto = (
+	    g.crypto || g.msCrypto || __webpack_require__(432)
+	  )
+	  module.exports = function(size) {
+	    // Modern Browsers
+	    if(_crypto.getRandomValues) {
+	      var bytes = new Buffer(size); //in browserify, this is an extended Uint8Array
+	      /* This will not work in older browsers.
+	       * See https://developer.mozilla.org/en-US/docs/Web/API/window.crypto.getRandomValues
+	       */
+	    
+	      _crypto.getRandomValues(bytes);
+	      return bytes;
+	    }
+	    else if (_crypto.randomBytes) {
+	      return _crypto.randomBytes(size)
+	    }
+	    else
+	      throw new Error(
+	        'secure random number generation not supported by this browser\n'+
+	        'use chrome, FireFox or Internet Explorer 11'
+	      )
+	  }
+	}())
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(317).Buffer))
+
+/***/ },
+/* 432 */
+/***/ function(module, exports) {
+
+	/* (ignored) */
+
+/***/ },
+/* 433 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {var createHash = __webpack_require__(434)
+
+	var md5 = toConstructor(__webpack_require__(439))
+	var rmd160 = toConstructor(__webpack_require__(441))
+
+	function toConstructor (fn) {
+	  return function () {
+	    var buffers = []
+	    var m= {
+	      update: function (data, enc) {
+	        if(!Buffer.isBuffer(data)) data = new Buffer(data, enc)
+	        buffers.push(data)
+	        return this
+	      },
+	      digest: function (enc) {
+	        var buf = Buffer.concat(buffers)
+	        var r = fn(buf)
+	        buffers = null
+	        return enc ? r.toString(enc) : r
+	      }
+	    }
+	    return m
+	  }
+	}
+
+	module.exports = function (alg) {
+	  if('md5' === alg) return new md5()
+	  if('rmd160' === alg) return new rmd160()
+	  return createHash(alg)
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).Buffer))
+
+/***/ },
+/* 434 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var exports = module.exports = function (alg) {
+	  var Alg = exports[alg]
+	  if(!Alg) throw new Error(alg + ' is not supported (we accept pull requests)')
+	  return new Alg()
+	}
+
+	var Buffer = __webpack_require__(317).Buffer
+	var Hash   = __webpack_require__(435)(Buffer)
+
+	exports.sha1 = __webpack_require__(436)(Buffer, Hash)
+	exports.sha256 = __webpack_require__(437)(Buffer, Hash)
+	exports.sha512 = __webpack_require__(438)(Buffer, Hash)
+
+
+/***/ },
+/* 435 */
+/***/ function(module, exports) {
+
+	module.exports = function (Buffer) {
+
+	  //prototype class for hash functions
+	  function Hash (blockSize, finalSize) {
+	    this._block = new Buffer(blockSize) //new Uint32Array(blockSize/4)
+	    this._finalSize = finalSize
+	    this._blockSize = blockSize
+	    this._len = 0
+	    this._s = 0
+	  }
+
+	  Hash.prototype.init = function () {
+	    this._s = 0
+	    this._len = 0
+	  }
+
+	  Hash.prototype.update = function (data, enc) {
+	    if ("string" === typeof data) {
+	      enc = enc || "utf8"
+	      data = new Buffer(data, enc)
+	    }
+
+	    var l = this._len += data.length
+	    var s = this._s = (this._s || 0)
+	    var f = 0
+	    var buffer = this._block
+
+	    while (s < l) {
+	      var t = Math.min(data.length, f + this._blockSize - (s % this._blockSize))
+	      var ch = (t - f)
+
+	      for (var i = 0; i < ch; i++) {
+	        buffer[(s % this._blockSize) + i] = data[i + f]
+	      }
+
+	      s += ch
+	      f += ch
+
+	      if ((s % this._blockSize) === 0) {
+	        this._update(buffer)
+	      }
+	    }
+	    this._s = s
+
+	    return this
+	  }
+
+	  Hash.prototype.digest = function (enc) {
+	    // Suppose the length of the message M, in bits, is l
+	    var l = this._len * 8
+
+	    // Append the bit 1 to the end of the message
+	    this._block[this._len % this._blockSize] = 0x80
+
+	    // and then k zero bits, where k is the smallest non-negative solution to the equation (l + 1 + k) === finalSize mod blockSize
+	    this._block.fill(0, this._len % this._blockSize + 1)
+
+	    if (l % (this._blockSize * 8) >= this._finalSize * 8) {
+	      this._update(this._block)
+	      this._block.fill(0)
+	    }
+
+	    // to this append the block which is equal to the number l written in binary
+	    // TODO: handle case where l is > Math.pow(2, 29)
+	    this._block.writeInt32BE(l, this._blockSize - 4)
+
+	    var hash = this._update(this._block) || this._hash()
+
+	    return enc ? hash.toString(enc) : hash
+	  }
+
+	  Hash.prototype._update = function () {
+	    throw new Error('_update must be implemented by subclass')
+	  }
+
+	  return Hash
+	}
+
+
+/***/ },
+/* 436 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+	 * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
+	 * in FIPS PUB 180-1
+	 * Version 2.1a Copyright Paul Johnston 2000 - 2002.
+	 * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+	 * Distributed under the BSD License
+	 * See http://pajhome.org.uk/crypt/md5 for details.
+	 */
+
+	var inherits = __webpack_require__(332).inherits
+
+	module.exports = function (Buffer, Hash) {
+
+	  var A = 0|0
+	  var B = 4|0
+	  var C = 8|0
+	  var D = 12|0
+	  var E = 16|0
+
+	  var W = new (typeof Int32Array === 'undefined' ? Array : Int32Array)(80)
+
+	  var POOL = []
+
+	  function Sha1 () {
+	    if(POOL.length)
+	      return POOL.pop().init()
+
+	    if(!(this instanceof Sha1)) return new Sha1()
+	    this._w = W
+	    Hash.call(this, 16*4, 14*4)
+
+	    this._h = null
+	    this.init()
+	  }
+
+	  inherits(Sha1, Hash)
+
+	  Sha1.prototype.init = function () {
+	    this._a = 0x67452301
+	    this._b = 0xefcdab89
+	    this._c = 0x98badcfe
+	    this._d = 0x10325476
+	    this._e = 0xc3d2e1f0
+
+	    Hash.prototype.init.call(this)
+	    return this
+	  }
+
+	  Sha1.prototype._POOL = POOL
+	  Sha1.prototype._update = function (X) {
+
+	    var a, b, c, d, e, _a, _b, _c, _d, _e
+
+	    a = _a = this._a
+	    b = _b = this._b
+	    c = _c = this._c
+	    d = _d = this._d
+	    e = _e = this._e
+
+	    var w = this._w
+
+	    for(var j = 0; j < 80; j++) {
+	      var W = w[j] = j < 16 ? X.readInt32BE(j*4)
+	        : rol(w[j - 3] ^ w[j -  8] ^ w[j - 14] ^ w[j - 16], 1)
+
+	      var t = add(
+	        add(rol(a, 5), sha1_ft(j, b, c, d)),
+	        add(add(e, W), sha1_kt(j))
+	      )
+
+	      e = d
+	      d = c
+	      c = rol(b, 30)
+	      b = a
+	      a = t
+	    }
+
+	    this._a = add(a, _a)
+	    this._b = add(b, _b)
+	    this._c = add(c, _c)
+	    this._d = add(d, _d)
+	    this._e = add(e, _e)
+	  }
+
+	  Sha1.prototype._hash = function () {
+	    if(POOL.length < 100) POOL.push(this)
+	    var H = new Buffer(20)
+	    //console.log(this._a|0, this._b|0, this._c|0, this._d|0, this._e|0)
+	    H.writeInt32BE(this._a|0, A)
+	    H.writeInt32BE(this._b|0, B)
+	    H.writeInt32BE(this._c|0, C)
+	    H.writeInt32BE(this._d|0, D)
+	    H.writeInt32BE(this._e|0, E)
+	    return H
+	  }
+
+	  /*
+	   * Perform the appropriate triplet combination function for the current
+	   * iteration
+	   */
+	  function sha1_ft(t, b, c, d) {
+	    if(t < 20) return (b & c) | ((~b) & d);
+	    if(t < 40) return b ^ c ^ d;
+	    if(t < 60) return (b & c) | (b & d) | (c & d);
+	    return b ^ c ^ d;
+	  }
+
+	  /*
+	   * Determine the appropriate additive constant for the current iteration
+	   */
+	  function sha1_kt(t) {
+	    return (t < 20) ?  1518500249 : (t < 40) ?  1859775393 :
+	           (t < 60) ? -1894007588 : -899497514;
+	  }
+
+	  /*
+	   * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+	   * to work around bugs in some JS interpreters.
+	   * //dominictarr: this is 10 years old, so maybe this can be dropped?)
+	   *
+	   */
+	  function add(x, y) {
+	    return (x + y ) | 0
+	  //lets see how this goes on testling.
+	  //  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+	  //  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+	  //  return (msw << 16) | (lsw & 0xFFFF);
+	  }
+
+	  /*
+	   * Bitwise rotate a 32-bit number to the left.
+	   */
+	  function rol(num, cnt) {
+	    return (num << cnt) | (num >>> (32 - cnt));
+	  }
+
+	  return Sha1
+	}
+
+
+/***/ },
+/* 437 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
+	 * in FIPS 180-2
+	 * Version 2.2-beta Copyright Angel Marin, Paul Johnston 2000 - 2009.
+	 * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+	 *
+	 */
+
+	var inherits = __webpack_require__(332).inherits
+
+	module.exports = function (Buffer, Hash) {
+
+	  var K = [
+	      0x428A2F98, 0x71374491, 0xB5C0FBCF, 0xE9B5DBA5,
+	      0x3956C25B, 0x59F111F1, 0x923F82A4, 0xAB1C5ED5,
+	      0xD807AA98, 0x12835B01, 0x243185BE, 0x550C7DC3,
+	      0x72BE5D74, 0x80DEB1FE, 0x9BDC06A7, 0xC19BF174,
+	      0xE49B69C1, 0xEFBE4786, 0x0FC19DC6, 0x240CA1CC,
+	      0x2DE92C6F, 0x4A7484AA, 0x5CB0A9DC, 0x76F988DA,
+	      0x983E5152, 0xA831C66D, 0xB00327C8, 0xBF597FC7,
+	      0xC6E00BF3, 0xD5A79147, 0x06CA6351, 0x14292967,
+	      0x27B70A85, 0x2E1B2138, 0x4D2C6DFC, 0x53380D13,
+	      0x650A7354, 0x766A0ABB, 0x81C2C92E, 0x92722C85,
+	      0xA2BFE8A1, 0xA81A664B, 0xC24B8B70, 0xC76C51A3,
+	      0xD192E819, 0xD6990624, 0xF40E3585, 0x106AA070,
+	      0x19A4C116, 0x1E376C08, 0x2748774C, 0x34B0BCB5,
+	      0x391C0CB3, 0x4ED8AA4A, 0x5B9CCA4F, 0x682E6FF3,
+	      0x748F82EE, 0x78A5636F, 0x84C87814, 0x8CC70208,
+	      0x90BEFFFA, 0xA4506CEB, 0xBEF9A3F7, 0xC67178F2
+	    ]
+
+	  var W = new Array(64)
+
+	  function Sha256() {
+	    this.init()
+
+	    this._w = W //new Array(64)
+
+	    Hash.call(this, 16*4, 14*4)
+	  }
+
+	  inherits(Sha256, Hash)
+
+	  Sha256.prototype.init = function () {
+
+	    this._a = 0x6a09e667|0
+	    this._b = 0xbb67ae85|0
+	    this._c = 0x3c6ef372|0
+	    this._d = 0xa54ff53a|0
+	    this._e = 0x510e527f|0
+	    this._f = 0x9b05688c|0
+	    this._g = 0x1f83d9ab|0
+	    this._h = 0x5be0cd19|0
+
+	    this._len = this._s = 0
+
+	    return this
+	  }
+
+	  function S (X, n) {
+	    return (X >>> n) | (X << (32 - n));
+	  }
+
+	  function R (X, n) {
+	    return (X >>> n);
+	  }
+
+	  function Ch (x, y, z) {
+	    return ((x & y) ^ ((~x) & z));
+	  }
+
+	  function Maj (x, y, z) {
+	    return ((x & y) ^ (x & z) ^ (y & z));
+	  }
+
+	  function Sigma0256 (x) {
+	    return (S(x, 2) ^ S(x, 13) ^ S(x, 22));
+	  }
+
+	  function Sigma1256 (x) {
+	    return (S(x, 6) ^ S(x, 11) ^ S(x, 25));
+	  }
+
+	  function Gamma0256 (x) {
+	    return (S(x, 7) ^ S(x, 18) ^ R(x, 3));
+	  }
+
+	  function Gamma1256 (x) {
+	    return (S(x, 17) ^ S(x, 19) ^ R(x, 10));
+	  }
+
+	  Sha256.prototype._update = function(M) {
+
+	    var W = this._w
+	    var a, b, c, d, e, f, g, h
+	    var T1, T2
+
+	    a = this._a | 0
+	    b = this._b | 0
+	    c = this._c | 0
+	    d = this._d | 0
+	    e = this._e | 0
+	    f = this._f | 0
+	    g = this._g | 0
+	    h = this._h | 0
+
+	    for (var j = 0; j < 64; j++) {
+	      var w = W[j] = j < 16
+	        ? M.readInt32BE(j * 4)
+	        : Gamma1256(W[j - 2]) + W[j - 7] + Gamma0256(W[j - 15]) + W[j - 16]
+
+	      T1 = h + Sigma1256(e) + Ch(e, f, g) + K[j] + w
+
+	      T2 = Sigma0256(a) + Maj(a, b, c);
+	      h = g; g = f; f = e; e = d + T1; d = c; c = b; b = a; a = T1 + T2;
+	    }
+
+	    this._a = (a + this._a) | 0
+	    this._b = (b + this._b) | 0
+	    this._c = (c + this._c) | 0
+	    this._d = (d + this._d) | 0
+	    this._e = (e + this._e) | 0
+	    this._f = (f + this._f) | 0
+	    this._g = (g + this._g) | 0
+	    this._h = (h + this._h) | 0
+
+	  };
+
+	  Sha256.prototype._hash = function () {
+	    var H = new Buffer(32)
+
+	    H.writeInt32BE(this._a,  0)
+	    H.writeInt32BE(this._b,  4)
+	    H.writeInt32BE(this._c,  8)
+	    H.writeInt32BE(this._d, 12)
+	    H.writeInt32BE(this._e, 16)
+	    H.writeInt32BE(this._f, 20)
+	    H.writeInt32BE(this._g, 24)
+	    H.writeInt32BE(this._h, 28)
+
+	    return H
+	  }
+
+	  return Sha256
+
+	}
+
+
+/***/ },
+/* 438 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var inherits = __webpack_require__(332).inherits
+
+	module.exports = function (Buffer, Hash) {
+	  var K = [
+	    0x428a2f98, 0xd728ae22, 0x71374491, 0x23ef65cd,
+	    0xb5c0fbcf, 0xec4d3b2f, 0xe9b5dba5, 0x8189dbbc,
+	    0x3956c25b, 0xf348b538, 0x59f111f1, 0xb605d019,
+	    0x923f82a4, 0xaf194f9b, 0xab1c5ed5, 0xda6d8118,
+	    0xd807aa98, 0xa3030242, 0x12835b01, 0x45706fbe,
+	    0x243185be, 0x4ee4b28c, 0x550c7dc3, 0xd5ffb4e2,
+	    0x72be5d74, 0xf27b896f, 0x80deb1fe, 0x3b1696b1,
+	    0x9bdc06a7, 0x25c71235, 0xc19bf174, 0xcf692694,
+	    0xe49b69c1, 0x9ef14ad2, 0xefbe4786, 0x384f25e3,
+	    0x0fc19dc6, 0x8b8cd5b5, 0x240ca1cc, 0x77ac9c65,
+	    0x2de92c6f, 0x592b0275, 0x4a7484aa, 0x6ea6e483,
+	    0x5cb0a9dc, 0xbd41fbd4, 0x76f988da, 0x831153b5,
+	    0x983e5152, 0xee66dfab, 0xa831c66d, 0x2db43210,
+	    0xb00327c8, 0x98fb213f, 0xbf597fc7, 0xbeef0ee4,
+	    0xc6e00bf3, 0x3da88fc2, 0xd5a79147, 0x930aa725,
+	    0x06ca6351, 0xe003826f, 0x14292967, 0x0a0e6e70,
+	    0x27b70a85, 0x46d22ffc, 0x2e1b2138, 0x5c26c926,
+	    0x4d2c6dfc, 0x5ac42aed, 0x53380d13, 0x9d95b3df,
+	    0x650a7354, 0x8baf63de, 0x766a0abb, 0x3c77b2a8,
+	    0x81c2c92e, 0x47edaee6, 0x92722c85, 0x1482353b,
+	    0xa2bfe8a1, 0x4cf10364, 0xa81a664b, 0xbc423001,
+	    0xc24b8b70, 0xd0f89791, 0xc76c51a3, 0x0654be30,
+	    0xd192e819, 0xd6ef5218, 0xd6990624, 0x5565a910,
+	    0xf40e3585, 0x5771202a, 0x106aa070, 0x32bbd1b8,
+	    0x19a4c116, 0xb8d2d0c8, 0x1e376c08, 0x5141ab53,
+	    0x2748774c, 0xdf8eeb99, 0x34b0bcb5, 0xe19b48a8,
+	    0x391c0cb3, 0xc5c95a63, 0x4ed8aa4a, 0xe3418acb,
+	    0x5b9cca4f, 0x7763e373, 0x682e6ff3, 0xd6b2b8a3,
+	    0x748f82ee, 0x5defb2fc, 0x78a5636f, 0x43172f60,
+	    0x84c87814, 0xa1f0ab72, 0x8cc70208, 0x1a6439ec,
+	    0x90befffa, 0x23631e28, 0xa4506ceb, 0xde82bde9,
+	    0xbef9a3f7, 0xb2c67915, 0xc67178f2, 0xe372532b,
+	    0xca273ece, 0xea26619c, 0xd186b8c7, 0x21c0c207,
+	    0xeada7dd6, 0xcde0eb1e, 0xf57d4f7f, 0xee6ed178,
+	    0x06f067aa, 0x72176fba, 0x0a637dc5, 0xa2c898a6,
+	    0x113f9804, 0xbef90dae, 0x1b710b35, 0x131c471b,
+	    0x28db77f5, 0x23047d84, 0x32caab7b, 0x40c72493,
+	    0x3c9ebe0a, 0x15c9bebc, 0x431d67c4, 0x9c100d4c,
+	    0x4cc5d4be, 0xcb3e42b6, 0x597f299c, 0xfc657e2a,
+	    0x5fcb6fab, 0x3ad6faec, 0x6c44198c, 0x4a475817
+	  ]
+
+	  var W = new Array(160)
+
+	  function Sha512() {
+	    this.init()
+	    this._w = W
+
+	    Hash.call(this, 128, 112)
+	  }
+
+	  inherits(Sha512, Hash)
+
+	  Sha512.prototype.init = function () {
+
+	    this._a = 0x6a09e667|0
+	    this._b = 0xbb67ae85|0
+	    this._c = 0x3c6ef372|0
+	    this._d = 0xa54ff53a|0
+	    this._e = 0x510e527f|0
+	    this._f = 0x9b05688c|0
+	    this._g = 0x1f83d9ab|0
+	    this._h = 0x5be0cd19|0
+
+	    this._al = 0xf3bcc908|0
+	    this._bl = 0x84caa73b|0
+	    this._cl = 0xfe94f82b|0
+	    this._dl = 0x5f1d36f1|0
+	    this._el = 0xade682d1|0
+	    this._fl = 0x2b3e6c1f|0
+	    this._gl = 0xfb41bd6b|0
+	    this._hl = 0x137e2179|0
+
+	    this._len = this._s = 0
+
+	    return this
+	  }
+
+	  function S (X, Xl, n) {
+	    return (X >>> n) | (Xl << (32 - n))
+	  }
+
+	  function Ch (x, y, z) {
+	    return ((x & y) ^ ((~x) & z));
+	  }
+
+	  function Maj (x, y, z) {
+	    return ((x & y) ^ (x & z) ^ (y & z));
+	  }
+
+	  Sha512.prototype._update = function(M) {
+
+	    var W = this._w
+	    var a, b, c, d, e, f, g, h
+	    var al, bl, cl, dl, el, fl, gl, hl
+
+	    a = this._a | 0
+	    b = this._b | 0
+	    c = this._c | 0
+	    d = this._d | 0
+	    e = this._e | 0
+	    f = this._f | 0
+	    g = this._g | 0
+	    h = this._h | 0
+
+	    al = this._al | 0
+	    bl = this._bl | 0
+	    cl = this._cl | 0
+	    dl = this._dl | 0
+	    el = this._el | 0
+	    fl = this._fl | 0
+	    gl = this._gl | 0
+	    hl = this._hl | 0
+
+	    for (var i = 0; i < 80; i++) {
+	      var j = i * 2
+
+	      var Wi, Wil
+
+	      if (i < 16) {
+	        Wi = W[j] = M.readInt32BE(j * 4)
+	        Wil = W[j + 1] = M.readInt32BE(j * 4 + 4)
+
+	      } else {
+	        var x  = W[j - 15*2]
+	        var xl = W[j - 15*2 + 1]
+	        var gamma0  = S(x, xl, 1) ^ S(x, xl, 8) ^ (x >>> 7)
+	        var gamma0l = S(xl, x, 1) ^ S(xl, x, 8) ^ S(xl, x, 7)
+
+	        x  = W[j - 2*2]
+	        xl = W[j - 2*2 + 1]
+	        var gamma1  = S(x, xl, 19) ^ S(xl, x, 29) ^ (x >>> 6)
+	        var gamma1l = S(xl, x, 19) ^ S(x, xl, 29) ^ S(xl, x, 6)
+
+	        // W[i] = gamma0 + W[i - 7] + gamma1 + W[i - 16]
+	        var Wi7  = W[j - 7*2]
+	        var Wi7l = W[j - 7*2 + 1]
+
+	        var Wi16  = W[j - 16*2]
+	        var Wi16l = W[j - 16*2 + 1]
+
+	        Wil = gamma0l + Wi7l
+	        Wi  = gamma0  + Wi7 + ((Wil >>> 0) < (gamma0l >>> 0) ? 1 : 0)
+	        Wil = Wil + gamma1l
+	        Wi  = Wi  + gamma1  + ((Wil >>> 0) < (gamma1l >>> 0) ? 1 : 0)
+	        Wil = Wil + Wi16l
+	        Wi  = Wi  + Wi16 + ((Wil >>> 0) < (Wi16l >>> 0) ? 1 : 0)
+
+	        W[j] = Wi
+	        W[j + 1] = Wil
+	      }
+
+	      var maj = Maj(a, b, c)
+	      var majl = Maj(al, bl, cl)
+
+	      var sigma0h = S(a, al, 28) ^ S(al, a, 2) ^ S(al, a, 7)
+	      var sigma0l = S(al, a, 28) ^ S(a, al, 2) ^ S(a, al, 7)
+	      var sigma1h = S(e, el, 14) ^ S(e, el, 18) ^ S(el, e, 9)
+	      var sigma1l = S(el, e, 14) ^ S(el, e, 18) ^ S(e, el, 9)
+
+	      // t1 = h + sigma1 + ch + K[i] + W[i]
+	      var Ki = K[j]
+	      var Kil = K[j + 1]
+
+	      var ch = Ch(e, f, g)
+	      var chl = Ch(el, fl, gl)
+
+	      var t1l = hl + sigma1l
+	      var t1 = h + sigma1h + ((t1l >>> 0) < (hl >>> 0) ? 1 : 0)
+	      t1l = t1l + chl
+	      t1 = t1 + ch + ((t1l >>> 0) < (chl >>> 0) ? 1 : 0)
+	      t1l = t1l + Kil
+	      t1 = t1 + Ki + ((t1l >>> 0) < (Kil >>> 0) ? 1 : 0)
+	      t1l = t1l + Wil
+	      t1 = t1 + Wi + ((t1l >>> 0) < (Wil >>> 0) ? 1 : 0)
+
+	      // t2 = sigma0 + maj
+	      var t2l = sigma0l + majl
+	      var t2 = sigma0h + maj + ((t2l >>> 0) < (sigma0l >>> 0) ? 1 : 0)
+
+	      h  = g
+	      hl = gl
+	      g  = f
+	      gl = fl
+	      f  = e
+	      fl = el
+	      el = (dl + t1l) | 0
+	      e  = (d + t1 + ((el >>> 0) < (dl >>> 0) ? 1 : 0)) | 0
+	      d  = c
+	      dl = cl
+	      c  = b
+	      cl = bl
+	      b  = a
+	      bl = al
+	      al = (t1l + t2l) | 0
+	      a  = (t1 + t2 + ((al >>> 0) < (t1l >>> 0) ? 1 : 0)) | 0
+	    }
+
+	    this._al = (this._al + al) | 0
+	    this._bl = (this._bl + bl) | 0
+	    this._cl = (this._cl + cl) | 0
+	    this._dl = (this._dl + dl) | 0
+	    this._el = (this._el + el) | 0
+	    this._fl = (this._fl + fl) | 0
+	    this._gl = (this._gl + gl) | 0
+	    this._hl = (this._hl + hl) | 0
+
+	    this._a = (this._a + a + ((this._al >>> 0) < (al >>> 0) ? 1 : 0)) | 0
+	    this._b = (this._b + b + ((this._bl >>> 0) < (bl >>> 0) ? 1 : 0)) | 0
+	    this._c = (this._c + c + ((this._cl >>> 0) < (cl >>> 0) ? 1 : 0)) | 0
+	    this._d = (this._d + d + ((this._dl >>> 0) < (dl >>> 0) ? 1 : 0)) | 0
+	    this._e = (this._e + e + ((this._el >>> 0) < (el >>> 0) ? 1 : 0)) | 0
+	    this._f = (this._f + f + ((this._fl >>> 0) < (fl >>> 0) ? 1 : 0)) | 0
+	    this._g = (this._g + g + ((this._gl >>> 0) < (gl >>> 0) ? 1 : 0)) | 0
+	    this._h = (this._h + h + ((this._hl >>> 0) < (hl >>> 0) ? 1 : 0)) | 0
+	  }
+
+	  Sha512.prototype._hash = function () {
+	    var H = new Buffer(64)
+
+	    function writeInt64BE(h, l, offset) {
+	      H.writeInt32BE(h, offset)
+	      H.writeInt32BE(l, offset + 4)
+	    }
+
+	    writeInt64BE(this._a, this._al, 0)
+	    writeInt64BE(this._b, this._bl, 8)
+	    writeInt64BE(this._c, this._cl, 16)
+	    writeInt64BE(this._d, this._dl, 24)
+	    writeInt64BE(this._e, this._el, 32)
+	    writeInt64BE(this._f, this._fl, 40)
+	    writeInt64BE(this._g, this._gl, 48)
+	    writeInt64BE(this._h, this._hl, 56)
+
+	    return H
+	  }
+
+	  return Sha512
+
+	}
+
+
+/***/ },
+/* 439 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+	 * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+	 * Digest Algorithm, as defined in RFC 1321.
+	 * Version 2.1 Copyright (C) Paul Johnston 1999 - 2002.
+	 * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+	 * Distributed under the BSD License
+	 * See http://pajhome.org.uk/crypt/md5 for more info.
+	 */
+
+	var helpers = __webpack_require__(440);
+
+	/*
+	 * Calculate the MD5 of an array of little-endian words, and a bit length
+	 */
+	function core_md5(x, len)
+	{
+	  /* append padding */
+	  x[len >> 5] |= 0x80 << ((len) % 32);
+	  x[(((len + 64) >>> 9) << 4) + 14] = len;
+
+	  var a =  1732584193;
+	  var b = -271733879;
+	  var c = -1732584194;
+	  var d =  271733878;
+
+	  for(var i = 0; i < x.length; i += 16)
+	  {
+	    var olda = a;
+	    var oldb = b;
+	    var oldc = c;
+	    var oldd = d;
+
+	    a = md5_ff(a, b, c, d, x[i+ 0], 7 , -680876936);
+	    d = md5_ff(d, a, b, c, x[i+ 1], 12, -389564586);
+	    c = md5_ff(c, d, a, b, x[i+ 2], 17,  606105819);
+	    b = md5_ff(b, c, d, a, x[i+ 3], 22, -1044525330);
+	    a = md5_ff(a, b, c, d, x[i+ 4], 7 , -176418897);
+	    d = md5_ff(d, a, b, c, x[i+ 5], 12,  1200080426);
+	    c = md5_ff(c, d, a, b, x[i+ 6], 17, -1473231341);
+	    b = md5_ff(b, c, d, a, x[i+ 7], 22, -45705983);
+	    a = md5_ff(a, b, c, d, x[i+ 8], 7 ,  1770035416);
+	    d = md5_ff(d, a, b, c, x[i+ 9], 12, -1958414417);
+	    c = md5_ff(c, d, a, b, x[i+10], 17, -42063);
+	    b = md5_ff(b, c, d, a, x[i+11], 22, -1990404162);
+	    a = md5_ff(a, b, c, d, x[i+12], 7 ,  1804603682);
+	    d = md5_ff(d, a, b, c, x[i+13], 12, -40341101);
+	    c = md5_ff(c, d, a, b, x[i+14], 17, -1502002290);
+	    b = md5_ff(b, c, d, a, x[i+15], 22,  1236535329);
+
+	    a = md5_gg(a, b, c, d, x[i+ 1], 5 , -165796510);
+	    d = md5_gg(d, a, b, c, x[i+ 6], 9 , -1069501632);
+	    c = md5_gg(c, d, a, b, x[i+11], 14,  643717713);
+	    b = md5_gg(b, c, d, a, x[i+ 0], 20, -373897302);
+	    a = md5_gg(a, b, c, d, x[i+ 5], 5 , -701558691);
+	    d = md5_gg(d, a, b, c, x[i+10], 9 ,  38016083);
+	    c = md5_gg(c, d, a, b, x[i+15], 14, -660478335);
+	    b = md5_gg(b, c, d, a, x[i+ 4], 20, -405537848);
+	    a = md5_gg(a, b, c, d, x[i+ 9], 5 ,  568446438);
+	    d = md5_gg(d, a, b, c, x[i+14], 9 , -1019803690);
+	    c = md5_gg(c, d, a, b, x[i+ 3], 14, -187363961);
+	    b = md5_gg(b, c, d, a, x[i+ 8], 20,  1163531501);
+	    a = md5_gg(a, b, c, d, x[i+13], 5 , -1444681467);
+	    d = md5_gg(d, a, b, c, x[i+ 2], 9 , -51403784);
+	    c = md5_gg(c, d, a, b, x[i+ 7], 14,  1735328473);
+	    b = md5_gg(b, c, d, a, x[i+12], 20, -1926607734);
+
+	    a = md5_hh(a, b, c, d, x[i+ 5], 4 , -378558);
+	    d = md5_hh(d, a, b, c, x[i+ 8], 11, -2022574463);
+	    c = md5_hh(c, d, a, b, x[i+11], 16,  1839030562);
+	    b = md5_hh(b, c, d, a, x[i+14], 23, -35309556);
+	    a = md5_hh(a, b, c, d, x[i+ 1], 4 , -1530992060);
+	    d = md5_hh(d, a, b, c, x[i+ 4], 11,  1272893353);
+	    c = md5_hh(c, d, a, b, x[i+ 7], 16, -155497632);
+	    b = md5_hh(b, c, d, a, x[i+10], 23, -1094730640);
+	    a = md5_hh(a, b, c, d, x[i+13], 4 ,  681279174);
+	    d = md5_hh(d, a, b, c, x[i+ 0], 11, -358537222);
+	    c = md5_hh(c, d, a, b, x[i+ 3], 16, -722521979);
+	    b = md5_hh(b, c, d, a, x[i+ 6], 23,  76029189);
+	    a = md5_hh(a, b, c, d, x[i+ 9], 4 , -640364487);
+	    d = md5_hh(d, a, b, c, x[i+12], 11, -421815835);
+	    c = md5_hh(c, d, a, b, x[i+15], 16,  530742520);
+	    b = md5_hh(b, c, d, a, x[i+ 2], 23, -995338651);
+
+	    a = md5_ii(a, b, c, d, x[i+ 0], 6 , -198630844);
+	    d = md5_ii(d, a, b, c, x[i+ 7], 10,  1126891415);
+	    c = md5_ii(c, d, a, b, x[i+14], 15, -1416354905);
+	    b = md5_ii(b, c, d, a, x[i+ 5], 21, -57434055);
+	    a = md5_ii(a, b, c, d, x[i+12], 6 ,  1700485571);
+	    d = md5_ii(d, a, b, c, x[i+ 3], 10, -1894986606);
+	    c = md5_ii(c, d, a, b, x[i+10], 15, -1051523);
+	    b = md5_ii(b, c, d, a, x[i+ 1], 21, -2054922799);
+	    a = md5_ii(a, b, c, d, x[i+ 8], 6 ,  1873313359);
+	    d = md5_ii(d, a, b, c, x[i+15], 10, -30611744);
+	    c = md5_ii(c, d, a, b, x[i+ 6], 15, -1560198380);
+	    b = md5_ii(b, c, d, a, x[i+13], 21,  1309151649);
+	    a = md5_ii(a, b, c, d, x[i+ 4], 6 , -145523070);
+	    d = md5_ii(d, a, b, c, x[i+11], 10, -1120210379);
+	    c = md5_ii(c, d, a, b, x[i+ 2], 15,  718787259);
+	    b = md5_ii(b, c, d, a, x[i+ 9], 21, -343485551);
+
+	    a = safe_add(a, olda);
+	    b = safe_add(b, oldb);
+	    c = safe_add(c, oldc);
+	    d = safe_add(d, oldd);
+	  }
+	  return Array(a, b, c, d);
+
+	}
+
+	/*
+	 * These functions implement the four basic operations the algorithm uses.
+	 */
+	function md5_cmn(q, a, b, x, s, t)
+	{
+	  return safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s),b);
+	}
+	function md5_ff(a, b, c, d, x, s, t)
+	{
+	  return md5_cmn((b & c) | ((~b) & d), a, b, x, s, t);
+	}
+	function md5_gg(a, b, c, d, x, s, t)
+	{
+	  return md5_cmn((b & d) | (c & (~d)), a, b, x, s, t);
+	}
+	function md5_hh(a, b, c, d, x, s, t)
+	{
+	  return md5_cmn(b ^ c ^ d, a, b, x, s, t);
+	}
+	function md5_ii(a, b, c, d, x, s, t)
+	{
+	  return md5_cmn(c ^ (b | (~d)), a, b, x, s, t);
+	}
+
+	/*
+	 * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+	 * to work around bugs in some JS interpreters.
+	 */
+	function safe_add(x, y)
+	{
+	  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+	  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+	  return (msw << 16) | (lsw & 0xFFFF);
+	}
+
+	/*
+	 * Bitwise rotate a 32-bit number to the left.
+	 */
+	function bit_rol(num, cnt)
+	{
+	  return (num << cnt) | (num >>> (32 - cnt));
+	}
+
+	module.exports = function md5(buf) {
+	  return helpers.hash(buf, core_md5, 16);
+	};
+
+
+/***/ },
+/* 440 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {var intSize = 4;
+	var zeroBuffer = new Buffer(intSize); zeroBuffer.fill(0);
+	var chrsz = 8;
+
+	function toArray(buf, bigEndian) {
+	  if ((buf.length % intSize) !== 0) {
+	    var len = buf.length + (intSize - (buf.length % intSize));
+	    buf = Buffer.concat([buf, zeroBuffer], len);
+	  }
+
+	  var arr = [];
+	  var fn = bigEndian ? buf.readInt32BE : buf.readInt32LE;
+	  for (var i = 0; i < buf.length; i += intSize) {
+	    arr.push(fn.call(buf, i));
+	  }
+	  return arr;
+	}
+
+	function toBuffer(arr, size, bigEndian) {
+	  var buf = new Buffer(size);
+	  var fn = bigEndian ? buf.writeInt32BE : buf.writeInt32LE;
+	  for (var i = 0; i < arr.length; i++) {
+	    fn.call(buf, arr[i], i * 4, true);
+	  }
+	  return buf;
+	}
+
+	function hash(buf, fn, hashSize, bigEndian) {
+	  if (!Buffer.isBuffer(buf)) buf = new Buffer(buf);
+	  var arr = fn(toArray(buf, bigEndian), buf.length * chrsz);
+	  return toBuffer(arr, hashSize, bigEndian);
+	}
+
+	module.exports = { hash: hash };
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).Buffer))
+
+/***/ },
+/* 441 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {
+	module.exports = ripemd160
+
+
+
+	/*
+	CryptoJS v3.1.2
+	code.google.com/p/crypto-js
+	(c) 2009-2013 by Jeff Mott. All rights reserved.
+	code.google.com/p/crypto-js/wiki/License
+	*/
+	/** @preserve
+	(c) 2012 by Cédric Mesnil. All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+	    - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+	    - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	*/
+
+	// Constants table
+	var zl = [
+	    0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15,
+	    7,  4, 13,  1, 10,  6, 15,  3, 12,  0,  9,  5,  2, 14, 11,  8,
+	    3, 10, 14,  4,  9, 15,  8,  1,  2,  7,  0,  6, 13, 11,  5, 12,
+	    1,  9, 11, 10,  0,  8, 12,  4, 13,  3,  7, 15, 14,  5,  6,  2,
+	    4,  0,  5,  9,  7, 12,  2, 10, 14,  1,  3,  8, 11,  6, 15, 13];
+	var zr = [
+	    5, 14,  7,  0,  9,  2, 11,  4, 13,  6, 15,  8,  1, 10,  3, 12,
+	    6, 11,  3,  7,  0, 13,  5, 10, 14, 15,  8, 12,  4,  9,  1,  2,
+	    15,  5,  1,  3,  7, 14,  6,  9, 11,  8, 12,  2, 10,  0,  4, 13,
+	    8,  6,  4,  1,  3, 11, 15,  0,  5, 12,  2, 13,  9,  7, 10, 14,
+	    12, 15, 10,  4,  1,  5,  8,  7,  6,  2, 13, 14,  0,  3,  9, 11];
+	var sl = [
+	     11, 14, 15, 12,  5,  8,  7,  9, 11, 13, 14, 15,  6,  7,  9,  8,
+	    7, 6,   8, 13, 11,  9,  7, 15,  7, 12, 15,  9, 11,  7, 13, 12,
+	    11, 13,  6,  7, 14,  9, 13, 15, 14,  8, 13,  6,  5, 12,  7,  5,
+	      11, 12, 14, 15, 14, 15,  9,  8,  9, 14,  5,  6,  8,  6,  5, 12,
+	    9, 15,  5, 11,  6,  8, 13, 12,  5, 12, 13, 14, 11,  8,  5,  6 ];
+	var sr = [
+	    8,  9,  9, 11, 13, 15, 15,  5,  7,  7,  8, 11, 14, 14, 12,  6,
+	    9, 13, 15,  7, 12,  8,  9, 11,  7,  7, 12,  7,  6, 15, 13, 11,
+	    9,  7, 15, 11,  8,  6,  6, 14, 12, 13,  5, 14, 13, 13,  7,  5,
+	    15,  5,  8, 11, 14, 14,  6, 14,  6,  9, 12,  9, 12,  5, 15,  8,
+	    8,  5, 12,  9, 12,  5, 14,  6,  8, 13,  6,  5, 15, 13, 11, 11 ];
+
+	var hl =  [ 0x00000000, 0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xA953FD4E];
+	var hr =  [ 0x50A28BE6, 0x5C4DD124, 0x6D703EF3, 0x7A6D76E9, 0x00000000];
+
+	var bytesToWords = function (bytes) {
+	  var words = [];
+	  for (var i = 0, b = 0; i < bytes.length; i++, b += 8) {
+	    words[b >>> 5] |= bytes[i] << (24 - b % 32);
+	  }
+	  return words;
+	};
+
+	var wordsToBytes = function (words) {
+	  var bytes = [];
+	  for (var b = 0; b < words.length * 32; b += 8) {
+	    bytes.push((words[b >>> 5] >>> (24 - b % 32)) & 0xFF);
+	  }
+	  return bytes;
+	};
+
+	var processBlock = function (H, M, offset) {
+
+	  // Swap endian
+	  for (var i = 0; i < 16; i++) {
+	    var offset_i = offset + i;
+	    var M_offset_i = M[offset_i];
+
+	    // Swap
+	    M[offset_i] = (
+	        (((M_offset_i << 8)  | (M_offset_i >>> 24)) & 0x00ff00ff) |
+	        (((M_offset_i << 24) | (M_offset_i >>> 8))  & 0xff00ff00)
+	    );
+	  }
+
+	  // Working variables
+	  var al, bl, cl, dl, el;
+	  var ar, br, cr, dr, er;
+
+	  ar = al = H[0];
+	  br = bl = H[1];
+	  cr = cl = H[2];
+	  dr = dl = H[3];
+	  er = el = H[4];
+	  // Computation
+	  var t;
+	  for (var i = 0; i < 80; i += 1) {
+	    t = (al +  M[offset+zl[i]])|0;
+	    if (i<16){
+	        t +=  f1(bl,cl,dl) + hl[0];
+	    } else if (i<32) {
+	        t +=  f2(bl,cl,dl) + hl[1];
+	    } else if (i<48) {
+	        t +=  f3(bl,cl,dl) + hl[2];
+	    } else if (i<64) {
+	        t +=  f4(bl,cl,dl) + hl[3];
+	    } else {// if (i<80) {
+	        t +=  f5(bl,cl,dl) + hl[4];
+	    }
+	    t = t|0;
+	    t =  rotl(t,sl[i]);
+	    t = (t+el)|0;
+	    al = el;
+	    el = dl;
+	    dl = rotl(cl, 10);
+	    cl = bl;
+	    bl = t;
+
+	    t = (ar + M[offset+zr[i]])|0;
+	    if (i<16){
+	        t +=  f5(br,cr,dr) + hr[0];
+	    } else if (i<32) {
+	        t +=  f4(br,cr,dr) + hr[1];
+	    } else if (i<48) {
+	        t +=  f3(br,cr,dr) + hr[2];
+	    } else if (i<64) {
+	        t +=  f2(br,cr,dr) + hr[3];
+	    } else {// if (i<80) {
+	        t +=  f1(br,cr,dr) + hr[4];
+	    }
+	    t = t|0;
+	    t =  rotl(t,sr[i]) ;
+	    t = (t+er)|0;
+	    ar = er;
+	    er = dr;
+	    dr = rotl(cr, 10);
+	    cr = br;
+	    br = t;
+	  }
+	  // Intermediate hash value
+	  t    = (H[1] + cl + dr)|0;
+	  H[1] = (H[2] + dl + er)|0;
+	  H[2] = (H[3] + el + ar)|0;
+	  H[3] = (H[4] + al + br)|0;
+	  H[4] = (H[0] + bl + cr)|0;
+	  H[0] =  t;
+	};
+
+	function f1(x, y, z) {
+	  return ((x) ^ (y) ^ (z));
+	}
+
+	function f2(x, y, z) {
+	  return (((x)&(y)) | ((~x)&(z)));
+	}
+
+	function f3(x, y, z) {
+	  return (((x) | (~(y))) ^ (z));
+	}
+
+	function f4(x, y, z) {
+	  return (((x) & (z)) | ((y)&(~(z))));
+	}
+
+	function f5(x, y, z) {
+	  return ((x) ^ ((y) |(~(z))));
+	}
+
+	function rotl(x,n) {
+	  return (x<<n) | (x>>>(32-n));
+	}
+
+	function ripemd160(message) {
+	  var H = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0];
+
+	  if (typeof message == 'string')
+	    message = new Buffer(message, 'utf8');
+
+	  var m = bytesToWords(message);
+
+	  var nBitsLeft = message.length * 8;
+	  var nBitsTotal = message.length * 8;
+
+	  // Add padding
+	  m[nBitsLeft >>> 5] |= 0x80 << (24 - nBitsLeft % 32);
+	  m[(((nBitsLeft + 64) >>> 9) << 4) + 14] = (
+	      (((nBitsTotal << 8)  | (nBitsTotal >>> 24)) & 0x00ff00ff) |
+	      (((nBitsTotal << 24) | (nBitsTotal >>> 8))  & 0xff00ff00)
+	  );
+
+	  for (var i=0 ; i<m.length; i += 16) {
+	    processBlock(H, m, i);
+	  }
+
+	  // Swap endian
+	  for (var i = 0; i < 5; i++) {
+	      // Shortcut
+	    var H_i = H[i];
+
+	    // Swap
+	    H[i] = (((H_i << 8)  | (H_i >>> 24)) & 0x00ff00ff) |
+	          (((H_i << 24) | (H_i >>> 8))  & 0xff00ff00);
+	  }
+
+	  var digestbytes = wordsToBytes(H);
+	  return new Buffer(digestbytes);
+	}
+
+
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).Buffer))
+
+/***/ },
+/* 442 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {var createHash = __webpack_require__(433)
+
+	var zeroBuffer = new Buffer(128)
+	zeroBuffer.fill(0)
+
+	module.exports = Hmac
+
+	function Hmac (alg, key) {
+	  if(!(this instanceof Hmac)) return new Hmac(alg, key)
+	  this._opad = opad
+	  this._alg = alg
+
+	  var blocksize = (alg === 'sha512') ? 128 : 64
+
+	  key = this._key = !Buffer.isBuffer(key) ? new Buffer(key) : key
+
+	  if(key.length > blocksize) {
+	    key = createHash(alg).update(key).digest()
+	  } else if(key.length < blocksize) {
+	    key = Buffer.concat([key, zeroBuffer], blocksize)
+	  }
+
+	  var ipad = this._ipad = new Buffer(blocksize)
+	  var opad = this._opad = new Buffer(blocksize)
+
+	  for(var i = 0; i < blocksize; i++) {
+	    ipad[i] = key[i] ^ 0x36
+	    opad[i] = key[i] ^ 0x5C
+	  }
+
+	  this._hash = createHash(alg).update(ipad)
+	}
+
+	Hmac.prototype.update = function (data, enc) {
+	  this._hash.update(data, enc)
+	  return this
+	}
+
+	Hmac.prototype.digest = function (enc) {
+	  var h = this._hash.digest()
+	  return createHash(this._alg).update(this._opad).update(h).digest(enc)
+	}
+
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).Buffer))
+
+/***/ },
+/* 443 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var pbkdf2Export = __webpack_require__(444)
+
+	module.exports = function (crypto, exports) {
+	  exports = exports || {}
+
+	  var exported = pbkdf2Export(crypto)
+
+	  exports.pbkdf2 = exported.pbkdf2
+	  exports.pbkdf2Sync = exported.pbkdf2Sync
+
+	  return exports
+	}
+
+
+/***/ },
+/* 444 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {module.exports = function(crypto) {
+	  function pbkdf2(password, salt, iterations, keylen, digest, callback) {
+	    if ('function' === typeof digest) {
+	      callback = digest
+	      digest = undefined
+	    }
+
+	    if ('function' !== typeof callback)
+	      throw new Error('No callback provided to pbkdf2')
+
+	    setTimeout(function() {
+	      var result
+
+	      try {
+	        result = pbkdf2Sync(password, salt, iterations, keylen, digest)
+	      } catch (e) {
+	        return callback(e)
+	      }
+
+	      callback(undefined, result)
+	    })
+	  }
+
+	  function pbkdf2Sync(password, salt, iterations, keylen, digest) {
+	    if ('number' !== typeof iterations)
+	      throw new TypeError('Iterations not a number')
+
+	    if (iterations < 0)
+	      throw new TypeError('Bad iterations')
+
+	    if ('number' !== typeof keylen)
+	      throw new TypeError('Key length not a number')
+
+	    if (keylen < 0)
+	      throw new TypeError('Bad key length')
+
+	    digest = digest || 'sha1'
+
+	    if (!Buffer.isBuffer(password)) password = new Buffer(password)
+	    if (!Buffer.isBuffer(salt)) salt = new Buffer(salt)
+
+	    var hLen, l = 1, r, T
+	    var DK = new Buffer(keylen)
+	    var block1 = new Buffer(salt.length + 4)
+	    salt.copy(block1, 0, 0, salt.length)
+
+	    for (var i = 1; i <= l; i++) {
+	      block1.writeUInt32BE(i, salt.length)
+
+	      var U = crypto.createHmac(digest, password).update(block1).digest()
+
+	      if (!hLen) {
+	        hLen = U.length
+	        T = new Buffer(hLen)
+	        l = Math.ceil(keylen / hLen)
+	        r = keylen - (l - 1) * hLen
+
+	        if (keylen > (Math.pow(2, 32) - 1) * hLen)
+	          throw new TypeError('keylen exceeds maximum length')
+	      }
+
+	      U.copy(T, 0, 0, hLen)
+
+	      for (var j = 1; j < iterations; j++) {
+	        U = crypto.createHmac(digest, password).update(U).digest()
+
+	        for (var k = 0; k < hLen; k++) {
+	          T[k] ^= U[k]
+	        }
+	      }
+
+	      var destPos = (i - 1) * hLen
+	      var len = (i == l ? r : hLen)
+	      T.copy(DK, destPos, 0, len)
+	    }
+
+	    return DK
+	  }
+
+	  return {
+	    pbkdf2: pbkdf2,
+	    pbkdf2Sync: pbkdf2Sync
+	  }
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).Buffer))
+
+/***/ },
+/* 445 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var Chunkable, EncodeFieldPart, EncodeFilePart, Q, TEXT_PARAMS, UploadStream, Writable, _, build_upload_params, call_api, call_tags_api, config, fs, https, path, post, util, utils,
+	    extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+	    hasProp = {}.hasOwnProperty;
+
+	  _ = __webpack_require__(427);
+
+	  https = __webpack_require__(446);
+
+	  UploadStream = __webpack_require__(447);
+
+	  utils = __webpack_require__(429);
+
+	  util = __webpack_require__(332);
+
+	  config = __webpack_require__(428);
+
+	  fs = __webpack_require__(2);
+
+	  path = __webpack_require__(448);
+
+	  Q = __webpack_require__(358);
+
+	  Writable = __webpack_require__(312).Writable;
+
+	  build_upload_params = function(options) {
+	    return utils.build_upload_params(options);
+	  };
+
+	  exports.unsigned_upload_stream = function(upload_preset, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return exports.upload_stream(callback, utils.merge(options, {
+	      unsigned: true,
+	      upload_preset: upload_preset
+	    }));
+	  };
+
+	  exports.upload_stream = function(callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return exports.upload(null, callback, _.extend({
+	      stream: true
+	    }, options));
+	  };
+
+	  exports.unsigned_upload = function(file, upload_preset, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return exports.upload(file, callback, utils.merge(options, {
+	      unsigned: true,
+	      upload_preset: upload_preset
+	    }));
+	  };
+
+	  exports.upload = function(file, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("upload", callback, options, function() {
+	      var params;
+	      params = build_upload_params(options);
+	      if ((file != null) && file.match(/^ftp:|^https?:|^s3:|^data:[^;]*;base64,([a-zA-Z0-9\/+\n=]+)$/)) {
+	        return [
+	          params, {
+	            file: file
+	          }
+	        ];
+	      } else {
+	        return [params, {}, file];
+	      }
+	    });
+	  };
+
+	  exports.upload_large = function(path, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return exports.upload_chunked(path, callback, _.extend({
+	      resource_type: 'raw'
+	    }, options));
+	  };
+
+	  exports.upload_chunked = function(path, callback, options) {
+	    var file_reader, out_stream;
+	    file_reader = fs.createReadStream(path);
+	    out_stream = exports.upload_chunked_stream(callback, options);
+	    return file_reader.pipe(out_stream);
+	  };
+
+	  Chunkable = (function(superClass) {
+	    extend(Chunkable, superClass);
+
+	    function Chunkable(options) {
+	      var ref;
+	      this.chunk_size = (ref = options.chunk_size) != null ? ref : 20000000;
+	      this.buffer = new Buffer(0);
+	      this.active = true;
+	      Chunkable.__super__.constructor.call(this, options);
+	      this.on('finish', (function(_this) {
+	        return function() {
+	          if (_this.active) {
+	            return _this.emit('ready', _this.buffer, true, function() {});
+	          }
+	        };
+	      })(this));
+	    }
+
+	    Chunkable.prototype._write = function(data, encoding, done) {
+	      var grab;
+	      if (!this.active) {
+	        return done();
+	      }
+	      if (this.buffer.length + data.length <= this.chunk_size) {
+	        this.buffer = Buffer.concat([this.buffer, data], this.buffer.length + data.length);
+	        return done();
+	      } else {
+	        grab = this.chunk_size - this.buffer.length;
+	        this.buffer = Buffer.concat([this.buffer, data.slice(0, grab)], this.buffer.length + grab);
+	        return this.emit('ready', this.buffer, false, (function(_this) {
+	          return function(active) {
+	            _this.active = active;
+	            if (_this.active) {
+	              _this.buffer = data.slice(grab);
+	              return done();
+	            }
+	          };
+	        })(this));
+	      }
+	    };
+
+	    return Chunkable;
+
+	  })(Writable);
+
+	  exports.upload_large_stream = function(_unused_, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return exports.upload_chunked_stream(callback, _.extend({
+	      resource_type: 'raw'
+	    }, options));
+	  };
+
+	  exports.upload_chunked_stream = function(callback, options) {
+	    var chunk_size, chunker, params, ref, sent;
+	    if (options == null) {
+	      options = {};
+	    }
+	    options = _.extend({}, options, {
+	      stream: true
+	    });
+	    options.x_unique_upload_id = utils.random_public_id();
+	    params = build_upload_params(options);
+	    chunk_size = (ref = options.chunk_size) != null ? ref : options.part_size;
+	    chunker = new Chunkable({
+	      chunk_size: chunk_size
+	    });
+	    sent = 0;
+	    chunker.on('ready', function(buffer, is_last, done) {
+	      var chunk_start, finished_part, stream;
+	      chunk_start = sent;
+	      sent += buffer.length;
+	      options.content_range = util.format("bytes %d-%d/%d", chunk_start, sent - 1, is_last ? sent : -1);
+	      finished_part = function(result) {
+	        if ((result.error != null) || is_last) {
+	          if (typeof callback === "function") {
+	            callback(result);
+	          }
+	          return done(false);
+	        } else {
+	          return done(true);
+	        }
+	      };
+	      stream = call_api("upload", finished_part, options, function() {
+	        return [params, {}, buffer];
+	      });
+	      return stream.write(buffer, 'buffer', function() {
+	        return stream.end();
+	      });
+	    });
+	    return chunker;
+	  };
+
+	  exports.explicit = function(public_id, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("explicit", callback, options, function() {
+	      return utils.build_explicit_api_params(public_id, options);
+	    });
+	  };
+
+	  exports.create_archive = function(callback, options, target_format) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    if (target_format == null) {
+	      target_format = null;
+	    }
+	    return call_api("generate_archive", callback, options, function() {
+	      var opt;
+	      opt = utils.archive_params(options);
+	      if (target_format) {
+	        opt.target_format = target_format;
+	      }
+	      return [opt];
+	    });
+	  };
+
+	  exports.create_zip = function(callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return exports.create_archive(callback, options, "zip");
+	  };
+
+	  exports.destroy = function(public_id, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("destroy", callback, options, function() {
+	      return [
+	        {
+	          timestamp: utils.timestamp(),
+	          type: options.type,
+	          invalidate: options.invalidate,
+	          public_id: public_id
+	        }
+	      ];
+	    });
+	  };
+
+	  exports.rename = function(from_public_id, to_public_id, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("rename", callback, options, function() {
+	      return [
+	        {
+	          timestamp: utils.timestamp(),
+	          type: options.type,
+	          from_public_id: from_public_id,
+	          to_public_id: to_public_id,
+	          overwrite: options.overwrite,
+	          invalidate: options.invalidate
+	        }
+	      ];
+	    });
+	  };
+
+	  TEXT_PARAMS = ["public_id", "font_family", "font_size", "font_color", "text_align", "font_weight", "font_style", "background", "opacity", "text_decoration"];
+
+	  exports.text = function(text, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("text", callback, options, function() {
+	      var j, k, len, params;
+	      params = {
+	        timestamp: utils.timestamp(),
+	        text: text
+	      };
+	      for (j = 0, len = TEXT_PARAMS.length; j < len; j++) {
+	        k = TEXT_PARAMS[j];
+	        if (options[k] != null) {
+	          params[k] = options[k];
+	        }
+	      }
+	      return [params];
+	    });
+	  };
+
+	  exports.generate_sprite = function(tag, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("sprite", callback, options, function() {
+	      var transformation;
+	      transformation = utils.generate_transformation_string(_.extend({}, options, {
+	        fetch_format: options.format
+	      }));
+	      return [
+	        {
+	          timestamp: utils.timestamp(),
+	          tag: tag,
+	          transformation: transformation,
+	          async: options.async,
+	          notification_url: options.notification_url
+	        }
+	      ];
+	    });
+	  };
+
+	  exports.multi = function(tag, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("multi", callback, options, function() {
+	      var transformation;
+	      transformation = utils.generate_transformation_string(_.extend({}, options));
+	      return [
+	        {
+	          timestamp: utils.timestamp(),
+	          tag: tag,
+	          transformation: transformation,
+	          format: options.format,
+	          async: options.async,
+	          notification_url: options.notification_url
+	        }
+	      ];
+	    });
+	  };
+
+	  exports.explode = function(public_id, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("explode", callback, options, function() {
+	      var transformation;
+	      transformation = utils.generate_transformation_string(_.extend({}, options));
+	      return [
+	        {
+	          timestamp: utils.timestamp(),
+	          public_id: public_id,
+	          transformation: transformation,
+	          format: options.format,
+	          type: options.type,
+	          notification_url: options.notification_url
+	        }
+	      ];
+	    });
+	  };
+
+	  exports.add_tag = function(tag, public_ids, callback, options) {
+	    var command, exclusive;
+	    if (public_ids == null) {
+	      public_ids = [];
+	    }
+	    if (options == null) {
+	      options = {};
+	    }
+	    exclusive = utils.option_consume("exclusive", options);
+	    command = exclusive ? "set_exclusive" : "add";
+	    return call_tags_api(tag, command, public_ids, callback, options);
+	  };
+
+	  exports.remove_tag = function(tag, public_ids, callback, options) {
+	    if (public_ids == null) {
+	      public_ids = [];
+	    }
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_tags_api(tag, "remove", public_ids, callback, options);
+	  };
+
+	  exports.replace_tag = function(tag, public_ids, callback, options) {
+	    if (public_ids == null) {
+	      public_ids = [];
+	    }
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_tags_api(tag, "replace", public_ids, callback, options);
+	  };
+
+	  call_tags_api = function(tag, command, public_ids, callback, options) {
+	    if (public_ids == null) {
+	      public_ids = [];
+	    }
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("tags", callback, options, function() {
+	      return [
+	        {
+	          timestamp: utils.timestamp(),
+	          tag: tag,
+	          public_ids: utils.build_array(public_ids),
+	          command: command,
+	          type: options.type
+	        }
+	      ];
+	    });
+	  };
+
+	  call_api = function(action, callback, options, get_params) {
+	    var api_url, boundary, deferred, error, file, handle_response, j, key, len, params, post_data, ref, result, unsigned_params, v, value;
+	    deferred = Q.defer();
+	    if (options == null) {
+	      options = {};
+	    }
+	    ref = get_params.call(), params = ref[0], unsigned_params = ref[1], file = ref[2];
+	    params = utils.process_request_params(params, options);
+	    params = _.extend(params, unsigned_params);
+	    api_url = utils.api_url(action, options);
+	    boundary = utils.random_public_id();
+	    error = false;
+	    handle_response = function(res) {
+	      var buffer, error_obj;
+	      if (error) {
+
+	      } else if (res.error) {
+	        error = true;
+	        deferred.reject(res);
+	        return typeof callback === "function" ? callback(res) : void 0;
+	      } else if (_.includes([200, 400, 401, 404, 420, 500], res.statusCode)) {
+	        buffer = "";
+	        res.on("data", function(d) {
+	          return buffer += d;
+	        });
+	        res.on("end", function() {
+	          var e, error1, result;
+	          if (error) {
+	            return;
+	          }
+	          try {
+	            result = JSON.parse(buffer);
+	          } catch (error1) {
+	            e = error1;
+	            result = {
+	              error: {
+	                message: "Server return invalid JSON response. Status Code " + res.statusCode
+	              }
+	            };
+	          }
+	          if (result["error"]) {
+	            result["error"]["http_code"] = res.statusCode;
+	          }
+	          if (result.error) {
+	            deferred.reject(result.error);
+	          } else {
+	            deferred.resolve(result);
+	          }
+	          return typeof callback === "function" ? callback(result) : void 0;
+	        });
+	        return res.on("error", function(e) {
+	          error = true;
+	          deferred.reject(e);
+	          return typeof callback === "function" ? callback({
+	            error: e
+	          }) : void 0;
+	        });
+	      } else {
+	        error_obj = {
+	          error: {
+	            message: "Server returned unexpected status code - " + res.statusCode,
+	            http_code: res.statusCode
+	          }
+	        };
+	        deferred.reject(error_obj.error);
+	        return typeof callback === "function" ? callback(error_obj) : void 0;
+	      }
+	    };
+	    post_data = [];
+	    for (key in params) {
+	      value = params[key];
+	      if (_.isArray(value)) {
+	        for (j = 0, len = value.length; j < len; j++) {
+	          v = value[j];
+	          post_data.push(new Buffer(EncodeFieldPart(boundary, key + "[]", v), 'utf8'));
+	        }
+	      } else if (utils.present(value)) {
+	        post_data.push(new Buffer(EncodeFieldPart(boundary, key, value), 'utf8'));
+	      }
+	    }
+	    result = post(api_url, post_data, boundary, file, handle_response, options);
+	    if (_.isObject(result)) {
+	      return result;
+	    } else {
+	      return deferred.promise;
+	    }
+	  };
+
+	  post = function(url, post_data, boundary, file, callback, options) {
+	    var file_header, filename, finish_buffer, headers, i, j, post_options, post_request, ref, ref1, timeout, upload_stream;
+	    finish_buffer = new Buffer("--" + boundary + "--", 'ascii');
+	    if ((file != null) || options.stream) {
+	      filename = options.stream ? "file" : path.basename(file);
+	      file_header = new Buffer(EncodeFilePart(boundary, 'application/octet-stream', 'file', filename), 'binary');
+	    }
+	    post_options = __webpack_require__(335).parse(url);
+	    headers = {
+	      'Content-Type': 'multipart/form-data; boundary=' + boundary,
+	      'User-Agent': utils.getUserAgent()
+	    };
+	    if (options.content_range != null) {
+	      headers['Content-Range'] = options.content_range;
+	    }
+	    if (options.x_unique_upload_id != null) {
+	      headers['X-Unique-Upload-Id'] = options.x_unique_upload_id;
+	    }
+	    post_options = _.extend(post_options, {
+	      method: 'POST',
+	      headers: headers
+	    });
+	    if (options.agent != null) {
+	      post_options.agent = options.agent;
+	    }
+	    post_request = https.request(post_options, callback);
+	    upload_stream = new UploadStream({
+	      boundary: boundary
+	    });
+	    upload_stream.pipe(post_request);
+	    timeout = false;
+	    post_request.on("error", function(e) {
+	      if (timeout) {
+	        return callback({
+	          error: {
+	            message: "Request Timeout",
+	            http_code: 499
+	          }
+	        });
+	      } else {
+	        return callback({
+	          error: e
+	        });
+	      }
+	    });
+	    post_request.setTimeout((ref = options.timeout) != null ? ref : 60000, function() {
+	      timeout = true;
+	      return post_request.abort();
+	    });
+	    for (i = j = 0, ref1 = post_data.length - 1; 0 <= ref1 ? j <= ref1 : j >= ref1; i = 0 <= ref1 ? ++j : --j) {
+	      post_request.write(post_data[i]);
+	    }
+	    if (options.stream) {
+	      post_request.write(file_header);
+	      return upload_stream;
+	    } else if (file != null) {
+	      post_request.write(file_header);
+	      fs.createReadStream(file).on('error', function(error) {
+	        callback({
+	          error: error
+	        });
+	        return post_request.abort();
+	      }).pipe(upload_stream);
+	    } else {
+	      post_request.write(finish_buffer);
+	      post_request.end();
+	    }
+	    return true;
+	  };
+
+	  EncodeFieldPart = function(boundary, name, value) {
+	    var return_part;
+	    return_part = "--" + boundary + "\r\n";
+	    return_part += "Content-Disposition: form-data; name=\"" + name + "\"\r\n\r\n";
+	    return_part += value + "\r\n";
+	    return return_part;
+	  };
+
+	  EncodeFilePart = function(boundary, type, name, filename) {
+	    var return_part;
+	    return_part = "--" + boundary + "\r\n";
+	    return_part += "Content-Disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n";
+	    return_part += "Content-Type: " + type + "\r\n\r\n";
+	    return return_part;
+	  };
+
+	  exports.direct_upload = function(callback_url, options) {
+	    var api_url, params;
+	    if (options == null) {
+	      options = {};
+	    }
+	    params = build_upload_params(_.extend({
+	      callback: callback_url
+	    }, options));
+	    params = utils.process_request_params(params, options);
+	    api_url = utils.api_url("upload", options);
+	    return {
+	      hidden_fields: params,
+	      form_attrs: {
+	        action: api_url,
+	        method: "POST",
+	        enctype: "multipart/form-data"
+	      }
+	    };
+	  };
+
+	  exports.upload_tag_params = function(options) {
+	    var params;
+	    if (options == null) {
+	      options = {};
+	    }
+	    params = build_upload_params(options);
+	    params = utils.process_request_params(params, options);
+	    return JSON.stringify(params);
+	  };
+
+	  exports.upload_url = function(options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    if (options.resource_type == null) {
+	      options.resource_type = "auto";
+	    }
+	    return utils.api_url("upload", options);
+	  };
+
+	  exports.image_upload_tag = function(field, options) {
+	    var html_options, ref, tag_options;
+	    if (options == null) {
+	      options = {};
+	    }
+	    html_options = (ref = options.html) != null ? ref : {};
+	    tag_options = _.extend(html_options, {
+	      type: "file",
+	      name: "file",
+	      "data-url": exports.upload_url(options),
+	      "data-form-data": exports.upload_tag_params(options),
+	      "data-cloudinary-field": field,
+	      "class": [html_options["class"], "cloudinary-fileupload"].join(" ")
+	    });
+	    return '<input ' + utils.html_attrs(tag_options) + '/>';
+	  };
+
+	  exports.unsigned_image_upload_tag = function(field, upload_preset, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return exports.image_upload_tag(field, utils.merge(options, {
+	      unsigned: true,
+	      upload_preset: upload_preset
+	    }));
+	  };
+
+	}).call(this);
+
+	//# sourceMappingURL=uploader.js.map
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).Buffer))
+
+/***/ },
+/* 446 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var http = __webpack_require__(309);
+
+	var https = module.exports;
+
+	for (var key in http) {
+	    if (http.hasOwnProperty(key)) https[key] = http[key];
+	};
+
+	https.request = function (params, cb) {
+	    if (!params) params = {};
+	    params.scheme = 'https';
+	    return http.request.call(this, params, cb);
+	}
+
+
+/***/ },
+/* 447 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var UploadStream, stream, util;
+
+	  stream = __webpack_require__(312);
+
+	  util = __webpack_require__(332);
+
+	  UploadStream = function(options) {
+	    this.boundary = options.boundary;
+	    stream.Transform.call(this, options);
+	  };
+
+	  util.inherits(UploadStream, stream.Transform);
+
+	  UploadStream.prototype._transform = function(data, encoding, next) {
+	    var buffer;
+	    buffer = (Buffer.isBuffer(data) ? data : new Buffer(data, encoding));
+	    this.push(buffer);
+	    next();
+	  };
+
+	  UploadStream.prototype._flush = function(next) {
+	    this.push(new Buffer("\r\n", 'ascii'));
+	    this.push(new Buffer("--" + this.boundary + "--", 'ascii'));
+	    return next();
+	  };
+
+	  module.exports = UploadStream;
+
+	}).call(this);
+
+	//# sourceMappingURL=upload_stream.js.map
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).Buffer))
+
+/***/ },
+/* 448 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
+	//
+	// Permission is hereby granted, free of charge, to any person obtaining a
+	// copy of this software and associated documentation files (the
+	// "Software"), to deal in the Software without restriction, including
+	// without limitation the rights to use, copy, modify, merge, publish,
+	// distribute, sublicense, and/or sell copies of the Software, and to permit
+	// persons to whom the Software is furnished to do so, subject to the
+	// following conditions:
+	//
+	// The above copyright notice and this permission notice shall be included
+	// in all copies or substantial portions of the Software.
+	//
+	// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+	// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+	// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+	// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+	// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+	// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+	// resolves . and .. elements in a path array with directory names there
+	// must be no slashes, empty elements, or device names (c:\) in the array
+	// (so also no leading and trailing slashes - it does not distinguish
+	// relative and absolute paths)
+	function normalizeArray(parts, allowAboveRoot) {
+	  // if the path tries to go above the root, `up` ends up > 0
+	  var up = 0;
+	  for (var i = parts.length - 1; i >= 0; i--) {
+	    var last = parts[i];
+	    if (last === '.') {
+	      parts.splice(i, 1);
+	    } else if (last === '..') {
+	      parts.splice(i, 1);
+	      up++;
+	    } else if (up) {
+	      parts.splice(i, 1);
+	      up--;
+	    }
+	  }
+
+	  // if the path is allowed to go above the root, restore leading ..s
+	  if (allowAboveRoot) {
+	    for (; up--; up) {
+	      parts.unshift('..');
+	    }
+	  }
+
+	  return parts;
+	}
+
+	// Split a filename into [root, dir, basename, ext], unix version
+	// 'root' is just a slash, or nothing.
+	var splitPathRe =
+	    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
+	var splitPath = function(filename) {
+	  return splitPathRe.exec(filename).slice(1);
+	};
+
+	// path.resolve([from ...], to)
+	// posix version
+	exports.resolve = function() {
+	  var resolvedPath = '',
+	      resolvedAbsolute = false;
+
+	  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+	    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+	    // Skip empty and invalid entries
+	    if (typeof path !== 'string') {
+	      throw new TypeError('Arguments to path.resolve must be strings');
+	    } else if (!path) {
+	      continue;
+	    }
+
+	    resolvedPath = path + '/' + resolvedPath;
+	    resolvedAbsolute = path.charAt(0) === '/';
+	  }
+
+	  // At this point the path should be resolved to a full absolute path, but
+	  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+	  // Normalize the path
+	  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+	    return !!p;
+	  }), !resolvedAbsolute).join('/');
+
+	  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+	};
+
+	// path.normalize(path)
+	// posix version
+	exports.normalize = function(path) {
+	  var isAbsolute = exports.isAbsolute(path),
+	      trailingSlash = substr(path, -1) === '/';
+
+	  // Normalize the path
+	  path = normalizeArray(filter(path.split('/'), function(p) {
+	    return !!p;
+	  }), !isAbsolute).join('/');
+
+	  if (!path && !isAbsolute) {
+	    path = '.';
+	  }
+	  if (path && trailingSlash) {
+	    path += '/';
+	  }
+
+	  return (isAbsolute ? '/' : '') + path;
+	};
+
+	// posix version
+	exports.isAbsolute = function(path) {
+	  return path.charAt(0) === '/';
+	};
+
+	// posix version
+	exports.join = function() {
+	  var paths = Array.prototype.slice.call(arguments, 0);
+	  return exports.normalize(filter(paths, function(p, index) {
+	    if (typeof p !== 'string') {
+	      throw new TypeError('Arguments to path.join must be strings');
+	    }
+	    return p;
+	  }).join('/'));
+	};
+
+
+	// path.relative(from, to)
+	// posix version
+	exports.relative = function(from, to) {
+	  from = exports.resolve(from).substr(1);
+	  to = exports.resolve(to).substr(1);
+
+	  function trim(arr) {
+	    var start = 0;
+	    for (; start < arr.length; start++) {
+	      if (arr[start] !== '') break;
+	    }
+
+	    var end = arr.length - 1;
+	    for (; end >= 0; end--) {
+	      if (arr[end] !== '') break;
+	    }
+
+	    if (start > end) return [];
+	    return arr.slice(start, end - start + 1);
+	  }
+
+	  var fromParts = trim(from.split('/'));
+	  var toParts = trim(to.split('/'));
+
+	  var length = Math.min(fromParts.length, toParts.length);
+	  var samePartsLength = length;
+	  for (var i = 0; i < length; i++) {
+	    if (fromParts[i] !== toParts[i]) {
+	      samePartsLength = i;
+	      break;
+	    }
+	  }
+
+	  var outputParts = [];
+	  for (var i = samePartsLength; i < fromParts.length; i++) {
+	    outputParts.push('..');
+	  }
+
+	  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+	  return outputParts.join('/');
+	};
+
+	exports.sep = '/';
+	exports.delimiter = ':';
+
+	exports.dirname = function(path) {
+	  var result = splitPath(path),
+	      root = result[0],
+	      dir = result[1];
+
+	  if (!root && !dir) {
+	    // No dirname whatsoever
+	    return '.';
+	  }
+
+	  if (dir) {
+	    // It has a dirname, strip trailing slash
+	    dir = dir.substr(0, dir.length - 1);
+	  }
+
+	  return root + dir;
+	};
+
+
+	exports.basename = function(path, ext) {
+	  var f = splitPath(path)[2];
+	  // TODO: make this comparison case-insensitive on windows?
+	  if (ext && f.substr(-1 * ext.length) === ext) {
+	    f = f.substr(0, f.length - ext.length);
+	  }
+	  return f;
+	};
+
+
+	exports.extname = function(path) {
+	  return splitPath(path)[3];
+	};
+
+	function filter (xs, f) {
+	    if (xs.filter) return xs.filter(f);
+	    var res = [];
+	    for (var i = 0; i < xs.length; i++) {
+	        if (f(xs[i], i, xs)) res.push(xs[i]);
+	    }
+	    return res;
+	}
+
+	// String.prototype.substr - negative index don't work in IE8
+	var substr = 'ab'.substr(-1) === 'b'
+	    ? function (str, start, len) { return str.substr(start, len) }
+	    : function (str, start, len) {
+	        if (start < 0) start = str.length + start;
+	        return str.substr(start, len);
+	    }
+	;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 449 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var Q, _, api, call_api, config, https, querystring, transformation_string, utils,
+	    slice = [].slice;
+
+	  _ = __webpack_require__(427);
+
+	  https = __webpack_require__(446);
+
+	  utils = __webpack_require__(429);
+
+	  config = __webpack_require__(428);
+
+	  querystring = __webpack_require__(338);
+
+	  Q = __webpack_require__(358);
+
+	  api = module.exports;
+
+	  call_api = function(method, uri, params, callback, options) {
+	    var api_key, api_secret, api_url, cloud_name, cloudinary, deferred, handle_response, query_params, ref, ref1, ref2, ref3, ref4, ref5, request, request_options;
+	    deferred = Q.defer();
+	    cloudinary = (ref = (ref1 = options["upload_prefix"]) != null ? ref1 : config().upload_prefix) != null ? ref : "https://api.cloudinary.com";
+	    cloud_name = (function() {
+	      var ref3;
+	      if ((ref2 = (ref3 = options["cloud_name"]) != null ? ref3 : config().cloud_name) != null) {
+	        return ref2;
+	      } else {
+	        throw "Must supply cloud_name";
+	      }
+	    })();
+	    api_key = (function() {
+	      var ref4;
+	      if ((ref3 = (ref4 = options["api_key"]) != null ? ref4 : config().api_key) != null) {
+	        return ref3;
+	      } else {
+	        throw "Must supply api_key";
+	      }
+	    })();
+	    api_secret = (function() {
+	      var ref5;
+	      if ((ref4 = (ref5 = options["api_secret"]) != null ? ref5 : config().api_secret) != null) {
+	        return ref4;
+	      } else {
+	        throw "Must supply api_secret";
+	      }
+	    })();
+	    api_url = [cloudinary, "v1_1", cloud_name].concat(uri).join("/");
+	    query_params = querystring.stringify(params);
+	    if (method === "get") {
+	      api_url += "?" + query_params;
+	    }
+	    request_options = __webpack_require__(335).parse(api_url);
+	    request_options = _.extend(request_options, {
+	      method: method.toUpperCase(),
+	      headers: {
+	        'Content-Type': 'application/x-www-form-urlencoded',
+	        'User-Agent': utils.getUserAgent()
+	      },
+	      auth: api_key + ":" + api_secret
+	    });
+	    if (options.agent != null) {
+	      request_options.agent = options.agent;
+	    }
+	    if (method !== "get") {
+	      request_options.headers['Content-Length'] = Buffer.byteLength(query_params);
+	    }
+	    handle_response = function(res) {
+	      var buffer, err_obj, error;
+	      if (_.includes([200, 400, 401, 403, 404, 409, 420, 500], res.statusCode)) {
+	        buffer = "";
+	        error = false;
+	        res.on("data", function(d) {
+	          return buffer += d;
+	        });
+	        res.on("end", function() {
+	          var e, error1, result;
+	          if (error) {
+	            return;
+	          }
+	          try {
+	            result = JSON.parse(buffer);
+	          } catch (error1) {
+	            e = error1;
+	            result = {
+	              error: {
+	                message: "Server return invalid JSON response. Status Code " + res.statusCode
+	              }
+	            };
+	          }
+	          if (result["error"]) {
+	            result["error"]["http_code"] = res.statusCode;
+	          } else {
+	            result["rate_limit_allowed"] = parseInt(res.headers["x-featureratelimit-limit"]);
+	            result["rate_limit_reset_at"] = new Date(res.headers["x-featureratelimit-reset"]);
+	            result["rate_limit_remaining"] = parseInt(res.headers["x-featureratelimit-remaining"]);
+	          }
+	          if (result.error) {
+	            deferred.reject(result);
+	          } else {
+	            deferred.resolve(result);
+	          }
+	          return typeof callback === "function" ? callback(result) : void 0;
+	        });
+	        return res.on("error", function(e) {
+	          var err_obj;
+	          error = true;
+	          err_obj = {
+	            error: {
+	              message: e,
+	              http_code: res.statusCode
+	            }
+	          };
+	          deferred.reject(err_obj.error);
+	          return typeof callback === "function" ? callback(err_obj) : void 0;
+	        });
+	      } else {
+	        err_obj = {
+	          error: {
+	            message: "Server returned unexpected status code - " + res.statusCode,
+	            http_code: res.statusCode
+	          }
+	        };
+	        deferred.reject(err_obj.error);
+	        return typeof callback === "function" ? callback(err_obj) : void 0;
+	      }
+	    };
+	    request = https.request(request_options, handle_response);
+	    request.on("error", function(e) {
+	      return typeof callback === "function" ? callback({
+	        error: e
+	      }) : void 0;
+	    });
+	    request.setTimeout((ref5 = options["timeout"]) != null ? ref5 : 60000);
+	    if (method !== "get") {
+	      request.write(query_params);
+	    }
+	    request.end();
+	    return deferred.promise;
+	  };
+
+	  transformation_string = function(transformation) {
+	    if (_.isString(transformation)) {
+	      return transformation;
+	    } else {
+	      return utils.generate_transformation_string(_.extend({}, transformation));
+	    }
+	  };
+
+	  exports.ping = function(callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("get", ["ping"], {}, callback, options);
+	  };
+
+	  exports.usage = function(callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("get", ["usage"], {}, callback, options);
+	  };
+
+	  exports.resource_types = function(callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("get", ["resources"], {}, callback, options);
+	  };
+
+	  exports.resources = function(callback, options) {
+	    var ref, resource_type, type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    type = options["type"];
+	    uri = ["resources", resource_type];
+	    if (type != null) {
+	      uri.push(type);
+	    }
+	    if ((options.start_at != null) && Object.prototype.toString.call(options.start_at) === '[object Date]') {
+	      options.start_at = options.start_at.toUTCString();
+	    }
+	    return call_api("get", uri, api.only(options, "next_cursor", "max_results", "prefix", "tags", "context", "direction", "moderations", "start_at"), callback, options);
+	  };
+
+	  exports.resources_by_tag = function(tag, callback, options) {
+	    var ref, resource_type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    uri = ["resources", resource_type, "tags", tag];
+	    return call_api("get", uri, api.only(options, "next_cursor", "max_results", "tags", "context", "direction", "moderations"), callback, options);
+	  };
+
+	  exports.resources_by_moderation = function(kind, status, callback, options) {
+	    var ref, resource_type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    uri = ["resources", resource_type, "moderations", kind, status];
+	    return call_api("get", uri, api.only(options, "next_cursor", "max_results", "tags", "context", "direction", "moderations"), callback, options);
+	  };
+
+	  exports.resources_by_ids = function(public_ids, callback, options) {
+	    var params, ref, ref1, resource_type, type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    type = (ref1 = options["type"]) != null ? ref1 : "upload";
+	    uri = ["resources", resource_type, type];
+	    params = api.only(options, "tags", "context", "moderations");
+	    params["public_ids[]"] = public_ids;
+	    return call_api("get", uri, params, callback, options);
+	  };
+
+	  exports.resource = function(public_id, callback, options) {
+	    var ref, ref1, resource_type, type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    type = (ref1 = options["type"]) != null ? ref1 : "upload";
+	    uri = ["resources", resource_type, type, public_id];
+	    return call_api("get", uri, api.only(options, "exif", "colors", "faces", "image_metadata", "pages", "phash", "coordinates", "max_results"), callback, options);
+	  };
+
+	  exports.restore = function(public_ids, callback, options) {
+	    var ref, ref1, resource_type, type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    type = (ref1 = options["type"]) != null ? ref1 : "upload";
+	    uri = ["resources", resource_type, type, "restore"];
+	    return call_api("post", uri, {
+	      public_ids: public_ids
+	    }, callback, options);
+	  };
+
+	  exports.update = function(public_id, callback, options) {
+	    var params, ref, ref1, resource_type, type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    type = (ref1 = options["type"]) != null ? ref1 : "upload";
+	    uri = ["resources", resource_type, type, public_id];
+	    params = utils.updateable_resource_params(options);
+	    if (options.moderation_status != null) {
+	      params.moderation_status = options.moderation_status;
+	    }
+	    return call_api("post", uri, params, callback, options);
+	  };
+
+	  exports.delete_resources = function(public_ids, callback, options) {
+	    var ref, ref1, resource_type, type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    type = (ref1 = options["type"]) != null ? ref1 : "upload";
+	    uri = ["resources", resource_type, type];
+	    return call_api("delete", uri, _.extend({
+	      "public_ids[]": public_ids
+	    }, api.only(options, "keep_original", "invalidate")), callback, options);
+	  };
+
+	  exports.delete_resources_by_prefix = function(prefix, callback, options) {
+	    var ref, ref1, resource_type, type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    type = (ref1 = options["type"]) != null ? ref1 : "upload";
+	    uri = ["resources", resource_type, type];
+	    return call_api("delete", uri, _.extend({
+	      prefix: prefix
+	    }, api.only(options, "keep_original", "next_cursor", "invalidate")), callback, options);
+	  };
+
+	  exports.delete_resources_by_tag = function(tag, callback, options) {
+	    var ref, resource_type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    uri = ["resources", resource_type, "tags", tag];
+	    return call_api("delete", uri, api.only(options, "keep_original", "next_cursor", "invalidate"), callback, options);
+	  };
+
+	  exports.delete_all_resources = function(callback, options) {
+	    var ref, ref1, resource_type, type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    type = (ref1 = options["type"]) != null ? ref1 : "upload";
+	    uri = ["resources", resource_type, type];
+	    return call_api("delete", uri, _.extend({
+	      all: true
+	    }, api.only(options, "keep_original", "next_cursor", "invalidate")), callback, options);
+	  };
+
+	  exports.delete_derived_resources = function(derived_resource_ids, callback, options) {
+	    var uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["derived_resources"];
+	    return call_api("delete", uri, {
+	      "derived_resource_ids[]": derived_resource_ids
+	    }, callback, options);
+	  };
+
+	  exports.tags = function(callback, options) {
+	    var ref, resource_type, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    resource_type = (ref = options["resource_type"]) != null ? ref : "image";
+	    uri = ["tags", resource_type];
+	    return call_api("get", uri, api.only(options, "next_cursor", "max_results", "prefix"), callback, options);
+	  };
+
+	  exports.transformations = function(callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("get", ["transformations"], api.only(options, "next_cursor", "max_results"), callback, options);
+	  };
+
+	  exports.transformation = function(transformation, callback, options) {
+	    var uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["transformations", transformation_string(transformation)];
+	    return call_api("get", uri, api.only(options, "next_cursor", "max_results"), callback, options);
+	  };
+
+	  exports.delete_transformation = function(transformation, callback, options) {
+	    var uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["transformations", transformation_string(transformation)];
+	    return call_api("delete", uri, {}, callback, options);
+	  };
+
+	  exports.update_transformation = function(transformation, updates, callback, options) {
+	    var params, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["transformations", transformation_string(transformation)];
+	    params = api.only(updates, "allowed_for_strict");
+	    if (updates.unsafe_update != null) {
+	      params.unsafe_update = transformation_string(updates.unsafe_update);
+	    }
+	    return call_api("put", uri, params, callback, options);
+	  };
+
+	  exports.create_transformation = function(name, definition, callback, options) {
+	    var uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["transformations", name];
+	    return call_api("post", uri, {
+	      transformation: transformation_string(definition)
+	    }, callback, options);
+	  };
+
+	  exports.upload_presets = function(callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("get", ["upload_presets"], api.only(options, "next_cursor", "max_results"), callback, options);
+	  };
+
+	  exports.upload_preset = function(name, callback, options) {
+	    var uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["upload_presets", name];
+	    return call_api("get", uri, {}, callback, options);
+	  };
+
+	  exports.delete_upload_preset = function(name, callback, options) {
+	    var uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["upload_presets", name];
+	    return call_api("delete", uri, {}, callback, options);
+	  };
+
+	  exports.update_upload_preset = function(name, callback, options) {
+	    var params, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["upload_presets", name];
+	    params = utils.merge(utils.clear_blank(utils.build_upload_params(options)), api.only(options, "unsigned", "disallow_public_id"));
+	    return call_api("put", uri, params, callback, options);
+	  };
+
+	  exports.create_upload_preset = function(callback, options) {
+	    var params, uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["upload_presets"];
+	    params = utils.merge(utils.clear_blank(utils.build_upload_params(options)), api.only(options, "name", "unsigned", "disallow_public_id"));
+	    return call_api("post", uri, params, callback, options);
+	  };
+
+	  exports.root_folders = function(callback, options) {
+	    var uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["folders"];
+	    return call_api("get", uri, {}, callback, options);
+	  };
+
+	  exports.sub_folders = function(path, callback, options) {
+	    var uri;
+	    if (options == null) {
+	      options = {};
+	    }
+	    uri = ["folders", path];
+	    return call_api("get", uri, {}, callback, options);
+	  };
+
+	  exports.upload_mappings = function(callback, options) {
+	    var params;
+	    if (options == null) {
+	      options = {};
+	    }
+	    params = api.only(options, "next_cursor", "max_results");
+	    return call_api("get", "upload_mappings", params, callback, options);
+	  };
+
+	  exports.upload_mapping = function(name, callback, options) {
+	    if (name == null) {
+	      name = nil;
+	    }
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("get", 'upload_mappings', {
+	      folder: name
+	    }, callback, options);
+	  };
+
+	  exports.delete_upload_mapping = function(name, callback, options) {
+	    if (options == null) {
+	      options = {};
+	    }
+	    return call_api("delete", 'upload_mappings', {
+	      folder: name
+	    }, callback, options);
+	  };
+
+	  exports.update_upload_mapping = function(name, callback, options) {
+	    var params;
+	    if (options == null) {
+	      options = {};
+	    }
+	    params = api.only(options, "template");
+	    params["folder"] = name;
+	    return call_api("put", 'upload_mappings', params, callback, options);
+	  };
+
+	  exports.create_upload_mapping = function(name, callback, options) {
+	    var params;
+	    if (options == null) {
+	      options = {};
+	    }
+	    params = api.only(options, "template");
+	    params["folder"] = name;
+	    return call_api("post", 'upload_mappings', params, callback, options);
+	  };
+
+	  exports.only = function() {
+	    var hash, i, key, keys, len, result;
+	    hash = arguments[0], keys = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+	    result = {};
+	    for (i = 0, len = keys.length; i < len; i++) {
+	      key = keys[i];
+	      if (hash[key] != null) {
+	        result[key] = hash[key];
+	      }
+	    }
+	    return result;
+	  };
+
+	}).call(this);
+
+	//# sourceMappingURL=api.js.map
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(317).Buffer))
+
+/***/ },
+/* 450 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var PRELOADED_CLOUDINARY_PATH, PreloadedFile, config, utils;
+
+	  utils = __webpack_require__(429);
+
+	  config = __webpack_require__(428);
+
+	  PRELOADED_CLOUDINARY_PATH = /^([^\/]+)\/([^\/]+)\/v(\d+)\/([^#]+)#([^\/]+)$/;
+
+	  PreloadedFile = (function() {
+	    function PreloadedFile(file_info) {
+	      var matches, public_id_and_format;
+	      matches = file_info.match(PRELOADED_CLOUDINARY_PATH);
+	      if (!matches) {
+	        throw "Invalid preloaded file info";
+	      }
+	      this.resource_type = matches[1];
+	      this.type = matches[2];
+	      this.version = matches[3];
+	      this.filename = matches[4];
+	      this.signature = matches[5];
+	      public_id_and_format = this.split_format(this.filename);
+	      this.public_id = public_id_and_format[0];
+	      this.format = public_id_and_format[1];
+	    }
+
+	    PreloadedFile.prototype.is_valid = function() {
+	      var expected_signature, public_id;
+	      public_id = this.resource_type === "raw" ? this.filename : this.public_id;
+	      expected_signature = utils.api_sign_request({
+	        public_id: this.public_id,
+	        version: this.version
+	      }, config().api_secret);
+	      return this.signature === expected_signature;
+	    };
+
+	    PreloadedFile.prototype.split_format = function(identifier) {
+	      var format, last_dot, public_id;
+	      last_dot = identifier.lastIndexOf(".");
+	      if (last_dot === -1) {
+	        return [identifier, null];
+	      }
+	      public_id = identifier.substr(0, last_dot);
+	      format = identifier.substr(last_dot + 1);
+	      return [public_id, format];
+	    };
+
+	    PreloadedFile.prototype.identifier = function() {
+	      return "v" + this.version + "/" + this.filename;
+	    };
+
+	    PreloadedFile.prototype.toString = function() {
+	      return this.resource_type + "/" + this.type + "/v" + this.version + "/" + this.filename + "#" + this.signature;
+	    };
+
+	    PreloadedFile.prototype.toJSON = function() {
+	      var key, result, val;
+	      result = {};
+	      for (key in this) {
+	        val = this[key];
+	        if (typeof val !== 'function') {
+	          result[key] = val;
+	        }
+	      }
+	      return result;
+	    };
+
+	    return PreloadedFile;
+
+	  })();
+
+	  module.exports = PreloadedFile;
+
+	}).call(this);
+
+	//# sourceMappingURL=preloaded_file.js.map
+
+
+/***/ },
+/* 451 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var _, v1, v2;
+
+	  v1 = __webpack_require__(426);
+
+	  _ = __webpack_require__(427);
+
+	  v2 = _.clone(v1);
+
+	  v2.api = __webpack_require__(452);
+
+	  v2.uploader = __webpack_require__(453);
+
+	  module.exports = v2;
+
+	}).call(this);
+
+	//# sourceMappingURL=index.js.map
+
+
+/***/ },
+/* 452 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var api, utils;
+
+	  api = __webpack_require__(449);
+
+	  utils = __webpack_require__(429);
+
+	  utils.v1_adapters(exports, api, {
+	    ping: 0,
+	    usage: 0,
+	    resource_types: 0,
+	    resources: 0,
+	    resources_by_tag: 1,
+	    resources_by_moderation: 2,
+	    resources_by_ids: 1,
+	    resource: 1,
+	    restore: 1,
+	    update: 1,
+	    delete_resources: 1,
+	    delete_resources_by_prefix: 1,
+	    delete_resources_by_tag: 1,
+	    delete_all_resources: 0,
+	    delete_derived_resources: 1,
+	    tags: 0,
+	    transformations: 0,
+	    transformation: 1,
+	    delete_transformation: 1,
+	    update_transformation: 2,
+	    create_transformation: 2,
+	    upload_presets: 0,
+	    upload_preset: 1,
+	    delete_upload_preset: 1,
+	    update_upload_preset: 1,
+	    create_upload_preset: 0,
+	    root_folders: 0,
+	    sub_folders: 1,
+	    upload_mappings: 0,
+	    upload_mapping: 1,
+	    delete_upload_mapping: 1,
+	    update_upload_mapping: 1,
+	    create_upload_mapping: 1
+	  });
+
+	}).call(this);
+
+	//# sourceMappingURL=api.js.map
+
+
+/***/ },
+/* 453 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Generated by CoffeeScript 1.10.0
+	(function() {
+	  var uploader, utils;
+
+	  uploader = __webpack_require__(445);
+
+	  utils = __webpack_require__(429);
+
+	  utils.v1_adapters(exports, uploader, {
+	    unsigned_upload_stream: 1,
+	    upload_stream: 0,
+	    unsigned_upload: 2,
+	    upload: 1,
+	    upload_large_part: 0,
+	    upload_large: 1,
+	    upload_chunked: 1,
+	    upload_chunked_stream: 0,
+	    explicit: 1,
+	    destroy: 1,
+	    rename: 2,
+	    text: 1,
+	    generate_sprite: 1,
+	    multi: 1,
+	    explode: 1,
+	    add_tag: 2,
+	    remove_tag: 2,
+	    replace_tag: 2,
+	    create_archive: 0,
+	    create_zip: 0
+	  });
+
+	  exports.direct_upload = uploader.direct_upload;
+
+	  exports.upload_tag_params = uploader.upload_tag_params;
+
+	  exports.upload_url = uploader.upload_url;
+
+	  exports.image_upload_tag = uploader.image_upload_tag;
+
+	  exports.unsigned_image_upload_tag = uploader.unsigned_image_upload_tag;
+
+	}).call(this);
+
+	//# sourceMappingURL=uploader.js.map
+
 
 /***/ }
 /******/ ]);

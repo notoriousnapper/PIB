@@ -27,32 +27,47 @@ var Profile = require('../components/userpage/Profile');
 var Footer = require('../components/custom/Footer');
 
 var Test = require('../components/projectpage/Test');
+var AdminMain = require('../components/adminpage/AdminMain');
+var AdminDetail = require('../components/adminpage/AdminProjectDetails');
 /* ReactRouter Routes urls to components */
 // var Home = (require'../components/Main');
+let S = {
+    footerStyle: {
+        marginTop: "200px"
+	},
+	bodyStyle: {
+        marginBottom: "300px"
+	}
+};
+
 var reactRoutes = (
 	<div>
-	<Router history={hashHistory}>
-		<Route  path='/' component={Main}>
-			<IndexRoute component={Home}/>
-			<Route path='/home' component={Home}/>
-			<Route path='/projects(/:id)' component={Projects}>
-				<Route name="input" path="/input" component={Input}/>
-			</Route>
-			<Route path='/content(/:id)' component={Content}>
-				<Route name="input" path="/input" component={Input}/>
-			</Route>
-			<Route path='/about' component={About}/>
-			<Route path='/apply' component={Apply}/>
-			<Route path='/addproject' component={Add}/>
-			<Route path='/login' component={Login}/>
-			<Route path='/signup' component={SignUp}/>
-			<Route path='/profile' component={Profile}/>
-			<Route path='/test' component={Test}/>
-		</Route>
-	</Router>
-
-
-	<Footer />
+		<div className="container-fluid" style={S.bodyStyle}>
+			<Router history={hashHistory}>
+				<Route  path='/' component={Main}>
+					<IndexRoute component={Home}/>
+					<Route path='/home' component={Home}/>
+					<Route path='/projects(/:id)' component={Projects}>
+						<Route name="input" path="/input" component={Input}/>
+					</Route>
+					<Route path='/content(/:id)' component={Content}>
+						<Route name="input" path="/input" component={Input}/>
+					</Route>
+					<Route path='/about' component={About}/>
+					<Route path='/apply' component={Apply}/>
+					<Route path='/addproject' component={Add}/>
+					<Route path='/login' component={Login}/>
+					<Route path='/signup' component={SignUp}/>
+					<Route path='/profile' component={Profile}/>
+					<Route path='/test' component={Test}/>
+					<Route path='/admin/project/:id' component={AdminDetail}/>
+					<Route path='/admin' component={AdminMain}/>
+				</Route>
+			</Router>
+		</div>
+		<div style={S.footerStyle}>
+			<Footer />
+		</div>
 	</div>
 );
 	    // Insert this in later

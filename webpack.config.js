@@ -1,5 +1,5 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname +'/app/index.html',
   filename: 'index.html',
@@ -63,14 +63,16 @@ module.exports = {
             /* Transformations go here */
             /* The regexp says, get all .js files and put it into one file */
             loaders: [
-              {test: /\.js$|.jpe?g$|\.gif$|\.png/, exclude: /node_modules/, loader: "babel-loader"}
+              {test: /\.js$|.jpe?g$|\.gif$|\.png/, exclude: /node_modules/, loader: "babel-loader"},
+                { test: /\.css$/, loader: "style-loader!css-loader" }
             ]
         },
         output: {
           filename: "bundle.js",
           path: __dirname + '/dist'
         },
-        plugins: [HTMLWebpackPluginConfig,
+        plugins: [
+                HTMLWebpackPluginConfig,
                 new CopyWebpackPlugin([
                     {from: 'public',
                      to: 'public' }
