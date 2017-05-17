@@ -11,6 +11,9 @@ var AdminProjectDetails = React.createClass({
       data: []
     };
   },
+  componentDidMount: function(){
+      this.getProjects(this.props.params.id);
+  },
   getProjects: function(query){
     console.log("id  " + query);
      $.ajax({
@@ -42,14 +45,13 @@ var AdminProjectDetails = React.createClass({
     var buttonStyle = {
       border: "2px solid black", boxShadow: "3px 3px black", padding: "0 10px"
     };
-    this.getProjects(id);
     return(
       <div style={containerStyle}>
           Admin Project Details
           <div style={blockStyle}>
             <Link to={'/admin'} style={buttonStyle}>Back</Link>
-            <p style={paddingStyle}>Project Title</p>
-            <p>Project Owner</p>
+            <p style={paddingStyle}>{this.state.data.title}</p>
+            <p>{this.state.data.author}</p>
           </div>
           <div style={blockStyle}>
             Main Pic

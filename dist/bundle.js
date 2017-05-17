@@ -54122,6 +54122,9 @@
 	      data: []
 	    };
 	  },
+	  componentDidMount: function componentDidMount() {
+	    this.getProjects(this.props.params.id);
+	  },
 	  getProjects: function getProjects(query) {
 	    console.log("id  " + query);
 	    $.ajax({
@@ -54153,7 +54156,6 @@
 	    var buttonStyle = {
 	      border: "2px solid black", boxShadow: "3px 3px black", padding: "0 10px"
 	    };
-	    this.getProjects(id);
 	    return React.createElement(
 	      'div',
 	      { style: containerStyle },
@@ -54169,12 +54171,12 @@
 	        React.createElement(
 	          'p',
 	          { style: paddingStyle },
-	          'Project Title'
+	          this.state.data.title
 	        ),
 	        React.createElement(
 	          'p',
 	          null,
-	          'Project Owner'
+	          this.state.data.author
 	        )
 	      ),
 	      React.createElement(
