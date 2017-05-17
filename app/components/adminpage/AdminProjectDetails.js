@@ -66,6 +66,7 @@ var AdminProjectDetails = React.createClass({
     render: function(){
         console.log(this.state.data);
         if(this.state.data){
+            let data = this.state.data;
             return(
                 <div style={S.containerStyle}>
                     Admin Project Details

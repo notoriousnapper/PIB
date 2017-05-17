@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d95a36e-2e78-448d-a54f-2baa49f27dbe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminMain.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminNavbar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminProject.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminProjectDetails.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminProjectList.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminProjectSearchList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/reactRoutes.js" afterPath="$PROJECT_DIR$/app/config/reactRoutes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/adminpage/AdminProjectDetails.js" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminProjectDetails.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle.js" afterPath="$PROJECT_DIR$/dist/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/public/css/style.css" afterPath="$PROJECT_DIR$/dist/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="$PROJECT_DIR$/npm-debug.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -107,8 +95,8 @@
       <file leaf-file-name="AdminProjectDetails.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/components/adminpage/AdminProjectDetails.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="79" column="26" lean-forward="true" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
+            <state relative-caret-position="227">
+              <caret line="68" column="39" lean-forward="true" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
               <folding>
                 <element signature="e#236#1027#0" expanded="false" />
               </folding>
@@ -410,12 +398,12 @@
       <workItem from="1494828346543" duration="334000" />
       <workItem from="1494872216516" duration="219000" />
       <workItem from="1494872461414" duration="398000" />
-      <workItem from="1494965575369" duration="15072000" />
+      <workItem from="1494965575369" duration="15192000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16023000" />
+    <option name="totallyTimeSpent" value="16143000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -642,8 +630,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/adminpage/AdminProjectDetails.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="79" column="26" lean-forward="true" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
+        <state relative-caret-position="227">
+          <caret line="68" column="39" lean-forward="true" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
           <folding>
             <element signature="e#236#1027#0" expanded="false" />
           </folding>

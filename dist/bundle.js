@@ -55339,6 +55339,7 @@
 	    render: function render() {
 	        console.log(this.state.data);
 	        if (this.state.data) {
+	            var data = this.state.data;
 	            return React.createElement(
 	                'div',
 	                { style: S.containerStyle },
