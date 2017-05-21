@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var projectSchema = new mongoose.Schema({
     name: String,
@@ -16,15 +17,6 @@ var projectSchema = new mongoose.Schema({
     team: [],
     authorImg: String,
 
-    // not displayed
-    // materials: [],
-    // text: String,
-    // instructions: String,
-    // skills: [],
-    // links: [],
-    // mainurl: String,
-    // steps: []
-
     /*comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -32,5 +24,5 @@ var projectSchema = new mongoose.Schema({
         }
     ]*/ //for later
 });
-
+projectSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Project', projectSchema);

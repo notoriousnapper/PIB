@@ -6,14 +6,35 @@ module.exports.set = function(app)
 {
     // GET /projects
     app.get('/project', function(req, res){
-        Project.find({}, function(err, result){
+        // Project.find({}, function(err, result){
+        //     if (err)
+        //         console.log('ERROR GETTING ALL PROJECTS');
+        //     else{
+        //         res.end(JSON.stringify(result, null, 4));
+        //     }
+        // })
+
+        Project.paginate({}, { limit: 3 }, function(err, result){
             if (err)
                 console.log('ERROR GETTING ALL PROJECTS');
-            else{
+            else {
+
                 res.end(JSON.stringify(result, null, 4));
+                // console.log(JSON.stringify(result, null, 4));
             }
-        })
+        });
     });
+    app.get('/project/:page', function(req,res){
+        Project.paginate({}, { page: req.params.page ,limit: 3 }, function(err, result){
+            if (err)
+                console.log('ERROR GETTING ALL PROJECTS');
+            else {
+
+                res.end(JSON.stringify(result, null, 4));
+                // console.log(JSON.stringify(result, null, 4));
+            }
+        });
+    })
     // GET /project/:id
     app.get('/project/:id', function(req, res){
         Project.findById(req.params.id, function(err, project){
