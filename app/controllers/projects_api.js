@@ -5,16 +5,10 @@ var Project = require('../models/project.js');
 module.exports.set = function(app) 
 {
     // GET /projects
-    app.get('/project', function(req, res){
-        // Project.find({}, function(err, result){
-        //     if (err)
-        //         console.log('ERROR GETTING ALL PROJECTS');
-        //     else{
-        //         res.end(JSON.stringify(result, null, 4));
-        //     }
-        // })
-
-        Project.paginate({}, { limit: 3 }, function(err, result){
+    app.get('/admin/project', function(req, res){        
+        var pageNum = req.query.page ? req.query.page : 1;
+        console.log("Getting " + pageNum);
+        Project.paginate({}, { page: pageNum, limit: 3 }, function(err, result){
             if (err)
                 console.log('ERROR GETTING ALL PROJECTS');
             else {
@@ -24,19 +18,8 @@ module.exports.set = function(app)
             }
         });
     });
-    app.get('/project/:page', function(req,res){
-        Project.paginate({}, { page: req.params.page ,limit: 3 }, function(err, result){
-            if (err)
-                console.log('ERROR GETTING ALL PROJECTS');
-            else {
-
-                res.end(JSON.stringify(result, null, 4));
-                // console.log(JSON.stringify(result, null, 4));
-            }
-        });
-    })
     // GET /project/:id
-    app.get('/project/:id', function(req, res){
+    app.get('/admin/project/:id', function(req, res){
         Project.findById(req.params.id, function(err, project){
             if (err) {
                 console.log('ERROR GETTING PROJECT WITH ID: ' + req.params.id);
@@ -47,8 +30,9 @@ module.exports.set = function(app)
                 res.end(JSON.stringify(project, null, 4));
         })
     });
-    // GET /project/:id -- RETURN string author FOR NOW
-    app.get('/project/:id/author', function(req, res){
+
+    // GET /project/:id/author -- RETURN string author FOR NOW
+    app.get('/admin/project/:id/author', function(req, res){
         Project.findById(req.params.id, function(err, project){
             if (err) {
                 console.log('ERROR GETTING PROJECT WITH ID: ' + req.params.id);
@@ -60,8 +44,9 @@ module.exports.set = function(app)
             }
         })
     });
+    
     // POST /project
-    app.post('/project', function(req,res){
+    app.post('/admin/project', function(req,res){
         console.log("LOOKING FOR? >>> " + req.body.name);
         var newProject = new Project({
             name: req.body.name,
@@ -92,7 +77,7 @@ module.exports.set = function(app)
     /* 
         Must input's name as newdataProject inorder to use this route
     */
-    app.put('/project/:id', function(req,res){
+    app.put('/admin/project/:id', function(req,res){
         /*
             req.params.id: id of project to be updated
             newdataProject: name of <input> from HTMl (ASSUMPTION)
