@@ -9,14 +9,14 @@ var ProjectListing = require('../../components/projectlistings/ProjectListing');
 
 var devUrl = 'http://localhost:3000/get';
 var devUrl2 = 'http://localhost:3000/get';
-var prodUrl = 'https://still-forest-90731.herokuapp.com';
+var prodUrl = 'https://proj-box.herokuapp.com';
 
 var ImageboxComponent = React.createClass({
 	render: function(){
 		var buttonStyle={
-			width: "100px",
-			height: "50px",
-			padding: "10px 20px"
+			width: "50px", height: "50px", marginRight:"20px",
+			fontWeight: "bold",
+			backgroundColor: "#FAC129"
 		}
 		var bgStyle={
 			backgroundImage: "url(../public/img/pepper.png)",
@@ -77,14 +77,9 @@ var ProjectSearchList = React.createClass({
 			val:1
 		});
 	},
-	one: function(){
+	setListState: function(num){
 		this.setState({
-			val:1
-		});
-	},
-	two: function(){
-		this.setState({
-			val:2
+			val: num
 		});
 	},
 	render: function(){
@@ -92,6 +87,11 @@ var ProjectSearchList = React.createClass({
 		flexWrap:"wrap",
 		height: "800px"
 	};
+	var buttonStyle={
+		width: "50px", height: "50px", marginRight:"20px",
+		fontWeight: "bold",
+		backgroundColor: "#FAC129"
+	}
 
 		var projectListJSON = this.props.projectListData; //Includes array of objects
 				console.log("Full filtered JSON");
@@ -101,54 +101,50 @@ var ProjectSearchList = React.createClass({
 		var temp = [];
 		var temp2;
 		if(this.state.val==1){
-			// for(var i = 0; i < 6; i++){
-			// 	var projectJSON = projectListJSON[i];
-			// 	temp2 = ( <ProjectListing
-			// 		views={projectJSON.views}
-			// 		id={projectJSON.id} url={ projectJSON.url }
-			// 		name={ projectJSON.name} author={projectJSON.author}/>
-			// 		);
-			// 	temp.push(projectJSON);
-			// }
-			// projectSearchList = temp;
+			temp = [];
+			var i = 0;
 			projectSearchList= projectListJSON.map(function(projectJSON){
-					// console.log("url from JSON is: ");
-					// console.log(projectJSON.picUrl);
+					if(i<6){
+						i++;
 				return  (
 					<ProjectListing
 					views={projectJSON.views}
 					id={projectJSON.id} url={ projectJSON.url }
 					name={ projectJSON.name} author={projectJSON.author}/>
 					);
+					}
 				});
-			// projectSearchList= projectSearchList.slice(0, projectSearchList-3);
+						i++;
 		}
-		if(this.state.val==2){
+		if(this.state.val==2)	{
+			var i = 0;
 			projectSearchList= projectListJSON.map(function(projectJSON){
-					// console.log("url from JSON is: ");
-					// console.log(projectJSON.picUrl);
+			console.log("Bugger\n\n\n\n");
+			console.log(i);
+					if(i>=6)	{
+						i++;
+			console.log("Bugger\n\n\n\n");
 				return  (
 					<ProjectListing
 					views={projectJSON.views}
 					id={projectJSON.id} url={ projectJSON.url }
 					name={ projectJSON.name} author={projectJSON.author}/>
 					);
+					}
+						i++;
 				});
+			}
 
-				var temp = []
-				var len = projectSearchList.length;
-				temp.push(projectSearchList[len-1]);
-				temp.push(projectSearchList[len-2]);
-				projectSearchList = temp;
-		}
+
 
 
 		return(
 			<div style={containerStyle}>
 			{projectSearchList}
-
-			<button style={{width: "100px", height: "50px"}} onClick={this.one}> 1 </button>
-			<button style={{width: "100px", height: "50px"}} onClick={this.two}> 2 </button>
+			<div style={{margin: "0 auto", width: "100%", textAlign: "center", height: "400px"}}>
+				<button style={buttonStyle} onClick={()=>{this.setListState(1);}}> 1 </button>
+				<button style={buttonStyle} onClick={()=>{this.setListState(2);}}> 2 </button>
+			</div>
 
 			</div>);
 	}

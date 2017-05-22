@@ -48649,8 +48649,7 @@
 	// var TestAPI = require('../../scripts/TestAPI');
 
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
-	// var prodUrl = 'https://proj-box.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	/* Use devUrl or prodUrl*/
 	var useUrl = prodUrl;
 
@@ -48781,20 +48780,12 @@
 	          React.createElement(
 	            'div',
 	            { style: { display: "flex", flexDirection: "column",
-	                backgroundColor: "#F4F4F4"
-	              } },
+	                backgroundColor: "#F4F4F4", width: "100%" } },
 	            React.createElement(ProjectSearchList, { style: projectListStyle, projectListData: this.state.data }),
 	            React.createElement(
 	              'div',
 	              { style: { display: "flex", paddingTop: "30px" } },
 	              React.createElement(Pad, { hw: ['100px', '45%'] }),
-	              React.createElement(
-	                'button',
-	                { style: buttonStyle },
-	                ' ',
-	                1,
-	                ' '
-	              ),
 	              React.createElement(Pad, { hw: ['100px', '30%'] })
 	            )
 	          )
@@ -48856,16 +48847,16 @@
 
 	var devUrl = 'http://localhost:3000/get';
 	var devUrl2 = 'http://localhost:3000/get';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 
 	var ImageboxComponent = React.createClass({
 		displayName: 'ImageboxComponent',
 
 		render: function render() {
 			var buttonStyle = {
-				width: "100px",
-				height: "50px",
-				padding: "10px 20px"
+				width: "50px", height: "50px", marginRight: "20px",
+				fontWeight: "bold",
+				backgroundColor: "#FAC129"
 			};
 			var bgStyle = {
 				backgroundImage: "url(../public/img/pepper.png)",
@@ -48938,20 +48929,22 @@
 				val: 1
 			};
 		},
-		one: function one() {
+		setListState: function setListState(num) {
 			this.setState({
-				val: 1
-			});
-		},
-		two: function two() {
-			this.setState({
-				val: 2
+				val: num
 			});
 		},
 		render: function render() {
+			var _this = this;
+
 			var containerStyle = { borderStyle: "none", margin: "0", padding: "0px 0px 0px 30px", width: "100%", display: "flex",
 				flexWrap: "wrap",
 				height: "800px"
+			};
+			var buttonStyle = {
+				width: "50px", height: "50px", marginRight: "20px",
+				fontWeight: "bold",
+				backgroundColor: "#FAC129"
 			};
 
 			var projectListJSON = this.props.projectListData; //Includes array of objects
@@ -48962,41 +48955,34 @@
 			var temp = [];
 			var temp2;
 			if (this.state.val == 1) {
-				// for(var i = 0; i < 6; i++){
-				// 	var projectJSON = projectListJSON[i];
-				// 	temp2 = ( <ProjectListing
-				// 		views={projectJSON.views}
-				// 		id={projectJSON.id} url={ projectJSON.url }
-				// 		name={ projectJSON.name} author={projectJSON.author}/>
-				// 		);
-				// 	temp.push(projectJSON);
-				// }
-				// projectSearchList = temp;
+				temp = [];
+				var i = 0;
 				projectSearchList = projectListJSON.map(function (projectJSON) {
-					// console.log("url from JSON is: ");
-					// console.log(projectJSON.picUrl);
-					return React.createElement(ProjectListing, {
-						views: projectJSON.views,
-						id: projectJSON.id, url: projectJSON.url,
-						name: projectJSON.name, author: projectJSON.author });
+					if (i < 6) {
+						i++;
+						return React.createElement(ProjectListing, {
+							views: projectJSON.views,
+							id: projectJSON.id, url: projectJSON.url,
+							name: projectJSON.name, author: projectJSON.author });
+					}
 				});
-				// projectSearchList= projectSearchList.slice(0, projectSearchList-3);
+				i++;
 			}
 			if (this.state.val == 2) {
+				var i = 0;
 				projectSearchList = projectListJSON.map(function (projectJSON) {
-					// console.log("url from JSON is: ");
-					// console.log(projectJSON.picUrl);
-					return React.createElement(ProjectListing, {
-						views: projectJSON.views,
-						id: projectJSON.id, url: projectJSON.url,
-						name: projectJSON.name, author: projectJSON.author });
+					console.log("Bugger\n\n\n\n");
+					console.log(i);
+					if (i >= 6) {
+						i++;
+						console.log("Bugger\n\n\n\n");
+						return React.createElement(ProjectListing, {
+							views: projectJSON.views,
+							id: projectJSON.id, url: projectJSON.url,
+							name: projectJSON.name, author: projectJSON.author });
+					}
+					i++;
 				});
-
-				var temp = [];
-				var len = projectSearchList.length;
-				temp.push(projectSearchList[len - 1]);
-				temp.push(projectSearchList[len - 2]);
-				projectSearchList = temp;
 			}
 
 			return React.createElement(
@@ -49004,14 +48990,22 @@
 				{ style: containerStyle },
 				projectSearchList,
 				React.createElement(
-					'button',
-					{ style: { width: "100px", height: "50px" }, onClick: this.one },
-					' 1 '
-				),
-				React.createElement(
-					'button',
-					{ style: { width: "100px", height: "50px" }, onClick: this.two },
-					' 2 '
+					'div',
+					{ style: { margin: "0 auto", width: "100%", textAlign: "center", height: "400px" } },
+					React.createElement(
+						'button',
+						{ style: buttonStyle, onClick: function onClick() {
+								_this.setListState(1);
+							} },
+						' 1 '
+					),
+					React.createElement(
+						'button',
+						{ style: buttonStyle, onClick: function onClick() {
+								_this.setListState(2);
+							} },
+						' 2 '
+					)
 				)
 			);
 		}
@@ -49061,6 +49055,7 @@
 				borderColor: "#C7C7C7",
 				width: "30%",
 				margin: "1.6667%"
+				// height: "500px"
 			};
 			var imgStyle = {
 				minHeight: "60px",
@@ -49456,7 +49451,7 @@
 	var Link = ReactRouter.Link;
 
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	var useUrl = prodUrl;
 
 	var documentStrings = ['Main Document', 'Schematic'];
@@ -49526,7 +49521,7 @@
 	        field = 'views';break;
 	    }
 	    $.ajax({
-	      url: useUrl + '/getone/' + projectName + '/' + field,
+	      url: useUrl + '/project/' + projectName + '/' + field,
 	      dataType: 'json',
 	      method: 'PUT',
 	      cache: true,
@@ -49550,7 +49545,7 @@
 	  forceAjax: function forceAjax() {
 	    var name = this.props.params;
 	    $.ajax({
-	      url: useUrl + '/getone/' + name,
+	      url: useUrl + '/project/' + name,
 	      dataType: 'json',
 	      cache: true,
 	      success: function (res) {
@@ -50094,7 +50089,7 @@
 
 	var $ = __webpack_require__(302);
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	var useUrl = prodUrl;
 
 	var IntroData = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nesciunt illo officiis expedita placeat asperiores modi obcaecati accusantium iste sed iure labore nemo iusto, id praesentium aspernatur natus, nobis ipsum.';
@@ -50145,7 +50140,7 @@
 	    var name = this.props.params;
 	    console.log('query param is' + name);
 	    $.ajax({
-	      url: useUrl + '/getone/' + name,
+	      url: useUrl + '/project/' + name,
 	      dataType: 'json',
 	      cache: true,
 	      success: function (res) {
@@ -50168,7 +50163,7 @@
 	        field = 'views';break;
 	    }
 	    $.ajax({
-	      url: useUrl + '/getone/' + projectName + '/' + field,
+	      url: useUrl + '/project/' + projectName + '/' + field,
 	      dataType: 'json',
 	      method: 'PUT',
 	      cache: true,
@@ -50696,7 +50691,7 @@
 	var Carousel = __webpack_require__(300);
 
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	var useUrl = prodUrl;
 
 	var $ = __webpack_require__(302);
@@ -50735,7 +50730,7 @@
 	    var name = this.props.params;
 	    console.log('query param is' + name);
 	    $.ajax({
-	      url: useUrl + '/getone/' + name,
+	      url: useUrl + '/project/' + name,
 	      dataType: 'json',
 	      cache: true,
 	      success: function (res) {
@@ -53157,7 +53152,7 @@
 
 	var $ = __webpack_require__(302);
 	var devUrl = 'http://localhost:3000';
-	var prodUrl = 'https://still-forest-90731.herokuapp.com';
+	var prodUrl = 'https://proj-box.herokuapp.com';
 	var useUrl = prodUrl;
 
 	var Content = React.createClass({

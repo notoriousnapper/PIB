@@ -56,7 +56,7 @@ module.exports.set =
   });
 
 
-  app.get('/getone/:name', (req,res, next	)=> {
+  app.get('/project/:name', (req,res, next	)=> {
 	var name = req.params.name;
 	console.log('query url is ' + name);
 	db.collection('projects').find( {'name': name}).toArray((err, result)=>{
@@ -128,7 +128,7 @@ app.get('/getviews', (req, res)=>{
 });
 
 /* Update Likes, downloads, etc. */
-app.put('/getone/:id/:type', (req,res)=>{
+app.put('/project/:id/:type', (req,res)=>{
 	/* Updates specific project id with specific field (like, views, etc) */
 	var fields = ['views','likes', 'downloads'];
 	if (!fields.every(function(elem){req.params.type === elem})){

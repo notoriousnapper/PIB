@@ -26,8 +26,7 @@ var Q = require('q');
 // var TestAPI = require('../../scripts/TestAPI');
 
 var devUrl = 'http://localhost:3000';
-var prodUrl = 'https://still-forest-90731.herokuapp.com';
-// var prodUrl = 'https://proj-box.herokuapp.com';
+var prodUrl = 'https://proj-box.herokuapp.com';
 /* Use devUrl or prodUrl*/
 var useUrl = prodUrl;
 
@@ -150,13 +149,10 @@ var Projects = React.createClass({
               </Bar>
                     <Frame style={{display:"inline-block"}}>
                             <div style={{display:"flex", flexDirection: "column",
-			                         backgroundColor: "#F4F4F4",
-                          }}>
+			                         backgroundColor: "#F4F4F4", width: "100%" }}>
                               <ProjectSearchList style={projectListStyle} projectListData={this.state.data}/>
-
                               <div style={{display:"flex", paddingTop:"30px"}}>
                                 <Pad hw={['100px', '45%']}/>
-                                <button style={buttonStyle}> {1} </button>
                                 <Pad hw={['100px', '30%']}/>
                               </div>
                             </div>

@@ -4,7 +4,7 @@ var Link = ReactRouter.Link;
 var Carousel = require('../../components/custom/Carousel');
 
 var devUrl ='http://localhost:3000';
-var prodUrl = 'https://still-forest-90731.herokuapp.com';
+var prodUrl = 'https://proj-box.herokuapp.com';
 var useUrl = prodUrl;
 
 var $ = require('jquery');
@@ -41,7 +41,7 @@ var Proj2 = React.createClass({
   var name = this.props.params;
   console.log('query param is' + name);
    $.ajax({
-        url: useUrl + '/getone/' + name,
+        url: useUrl + '/project/' + name,
         dataType: 'json',
         cache: true,
         success: function(res) {

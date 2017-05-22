@@ -19,7 +19,7 @@ var FontAwesome = require('react-fontawesome');
 
 var $ = require('jquery');
 var devUrl ='http://localhost:3000';
-var prodUrl = 'https://still-forest-90731.herokuapp.com';
+var prodUrl = 'https://proj-box.herokuapp.com';
 var useUrl = prodUrl;
 
 var IntroData =
@@ -71,7 +71,7 @@ var Proj = React.createClass({
           var name = this.props.params;
           console.log('query param is' + name);
            $.ajax({
-                url: useUrl + '/getone/' + name,
+                url: useUrl + '/project/' + name,
                 dataType: 'json',
                 cache: true,
                 success: function(res) {
@@ -91,7 +91,7 @@ var Proj = React.createClass({
             case 3:  field = 'views'; break;
           }
            $.ajax({
-                url: useUrl + '/getone/' + projectName + '/' + field,
+                url: useUrl + '/project/' + projectName + '/' + field,
                 dataType: 'json',
                 method: 'PUT',
                 cache: true,

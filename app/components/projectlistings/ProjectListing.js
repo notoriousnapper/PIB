@@ -33,6 +33,7 @@ var ProjectListing = React.createClass({
 			borderColor: "#C7C7C7",
 			width:"30%",
 			margin:"1.6667%"
+			// height: "500px"
 		}
 		var imgStyle={
 			minHeight:"60px",
@@ -65,7 +66,6 @@ var ProjectListing = React.createClass({
 		for(var i = 1; i < nameArray.length; i++){
 			var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
 		}
-
 
 		/* Params data = this.props.name in Link */
 		return(
