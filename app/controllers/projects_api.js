@@ -106,7 +106,7 @@ module.exports.set = function(app)
             about: req.body.about,
             thumbnail_img: req.body.thumbnail_img,
             carouseFiles: req.body.carouseFiles,
-            tags: req.body.tags,
+            tags: [req.body.tags],
             views: 0,
             likes: 0,
             downloads: 0,
