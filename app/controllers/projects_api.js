@@ -33,7 +33,7 @@ module.exports.set = function(app)
             }
         });
     });
-    // GET /project/:id
+    // GET /admin/project/:id
     app.get('/admin/project/:id', function(req, res){
         Project.findById(req.params.id, function(err, project){
             if (err) {
@@ -46,7 +46,7 @@ module.exports.set = function(app)
         })
     });
 
-    // GET /project/:id/author -- RETURN string author FOR NOW
+    // GET /admin/project/:id/author -- RETURN string author FOR NOW
     app.get('/admin/project/:id/author', function(req, res){
         Project.findById(req.params.id, function(err, project){
             if (err) {
@@ -60,12 +60,38 @@ module.exports.set = function(app)
         })
     });
 
-    // GET /project/:name -- pagination
-    app.get('/admin/project/query/:name', function(req, res){
+    // GET /admin/project/name/:key -- pagination
+    app.get('/admin/project/name/:key', function(req, res){
         var pageNum = req.query.page ? req.query.page : 1;
-        Project.paginate({name: req.params.name}, { page: pageNum, limit: pageLimit }, function(err, result){
+        Project.paginate({name: req.params.key}, { page: pageNum, limit: pageLimit }, function(err, result){
             if (err)
-                res.send("Connect find project(s) " + req.params.name);
+                res.send("Connect find project(s) " + req.params.key);
+            else{
+                console.log(result);
+                res.end(JSON.stringify(result,null,4));
+            }
+       }); 
+    });
+
+    // GET /admin/project/tag/:key -- pagination
+    app.get('/admin/project/tags/:key', function(req, res){
+        var pageNum = req.query.page ? req.query.page : 1;
+        Project.paginate({tags: req.params.key}, { page: pageNum, limit: pageLimit }, function(err, result){
+            if (err)
+                res.send("Connect find project(s) with tag(s) " + req.params.key);
+            else{
+                console.log(result);
+                res.end(JSON.stringify(result,null,4));
+            }
+       }); 
+    });
+
+    // GET /admin/project/author/:key -- pagination
+    app.get('/admin/project/author/:key', function(req, res){
+        var pageNum = req.query.page ? req.query.page : 1;
+        Project.paginate({author: req.params.key}, { page: pageNum, limit: pageLimit }, function(err, result){
+            if (err)
+                res.send("Connect find project(s) by author(s) " + req.params.key);
             else{
                 console.log(result);
                 res.end(JSON.stringify(result,null,4));
@@ -73,14 +99,14 @@ module.exports.set = function(app)
        }); 
     });
     
-    // POST /project
+    // POST /admin/project
     app.post('/admin/project', function(req,res){        
         var newProject = new Project({
             name: req.body.name,
             about: req.body.about,
             thumbnail_img: req.body.thumbnail_img,
             carouseFiles: req.body.carouseFiles,
-            tags: req.body.tag,
+            tags: req.body.tags,
             views: 0,
             likes: 0,
             downloads: 0,
@@ -103,7 +129,8 @@ module.exports.set = function(app)
     });
     // PUT /project/:id
     /* 
-        Must input's name as newdataProject inorder to use this route
+        1. Must input's name as newdataProject in order to use this route
+        2. "Content-Type": application/json
     */
     app.put('/admin/project/:id', function(req,res){
         /*
