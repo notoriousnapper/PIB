@@ -2,19 +2,34 @@ var mongoose = require('mongoose');
 // var configDB = require('../../app/config/database.js');
 // mongoose.connect(configDB.url); // connect to our database
 var Project = require('../models/project.js');
+/*
+    API for admin panel
+    All routes start with /admin/project
+*/
 module.exports.set = function(app) 
 {
-    // GET /projects
+    const pageLimit = 6;
+    // GET (ALL) /projects -- pagination
+    /*  PAGNIATION documentation
+        1. 'result' object is returned by db has format:
+            "result": {
+                "docs": []  // array for projects (max = pageLimit),
+                "total": ,  // total numbers of projects
+                "limit": ,  // number of project returned per page (6 by default)
+                "page": ,   // current page (1, 2, 3, etc)
+                "pages": ,  // total numbers of pages
+            }
+        2. Default will load page 1, to load other page, use Query String:
+            Ex: Load page 2 = https://<url>/admin/project?page=2
+    */
     app.get('/admin/project', function(req, res){        
         var pageNum = req.query.page ? req.query.page : 1;
         console.log("Getting " + pageNum);
-        Project.paginate({}, { page: pageNum, limit: 3 }, function(err, result){
+        Project.paginate({}, { page: pageNum, limit: pageLimit }, function(err, result){
             if (err)
                 console.log('ERROR GETTING ALL PROJECTS');
             else {
-
-                res.end(JSON.stringify(result, null, 4));
-                // console.log(JSON.stringify(result, null, 4));
+                res.end(JSON.stringify(result, null, 4));            
             }
         });
     });
@@ -44,15 +59,28 @@ module.exports.set = function(app)
             }
         })
     });
+
+    // GET /project/:name -- pagination
+    app.get('/admin/project/query/:name', function(req, res){
+        var pageNum = req.query.page ? req.query.page : 1;
+        Project.paginate({name: req.params.name}, { page: pageNum, limit: pageLimit }, function(err, result){
+            if (err)
+                res.send("Connect find project(s) " + req.params.name);
+            else{
+                console.log(result);
+                res.end(JSON.stringify(result,null,4));
+            }
+       }); 
+    });
     
     // POST /project
-    app.post('/admin/project', function(req,res){
-        console.log("LOOKING FOR? >>> " + req.body.name);
+    app.post('/admin/project', function(req,res){        
         var newProject = new Project({
             name: req.body.name,
             about: req.body.about,
             thumbnail_img: req.body.thumbnail_img,
             carouseFiles: req.body.carouseFiles,
+            tags: req.body.tag,
             views: 0,
             likes: 0,
             downloads: 0,
@@ -94,6 +122,5 @@ module.exports.set = function(app)
             }
         });        
     });
-    // GET /project/:tag/:title
-    // PUT /project
+
 }

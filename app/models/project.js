@@ -4,9 +4,9 @@ var mongoosePaginate = require('mongoose-paginate');
 var projectSchema = new mongoose.Schema({
     name: String,
     about: String,
-
-    thumbnail_img: String, // thumbnail project photo
-    // partsImg: String,
+    tag: String,
+    
+    thumbnail_img: String, // thumbnail project photo    
     carouselFiles: [],
    
     views: Number,
