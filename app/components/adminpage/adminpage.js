@@ -80,6 +80,7 @@ var AdminPage = React.createClass({
             data: tempData,
             success: function() {
                 console.log("successful updated");
+                // similar behavior as an HTTP redirect
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(useUrl, status, err.toString());
