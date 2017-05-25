@@ -21522,10 +21522,11 @@
 	var SignUp = __webpack_require__(364);
 	var Profile = __webpack_require__(365);
 	var Footer = __webpack_require__(239);
-
 	var Test = __webpack_require__(349);
 	/* ReactRouter Routes urls to components */
 	// var Home = (require'../components/Main');
+	var AdminPage = __webpack_require__(370);
+
 	var reactRoutes = React.createElement(
 		'div',
 		null,
@@ -21553,7 +21554,8 @@
 				React.createElement(Route, { path: '/login', component: Login }),
 				React.createElement(Route, { path: '/signup', component: SignUp }),
 				React.createElement(Route, { path: '/profile', component: Profile }),
-				React.createElement(Route, { path: '/test', component: Test })
+				React.createElement(Route, { path: '/test', component: Test }),
+				React.createElement(Route, { path: '/admin', component: AdminPage })
 			)
 		),
 		React.createElement(Footer, null)
@@ -53827,6 +53829,137 @@
 	});
 
 	module.exports = LabelCarousel;
+
+/***/ },
+/* 370 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var $ = __webpack_require__(302);
+
+	var useUrl = 'http://localhost:3000';
+
+	var AdminPage = React.createClass({
+	    displayName: 'AdminPage',
+
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            data: []
+	        };
+	    },
+
+	    getAllProjects: function getAllProjects(evt) {
+	        console.log("getAllprioject called");
+	        $.ajax({
+	            url: useUrl + '/admin/project',
+	            dataType: 'json',
+	            cache: false,
+	            success: function (res) {
+	                this.setState({
+	                    data: res
+	                });
+	                console.log("printing data");
+	                console.log(this.state.data);
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(useUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+
+	    createProject: function createProject(evt) {
+	        console.log("button clicked");
+	        var tempData = {
+	            name: "lala",
+	            about: "llalalala",
+	            thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
+	            carouseFiles: "",
+	            tags: ['bad prject'],
+	            author: "Jesse Ren",
+	            team: " Jesee Team",
+	            authorImg: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg"
+	        };
+	        $.ajax({
+	            type: "POST",
+	            url: useUrl + '/admin/project',
+	            cache: false,
+	            data: tempData,
+	            success: function () {
+	                console.log("successful");
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(useUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+
+	    updateProject: function updateProject(evt) {
+	        console.log("edit button clicked");
+	        var id = "59272e5d7ffe053f23b15409";
+	        var tempData = {
+	            "newdataProject": {
+	                name: "lala",
+	                about: "llalalalababababababab",
+	                thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
+	                carouseFiles: "",
+	                tags: ['bad prject'],
+	                author: "Jesse Ren",
+	                team: " Jesee Team",
+	                authorImg: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg"
+	            }
+	        };
+	        $.ajax({
+	            type: "PUT",
+	            url: useUrl + '/admin/project/' + id,
+	            dataType: 'json',
+	            cache: false,
+	            data: tempData,
+	            success: function () {
+	                console.log("successful updated");
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(useUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        this.getAllProjects();
+	    },
+	    render: function render() {
+	        if (this.state.data) {
+	            return React.createElement(
+	                'div',
+	                { style: { display: "block", width: "100%", height: "600px", color: "black", marginTop: "100px" } },
+	                React.createElement(
+	                    'button',
+	                    { className: 'btn btn-primary', style: { float: "left" } },
+	                    'Lala'
+	                ),
+	                React.createElement(
+	                    'button',
+	                    { className: 'btn btn-primary', style: { float: "left" },
+	                        onClick: this.createProject.bind(this) },
+	                    'Create Project'
+	                ),
+	                React.createElement(
+	                    'button',
+	                    { className: 'btn btn-danger', style: { float: "left" },
+	                        onClick: this.updateProject.bind(this) },
+	                    'Edit Project'
+	                )
+	            );
+	        } else {
+	            return React.createElement('div', null);
+	        }
+	    }
+	});
+
+	module.exports = AdminPage;
 
 /***/ }
 /******/ ]);

@@ -25,10 +25,11 @@ var Login = require('../components/userpage/Login');
 var SignUp = require('../components/userpage/SignUp');
 var Profile = require('../components/userpage/Profile');
 var Footer = require('../components/custom/Footer');
-
 var Test = require('../components/projectpage/Test');
 /* ReactRouter Routes urls to components */
 // var Home = (require'../components/Main');
+var AdminPage = require('../components/adminpage/adminpage')
+
 var reactRoutes = (
 	<div>
 	<Router history={hashHistory}>
@@ -48,9 +49,9 @@ var reactRoutes = (
 			<Route path='/signup' component={SignUp}/>
 			<Route path='/profile' component={Profile}/>
 			<Route path='/test' component={Test}/>
+			<Route path='/admin' component={AdminPage}/>
 		</Route>
 	</Router>
-
 
 	<Footer />
 	</div>
