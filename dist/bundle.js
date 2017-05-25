@@ -45,8 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(366);
 	__webpack_require__(367);
+	__webpack_require__(368);
 	__webpack_require__(238);
 	__webpack_require__(361);
 	__webpack_require__(297);
@@ -61,13 +61,13 @@
 	__webpack_require__(357);
 	__webpack_require__(305);
 	__webpack_require__(356);
-	__webpack_require__(368);
+	__webpack_require__(369);
 	__webpack_require__(308);
 	__webpack_require__(362);
 	__webpack_require__(283);
 	__webpack_require__(345);
 	__webpack_require__(300);
-	__webpack_require__(369);
+	__webpack_require__(370);
 	__webpack_require__(301);
 	__webpack_require__(239);
 	__webpack_require__(298);
@@ -21525,7 +21525,7 @@
 	var Test = __webpack_require__(349);
 	/* ReactRouter Routes urls to components */
 	// var Home = (require'../components/Main');
-	var AdminPage = __webpack_require__(370);
+	var AdminPage = __webpack_require__(366);
 
 	var reactRoutes = React.createElement(
 		'div',
@@ -53555,6 +53555,139 @@
 
 /***/ },
 /* 366 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var $ = __webpack_require__(302);
+
+	var useUrl = 'http://localhost:3000';
+
+	var AdminPage = React.createClass({
+	    displayName: 'AdminPage',
+
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            data: []
+	        };
+	    },
+
+	    getAllProjects: function getAllProjects(evt) {
+	        console.log("getAllprioject called");
+	        $.ajax({
+	            url: useUrl + '/admin/project',
+	            dataType: 'json',
+	            cache: false,
+	            success: function (res) {
+	                this.setState({
+	                    data: res
+	                });
+	                console.log("printing data");
+	                console.log(this.state.data);
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(useUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+
+	    createProject: function createProject(evt) {
+	        console.log("button clicked");
+	        var tempData = {
+	            name: "lala",
+	            about: "llalalala",
+	            thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
+	            carouseFiles: "",
+	            tags: ['bad prject'],
+	            author: "Jesse Ren",
+	            team: " Jesee Team",
+	            authorImg: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg"
+	        };
+	        $.ajax({
+	            type: "POST",
+	            url: useUrl + '/admin/project',
+	            cache: false,
+	            data: tempData,
+	            success: function () {
+	                console.log("successful");
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(useUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+
+	    updateProject: function updateProject(evt) {
+	        console.log("edit button clicked");
+	        var id = "59272e5d7ffe053f23b15409";
+	        var tempData = {
+	            "newdataProject": {
+	                name: "lalababa123",
+	                about: "llalalalababababababab",
+	                thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
+	                carouseFiles: "",
+	                tags: ['bad prject'],
+	                author: "Jesse Ren",
+	                team: " Jesee Team",
+	                authorImg: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg"
+	            }
+	        };
+	        $.ajax({
+	            type: "PUT",
+	            url: useUrl + '/admin/project/' + id,
+	            dataType: 'json',
+	            cache: false,
+	            data: tempData,
+	            success: function () {
+	                console.log("successful updated");
+	                // ReactRouter.redirectTo('admin');
+	                window.location.replace(useUrl + '/#/about');
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(useUrl, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        this.getAllProjects();
+	    },
+	    render: function render() {
+	        if (this.state.data) {
+	            return React.createElement(
+	                'div',
+	                { style: { display: "block", width: "100%", height: "600px", color: "black", marginTop: "100px" } },
+	                React.createElement(
+	                    'button',
+	                    { className: 'btn btn-primary', style: { float: "left" } },
+	                    'Lala'
+	                ),
+	                React.createElement(
+	                    'button',
+	                    { className: 'btn btn-primary', style: { float: "left" },
+	                        onClick: this.createProject.bind(this) },
+	                    'Create Project'
+	                ),
+	                React.createElement(
+	                    'button',
+	                    { className: 'btn btn-danger', style: { float: "left" },
+	                        onClick: this.updateProject.bind(this) },
+	                    'Edit Project'
+	                )
+	            );
+	        } else {
+	            return React.createElement('div', null);
+	        }
+	    }
+	});
+
+	module.exports = AdminPage;
+
+/***/ },
+/* 367 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -53592,7 +53725,7 @@
 	module.exports = TestAPI;
 
 /***/ },
-/* 367 */
+/* 368 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53689,7 +53822,7 @@
 	}
 
 /***/ },
-/* 368 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53746,7 +53879,7 @@
 	module.exports = StepAdd;
 
 /***/ },
-/* 369 */
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53829,137 +53962,6 @@
 	});
 
 	module.exports = LabelCarousel;
-
-/***/ },
-/* 370 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(3);
-	var ReactRouter = __webpack_require__(181);
-	var $ = __webpack_require__(302);
-
-	var useUrl = 'http://localhost:3000';
-
-	var AdminPage = React.createClass({
-	    displayName: 'AdminPage',
-
-
-	    getInitialState: function getInitialState() {
-	        return {
-	            data: []
-	        };
-	    },
-
-	    getAllProjects: function getAllProjects(evt) {
-	        console.log("getAllprioject called");
-	        $.ajax({
-	            url: useUrl + '/admin/project',
-	            dataType: 'json',
-	            cache: false,
-	            success: function (res) {
-	                this.setState({
-	                    data: res
-	                });
-	                console.log("printing data");
-	                console.log(this.state.data);
-	            }.bind(this),
-	            error: function (xhr, status, err) {
-	                console.error(useUrl, status, err.toString());
-	            }.bind(this)
-	        });
-	    },
-
-	    createProject: function createProject(evt) {
-	        console.log("button clicked");
-	        var tempData = {
-	            name: "lala",
-	            about: "llalalala",
-	            thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
-	            carouseFiles: "",
-	            tags: ['bad prject'],
-	            author: "Jesse Ren",
-	            team: " Jesee Team",
-	            authorImg: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg"
-	        };
-	        $.ajax({
-	            type: "POST",
-	            url: useUrl + '/admin/project',
-	            cache: false,
-	            data: tempData,
-	            success: function () {
-	                console.log("successful");
-	            }.bind(this),
-	            error: function (xhr, status, err) {
-	                console.error(useUrl, status, err.toString());
-	            }.bind(this)
-	        });
-	    },
-
-	    updateProject: function updateProject(evt) {
-	        console.log("edit button clicked");
-	        var id = "59272e5d7ffe053f23b15409";
-	        var tempData = {
-	            "newdataProject": {
-	                name: "lala",
-	                about: "llalalalababababababab",
-	                thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
-	                carouseFiles: "",
-	                tags: ['bad prject'],
-	                author: "Jesse Ren",
-	                team: " Jesee Team",
-	                authorImg: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg"
-	            }
-	        };
-	        $.ajax({
-	            type: "PUT",
-	            url: useUrl + '/admin/project/' + id,
-	            dataType: 'json',
-	            cache: false,
-	            data: tempData,
-	            success: function () {
-	                console.log("successful updated");
-	            }.bind(this),
-	            error: function (xhr, status, err) {
-	                console.error(useUrl, status, err.toString());
-	            }.bind(this)
-	        });
-	    },
-
-	    componentDidMount: function componentDidMount() {
-	        this.getAllProjects();
-	    },
-	    render: function render() {
-	        if (this.state.data) {
-	            return React.createElement(
-	                'div',
-	                { style: { display: "block", width: "100%", height: "600px", color: "black", marginTop: "100px" } },
-	                React.createElement(
-	                    'button',
-	                    { className: 'btn btn-primary', style: { float: "left" } },
-	                    'Lala'
-	                ),
-	                React.createElement(
-	                    'button',
-	                    { className: 'btn btn-primary', style: { float: "left" },
-	                        onClick: this.createProject.bind(this) },
-	                    'Create Project'
-	                ),
-	                React.createElement(
-	                    'button',
-	                    { className: 'btn btn-danger', style: { float: "left" },
-	                        onClick: this.updateProject.bind(this) },
-	                    'Edit Project'
-	                )
-	            );
-	        } else {
-	            return React.createElement('div', null);
-	        }
-	    }
-	});
-
-	module.exports = AdminPage;
 
 /***/ }
 /******/ ]);

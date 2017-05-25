@@ -145,8 +145,8 @@ module.exports.set = function(app)
             }
             else {
                 console.log(updatedProject);
-                // res.send(JSON.stringify(updatedProject,null,4));
-                res.redirect('/#/admin');
+                res.send(JSON.stringify(updatedProject,null,4));
+                // res.redirect('/');
             }
         });        
     });
