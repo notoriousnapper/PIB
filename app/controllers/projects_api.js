@@ -122,7 +122,7 @@ module.exports.set = function(app)
             }
             else { // succesful insert = redirect to HOME
                 console.log(createdProject);
-                res.redirect('/');                
+                res.redirect('/#/admin');                
             }
 
         });
@@ -145,7 +145,8 @@ module.exports.set = function(app)
             }
             else {
                 console.log(updatedProject);
-                res.send(JSON.stringify(updatedProject,null,4));
+                // res.send(JSON.stringify(updatedProject,null,4));
+                res.redirect('/#/admin');
             }
         });        
     });
