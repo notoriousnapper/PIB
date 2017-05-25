@@ -53429,13 +53429,9 @@
 									React.createElement('input', { type: 'password', 'class': 'form-control', name: 'password' })
 								),
 								React.createElement(
-									Link,
-									{ to: "/profile" },
-									React.createElement(
-										'button',
-										{ type: 'submit', 'class': 'btn btn-warning btn-lg' },
-										'Signup'
-									)
+									'button',
+									{ type: 'submit', 'class': 'btn btn-warning btn-lg' },
+									'Signup'
 								)
 							),
 							React.createElement('hr', null),
@@ -53643,7 +53639,7 @@
 
 	    // process the signup form
 	    app.post('/signup', passport.authenticate('local-signup', {
-	        successRedirect: '/profile', // redirect to the secure profile section
+	        successRedirect: '/', // redirect to the secure profile section
 	        failureRedirect: '/signup', // redirect back to the signup page if there is an error
 	        failureFlash: true // allow flash messages
 	    }));

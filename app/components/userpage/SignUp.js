@@ -42,9 +42,9 @@ var SignUp = React.createClass({
 	            <input type="password" class="form-control" name="password"/>
 	        </div>
 
-					<Link to={"/profile"}>
+					{/*<Link to={"/profile"}>*/}
 	        		<button type="submit" class="btn btn-warning btn-lg">Signup</button>
-					</Link>
+					{/*</Link>*/}
 	    </form>
 
 	    <hr/>
