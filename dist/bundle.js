@@ -53625,7 +53625,7 @@
 	        var id = "59272e5d7ffe053f23b15409";
 	        var tempData = {
 	            "newdataProject": {
-	                name: "lala",
+	                name: "lalababa123",
 	                about: "llalalalababababababab",
 	                thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
 	                carouseFiles: "",
@@ -53644,6 +53644,8 @@
 	            success: function () {
 	                console.log("successful updated");
 	                // similar behavior as an HTTP redirect
+	                // ReactRouter.redirectTo('admin');
+	                window.location.replace(useUrl + '/#/about');
 	            }.bind(this),
 	            error: function (xhr, status, err) {
 	                console.error(useUrl, status, err.toString());
