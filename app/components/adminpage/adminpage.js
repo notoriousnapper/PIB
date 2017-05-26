@@ -1,17 +1,53 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var $ = require('jquery');
-
+var ProjectPage = require('./AdminProject');
+var ProjectCreateForm = require('./ProjectCreateForm');
 const useUrl = 'http://localhost:3000';
+let S = {
+    popOuter: {
+        backgroundColor: "rgba(0,0,0,0.5)",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        display: "none",
+    },
+    popInner: {
+        backgroundColor: "#fff",
+        width: "700px",
+        borderRadius: "5px",
+        overflow: "scroll",
+        height: "80%",
+        padding: "25px",
+        margin: "10% auto 25% auto",
+        position: "relative"
+    },
+    cancelButton: {
+        float: "right",
+    },
+    fakeDataContainer: {
+        width: '500px',
+        height: '300px'
+    }
+};
 
 var AdminPage = React.createClass({
-
     getInitialState: function() {
         return {
-            data: []
+            data: [],
         };
     },
-
+    cancelForm: function(event){
+        let eleOuter = document.getElementsByClassName("popOuter");
+        console.log("cancelling form");
+        eleOuter[0].style.display = "none";
+    },
+    showCreateFrom: function(event){
+        let eleOuter = document.getElementsByClassName("popOuter");
+        eleOuter[0].style.display = "block";
+    },
     getAllProjects: function(evt) {
         console.log("getAllprioject called");
         $.ajax({
@@ -31,31 +67,7 @@ var AdminPage = React.createClass({
         });
     },
 
-    createProject: function(evt){
-        console.log("button clicked");
-        let tempData = {
-            name: "lala",
-            about: "llalalala",
-            thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
-            carouseFiles: "",
-            tags: ['bad prject'],
-            author: "Jesse Ren",
-            team: " Jesee Team",
-            authorImg: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg"
-        };
-        $.ajax({
-            type: "POST",
-            url: useUrl + '/admin/project',
-            cache: false,
-            data: tempData,
-            success: function() {
-                console.log("successful");
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(useUrl, status, err.toString());
-            }.bind(this)
-        });
-    },
+
 
     updateProject: function(evt){
         console.log("edit button clicked");
@@ -80,7 +92,6 @@ var AdminPage = React.createClass({
             data: tempData,
             success: function() {
                 console.log("successful updated");
-                // similar behavior as an HTTP redirect
                 // ReactRouter.redirectTo('admin');
                 window.location.replace(`${useUrl}/#/about`);
             }.bind(this),
@@ -96,12 +107,20 @@ var AdminPage = React.createClass({
     render: function(){
         if(this.state.data){
             return(
-                <div style={{display:"block", width:"100%", height: "600px", color: "black", marginTop: "100px"}}>
-                    <button className="btn btn-primary" style={{float: "left"}}>Lala</button>
-                    <button className="btn btn-primary" style={{float: "left"}}
-                            onClick={this.createProject.bind(this)}>Create Project</button>
-                    <button className="btn btn-danger" style={{float: "left"}}
-                            onClick={this.updateProject.bind(this)}>Edit Project</button>
+                <div style={{display:"block", width:"100%", height: "1500px", color: "black", marginTop: "100px"}}>
+                    <ProjectPage />
+                    <div style={{width: "100%", height: "200px", marginTop: "20px"}}>
+                        <button className="btn btn-primary" style={{position: "fixed", top: "240", left: "40", width: "130px"}}
+                                onClick={this.showCreateFrom.bind(this)}>Create Project</button>
+                        <button className="btn btn-danger" style={{position: "fixed", top: "280", left: "40", width: "130px"}}
+                                onClick={this.updateProject.bind(this)}>Edit Project</button>
+                    </div>
+                    <div className="popOuter" style={S.popOuter}>
+                        <div className="pop-inner" style={S.popInner}>
+                            <button className="btn btn-danger" style={S.cancelButton} onClick={this.cancelForm.bind(this)}>X</button>
+                            <ProjectCreateForm/>
+                        </div>
+                    </div>
                 </div>
             )
         }else{
@@ -109,8 +128,6 @@ var AdminPage = React.createClass({
                 <div></div>
             )
         }
-
     }
 });
-
 module.exports = AdminPage;

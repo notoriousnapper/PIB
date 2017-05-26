@@ -50,6 +50,7 @@
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1",
     "react-dropdown": "^1.1.0",
+    "react-dropzone": "^3.13.1",
     "react-fontawesome": "^1.5.0",
     "react-responsive-carousel": "^3.0.21",
     "react-router": "^2.0.0",
@@ -57,7 +58,9 @@
     "react-search-bar": "^1.1.4",
     "react-slick": "^0.14.5",
     "request": "^2.74.0",
-    "slick-carousel": "^1.6.0"
+    "sha1": "^1.1.1",
+    "slick-carousel": "^1.6.0",
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
