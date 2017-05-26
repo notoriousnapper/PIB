@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f539567c-94b3-49bb-aa87-38e74162433d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/adminpage/ProjectEditForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/adminpage/AdminProject.js" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminProject.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/adminpage/adminpage.js" afterPath="$PROJECT_DIR$/app/components/adminpage/adminpage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/projects_api.js" afterPath="$PROJECT_DIR$/app/controllers/projects_api.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle.js" afterPath="$PROJECT_DIR$/dist/bundle.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -22,21 +18,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="adminpage.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="adminpage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/components/adminpage/adminpage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="121" column="31" lean-forward="false" selection-start-line="121" selection-start-column="31" selection-end-line="121" selection-end-column="31" />
+            <state relative-caret-position="270">
+              <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProjectEditForm.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProjectEditForm.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/adminpage/ProjectEditForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="78" column="40" lean-forward="true" selection-start-line="78" selection-start-column="40" selection-end-line="78" selection-end-column="40" />
+            <state relative-caret-position="1185">
+              <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -133,6 +129,7 @@
       <find>projectForE</find>
       <find>p</find>
       <find>post</find>
+      <find>Edit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,9 +146,9 @@
         <option value="$PROJECT_DIR$/app/components/adminpage/AdminProjectSearchList.js" />
         <option value="$PROJECT_DIR$/app/components/adminpage/AdminProjectList.js" />
         <option value="$PROJECT_DIR$/app/components/adminpage/AdminProject.js" />
-        <option value="$PROJECT_DIR$/app/components/adminpage/adminpage.js" />
         <option value="$PROJECT_DIR$/app/controllers/projects_api.js" />
         <option value="$PROJECT_DIR$/app/components/adminpage/ProjectEditForm.js" />
+        <option value="$PROJECT_DIR$/app/components/adminpage/adminpage.js" />
       </list>
     </option>
   </component>
@@ -455,12 +452,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495737754907</updated>
-      <workItem from="1495737757394" duration="26082000" />
+      <workItem from="1495737757394" duration="26563000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26082000" />
+    <option name="totallyTimeSpent" value="26563000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="766" extended-state="6" />
@@ -601,18 +598,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/adminpage/adminpage.js">
+    <entry file="file://$PROJECT_DIR$/app/components/adminpage/ProjectEditForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="121" column="31" lean-forward="false" selection-start-line="121" selection-start-column="31" selection-end-line="121" selection-end-column="31" />
+        <state relative-caret-position="1185">
+          <caret line="79" column="16" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/adminpage/ProjectEditForm.js">
+    <entry file="file://$PROJECT_DIR$/app/components/adminpage/adminpage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="78" column="40" lean-forward="true" selection-start-line="78" selection-start-column="40" selection-end-line="78" selection-end-column="40" />
+        <state relative-caret-position="270">
+          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding />
         </state>
       </provider>

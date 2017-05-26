@@ -163,8 +163,6 @@ var AdminPage = React.createClass({
                     <div style={{width: "100%", height: "200px", marginTop: "20px"}}>
                         <button className="btn btn-primary" style={{position: "fixed", top: "240", left: "40", width: "130px"}}
                                 onClick={this.showCreateFrom.bind(this)}>Create Project</button>
-                        <button className="btn btn-danger" style={{position: "fixed", top: "280", left: "40", width: "130px"}}
-                                onClick={this.updateProject.bind(this)}>Edit Project</button>
                     </div>
 
                     <div className="popOuter" style={S.popOuter}>

@@ -53737,12 +53737,6 @@
 	                        { className: 'btn btn-primary', style: { position: "fixed", top: "240", left: "40", width: "130px" },
 	                            onClick: this.showCreateFrom.bind(this) },
 	                        'Create Project'
-	                    ),
-	                    React.createElement(
-	                        'button',
-	                        { className: 'btn btn-danger', style: { position: "fixed", top: "280", left: "40", width: "130px" },
-	                            onClick: this.updateProject.bind(this) },
-	                        'Edit Project'
 	                    )
 	                ),
 	                React.createElement(
