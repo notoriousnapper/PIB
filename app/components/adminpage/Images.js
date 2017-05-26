@@ -22,8 +22,8 @@ let S = {
 
 class Images extends Component {
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props);
         this.state = {
             images: []
         }
@@ -68,6 +68,8 @@ class Images extends Component {
             this.setState({ //setState is like refresh, react will rerender
                 images: updatedImages
             });
+            //Pass the uploaded image file back to parent
+            this.props.onUpload(updatedImages[0].secure_url);
         });
     }
 
@@ -104,5 +106,4 @@ class Images extends Component {
         )
     }
 }
-
 module.exports = Images;

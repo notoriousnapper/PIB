@@ -33,29 +33,46 @@ let S = {
 class ProjectCreateForm extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            uploadedImageUrl: "",
+        };
     }
     submitForm(event){
         event.preventDefault();
-        console.log("projectTitle");
-        console.log(this.refs.projectTitle.value);
-        console.log("owner name");
-        console.log(this.refs.owner.value);
-        console.log("team name is");
-        console.log(this.refs.team.value);
-        console.log("printing this");
-        console.log(this);
-        console.log("lalla");
-        this.print();
+        if( this.refs.projectTitle.value.length === 0){
+            alert("Project Title can't not be empty");
+            return;
+        }
+        if(this.refs.owner.value.length === 0){
+            alert("Author/Owner can't not be empty");
+            return;
+        }
+        if(this.refs.team.value.length === 0){
+            alert("Team name can't not be empty");
+            return;
+        }
+        if( this.refs.description.value.length === 0){
+            alert("Project Description can't not be empty");
+            return;
+        }
+        let data = {
+            name: this.refs.projectTitle.value,
+            about: this.refs.description.value,
+            thumbnail_img: this.state.uploadedImageUrl || '',
+            carouseFiles: '',
+            tags: ['some project'],
+            author: this.refs.owner.value,
+            team: this.refs.team.value,
+            authorImg: ''
+        };
+        console.log(data);
+        // this.createProject();
     }
-    print(){
-        console.log("this functin gets called");
-    }
-
     onInputChange(event){
         console.log(event.target.value);
         this.setState({projectTitle: event.target.value});
     }
-    createProject(evt){
+    createProject(){
         console.log("button clicked");
         let tempData = {
             name: "lala",
@@ -81,6 +98,13 @@ class ProjectCreateForm extends React.Component {
         });
     }
 
+    handleChildUpload(uploadedImageUrl){
+        console.log("handle child upload method being called");
+        console.log(uploadedImageUrl);
+        this.setState({
+            uploadedImageUrl: uploadedImageUrl
+        });
+    };
 
     render(){
         return(
@@ -101,7 +125,7 @@ class ProjectCreateForm extends React.Component {
                     <hr/>
                     <div className="form-group">
                         <label>Main Picture: </label>
-                        <Images/>
+                        <Images onUpload={this.handleChildUpload} uploadedImageUrl={this.state.uploadedImageUrl}/>
                         <p>Drop your main picture in here</p>
                     </div>
                     <hr/>

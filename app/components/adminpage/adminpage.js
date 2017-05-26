@@ -67,8 +67,6 @@ var AdminPage = React.createClass({
         });
     },
 
-
-
     updateProject: function(evt){
         console.log("edit button clicked");
         let id = "59272e5d7ffe053f23b15409";

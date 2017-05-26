@@ -3,8 +3,6 @@ var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 
-
-
 var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 var Main = require('../components/Main');
@@ -56,8 +54,5 @@ var reactRoutes = (
 	<Footer />
 	</div>
 );
-	    // Insert this in later
-			// <Route path='/contact' component={Contact}/>
-
 
 module.exports = reactRoutes;
