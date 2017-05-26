@@ -53,13 +53,16 @@ var Projects = React.createClass({
             textAlign: "center",
             paddingLeft:"20px"
         };
+
+
         return (
             <div style={containerStyle}>
                 <Frame style={{display:"inline-block"}}>
                     <div style={{display:"flex", flexDirection: "column",
                         backgroundColor: "#F4F4F4",
                     }}>
-                        <ProjectSearchList style={projectListStyle} projectListData={this.state.data}/>
+                        <ProjectSearchList  onChildProjectItemClick={this.props.onChildProjectItemClick}
+                            style={projectListStyle} projectListData={this.state.data}/>
                         <div style={{display:"flex", paddingTop:"30px"}}>
                             <Pad hw={['100px', '45%']}/>
                             <Pad hw={['100px', '30%']}/>

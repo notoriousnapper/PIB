@@ -80,10 +80,13 @@ var ProjectSearchList = React.createClass({
         var projectSearchList;
         var temp = [];
         var temp2;
+
+        var that = this;
         if(this.state.val==1){
             projectSearchList= projectListJSON.map(function(projectJSON){
                 return  (
                     <ProjectListing
+                        onChildProjectItemClick={that.props.onChildProjectItemClick}
                         projectDetails={projectListJSON}
                         views={projectJSON.views}
                         id={projectJSON._id} url={ projectJSON.url }
@@ -95,6 +98,7 @@ var ProjectSearchList = React.createClass({
             projectSearchList= projectListJSON.map(function(projectJSON){
                 return  (
                     <ProjectListing
+                        onChildProjectItemClick={that.props.onChildProjectItemClick}
                         projectDetails={projectListJSON}
                         views={projectJSON.views}
                         id={projectJSON._id} url={ projectJSON.url }

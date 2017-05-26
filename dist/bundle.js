@@ -53671,7 +53671,7 @@
 	            return React.createElement(
 	                'div',
 	                { style: { display: "block", width: "100%", height: "1500px", color: "black", marginTop: "100px" } },
-	                React.createElement(ProjectPage, null),
+	                React.createElement(ProjectPage, { onChildProjectItemClick: this.onChildProjectItemClick.bind(this) }),
 	                React.createElement(
 	                    'div',
 	                    { style: { width: "100%", height: "200px", marginTop: "20px" } },
@@ -53777,6 +53777,7 @@
 	            paddingLeft: "12px",
 	            textAlign: "center"
 	        }, 'paddingLeft', "20px");
+
 	        return React.createElement(
 	            'div',
 	            { style: containerStyle },
@@ -53788,7 +53789,8 @@
 	                    { style: { display: "flex", flexDirection: "column",
 	                            backgroundColor: "#F4F4F4"
 	                        } },
-	                    React.createElement(ProjectSearchList, { style: projectListStyle, projectListData: this.state.data }),
+	                    React.createElement(ProjectSearchList, { onChildProjectItemClick: this.props.onChildProjectItemClick,
+	                        style: projectListStyle, projectListData: this.state.data }),
 	                    React.createElement(
 	                        'div',
 	                        { style: { display: "flex", paddingTop: "30px" } },
@@ -53903,9 +53905,12 @@
 	        var projectSearchList;
 	        var temp = [];
 	        var temp2;
+
+	        var that = this;
 	        if (this.state.val == 1) {
 	            projectSearchList = projectListJSON.map(function (projectJSON) {
 	                return React.createElement(ProjectListing, {
+	                    onChildProjectItemClick: that.props.onChildProjectItemClick,
 	                    projectDetails: projectListJSON,
 	                    views: projectJSON.views,
 	                    id: projectJSON._id, url: projectJSON.url,
@@ -53915,6 +53920,7 @@
 	        if (this.state.val == 2) {
 	            projectSearchList = projectListJSON.map(function (projectJSON) {
 	                return React.createElement(ProjectListing, {
+	                    onChildProjectItemClick: that.props.onChildProjectItemClick,
 	                    projectDetails: projectListJSON,
 	                    views: projectJSON.views,
 	                    id: projectJSON._id, url: projectJSON.url,
@@ -53965,6 +53971,9 @@
 	    displayName: 'ProjectListing',
 
 
+	    passDataBackToParentAdminPage: function passDataBackToParentAdminPage() {
+	        this.props.onChildProjectItemClick(this.props.id);
+	    },
 	    render: function render() {
 	        var infoBoxStyle = {
 	            maxWidth: "400px",
@@ -54005,16 +54014,14 @@
 	        } catch (e) {
 	            console.error(e);
 	        }
-
 	        var nameArray = this.props.name.split(" ");
 	        var displayName = nameArray[0].charAt(0).toUpperCase() + nameArray[0].substr(1);
 	        for (var i = 1; i < nameArray.length; i++) {
 	            var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
 	        }
-	        /* Params data = this.props.name in Link */
 	        return React.createElement(
 	            'div',
-	            { style: listingStyle },
+	            { style: listingStyle, onClick: this.passDataBackToParentAdminPage.bind(this) },
 	            React.createElement(ImageComponent, { url: this.props.url, style: imgStyle }),
 	            React.createElement(
 	                'div',
@@ -54027,7 +54034,6 @@
 	        );
 	    }
 	});
-
 	module.exports = ProjectListing;
 
 /***/ },

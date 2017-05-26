@@ -110,7 +110,7 @@ var AdminPage = React.createClass({
         if(this.state.data){
             return(
                 <div style={{display:"block", width:"100%", height: "1500px", color: "black", marginTop: "100px"}}>
-                    <ProjectPage/>
+                    <ProjectPage onChildProjectItemClick={this.onChildProjectItemClick.bind(this)}/>
                     <div style={{width: "100%", height: "200px", marginTop: "20px"}}>
                         <button className="btn btn-primary" style={{position: "fixed", top: "240", left: "40", width: "130px"}}
                                 onClick={this.showCreateFrom.bind(this)}>Create Project</button>

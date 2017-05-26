@@ -9,6 +9,9 @@ var TextComponent = require('../../components/custom/TextComponent');
 
 var ProjectListing = React.createClass({
 
+    passDataBackToParentAdminPage: function(){
+        this.props.onChildProjectItemClick(this.props.id);
+    },
     render: function(){
         var infoBoxStyle = {
             maxWidth:"400px",
@@ -39,7 +42,6 @@ var ProjectListing = React.createClass({
         var textStyle_Small={ fontFamily: "Ubuntu", fontSize:"9pt", color: "black", textDecoration: "none", textTransform: "capitalize"  };
         var textStyle_View={ fontFamily: "Ubuntu", fontSize:"10pt", color: "#274D72", textDecoration: "none"  };
 
-
         var id = 'filler';
         var name = 'fillername';
         var details = this.props.projectDetails;
@@ -52,16 +54,13 @@ var ProjectListing = React.createClass({
         catch(e){
             console.error(e)
         }
-
-
         var nameArray = this.props.name.split(" ");
         var displayName = nameArray[0].charAt(0).toUpperCase() + nameArray[0].substr(1);
         for(var i = 1; i < nameArray.length; i++){
             var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
         }
-        /* Params data = this.props.name in Link */
         return(
-            <div style={ listingStyle }>
+            <div style={ listingStyle } onClick={this.passDataBackToParentAdminPage.bind(this)}>
                 <ImageComponent url={this.props.url} style={imgStyle}/>
                 <div style={infoBoxStyle}>
                     <TextComponent style={textStyle_Big}
@@ -73,5 +72,4 @@ var ProjectListing = React.createClass({
         )
     }
 });
-
 module.exports = ProjectListing;
