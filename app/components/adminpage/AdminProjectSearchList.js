@@ -50,11 +50,6 @@ var listContainer = React.createClass({
         );
     }
 });
-var exampleJSON = {
-    "name": "Pepper",
-    "author": "Raul Pegan",
-    "likes": 3
-}
 
 var ProjectSearchList = React.createClass({
     getInitialState:function(){
@@ -106,15 +101,12 @@ var ProjectSearchList = React.createClass({
                         name={ projectJSON.name} author={projectJSON.author}/>
                 );
             });
-
             var temp = []
             var len = projectSearchList.length;
             temp.push(projectSearchList[len-1]);
             temp.push(projectSearchList[len-2]);
             projectSearchList = temp;
         }
-
-
         return(
             <div style={containerStyle}>
                 {projectSearchList}

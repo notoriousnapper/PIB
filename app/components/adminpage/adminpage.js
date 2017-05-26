@@ -99,6 +99,10 @@ var AdminPage = React.createClass({
         });
     },
 
+    onChildProjectItemClick: function(id){
+        console.log("This is father");
+        console.log(id);
+    },
     componentDidMount: function(){
         this.getAllProjects();
     },
@@ -106,13 +110,14 @@ var AdminPage = React.createClass({
         if(this.state.data){
             return(
                 <div style={{display:"block", width:"100%", height: "1500px", color: "black", marginTop: "100px"}}>
-                    <ProjectPage />
+                    <ProjectPage/>
                     <div style={{width: "100%", height: "200px", marginTop: "20px"}}>
                         <button className="btn btn-primary" style={{position: "fixed", top: "240", left: "40", width: "130px"}}
                                 onClick={this.showCreateFrom.bind(this)}>Create Project</button>
                         <button className="btn btn-danger" style={{position: "fixed", top: "280", left: "40", width: "130px"}}
                                 onClick={this.updateProject.bind(this)}>Edit Project</button>
                     </div>
+
                     <div className="popOuter" style={S.popOuter}>
                         <div className="pop-inner" style={S.popInner}>
                             <button className="btn btn-danger" style={S.cancelButton} onClick={this.cancelForm.bind(this)}>X</button>

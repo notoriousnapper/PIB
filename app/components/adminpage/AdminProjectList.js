@@ -8,6 +8,7 @@ var TextComponent = require('../../components/custom/TextComponent');
 // var ProjectDetails = require('./AdminProjectDetails');
 
 var ProjectListing = React.createClass({
+
     render: function(){
         var infoBoxStyle = {
             maxWidth:"400px",
@@ -52,23 +53,22 @@ var ProjectListing = React.createClass({
             console.error(e)
         }
 
+
         var nameArray = this.props.name.split(" ");
         var displayName = nameArray[0].charAt(0).toUpperCase() + nameArray[0].substr(1);
         for(var i = 1; i < nameArray.length; i++){
             var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
         }
-
         /* Params data = this.props.name in Link */
         return(
-            <div style={ listingStyle } >
-                <Link to={'/admin/'+ this.props.id} data={details}> <ImageComponent url={this.props.url} style={imgStyle}/> </Link>
+            <div style={ listingStyle }>
+                <ImageComponent url={this.props.url} style={imgStyle}/>
                 <div style={infoBoxStyle}>
                     <TextComponent style={textStyle_Big}
                                    message={displayName}/>
                     <TextComponent style= {textStyle_Small}
                                    message={'by ' + this.props.author}/>
                 </div>
-
             </div>
         )
     }

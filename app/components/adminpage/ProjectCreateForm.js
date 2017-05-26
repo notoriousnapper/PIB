@@ -3,7 +3,7 @@ var ReactRouter = require('react-router');
 var Images = require('./Images');
 var Pdfs = require('./Pdfs');
 var $ = require('jquery');
-
+const useUrl = 'http://localhost:3000';
 let S = {
     containerBorder: {
         border: "1px solid #000",
@@ -63,34 +63,26 @@ class ProjectCreateForm extends React.Component {
             tags: ['some project'],
             author: this.refs.owner.value,
             team: this.refs.team.value,
-            authorImg: ''
+            authorImg: this.state.uploadedImageUrl || ''
         };
         console.log(data);
-        // this.createProject();
+        this.createProject(data);
     }
     onInputChange(event){
         console.log(event.target.value);
         this.setState({projectTitle: event.target.value});
     }
-    createProject(){
-        console.log("button clicked");
-        let tempData = {
-            name: "lala",
-            about: "llalalala",
-            thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
-            carouseFiles: "",
-            tags: ['bad prject'],
-            author: "Jesse Ren",
-            team: " Jesee Team",
-            authorImg: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg"
-        };
+    createProject(data){
+        console.log("creating project");
         $.ajax({
             type: "POST",
             url: useUrl + '/admin/project',
             cache: false,
-            data: tempData,
+            data: data,
             success: function() {
                 console.log("successful");
+                location.reload();
+                // window.location.replace(`${useUrl}/#/admin`);
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(useUrl, status, err.toString());
@@ -125,7 +117,7 @@ class ProjectCreateForm extends React.Component {
                     <hr/>
                     <div className="form-group">
                         <label>Main Picture: </label>
-                        <Images onUpload={this.handleChildUpload} uploadedImageUrl={this.state.uploadedImageUrl}/>
+                        <Images onUpload={this.handleChildUpload.bind(this)} uploadedImageUrl={this.state.uploadedImageUrl}/>
                         <p>Drop your main picture in here</p>
                     </div>
                     <hr/>

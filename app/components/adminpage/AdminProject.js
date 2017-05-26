@@ -16,37 +16,6 @@ var Projects = React.createClass({
             data: []
         };
     },
-    getPopularProjects: function(){
-        $.ajax({
-            url: useUrl + '/getpopular',
-            dataType: 'json',
-            cache: false,
-            success: function(res) {
-                this.setState({
-                    data: res,
-                    //  clicks: this.state.clicks + 1
-                });
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(prodUrl, status, err.toString());
-            }.bind(this)
-        });
-    },
-    getMostViewsProjects: function(){
-        $.ajax({
-            url: useUrl + '/getviews',
-            dataType: 'json',
-            cache: false,
-            success: function(res) {
-                this.setState({
-                    data: res
-                });
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(prodUrl, status, err.toString());
-            }.bind(this)
-        });
-    },
     getAllProjects: function(evt) {
         $.ajax({
             url: useUrl + '/get',
@@ -69,8 +38,6 @@ var Projects = React.createClass({
     },
 
     render: function() {
-        var params = this.props;
-        var id = params.id;
         var containerStyle = {zIndex:"1000", paddingTop: "100px", paddingLeft: "200px", paddingRight: "100px", paddingBottom: "100px", display: "flex", flexDirection: "column", height: "100%",
             margin: "0 auto"
         }
@@ -92,7 +59,7 @@ var Projects = React.createClass({
                     <div style={{display:"flex", flexDirection: "column",
                         backgroundColor: "#F4F4F4",
                     }}>
-                        <ProjectSearchList style={projectListStyle} projectListData={this.state.data} id={id}/>
+                        <ProjectSearchList style={projectListStyle} projectListData={this.state.data}/>
                         <div style={{display:"flex", paddingTop:"30px"}}>
                             <Pad hw={['100px', '45%']}/>
                             <Pad hw={['100px', '30%']}/>

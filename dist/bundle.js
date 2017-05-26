@@ -53659,6 +53659,10 @@
 	        });
 	    },
 
+	    onChildProjectItemClick: function onChildProjectItemClick(id) {
+	        console.log("This is father");
+	        console.log(id);
+	    },
 	    componentDidMount: function componentDidMount() {
 	        this.getAllProjects();
 	    },
@@ -53738,36 +53742,6 @@
 	            data: []
 	        };
 	    },
-	    getPopularProjects: function getPopularProjects() {
-	        $.ajax({
-	            url: useUrl + '/getpopular',
-	            dataType: 'json',
-	            cache: false,
-	            success: function (res) {
-	                this.setState({
-	                    data: res
-	                });
-	            }.bind(this),
-	            error: function (xhr, status, err) {
-	                console.error(prodUrl, status, err.toString());
-	            }.bind(this)
-	        });
-	    },
-	    getMostViewsProjects: function getMostViewsProjects() {
-	        $.ajax({
-	            url: useUrl + '/getviews',
-	            dataType: 'json',
-	            cache: false,
-	            success: function (res) {
-	                this.setState({
-	                    data: res
-	                });
-	            }.bind(this),
-	            error: function (xhr, status, err) {
-	                console.error(prodUrl, status, err.toString());
-	            }.bind(this)
-	        });
-	    },
 	    getAllProjects: function getAllProjects(evt) {
 	        $.ajax({
 	            url: useUrl + '/get',
@@ -53789,8 +53763,6 @@
 	    },
 
 	    render: function render() {
-	        var params = this.props;
-	        var id = params.id;
 	        var containerStyle = { zIndex: "1000", paddingTop: "100px", paddingLeft: "200px", paddingRight: "100px", paddingBottom: "100px", display: "flex", flexDirection: "column", height: "100%",
 	            margin: "0 auto"
 	        };
@@ -53816,7 +53788,7 @@
 	                    { style: { display: "flex", flexDirection: "column",
 	                            backgroundColor: "#F4F4F4"
 	                        } },
-	                    React.createElement(ProjectSearchList, { style: projectListStyle, projectListData: this.state.data, id: id }),
+	                    React.createElement(ProjectSearchList, { style: projectListStyle, projectListData: this.state.data }),
 	                    React.createElement(
 	                        'div',
 	                        { style: { display: "flex", paddingTop: "30px" } },
@@ -53899,11 +53871,6 @@
 	        );
 	    }
 	});
-	var exampleJSON = {
-	    "name": "Pepper",
-	    "author": "Raul Pegan",
-	    "likes": 3
-	};
 
 	var ProjectSearchList = React.createClass({
 	    displayName: 'ProjectSearchList',
@@ -53953,14 +53920,12 @@
 	                    id: projectJSON._id, url: projectJSON.url,
 	                    name: projectJSON.name, author: projectJSON.author });
 	            });
-
 	            var temp = [];
 	            var len = projectSearchList.length;
 	            temp.push(projectSearchList[len - 1]);
 	            temp.push(projectSearchList[len - 2]);
 	            projectSearchList = temp;
 	        }
-
 	        return React.createElement(
 	            'div',
 	            { style: containerStyle },
@@ -53998,6 +53963,7 @@
 
 	var ProjectListing = React.createClass({
 	    displayName: 'ProjectListing',
+
 
 	    render: function render() {
 	        var infoBoxStyle = {
@@ -54045,18 +54011,11 @@
 	        for (var i = 1; i < nameArray.length; i++) {
 	            var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
 	        }
-
 	        /* Params data = this.props.name in Link */
 	        return React.createElement(
 	            'div',
 	            { style: listingStyle },
-	            React.createElement(
-	                Link,
-	                { to: '/admin/' + this.props.id, data: details },
-	                ' ',
-	                React.createElement(ImageComponent, { url: this.props.url, style: imgStyle }),
-	                ' '
-	            ),
+	            React.createElement(ImageComponent, { url: this.props.url, style: imgStyle }),
 	            React.createElement(
 	                'div',
 	                { style: infoBoxStyle },
@@ -54104,7 +54063,7 @@
 	var Images = __webpack_require__(421);
 	var Pdfs = __webpack_require__(445);
 	var $ = __webpack_require__(302);
-
+	var useUrl = 'http://localhost:3000';
 	var S = {
 	    containerBorder: {
 	        border: "1px solid #000",
@@ -54173,10 +54132,10 @@
 	                tags: ['some project'],
 	                author: this.refs.owner.value,
 	                team: this.refs.team.value,
-	                authorImg: ''
+	                authorImg: this.state.uploadedImageUrl || ''
 	            };
 	            console.log(data);
-	            // this.createProject();
+	            this.createProject(data);
 	        }
 	    }, {
 	        key: 'onInputChange',
@@ -54186,25 +54145,17 @@
 	        }
 	    }, {
 	        key: 'createProject',
-	        value: function createProject() {
-	            console.log("button clicked");
-	            var tempData = {
-	                name: "lala",
-	                about: "llalalala",
-	                thumbnail_img: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg",
-	                carouseFiles: "",
-	                tags: ['bad prject'],
-	                author: "Jesse Ren",
-	                team: " Jesee Team",
-	                authorImg: "http://res.cloudinary.com/dgs4woesz/image/upload/v1495058583/noab4dkuisgspn5pyafi.jpg"
-	            };
+	        value: function createProject(data) {
+	            console.log("creating project");
 	            $.ajax({
 	                type: "POST",
 	                url: useUrl + '/admin/project',
 	                cache: false,
-	                data: tempData,
+	                data: data,
 	                success: function () {
 	                    console.log("successful");
+	                    location.reload();
+	                    // window.location.replace(`${useUrl}/#/admin`);
 	                }.bind(this),
 	                error: function (xhr, status, err) {
 	                    console.error(useUrl, status, err.toString());
@@ -54268,7 +54219,7 @@
 	                            null,
 	                            'Main Picture: '
 	                        ),
-	                        React.createElement(Images, { onUpload: this.handleChildUpload, uploadedImageUrl: this.state.uploadedImageUrl }),
+	                        React.createElement(Images, { onUpload: this.handleChildUpload.bind(this), uploadedImageUrl: this.state.uploadedImageUrl }),
 	                        React.createElement(
 	                            'p',
 	                            null,
