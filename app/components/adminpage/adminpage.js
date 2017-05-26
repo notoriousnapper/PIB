@@ -3,6 +3,7 @@ var ReactRouter = require('react-router');
 var $ = require('jquery');
 var ProjectPage = require('./AdminProject');
 var ProjectCreateForm = require('./ProjectCreateForm');
+var ProjectEditForm = require('./ProjectEditForm');
 const useUrl = 'http://localhost:3000';
 let S = {
     popOuter: {
@@ -15,6 +16,25 @@ let S = {
         display: "none",
     },
     popInner: {
+        backgroundColor: "#fff",
+        width: "700px",
+        borderRadius: "5px",
+        overflow: "scroll",
+        height: "80%",
+        padding: "25px",
+        margin: "10% auto 25% auto",
+        position: "relative"
+    },
+    popOuterEdit: {
+        backgroundColor: "rgba(0,0,0,0.5)",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        display: "none",
+    },
+    popInnerEdit: {
         backgroundColor: "#fff",
         width: "700px",
         borderRadius: "5px",
@@ -37,15 +57,23 @@ var AdminPage = React.createClass({
     getInitialState: function() {
         return {
             data: [],
+            projectForEdit: {}
         };
     },
     cancelForm: function(event){
         let eleOuter = document.getElementsByClassName("popOuter");
         console.log("cancelling form");
         eleOuter[0].style.display = "none";
+        let eleOuterEdit = document.getElementsByClassName("popOuterEdit");
+        eleOuterEdit[0].style.display = "none";
     },
     showCreateFrom: function(event){
         let eleOuter = document.getElementsByClassName("popOuter");
+        eleOuter[0].style.display = "block";
+    },
+    showEditForm(){
+        console.log("show edit form get called");
+        let eleOuter = document.getElementsByClassName("popOuterEdit");
         eleOuter[0].style.display = "block";
     },
     getAllProjects: function(evt) {
@@ -100,8 +128,29 @@ var AdminPage = React.createClass({
     },
 
     onChildProjectItemClick: function(id){
-        console.log("This is father");
         console.log(id);
+        //make an ajax request for the individual project
+        $.ajax({
+            url: `${useUrl}/admin/project/${id}`,
+            dataType: 'json',
+            cache: false,
+            success: function(res) {
+                this.setState({
+                    projectForEdit: res,
+                });
+                console.log("printing data");
+                console.log(this.state.projectForEdit);
+                this.showEditForm();
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(useUrl, status, err.toString());
+            }.bind(this)
+        });
+    },
+    onInputChangeForEditForm(event){
+        var copy = Object.assign({}, this.state.projectForEdit);
+        copy[event.target.id+""] = event.target.value;
+        this.setState({projectForEdit: copy});
     },
     componentDidMount: function(){
         this.getAllProjects();
@@ -122,6 +171,13 @@ var AdminPage = React.createClass({
                         <div className="pop-inner" style={S.popInner}>
                             <button className="btn btn-danger" style={S.cancelButton} onClick={this.cancelForm.bind(this)}>X</button>
                             <ProjectCreateForm/>
+                        </div>
+                    </div>
+
+                    <div className="popOuterEdit" style={S.popOuterEdit}>
+                        <div className="popInnerEdit" style={S.popInnerEdit}>
+                            <button className="btn btn-danger" style={S.cancelButton} onClick={this.cancelForm.bind(this)}>X</button>
+                            <ProjectEditForm data={this.state.projectForEdit} onInputChangeForEditForm={this.onInputChangeForEditForm.bind(this)}/>
                         </div>
                     </div>
                 </div>

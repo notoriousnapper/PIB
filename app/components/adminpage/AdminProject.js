@@ -54,7 +54,6 @@ var Projects = React.createClass({
             paddingLeft:"20px"
         };
 
-
         return (
             <div style={containerStyle}>
                 <Frame style={{display:"inline-block"}}>

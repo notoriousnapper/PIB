@@ -53556,11 +53556,18 @@
 
 	'use strict';
 
+	var _assign = __webpack_require__(261);
+
+	var _assign2 = _interopRequireDefault(_assign);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var React = __webpack_require__(3);
 	var ReactRouter = __webpack_require__(181);
 	var $ = __webpack_require__(302);
 	var ProjectPage = __webpack_require__(367);
 	var ProjectCreateForm = __webpack_require__(370);
+	var ProjectEditForm = __webpack_require__(450);
 	var useUrl = 'http://localhost:3000';
 	var S = {
 	    popOuter: {
@@ -53573,6 +53580,25 @@
 	        display: "none"
 	    },
 	    popInner: {
+	        backgroundColor: "#fff",
+	        width: "700px",
+	        borderRadius: "5px",
+	        overflow: "scroll",
+	        height: "80%",
+	        padding: "25px",
+	        margin: "10% auto 25% auto",
+	        position: "relative"
+	    },
+	    popOuterEdit: {
+	        backgroundColor: "rgba(0,0,0,0.5)",
+	        position: "fixed",
+	        top: 0,
+	        left: 0,
+	        width: "100%",
+	        height: "100%",
+	        display: "none"
+	    },
+	    popInnerEdit: {
 	        backgroundColor: "#fff",
 	        width: "700px",
 	        borderRadius: "5px",
@@ -53596,18 +53622,27 @@
 
 	    getInitialState: function getInitialState() {
 	        return {
-	            data: []
+	            data: [],
+	            projectForEdit: {}
 	        };
 	    },
 	    cancelForm: function cancelForm(event) {
 	        var eleOuter = document.getElementsByClassName("popOuter");
 	        console.log("cancelling form");
 	        eleOuter[0].style.display = "none";
+	        var eleOuterEdit = document.getElementsByClassName("popOuterEdit");
+	        eleOuterEdit[0].style.display = "none";
 	    },
 	    showCreateFrom: function showCreateFrom(event) {
 	        var eleOuter = document.getElementsByClassName("popOuter");
 	        eleOuter[0].style.display = "block";
 	    },
+	    showEditForm: function showEditForm() {
+	        console.log("show edit form get called");
+	        var eleOuter = document.getElementsByClassName("popOuterEdit");
+	        eleOuter[0].style.display = "block";
+	    },
+
 	    getAllProjects: function getAllProjects(evt) {
 	        console.log("getAllprioject called");
 	        $.ajax({
@@ -53660,9 +53695,31 @@
 	    },
 
 	    onChildProjectItemClick: function onChildProjectItemClick(id) {
-	        console.log("This is father");
 	        console.log(id);
+	        //make an ajax request for the individual project
+	        $.ajax({
+	            url: useUrl + '/admin/project/' + id,
+	            dataType: 'json',
+	            cache: false,
+	            success: function (res) {
+	                this.setState({
+	                    projectForEdit: res
+	                });
+	                console.log("printing data");
+	                console.log(this.state.projectForEdit);
+	                this.showEditForm();
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(useUrl, status, err.toString());
+	            }.bind(this)
+	        });
 	    },
+	    onInputChangeForEditForm: function onInputChangeForEditForm(event) {
+	        var copy = (0, _assign2.default)({}, this.state.projectForEdit);
+	        copy[event.target.id + ""] = event.target.value;
+	        this.setState({ projectForEdit: copy });
+	    },
+
 	    componentDidMount: function componentDidMount() {
 	        this.getAllProjects();
 	    },
@@ -53700,6 +53757,20 @@
 	                            'X'
 	                        ),
 	                        React.createElement(ProjectCreateForm, null)
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'popOuterEdit', style: S.popOuterEdit },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'popInnerEdit', style: S.popInnerEdit },
+	                        React.createElement(
+	                            'button',
+	                            { className: 'btn btn-danger', style: S.cancelButton, onClick: this.cancelForm.bind(this) },
+	                            'X'
+	                        ),
+	                        React.createElement(ProjectEditForm, { data: this.state.projectForEdit, onInputChangeForEditForm: this.onInputChangeForEditForm.bind(this) })
 	                    )
 	                )
 	            );
@@ -59958,6 +60029,255 @@
 	});
 
 	module.exports = LabelCarousel;
+
+/***/ },
+/* 450 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _getPrototypeOf = __webpack_require__(371);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(376);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(377);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(378);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(413);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+	var Images = __webpack_require__(421);
+	var Pdfs = __webpack_require__(445);
+	var $ = __webpack_require__(302);
+	var useUrl = 'http://localhost:3000';
+	var S = {
+	    containerBorder: {
+	        border: "1px solid #000",
+	        width: "100%",
+	        margin: "0 auto",
+	        padding: "30px"
+	    },
+	    mainImage: {
+	        width: "70px",
+	        height: "70px"
+	    },
+	    listImages: {
+	        float: "left",
+	        listStyle: "none",
+	        marginRight: "20px"
+	    },
+	    listImageItem: {
+	        width: "70px"
+	    },
+	    listImageContainer: {
+	        height: "70px",
+	        marginLeft: 0,
+	        paddingLeft: 0
+	    }
+	};
+
+	var ProjectEditForm = function (_React$Component) {
+	    (0, _inherits3.default)(ProjectEditForm, _React$Component);
+
+	    function ProjectEditForm(props) {
+	        (0, _classCallCheck3.default)(this, ProjectEditForm);
+
+	        var _this = (0, _possibleConstructorReturn3.default)(this, (ProjectEditForm.__proto__ || (0, _getPrototypeOf2.default)(ProjectEditForm)).call(this, props));
+
+	        _this.state = {
+	            uploadedImageUrl: ""
+	        };
+	        return _this;
+	    }
+
+	    (0, _createClass3.default)(ProjectEditForm, [{
+	        key: 'submitForm',
+	        value: function submitForm(event) {
+	            console.log(this.props.data);
+	            console.log("printing name");
+	            console.log(this.props.data.name);
+	            event.preventDefault();
+	            if (this.refs.projectTitle.value.length === 0) {
+	                alert("Project Title can't not be empty");
+	                return;
+	            }
+	            if (this.refs.owner.value.length === 0) {
+	                alert("Author/Owner can't not be empty");
+	                return;
+	            }
+	            if (this.refs.team.value.length === 0) {
+	                alert("Team name can't not be empty");
+	                return;
+	            }
+	            if (this.refs.description.value.length === 0) {
+	                alert("Project Description can't not be empty");
+	                return;
+	            }
+	            var data = {
+	                "newdataProject": {
+	                    name: this.refs.projectTitle.value,
+	                    about: this.refs.description.value,
+	                    thumbnail_img: this.state.uploadedImageUrl || '',
+	                    carouseFiles: '',
+	                    tags: ['some project'],
+	                    author: this.refs.owner.value,
+	                    team: this.refs.team.value,
+	                    authorImg: this.state.uploadedImageUrl || ''
+	                }
+	            };
+	            console.log(data);
+	            this.updateProject(data);
+	        }
+	    }, {
+	        key: 'updateProject',
+	        value: function updateProject(data) {
+	            console.log("updating project");
+	            $.ajax({
+	                type: "PUT",
+	                url: useUrl + '/admin/project/' + this.props.data._id,
+	                dataType: 'json',
+	                cache: false,
+	                data: data,
+	                success: function () {
+	                    console.log("successful updated");
+	                    location.reload();
+	                }.bind(this),
+	                error: function (xhr, status, err) {
+	                    console.error(useUrl, status, err.toString());
+	                }.bind(this)
+	            });
+	        }
+	    }, {
+	        key: 'handleChildUpload',
+	        value: function handleChildUpload(uploadedImageUrl) {
+	            console.log("handle child upload method being called");
+	            console.log(uploadedImageUrl);
+	            this.setState({
+	                uploadedImageUrl: uploadedImageUrl
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'div',
+	                { className: 'container', style: S.containerBorder },
+	                React.createElement(
+	                    'form',
+	                    { onSubmit: this.submitForm.bind(this) },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        React.createElement(
+	                            'label',
+	                            null,
+	                            'Project Title'
+	                        ),
+	                        React.createElement('input', { type: 'text', className: 'form-control', id: 'name', value: this.props.data.name,
+	                            onChange: this.props.onInputChangeForEditForm,
+	                            ref: 'projectTitle' })
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        React.createElement(
+	                            'label',
+	                            null,
+	                            'Owner: '
+	                        ),
+	                        React.createElement('input', { type: 'text', className: 'form-control', id: 'author', value: this.props.data.author,
+	                            onChange: this.props.onInputChangeForEditForm, ref: 'owner' })
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        React.createElement(
+	                            'label',
+	                            null,
+	                            'Team: '
+	                        ),
+	                        React.createElement('input', { type: 'text', className: 'form-control', value: this.props.data.team,
+	                            onChange: this.props.onInputChangeForEditForm,
+	                            ref: 'team' })
+	                    ),
+	                    React.createElement('hr', null),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        React.createElement(
+	                            'label',
+	                            null,
+	                            'Main Picture: '
+	                        ),
+	                        React.createElement(Images, { onUpload: this.handleChildUpload.bind(this), uploadedImageUrl: this.state.uploadedImageUrl }),
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            'Drop your main picture in here'
+	                        )
+	                    ),
+	                    React.createElement('hr', null),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        React.createElement(
+	                            'label',
+	                            null,
+	                            'Project Description'
+	                        ),
+	                        React.createElement('textarea', { className: 'form-control', rows: '3', ref: 'description', value: this.props.data.about,
+	                            onChange: this.props.onInputChangeForEditForm
+	                        })
+	                    ),
+	                    React.createElement('hr', null),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        React.createElement(
+	                            'label',
+	                            null,
+	                            'All Pictures: '
+	                        ),
+	                        React.createElement(Images, null),
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            'Drop pictures in here'
+	                        )
+	                    ),
+	                    React.createElement('hr', null),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'form-group' },
+	                        React.createElement(Pdfs, null)
+	                    ),
+	                    React.createElement(
+	                        'button',
+	                        { className: 'btn btn-primary', type: 'submit' },
+	                        'Submit'
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	    return ProjectEditForm;
+	}(React.Component);
+
+	module.exports = ProjectEditForm;
 
 /***/ }
 /******/ ]);
