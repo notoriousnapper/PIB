@@ -59,11 +59,14 @@ class ProjectCreateForm extends React.Component {
             name: this.refs.projectTitle.value,
             about: this.refs.description.value,
             thumbnail_img: this.state.uploadedImageUrl || '',
-            carouseFiles: '',
             tags: ['some project'],
             author: this.refs.owner.value,
             team: this.refs.team.value,
-            authorImg: this.state.uploadedImageUrl || ''
+            imgArray: [],
+            pdfFiles: [],
+
+            authorImg: this.state.uploadedImageUrl || '',
+            url: this.state.uploadedImageUrl || '',
         };
         console.log(data);
         this.createProject(data);

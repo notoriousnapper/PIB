@@ -63,12 +63,16 @@ class ProjectEditForm extends React.Component {
             "newdataProject": {
                 name: this.refs.projectTitle.value,
                 about: this.refs.description.value,
-                thumbnail_img: this.state.uploadedImageUrl || '',
+
                 carouseFiles: '',
                 tags: ['some project'],
                 author: this.refs.owner.value,
                 team: this.refs.team.value,
-                authorImg: this.state.uploadedImageUrl || ''
+                url: this.state.uploadedImageUrl || '',
+                imageArr: [],
+                pdfFiles: [],
+                authorImg: this.state.uploadedImageUrl || '',
+                thumbnail_img: this.state.uploadedImageUrl || '',
             }
         };
         console.log(data);
@@ -108,8 +112,7 @@ class ProjectEditForm extends React.Component {
                     <div className="form-group">
                         <label>Project Title</label>
                         <input type="text" className="form-control"  id="name" value={this.props.data.name}
-                               onChange={this.props.onInputChangeForEditForm}
-                               ref="projectTitle"/>
+                               onChange={this.props.onInputChangeForEditForm}  ref="projectTitle"/>
                     </div>
                     <div className="form-group">
                         <label>Owner: </label>
@@ -119,8 +122,7 @@ class ProjectEditForm extends React.Component {
                     <div className="form-group">
                         <label>Team: </label>
                         <input type="text" className="form-control" value={this.props.data.team}
-                               onChange={this.props.onInputChangeForEditForm}
-                               ref="team"/>
+                               onChange={this.props.onInputChangeForEditForm} ref="team"/>
                     </div>
                     <hr/>
                     <div className="form-group">

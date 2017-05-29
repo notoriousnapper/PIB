@@ -148,7 +148,12 @@ var AdminPage = React.createClass({
         });
     },
     onInputChangeForEditForm(event){
+        console.log("inInputChangeDFoeEditForm called");
+        console.log(event);
+        console.log(this.state.projectForEdit);
         var copy = Object.assign({}, this.state.projectForEdit);
+        console.log("stuff");
+        console.log(event.target.id+"");
         copy[event.target.id+""] = event.target.value;
         this.setState({projectForEdit: copy});
     },

@@ -59,6 +59,11 @@ var ProjectListing = React.createClass({
         for(var i = 1; i < nameArray.length; i++){
             var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
         }
+        // console.log('printintg props');
+        // console.log('printintg props');
+        // console.log('printintg props');
+        // console.log('printintg props');
+        // console.log(this.props);
         return(
             <div style={ listingStyle } onClick={this.passDataBackToParentAdminPage.bind(this)}>
                 <ImageComponent url={this.props.url} style={imgStyle}/>

@@ -45,8 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(446);
 	__webpack_require__(447);
+	__webpack_require__(448);
 	__webpack_require__(238);
 	__webpack_require__(361);
 	__webpack_require__(297);
@@ -61,13 +61,13 @@
 	__webpack_require__(357);
 	__webpack_require__(305);
 	__webpack_require__(356);
-	__webpack_require__(448);
+	__webpack_require__(449);
 	__webpack_require__(308);
 	__webpack_require__(362);
 	__webpack_require__(283);
 	__webpack_require__(345);
 	__webpack_require__(300);
-	__webpack_require__(449);
+	__webpack_require__(450);
 	__webpack_require__(301);
 	__webpack_require__(239);
 	__webpack_require__(298);
@@ -53567,7 +53567,7 @@
 	var $ = __webpack_require__(302);
 	var ProjectPage = __webpack_require__(367);
 	var ProjectCreateForm = __webpack_require__(370);
-	var ProjectEditForm = __webpack_require__(450);
+	var ProjectEditForm = __webpack_require__(446);
 	var useUrl = 'http://localhost:3000';
 	var S = {
 	    popOuter: {
@@ -53715,7 +53715,12 @@
 	        });
 	    },
 	    onInputChangeForEditForm: function onInputChangeForEditForm(event) {
+	        console.log("inInputChangeDFoeEditForm called");
+	        console.log(event);
+	        console.log(this.state.projectForEdit);
 	        var copy = (0, _assign2.default)({}, this.state.projectForEdit);
+	        console.log("stuff");
+	        console.log(event.target.id + "");
 	        copy[event.target.id + ""] = event.target.value;
 	        this.setState({ projectForEdit: copy });
 	    },
@@ -53986,7 +53991,6 @@
 	            projectSearchList = projectListJSON.map(function (projectJSON) {
 	                return React.createElement(ProjectListing, {
 	                    onChildProjectItemClick: that.props.onChildProjectItemClick,
-	                    projectDetails: projectListJSON,
 	                    views: projectJSON.views,
 	                    id: projectJSON._id, url: projectJSON.url,
 	                    name: projectJSON.name, author: projectJSON.author });
@@ -54084,6 +54088,11 @@
 	        for (var i = 1; i < nameArray.length; i++) {
 	            var displayName = displayName + " " + nameArray[i].charAt(0).toUpperCase() + nameArray[i].substr(1);
 	        }
+	        // console.log('printintg props');
+	        // console.log('printintg props');
+	        // console.log('printintg props');
+	        // console.log('printintg props');
+	        // console.log(this.props);
 	        return React.createElement(
 	            'div',
 	            { style: listingStyle, onClick: this.passDataBackToParentAdminPage.bind(this) },
@@ -54199,11 +54208,14 @@
 	                name: this.refs.projectTitle.value,
 	                about: this.refs.description.value,
 	                thumbnail_img: this.state.uploadedImageUrl || '',
-	                carouseFiles: '',
 	                tags: ['some project'],
 	                author: this.refs.owner.value,
 	                team: this.refs.team.value,
-	                authorImg: this.state.uploadedImageUrl || ''
+	                imgArray: [],
+	                pdfFiles: [],
+
+	                authorImg: this.state.uploadedImageUrl || '',
+	                url: this.state.uploadedImageUrl || ''
 	            };
 	            console.log(data);
 	            this.createProject(data);
@@ -59749,283 +59761,6 @@
 
 /***/ },
 /* 446 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	/* API Test */
-
-	/* API Class --> And I'll have them insert a function so we can insert component did mount/ things */
-	/* And use promises eventually/ learn about them next week */
-
-	// var $ = require('jQuery');
-	// /* Make this a class later */
-	var TestAPI = function TestAPI() {
-	  console.log("STH");
-	  // $.ajax({
-	  //                 url: 'http://localhost:3000/get',
-	  //                 dataType: 'json',
-	  //                 cache: false,
-	  //                 success: function(data) {
-	  //                   alert('What is: + :' + JSON.stringify(data, null, 4));
-	  //                   //this.setState({data: JSON.stringify(data,null,4)});
-	  //                   //this.forceUpdate();
-	  //
-	  //                   return JSON.stringify(data, null, 4);
-	  //
-	  //
-	  //                 }.bind(this),
-	  //                 error: function(xhr, status, err) {
-	  //                   console.error('localhost:3000/get', status, err.toString());
-	  //                 }.bind(this)
-	  //               });
-	  //
-	};
-	//
-	//
-	module.exports = TestAPI;
-
-/***/ },
-/* 447 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _stringify = __webpack_require__(306);
-
-	var _stringify2 = _interopRequireDefault(_stringify);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// app/routes.js
-	module.exports = function (app, passport) {
-	    // =====================================
-	    // HOME PAGE (with login links) ========
-	    // =====================================
-	    //  app.get('/', function(req, res) {
-	    // //      res.render('index.ejs'); // load the index.ejs file
-	    //  });
-
-	    // =====================================
-	    // LOGIN ===============================
-	    // =====================================
-	    // show the login form
-	    //  app.get('/login', function(req, res) {
-	    // render the page and pass in any flash data if it exists
-	    //  res.render('login.ejs', { message: req.flash('loginMessage') });
-	    //  });
-
-	    // process the login form
-	    console.log("pp is : " + (0, _stringify2.default)(passport, null, 4));
-	    app.post('/login', passport.authenticate('local-login', {
-	        successRedirect: '/profile', // redirect to the secure profile section
-	        failureRedirect: '/login', // redirect back to the signup page if there is an error
-	        failureFlash: true // allow flash messages
-	    }));
-
-	    // =====================================
-	    // SIGNUP ==============================
-	    // =====================================
-	    // show the signup form
-	    //  app.get('/signup', function(req, res) {
-	    //
-	    //      // render the page and pass in any flash data if it exists
-	    //      res.render('signup.ejs', { message: req.flash('signupMessage') });
-	    //  });
-
-	    // process the signup form
-	    app.post('/signup', passport.authenticate('local-signup', {
-	        successRedirect: '/', // redirect to the secure profile section
-	        failureRedirect: '/signup', // redirect back to the signup page if there is an error
-	        failureFlash: true // allow flash messages
-	    }));
-
-	    // =====================================
-	    // FACEBOOK ROUTES =====================
-	    // =====================================
-	    // route for facebook authentication and login
-	    app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
-
-	    // handle the callback after facebook has authenticated the user
-	    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-	        successRedirect: '/#/profile',
-	        failureRedirect: '/#/signup'
-	    }));
-
-	    // =====================================
-	    // PROFILE SECTION =====================
-	    // =====================================
-	    // we will want this protected so you have to be logged in to visit
-	    // we will use route middleware to verify this (the isLoggedIn function)
-	    app.get('/profile', isLoggedIn, function (req, res) {
-	        res.render('profile.ejs', {
-	            user: req.user // get the user out of session and pass to template
-	        });
-	    });
-
-	    // =====================================
-	    // LOGOUT ==============================
-	    // =====================================
-	    app.get('/logout', function (req, res) {
-	        req.logout();
-	        res.redirect('/');
-	    });
-	};
-
-	// route middleware to make sure a user is logged in
-	function isLoggedIn(req, res, next) {
-
-	    // if user is authenticated in the session, carry on
-	    if (req.isAuthenticated()) return next();
-
-	    // if they aren't redirect them to the home page
-	    res.redirect('/');
-	}
-
-/***/ },
-/* 448 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	/* StepsAdd
-	 *
-	 * UI for a single step, to add which includes instructions, for bullet points, an Image,
-	 * and easy readability.  Also has anchors (You can reach these from a toolbar, etc.)
-	 */
-
-	var React = __webpack_require__(3);
-	var ImageComponent = __webpack_require__(345);
-
-	var StepAdd = React.createClass({
-		displayName: 'StepAdd',
-
-		render: function render() {
-			var barStyle = {
-				borderTopRightRadius: "2em",
-				borderTopLeftRadius: "2em",
-				backgroundColor: "white",
-				width: "100%",
-				padding: "20px",
-				paddingBottom: "8px",
-				display: "flex"
-			};
-			var endStyle = {
-				height: "10px",
-				backgroundColor: "D0D1D2"
-			};
-
-			var stepImage = function stepImage() {
-				if (this.props.url != '') return React.createElement('div', null);
-				alert('Not working');
-				return React.createElement(ImageComponent, { url: this.props.url });
-			};
-			// Learned a new thing today...javascript parenthesis needs to BE ON SAME LINE AS RETURN
-			// Or else compiler just sees returns and exits
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'div',
-					null,
-					'\'Step \' + ',
-					this.props.num,
-					' '
-				),
-				stepImage,
-				this.props.info
-			);
-		}
-	});
-	module.exports = StepAdd;
-
-/***/ },
-/* 449 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(3);
-	var ReactRouter = __webpack_require__(181);
-
-	var LabelCarousel = React.createClass({
-	  displayName: 'LabelCarousel',
-
-
-	  getInitialState: function getInitialState() {
-	    return {
-	      counter: 0
-	    };
-	  },
-	  switchLabel: function switchLabel() {
-	    var box = document.querySelector('.carouselbox');
-	    var items = box.querySelectorAll('.content li');
-	    var amount = items.length;
-	    var current = items[this.state.counter];
-
-	    var direction = 1;
-	    if (this.state.counter == 2) {
-	      console.log("end");
-	    } else {
-	      current.classList.remove('current');
-	      this.state.counter = this.state.counter + direction;
-	      // if (direction === -1 &&
-	      //     this.state.counter < 0) {
-	      //   this.state.counter = amount - 1;
-	      // }
-	      if (direction === 1 && !items[this.state.counter]) {}
-	      current = items[this.state.counter];
-	      current.classList.add('current');
-	      // this.setState({counter: this.state.counter + 1});
-	    }
-	  },
-	  render: function render() {
-	    if (this.props.checked) this.switchLabel(); // Parent notifies to switch label
-
-	    return React.createElement(
-	      'div',
-	      { className: 'carouselbox' },
-	      React.createElement(
-	        'div',
-	        { className: 'active buttons' },
-	        React.createElement(
-	          'button',
-	          { className: 'next active', onClick: this.switchLabel },
-	          React.createElement(
-	            'span',
-	            { className: 'offscreen' },
-	            'Next'
-	          ),
-	          ' ▶'
-	        )
-	      ),
-	      React.createElement(
-	        'ol',
-	        { className: 'content active' },
-	        React.createElement(
-	          'li',
-	          { className: 'current' },
-	          "Stage 1"
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
-	          "Stage 2"
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
-	          "Stage 3"
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = LabelCarousel;
-
-/***/ },
-/* 450 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -60125,12 +59860,16 @@
 	                "newdataProject": {
 	                    name: this.refs.projectTitle.value,
 	                    about: this.refs.description.value,
-	                    thumbnail_img: this.state.uploadedImageUrl || '',
+
 	                    carouseFiles: '',
 	                    tags: ['some project'],
 	                    author: this.refs.owner.value,
 	                    team: this.refs.team.value,
-	                    authorImg: this.state.uploadedImageUrl || ''
+	                    url: this.state.uploadedImageUrl || '',
+	                    imageArr: [],
+	                    pdfFiles: [],
+	                    authorImg: this.state.uploadedImageUrl || '',
+	                    thumbnail_img: this.state.uploadedImageUrl || ''
 	                }
 	            };
 	            console.log(data);
@@ -60182,8 +59921,7 @@
 	                            'Project Title'
 	                        ),
 	                        React.createElement('input', { type: 'text', className: 'form-control', id: 'name', value: this.props.data.name,
-	                            onChange: this.props.onInputChangeForEditForm,
-	                            ref: 'projectTitle' })
+	                            onChange: this.props.onInputChangeForEditForm, ref: 'projectTitle' })
 	                    ),
 	                    React.createElement(
 	                        'div',
@@ -60205,8 +59943,7 @@
 	                            'Team: '
 	                        ),
 	                        React.createElement('input', { type: 'text', className: 'form-control', value: this.props.data.team,
-	                            onChange: this.props.onInputChangeForEditForm,
-	                            ref: 'team' })
+	                            onChange: this.props.onInputChangeForEditForm, ref: 'team' })
 	                    ),
 	                    React.createElement('hr', null),
 	                    React.createElement(
@@ -60272,6 +60009,283 @@
 	}(React.Component);
 
 	module.exports = ProjectEditForm;
+
+/***/ },
+/* 447 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/* API Test */
+
+	/* API Class --> And I'll have them insert a function so we can insert component did mount/ things */
+	/* And use promises eventually/ learn about them next week */
+
+	// var $ = require('jQuery');
+	// /* Make this a class later */
+	var TestAPI = function TestAPI() {
+	  console.log("STH");
+	  // $.ajax({
+	  //                 url: 'http://localhost:3000/get',
+	  //                 dataType: 'json',
+	  //                 cache: false,
+	  //                 success: function(data) {
+	  //                   alert('What is: + :' + JSON.stringify(data, null, 4));
+	  //                   //this.setState({data: JSON.stringify(data,null,4)});
+	  //                   //this.forceUpdate();
+	  //
+	  //                   return JSON.stringify(data, null, 4);
+	  //
+	  //
+	  //                 }.bind(this),
+	  //                 error: function(xhr, status, err) {
+	  //                   console.error('localhost:3000/get', status, err.toString());
+	  //                 }.bind(this)
+	  //               });
+	  //
+	};
+	//
+	//
+	module.exports = TestAPI;
+
+/***/ },
+/* 448 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _stringify = __webpack_require__(306);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// app/routes.js
+	module.exports = function (app, passport) {
+	    // =====================================
+	    // HOME PAGE (with login links) ========
+	    // =====================================
+	    //  app.get('/', function(req, res) {
+	    // //      res.render('index.ejs'); // load the index.ejs file
+	    //  });
+
+	    // =====================================
+	    // LOGIN ===============================
+	    // =====================================
+	    // show the login form
+	    //  app.get('/login', function(req, res) {
+	    // render the page and pass in any flash data if it exists
+	    //  res.render('login.ejs', { message: req.flash('loginMessage') });
+	    //  });
+
+	    // process the login form
+	    console.log("pp is : " + (0, _stringify2.default)(passport, null, 4));
+	    app.post('/login', passport.authenticate('local-login', {
+	        successRedirect: '/profile', // redirect to the secure profile section
+	        failureRedirect: '/login', // redirect back to the signup page if there is an error
+	        failureFlash: true // allow flash messages
+	    }));
+
+	    // =====================================
+	    // SIGNUP ==============================
+	    // =====================================
+	    // show the signup form
+	    //  app.get('/signup', function(req, res) {
+	    //
+	    //      // render the page and pass in any flash data if it exists
+	    //      res.render('signup.ejs', { message: req.flash('signupMessage') });
+	    //  });
+
+	    // process the signup form
+	    app.post('/signup', passport.authenticate('local-signup', {
+	        successRedirect: '/', // redirect to the secure profile section
+	        failureRedirect: '/signup', // redirect back to the signup page if there is an error
+	        failureFlash: true // allow flash messages
+	    }));
+
+	    // =====================================
+	    // FACEBOOK ROUTES =====================
+	    // =====================================
+	    // route for facebook authentication and login
+	    app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+
+	    // handle the callback after facebook has authenticated the user
+	    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+	        successRedirect: '/#/profile',
+	        failureRedirect: '/#/signup'
+	    }));
+
+	    // =====================================
+	    // PROFILE SECTION =====================
+	    // =====================================
+	    // we will want this protected so you have to be logged in to visit
+	    // we will use route middleware to verify this (the isLoggedIn function)
+	    app.get('/profile', isLoggedIn, function (req, res) {
+	        res.render('profile.ejs', {
+	            user: req.user // get the user out of session and pass to template
+	        });
+	    });
+
+	    // =====================================
+	    // LOGOUT ==============================
+	    // =====================================
+	    app.get('/logout', function (req, res) {
+	        req.logout();
+	        res.redirect('/');
+	    });
+	};
+
+	// route middleware to make sure a user is logged in
+	function isLoggedIn(req, res, next) {
+
+	    // if user is authenticated in the session, carry on
+	    if (req.isAuthenticated()) return next();
+
+	    // if they aren't redirect them to the home page
+	    res.redirect('/');
+	}
+
+/***/ },
+/* 449 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/* StepsAdd
+	 *
+	 * UI for a single step, to add which includes instructions, for bullet points, an Image,
+	 * and easy readability.  Also has anchors (You can reach these from a toolbar, etc.)
+	 */
+
+	var React = __webpack_require__(3);
+	var ImageComponent = __webpack_require__(345);
+
+	var StepAdd = React.createClass({
+		displayName: 'StepAdd',
+
+		render: function render() {
+			var barStyle = {
+				borderTopRightRadius: "2em",
+				borderTopLeftRadius: "2em",
+				backgroundColor: "white",
+				width: "100%",
+				padding: "20px",
+				paddingBottom: "8px",
+				display: "flex"
+			};
+			var endStyle = {
+				height: "10px",
+				backgroundColor: "D0D1D2"
+			};
+
+			var stepImage = function stepImage() {
+				if (this.props.url != '') return React.createElement('div', null);
+				alert('Not working');
+				return React.createElement(ImageComponent, { url: this.props.url });
+			};
+			// Learned a new thing today...javascript parenthesis needs to BE ON SAME LINE AS RETURN
+			// Or else compiler just sees returns and exits
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'div',
+					null,
+					'\'Step \' + ',
+					this.props.num,
+					' '
+				),
+				stepImage,
+				this.props.info
+			);
+		}
+	});
+	module.exports = StepAdd;
+
+/***/ },
+/* 450 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(3);
+	var ReactRouter = __webpack_require__(181);
+
+	var LabelCarousel = React.createClass({
+	  displayName: 'LabelCarousel',
+
+
+	  getInitialState: function getInitialState() {
+	    return {
+	      counter: 0
+	    };
+	  },
+	  switchLabel: function switchLabel() {
+	    var box = document.querySelector('.carouselbox');
+	    var items = box.querySelectorAll('.content li');
+	    var amount = items.length;
+	    var current = items[this.state.counter];
+
+	    var direction = 1;
+	    if (this.state.counter == 2) {
+	      console.log("end");
+	    } else {
+	      current.classList.remove('current');
+	      this.state.counter = this.state.counter + direction;
+	      // if (direction === -1 &&
+	      //     this.state.counter < 0) {
+	      //   this.state.counter = amount - 1;
+	      // }
+	      if (direction === 1 && !items[this.state.counter]) {}
+	      current = items[this.state.counter];
+	      current.classList.add('current');
+	      // this.setState({counter: this.state.counter + 1});
+	    }
+	  },
+	  render: function render() {
+	    if (this.props.checked) this.switchLabel(); // Parent notifies to switch label
+
+	    return React.createElement(
+	      'div',
+	      { className: 'carouselbox' },
+	      React.createElement(
+	        'div',
+	        { className: 'active buttons' },
+	        React.createElement(
+	          'button',
+	          { className: 'next active', onClick: this.switchLabel },
+	          React.createElement(
+	            'span',
+	            { className: 'offscreen' },
+	            'Next'
+	          ),
+	          ' ▶'
+	        )
+	      ),
+	      React.createElement(
+	        'ol',
+	        { className: 'content active' },
+	        React.createElement(
+	          'li',
+	          { className: 'current' },
+	          "Stage 1"
+	        ),
+	        React.createElement(
+	          'li',
+	          null,
+	          "Stage 2"
+	        ),
+	        React.createElement(
+	          'li',
+	          null,
+	          "Stage 3"
+	        )
+	      )
+	    );
+	  }
+	});
+
+	module.exports = LabelCarousel;
 
 /***/ }
 /******/ ]);

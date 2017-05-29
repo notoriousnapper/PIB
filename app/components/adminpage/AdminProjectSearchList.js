@@ -99,7 +99,6 @@ var ProjectSearchList = React.createClass({
                 return  (
                     <ProjectListing
                         onChildProjectItemClick={that.props.onChildProjectItemClick}
-                        projectDetails={projectListJSON}
                         views={projectJSON.views}
                         id={projectJSON._id} url={ projectJSON.url }
                         name={ projectJSON.name} author={projectJSON.author}/>
