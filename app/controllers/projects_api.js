@@ -104,14 +104,17 @@ module.exports.set = function(app)
         var newProject = new Project({
             name: req.body.name,
             about: req.body.about,
-            thumbnail_img: req.body.thumbnail_img,
-            carouseFiles: req.body.carouseFiles,
             tags: [req.body.tags],
+            thumbnail_img: req.body.thumbnail_img,
+            imgArray: req.body.imgArray,
+            pdfFiles: req.body.carouseFiles,            
             views: 0,
             likes: 0,
             downloads: 0,
             author: req.body.author, //FOR NOW
             team: req.body.team,
+            // Will be removed going to new site
+            url: req.body.url,
             authorImg: req.body.authorImg  
         });
         Project.create(newProject, function(err, createdProject){
