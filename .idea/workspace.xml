@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f539567c-94b3-49bb-aa87-38e74162433d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/adminpage/AdminProjectList.js" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminProjectList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/adminpage/AdminProjectSearchList.js" afterPath="$PROJECT_DIR$/app/components/adminpage/AdminProjectSearchList.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/bundle.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/adminpage/ProjectCreateForm.js" afterPath="$PROJECT_DIR$/app/components/adminpage/ProjectCreateForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/adminpage/ProjectEditForm.js" afterPath="$PROJECT_DIR$/app/components/adminpage/ProjectEditForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/adminpage/adminpage.js" afterPath="$PROJECT_DIR$/app/components/adminpage/adminpage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bundle.js" afterPath="$PROJECT_DIR$/dist/bundle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/projects_api.js" afterPath="$PROJECT_DIR$/app/controllers/projects_api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/project.js" afterPath="$PROJECT_DIR$/app/models/project.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/app/components/adminpage/ProjectCreateForm.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="282">
-              <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <caret line="66" column="12" lean-forward="false" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -68,7 +65,19 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="276">
               <caret line="58" column="13" lean-forward="true" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
-              <folding />
+              <folding>
+                <marker date="1496097306000" expanded="true" signature="4081:5105" ph="{...}" />
+                <marker date="1496097306000" expanded="true" signature="4128:4665" ph="{&quot;name&quot;: req.body.name...}" />
+                <marker date="1496097306000" expanded="true" signature="4732:5097" ph="{...}" />
+                <marker date="1496097306000" expanded="true" signature="4754:4924" ph="{...}" />
+                <marker date="1496097306000" expanded="true" signature="4942:5086" ph="{...}" />
+                <marker date="1496097306000" expanded="true" signature="5136:5264" ph="/*...*/" />
+                <marker date="1496097306000" expanded="true" signature="5316:6007" ph="{...}" />
+                <marker date="1496097306000" expanded="true" signature="5326:5461" ph="/*...*/" />
+                <marker date="1496097306000" expanded="true" signature="5610:5991" ph="{...}" />
+                <marker date="1496097306000" expanded="true" signature="5632:5800" ph="{...}" />
+                <marker date="1496097306000" expanded="true" signature="5818:5981" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -141,11 +150,11 @@
         <option value="$PROJECT_DIR$/app/components/adminpage/Images.js" />
         <option value="$PROJECT_DIR$/app/components/adminpage/AdminProject.js" />
         <option value="$PROJECT_DIR$/app/controllers/projects_api.js" />
-        <option value="$PROJECT_DIR$/app/components/adminpage/ProjectCreateForm.js" />
         <option value="$PROJECT_DIR$/app/components/adminpage/AdminProjectList.js" />
         <option value="$PROJECT_DIR$/app/components/adminpage/AdminProjectSearchList.js" />
         <option value="$PROJECT_DIR$/app/components/adminpage/ProjectEditForm.js" />
         <option value="$PROJECT_DIR$/app/components/adminpage/adminpage.js" />
+        <option value="$PROJECT_DIR$/app/components/adminpage/ProjectCreateForm.js" />
       </list>
     </option>
   </component>
@@ -194,6 +203,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -457,12 +480,12 @@
       <updated>1495737754907</updated>
       <workItem from="1495737757394" duration="27113000" />
       <workItem from="1495829685465" duration="149000" />
-      <workItem from="1496093608922" duration="3484000" />
+      <workItem from="1496093608922" duration="3579000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30746000" />
+    <option name="totallyTimeSpent" value="30841000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
@@ -537,7 +560,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="64" column="34" lean-forward="true" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
-          <folding />
+          <folding>
+            <marker date="1496097306000" expanded="true" signature="4081:5105" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="4128:4665" ph="{&quot;name&quot;: req.body.name...}" />
+            <marker date="1496097306000" expanded="true" signature="4732:5097" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="4754:4924" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="4942:5086" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5136:5264" ph="/*...*/" />
+            <marker date="1496097306000" expanded="true" signature="5316:6007" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5326:5461" ph="/*...*/" />
+            <marker date="1496097306000" expanded="true" signature="5610:5991" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5632:5800" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5818:5981" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -603,7 +638,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="64" column="34" lean-forward="true" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
-          <folding />
+          <folding>
+            <marker date="1496097306000" expanded="true" signature="4081:5105" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="4128:4665" ph="{&quot;name&quot;: req.body.name...}" />
+            <marker date="1496097306000" expanded="true" signature="4732:5097" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="4754:4924" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="4942:5086" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5136:5264" ph="/*...*/" />
+            <marker date="1496097306000" expanded="true" signature="5316:6007" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5326:5461" ph="/*...*/" />
+            <marker date="1496097306000" expanded="true" signature="5610:5991" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5632:5800" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5818:5981" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -707,7 +754,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="58" column="13" lean-forward="true" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
-          <folding />
+          <folding>
+            <marker date="1496097306000" expanded="true" signature="4081:5105" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="4128:4665" ph="{&quot;name&quot;: req.body.name...}" />
+            <marker date="1496097306000" expanded="true" signature="4732:5097" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="4754:4924" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="4942:5086" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5136:5264" ph="/*...*/" />
+            <marker date="1496097306000" expanded="true" signature="5316:6007" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5326:5461" ph="/*...*/" />
+            <marker date="1496097306000" expanded="true" signature="5610:5991" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5632:5800" ph="{...}" />
+            <marker date="1496097306000" expanded="true" signature="5818:5981" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -730,7 +789,7 @@
     <entry file="file://$PROJECT_DIR$/app/components/adminpage/ProjectCreateForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
-          <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <caret line="66" column="12" lean-forward="false" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
           <folding />
         </state>
       </provider>

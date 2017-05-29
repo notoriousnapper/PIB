@@ -65,6 +65,7 @@ class ProjectCreateForm extends React.Component {
             imgArray: [],
             pdfFiles: [],
 
+
             authorImg: this.state.uploadedImageUrl || '',
             url: this.state.uploadedImageUrl || '',
         };
