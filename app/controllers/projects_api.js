@@ -125,6 +125,7 @@ module.exports.set = function(app)
             }
             else { // succesful insert = redirect to HOME
                 console.log(createdProject);
+                res.send(createdProject);
                 // res.redirect('/#/admin');
             }
 

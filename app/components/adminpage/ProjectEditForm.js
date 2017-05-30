@@ -35,6 +35,8 @@ class ProjectEditForm extends React.Component {
         super(props);
         this.state = {
             uploadedImageUrl: "",
+            imageArr: [],
+            pdfFiles: []
         };
     }
 
@@ -68,9 +70,9 @@ class ProjectEditForm extends React.Component {
                 tags: ['some project'],
                 author: this.refs.owner.value,
                 team: this.refs.team.value,
-                url: this.state.uploadedImageUrl || '',
-                imageArr: [],
-                pdfFiles: [],
+                url: this.state.uploadedImageUrl || this.props.data.url,
+                imgArray: this.state.imageArr || [],
+                pdfFiles: this.state.pdfFiles || [],
                 authorImg: this.state.uploadedImageUrl || '',
                 thumbnail_img: this.state.uploadedImageUrl || '',
             }
@@ -106,6 +108,7 @@ class ProjectEditForm extends React.Component {
     };
 
     render(){
+
         return(
             <div className="container" style={S.containerBorder}>
                 <form onSubmit={this.submitForm.bind(this)}>
@@ -121,19 +124,20 @@ class ProjectEditForm extends React.Component {
                     </div>
                     <div className="form-group">
                         <label>Team: </label>
-                        <input type="text" className="form-control" value={this.props.data.team}
+                        <input type="text" className="form-control" id="team" value={this.props.data.team}
                                onChange={this.props.onInputChangeForEditForm} ref="team"/>
                     </div>
                     <hr/>
                     <div className="form-group">
                         <label>Main Picture: </label>
+                        <img src={this.props.data.url} style={{width:72}}/>
                         <Images onUpload={this.handleChildUpload.bind(this)} uploadedImageUrl={this.state.uploadedImageUrl}/>
                         <p>Drop your main picture in here</p>
                     </div>
                     <hr/>
                     <div className="form-group">
                         <label>Project Description</label>
-                        <textarea className="form-control" rows="3" ref="description"  value={this.props.data.about}
+                        <textarea className="form-control" rows="3" ref="description" id="about" value={this.props.data.about}
                                   onChange={this.props.onInputChangeForEditForm}
                         ></textarea>
                     </div>

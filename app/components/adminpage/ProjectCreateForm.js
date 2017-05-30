@@ -35,6 +35,8 @@ class ProjectCreateForm extends React.Component {
         super(props);
         this.state = {
             uploadedImageUrl: "",
+            imageArr: [],
+            pdfFiles: []
         };
     }
     submitForm(event){
@@ -62,10 +64,9 @@ class ProjectCreateForm extends React.Component {
             tags: ['some project'],
             author: this.refs.owner.value,
             team: this.refs.team.value,
-            imgArray: [],
-            pdfFiles: [],
-
-
+            imgArray: this.state.imageArr || [],
+            pdfFiles: this.state.pdfFiles || [],
+            //no needed
             authorImg: this.state.uploadedImageUrl || '',
             url: this.state.uploadedImageUrl || '',
         };
@@ -101,6 +102,13 @@ class ProjectCreateForm extends React.Component {
             uploadedImageUrl: uploadedImageUrl
         });
     };
+    handleImageArrUpload(imageArr){
+        console.log("handle imageArr upload method being called");
+        console.log(imageArr);
+        this.setState({
+            imageArr: imageArr
+        });
+    }
 
     render(){
         return(

@@ -54179,7 +54179,9 @@
 	        var _this = (0, _possibleConstructorReturn3.default)(this, (ProjectCreateForm.__proto__ || (0, _getPrototypeOf2.default)(ProjectCreateForm)).call(this, props));
 
 	        _this.state = {
-	            uploadedImageUrl: ""
+	            uploadedImageUrl: "",
+	            imageArr: [],
+	            pdfFiles: []
 	        };
 	        return _this;
 	    }
@@ -54211,9 +54213,9 @@
 	                tags: ['some project'],
 	                author: this.refs.owner.value,
 	                team: this.refs.team.value,
-	                imgArray: [],
-	                pdfFiles: [],
-
+	                imgArray: this.state.imageArr || [],
+	                pdfFiles: this.state.pdfFiles || [],
+	                //no needed
 	                authorImg: this.state.uploadedImageUrl || '',
 	                url: this.state.uploadedImageUrl || ''
 	            };
@@ -54252,6 +54254,15 @@
 	            console.log(uploadedImageUrl);
 	            this.setState({
 	                uploadedImageUrl: uploadedImageUrl
+	            });
+	        }
+	    }, {
+	        key: 'handleImageArrUpload',
+	        value: function handleImageArrUpload(imageArr) {
+	            console.log("handle imageArr upload method being called");
+	            console.log(imageArr);
+	            this.setState({
+	                imageArr: imageArr
 	            });
 	        }
 	    }, {
@@ -59828,7 +59839,9 @@
 	        var _this = (0, _possibleConstructorReturn3.default)(this, (ProjectEditForm.__proto__ || (0, _getPrototypeOf2.default)(ProjectEditForm)).call(this, props));
 
 	        _this.state = {
-	            uploadedImageUrl: ""
+	            uploadedImageUrl: "",
+	            imageArr: [],
+	            pdfFiles: []
 	        };
 	        return _this;
 	    }
@@ -59865,9 +59878,9 @@
 	                    tags: ['some project'],
 	                    author: this.refs.owner.value,
 	                    team: this.refs.team.value,
-	                    url: this.state.uploadedImageUrl || '',
-	                    imageArr: [],
-	                    pdfFiles: [],
+	                    url: this.state.uploadedImageUrl || this.props.data.url,
+	                    imgArray: this.state.imageArr || [],
+	                    pdfFiles: this.state.pdfFiles || [],
 	                    authorImg: this.state.uploadedImageUrl || '',
 	                    thumbnail_img: this.state.uploadedImageUrl || ''
 	                }
@@ -59906,6 +59919,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+
 	            return React.createElement(
 	                'div',
 	                { className: 'container', style: S.containerBorder },
@@ -59942,7 +59956,7 @@
 	                            null,
 	                            'Team: '
 	                        ),
-	                        React.createElement('input', { type: 'text', className: 'form-control', value: this.props.data.team,
+	                        React.createElement('input', { type: 'text', className: 'form-control', id: 'team', value: this.props.data.team,
 	                            onChange: this.props.onInputChangeForEditForm, ref: 'team' })
 	                    ),
 	                    React.createElement('hr', null),
@@ -59954,6 +59968,7 @@
 	                            null,
 	                            'Main Picture: '
 	                        ),
+	                        React.createElement('img', { src: this.props.data.url, style: { width: 72 } }),
 	                        React.createElement(Images, { onUpload: this.handleChildUpload.bind(this), uploadedImageUrl: this.state.uploadedImageUrl }),
 	                        React.createElement(
 	                            'p',
@@ -59970,7 +59985,7 @@
 	                            null,
 	                            'Project Description'
 	                        ),
-	                        React.createElement('textarea', { className: 'form-control', rows: '3', ref: 'description', value: this.props.data.about,
+	                        React.createElement('textarea', { className: 'form-control', rows: '3', ref: 'description', id: 'about', value: this.props.data.about,
 	                            onChange: this.props.onInputChangeForEditForm
 	                        })
 	                    ),
